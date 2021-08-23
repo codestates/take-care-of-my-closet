@@ -1,7 +1,7 @@
 ---
 name: "[Client] 기능구현 Issue"
 about: Suggest an idea for this project
-title: "[Clien] 기능구현의 Issue"
+title: "[Client] 기능구현의 Issue"
 labels: ''
 assignees: ''
 
