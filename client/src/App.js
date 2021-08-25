@@ -5,9 +5,10 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Nav from './Components/Nav';
 import Footer from './Components/Footer'
 
+import Login from './Components/Login'
+
 function App() {
   return (
-
     // <div>Hello World</div>
     <React.Fragment>
       <BrowserRouter>
@@ -23,7 +24,6 @@ function App() {
 
 
     </React.Fragment>
-
   );
 }
 
