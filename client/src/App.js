@@ -1,5 +1,6 @@
 import './App.css';
 import React from 'react';
+
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import Nav from './Components/Nav';
 import Footer from './Components/Footer'
@@ -22,7 +23,6 @@ function App() {
 
 
     </React.Fragment>
-
 
   );
 }
