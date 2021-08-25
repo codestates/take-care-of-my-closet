@@ -1,12 +1,29 @@
 import './App.css';
 import React from 'react';
+
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import Nav from './Components/Nav';
+import Footer from './Components/Footer'
 
 import Login from './Components/Login'
 
 function App() {
   return (
-    <div><Login></Login></div>
+    // <div>Hello World</div>
+    <React.Fragment>
+      <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          {/* <Main/> */}
+        </Route>
+      </Switch>
+        
+      <Nav/>
+      <Footer/>
+      </BrowserRouter>
+
+
+    </React.Fragment>
   );
 }
 
