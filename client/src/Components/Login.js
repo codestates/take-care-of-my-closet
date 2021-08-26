@@ -9,6 +9,8 @@ function Login({ ChangeLogin }) {
     password: "",
   })
 
+  const [errorMessage, setErrorMessage] = useState("")
+
   const history = useHistory()
 
   const handleInputValue = (key) => (e) => {
@@ -17,16 +19,28 @@ function Login({ ChangeLogin }) {
 
   const handleLogin = (e) => {
     e.preventDefault()
-    axios
-      .post("https://TakeCareOfMyCloset/login", loginInfo, {
-        withCredentials: true,
-      })
-      .then((res) => {
-        ChangeLogin(true)
-        history.push("/")
-      })
-      .catch((err) => console.error(err))
+    // setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
+    if (loginInfo.login_id && loginInfo.password) {
+      axios
+        .post("https://TakeCareOfMyCloset/login", loginInfo, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          if (res.data.message === "Invalid user or Wrong password") {
+            setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
+          } else {
+            setErrorMessage("")
+            ChangeLogin(true)
+            history.push("/")
+          }
+        })
+        .catch((err) => console.error(err))
+    } else {
+      setErrorMessage("아이디와 비밀번호를 입력해주세요")
+    }
   }
+
+  console.log(loginInfo)
 
   return (
     <div>
@@ -46,6 +60,7 @@ function Login({ ChangeLogin }) {
             placeholder="비밀번호"
             onChange={handleInputValue("password")}
           />
+          <div>{errorMessage}</div>
           <div>
             <button
               type="submit"

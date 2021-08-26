@@ -1,37 +1,26 @@
-import "./App.css"
-import React, { useState } from "react"
-import { BrowserRouter, Switch, Route, location } from "react-router-dom"
-import Nav from "./Components/Nav"
-import Footer from "./Components/Footer"
+import React from "react"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import Nav from "./Nav"
+import Footer from "./Footer"
+import Login from "./Login"
+import Main from "./Main"
+import MyContents from "./MyContents"
+import MyPage from "./MyPage"
+import SignUp from "./SignUp"
 
-import Login from "./Components/Login"
-import Main from "./Components/Main"
-import MyContents from "./Components/MyContents"
-import MyPage from "./Components/MyPage"
-import SignUp from "./Components/SignUp"
-
-function App() {
-  const [isLogin, setIsLogin] = useState(false)
-
-  const ChangeLoginState = (boolean) => {
-    setIsLogin(boolean)
-  }
-
-  // console.log(location) // <-----------------------------
-
-  // let location = { pathname: "/login" }
-
+function Routes({ isLogin, ChangeLoginState }) {
   return (
     <React.Fragment>
       <BrowserRouter>
         <div>
           <main>
-            {location.pathname === "/login" ||
+            {/* {location.pathname === "/login" ||
             location.pathname === "/signup" ? (
               <></>
             ) : (
               <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
-            )}
+            )} */}
+            <Nav />
             <section>
               <Switch>
                 <Route exact path="/">
@@ -59,4 +48,4 @@ function App() {
   )
 }
 
-export default App
+export default Routes
