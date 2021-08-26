@@ -9,9 +9,40 @@ import Main from "./Components/Main";
 import MyContents from "./Components/MyContents";
 import MyPage from "./Components/MyPage";
 import SignUp from "./Components/SignUp";
+import Content from "./Components/Content";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
+  const [userInfo, setUserInfo] = useState({
+    login_id: "",
+    image: "",
+    nickname: "",
+  });
+
+  const getUserInfo = (userInfo) => {
+    setUserInfo({
+      login_id: userInfo.login_id,
+      image: userInfo.image,
+      nickname: userInfo.nickname,
+    });
+  };
+
+  const loginHandler = (accessToken) => {
+    setIsLogin(true);
+    setAccessToken(accessToken);
+    getUserInfo();
+  };
+
+  const logoutHandler = () => {
+    setIsLogin(false);
+    setAccessToken("");
+    setUserInfo({
+      login_id: "",
+      image: "",
+      nickname: "",
+    });
+  };
 
   const ChangeLoginState = (boolean) => {
     setIsLogin(boolean);
@@ -39,7 +70,7 @@ function App() {
                   <Main />
                 </Route>
                 <Route path="/login">
-                  <Login ChangeLoginState={ChangeLoginState} />
+                  <Login loginHandler={loginHandler} />
                 </Route>
                 <Route path="/signup">
                   <SignUp />
@@ -49,6 +80,13 @@ function App() {
                 </Route>
                 <Route path="/mypage">
                   <MyPage isLogin={isLogin} />
+                </Route>
+                <Route path="/content">
+                  <Content
+                    isLogin={isLogin}
+                    userInfo={userInfo}
+                    accessToken={accessToken}
+                  />
                 </Route>
               </Switch>
             </section>
