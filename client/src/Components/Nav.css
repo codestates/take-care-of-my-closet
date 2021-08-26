@@ -1,5 +1,5 @@
 header {
-    background-color: red;
+  background-color: red;
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
@@ -88,20 +88,19 @@ time,
 mark,
 audio,
 video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 1em;
-    font: inherit;
-    vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 1em;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 button {
-    font-size: 1em;
-    font-family: inherit;
-    cursor: pointer;
+  font-size: 1em;
+  font-family: inherit;
+  cursor: pointer;
 }
-
 
 /* HTML5 display-role reset for older browsers */
 
@@ -116,14 +115,14 @@ hgroup,
 menu,
 nav,
 section {
-    display: block;
+  display: block;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
