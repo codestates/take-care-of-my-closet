@@ -6,8 +6,11 @@ const cors = require("cors");
 const express = require('express');
 const app = express();
 
-app.use(express.json());
+const controllers = require("./controllers");
 
+
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
 app.use(
     cors({
         origin: true,
@@ -16,8 +19,10 @@ app.use(
 );
 
 
+app.post("/login",controllers.login)
 
-const HTTPS_PORT = process.env.HTTPS_PORT || 4000;
+
+const HTTPS_PORT = 4000;
 
 let server;
 if(fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")){
@@ -32,4 +37,5 @@ if(fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")){
 } else {
   server = app.listen(HTTPS_PORT)
 }
+
 module.exports = server;
