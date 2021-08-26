@@ -1,10 +1,8 @@
-import "./App.css"
-import React, { useState } from "react"
-
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
-import Nav from "./Components/Nav"
-import Footer from "./Components/Footer"
-
+import "./App.css";
+import React, { useState } from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Nav from "./Components/Nav";
+import Footer from "./Components/Footer";
 import Login from "./Components/Login"
 import Main from "./Components/Main"
 import MyContents from "./Components/MyContents"
@@ -12,13 +10,13 @@ import MyPage from "./Components/MyPage"
 import SignUp from "./Components/SignUp"
 import ContentModiCreate from "./Components/ContentsModiCreate"
 
+
 function App() {
-  const [isLogin, setIsLogin] = useState(false)
+  const [isLogin, setIsLogin] = useState(false);
 
   const ChangeLoginState = (boolean) => {
-    setIsLogin(!boolean)
-  }
-  console.log(isLogin);
+    setIsLogin(boolean);
+  };
 
   return (
     <React.Fragment>
@@ -53,7 +51,7 @@ function App() {
         <Footer />
       </BrowserRouter>
     </React.Fragment>
-  )
+  );
 }
 
-export default App
+export default App;
