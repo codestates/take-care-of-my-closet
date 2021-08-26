@@ -26,6 +26,12 @@ function App() {
       <BrowserRouter>
         <div>
           <main>
+            {/* {location.pathname === "/login" ||
+            location.pathname === "/signup" ? (
+              <></>
+            ) : (
+              <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
+            )} */}
             <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
             <section>
               <Switch>
