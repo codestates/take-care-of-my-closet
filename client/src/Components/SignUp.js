@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import logo from "../image/logo.jpeg";
-import Footer from "./Footer";
 
 function SignUp() {
   const [idValue, setIdValue] = useState("");
@@ -14,6 +13,7 @@ function SignUp() {
   const [duplicatedId, setDuplicatedId] = useState(false);
   const [pwMatch, setPwMatch] = useState(true);
   const [validIdMessage, setValidIdMessage] = useState("");
+  const [duplicatedIdMessage, setDuplicatedIdMessage] = useState("");
 
   useEffect(() => {
     isValidPassword();
@@ -68,10 +68,10 @@ function SignUp() {
       .then((res) => {
         if (res === false) {
           setDuplicatedId(false);
-          setValidIdMessage("사용할 수 없는 아이디 입니다.");
+          setDuplicatedIdMessage("사용할 수 없는 아이디 입니다.");
         } else {
           setDuplicatedId(true);
-          setValidIdMessage("사용할 수 있는 아이디 입니다.");
+          setDuplicatedIdMessage("사용할 수 있는 아이디 입니다.");
         }
       })
       .catch((err) => {
@@ -109,8 +109,14 @@ function SignUp() {
     if (!idValue || !pwValue || !nickName) {
       return alert("아이디, 비밀번호, 닉네임을 입력하세요");
     }
-    if (!duplicatedId) {
+    if (duplicatedId === false) {
       return alert("아이디가 유효하지 않습니다.");
+    }
+    if (validPwLength === false) {
+      return alert("비밀번호가 유효하지 않습니다.");
+    }
+    if (pwMatch === false) {
+      return alert("비밀번호가 일치하지 않습니다.");
     }
     axios
       .post(
@@ -125,7 +131,6 @@ function SignUp() {
       )
       .then((res) => {
         if (res === "성공") {
-          // 로그인 창으로 이동
         }
       })
       .catch((err) => {
@@ -149,6 +154,7 @@ function SignUp() {
             placeholder="아이디를 입력하세요"
           />
           <button onClick={(e) => isDuplicated(e)}>중복확인</button>
+          {duplicatedIdMessage ? duplicatedIdMessage : null}
           <br />
           {validIdLength ? null : validIdMessage}
           비밀번호 :{" "}
@@ -186,7 +192,6 @@ function SignUp() {
           <button onClick={(e) => requestSignUp(e)}>가입하기</button>
         </fieldset>
       </form>
-      <Footer />
     </div>
   );
 }
