@@ -1,30 +1,54 @@
-import './App.css';
-import React from 'react';
+import "./App.css"
+import React, { useState } from "react"
 
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
-import Nav from './Components/Nav';
-import Footer from './Components/Footer'
+import { BrowserRouter, Switch, Route, Link } from "react-router-dom"
+import Nav from "./Components/Nav"
+import Footer from "./Components/Footer"
 
-import Login from './Components/Login'
+import Login from "./Components/Login"
+import Main from "./Components/Main"
+import MyContents from "./Components/MyContents"
+import MyPage from "./Components/MyPage"
+import SignUp from "./Components/SignUp"
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false)
+
+  const ChangeLoginState = (boolean) => {
+    setIsLogin(boolean)
+  }
+
   return (
-    // <div>Hello World</div>
     <React.Fragment>
       <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          {/* <Main/> */}
-        </Route>
-      </Switch>
-        
-      <Nav/>
-      <Footer/>
+        <div>
+          <main>
+            <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
+            <section>
+              <Switch>
+                <Route exact path="/">
+                  <Main />
+                </Route>
+                <Route path="/login">
+                  <Login ChangeLoginState={ChangeLoginState} />
+                </Route>
+                <Route path="/signup">
+                  <SignUp />
+                </Route>
+                <Route path="/mycontents">
+                  <MyContents isLogin={isLogin} />
+                </Route>
+                <Route path="/mypage">
+                  <MyPage isLogin={isLogin} />
+                </Route>
+              </Switch>
+            </section>
+          </main>
+        </div>
+        <Footer />
       </BrowserRouter>
-
-
     </React.Fragment>
-  );
+  )
 }
 
-export default App;
+export default App
