@@ -1,6 +1,6 @@
 import "./App.css"
 import React, { useState } from "react"
-import { BrowserRouter, Switch, Route, location } from "react-router-dom"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
 import Nav from "./Components/Nav"
 import Footer from "./Components/Footer"
 
@@ -22,17 +22,17 @@ function App() {
   // let location = { pathname: "/login" }
 
   return (
-
     <React.Fragment>
       <BrowserRouter>
         <div>
           <main>
-            {location.pathname === "/login" ||
+            {/* {location.pathname === "/login" ||
             location.pathname === "/signup" ? (
               <></>
             ) : (
               <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
-            )}
+            )} */}
+            <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
             <section>
               <Switch>
                 <Route exact path="/">
