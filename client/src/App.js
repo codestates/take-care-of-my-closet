@@ -22,44 +22,41 @@ function App() {
   // let location = { pathname: "/login" }
 
   return (
-    <div>
-      <SignUp />
-    </div>
-    // <React.Fragment>
-    //   <BrowserRouter>
-    //     <div>
-    //       <main>
-    //         {/* {location.pathname === "/login" ||
-    //         location.pathname === "/signup" ? (
-    //           <></>
-    //         ) : (
-    //           <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
-    //         )} */}
-    //         <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
-    //         <section>
-    //           <Switch>
-    //             <Route exact path="/">
-    //               <Main />
-    //             </Route>
-    //             <Route path="/login">
-    //               <Login ChangeLoginState={ChangeLoginState} />
-    //             </Route>
-    //             <Route path="/signup">
-    //               <SignUp />
-    //             </Route>
-    //             <Route path="/mycontents">
-    //               <MyContents isLogin={isLogin} />
-    //             </Route>
-    //             <Route path="/mypage">
-    //               <MyPage isLogin={isLogin} />
-    //             </Route>
-    //           </Switch>
-    //         </section>
-    //       </main>
-    //     </div>
-    //     <Footer />
-    //   </BrowserRouter>
-    // </React.Fragment>
+    <React.Fragment>
+      <BrowserRouter>
+        <div>
+          <main>
+            {/* {location.pathname === "/login" ||
+            location.pathname === "/signup" ? (
+              <></>
+            ) : (
+              <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
+            )} */}
+            <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
+            <section>
+              <Switch>
+                <Route exact path="/">
+                  <Main />
+                </Route>
+                <Route path="/login">
+                  <Login ChangeLoginState={ChangeLoginState} />
+                </Route>
+                <Route path="/signup">
+                  <SignUp />
+                </Route>
+                <Route path="/mycontents">
+                  <MyContents isLogin={isLogin} />
+                </Route>
+                <Route path="/mypage">
+                  <MyPage isLogin={isLogin} />
+                </Route>
+              </Switch>
+            </section>
+          </main>
+        </div>
+        <Footer />
+      </BrowserRouter>
+    </React.Fragment>
   );
 }
 
