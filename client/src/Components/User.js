@@ -4,11 +4,9 @@ import { Link } from "react-router-dom"
 function User ({ChangeLoginState}){
 
   const [userBtnIsOn, setUserBtnIsOn] = useState('')
-  const [classNameOn, setClassNameOn] = useState('')
 
   const UserBtnHandler= () => {
     setUserBtnIsOn(!userBtnIsOn)
-    setClassNameOn('userBtnActive') 
   }
 
   return (
