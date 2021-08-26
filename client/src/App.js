@@ -1,8 +1,11 @@
-import "./App.css";
-import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Nav from "./Components/Nav";
-import Footer from "./Components/Footer";
+
+import "./App.css"
+import React, { useState } from "react"
+import { Switch, Route, useLocation } from "react-router-dom"
+import Nav from "./Components/Nav"
+import Footer from "./Components/Footer"
+
+
 import Login from "./Components/Login"
 import Main from "./Components/Main"
 import MyContents from "./Components/MyContents"
@@ -15,14 +18,22 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
 
   const ChangeLoginState = (boolean) => {
-    setIsLogin(boolean);
-  };
+
+    setIsLogin(boolean)
+  }
+
+  let loca = useLocation()
+
+  console.log("로케이션 제발", loca)
 
   return (
     <React.Fragment>
-      <BrowserRouter>
         {/* <div> */}
-        <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
+        {loca.pathname === "/login" || loca.pathname === "/signup" ? (
+            <></>
+          ) : (
+            <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
+          )}
         {/* <main> */}
           {/* <section> */}
             <Switch>
@@ -49,7 +60,6 @@ function App() {
         {/* </main> */}
         {/* </div> */}
         <Footer />
-      </BrowserRouter>
     </React.Fragment>
   );
 }
