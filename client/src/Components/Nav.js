@@ -1,12 +1,11 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import logo from "../image/logo.jpeg"
-import "./Nav.css"
-import "./reset.css"
-import User from './User'
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../image/logo.jpeg";
+import "./Nav.css";
+import "./reset.css";
+import User from "./User";
 
-function Nav({ isLogin, ChangeLoginState }) {
-
+function Nav({ isLogin, logoutHandler }) {
   return (
     <header>
       <h1 className="logo">
@@ -28,16 +27,18 @@ function Nav({ isLogin, ChangeLoginState }) {
           ) : (
             <button>로그인</button>
           )} */}
-          <Link to="/content-modify-create">
-            <button>새 글 작성</button>
-          </Link>
-          <ul>
-            <User ChangeLoginState={ChangeLoginState}/>
-          </ul>
+        <Link to="/content-modi-create">
+          <button>새 글 작성</button>
+        </Link>
+        <ul>
+          <User logoutHandler={logoutHandler} />
+        </ul>
+        <Link to="/login">
           <button>로그인</button>
+        </Link>
       </nav>
     </header>
-  )
+  );
 }
 
-export default Nav
+export default Nav;

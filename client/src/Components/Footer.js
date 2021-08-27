@@ -1,6 +1,6 @@
-import React from "react"
-import "./Footer.css"
-import "./reset.css"
+import React from "react";
+import "./Footer.css";
+import "./reset.css";
 
 function Footer() {
   return (
@@ -9,7 +9,7 @@ function Footer() {
         <span>갤럭시 지구 금은동 코든램지아파트 1004동 101호</span>
         <span>
           email :{" "}
-          <a href="mailto:codenramsay@smile.com">codenramsay@smile.com</a>
+          <a href="mailto:codenramsay@smile.com">cordenramsay@smile.com</a>
         </span>
       </address>
       <small>
@@ -17,7 +17,7 @@ function Footer() {
         RIGHTS RESERVED.
       </small>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;

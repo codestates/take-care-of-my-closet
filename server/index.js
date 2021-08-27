@@ -21,7 +21,7 @@ app.use(
 db.sequelize
   .sync()
   .then(() => {
-    console.log("db 연결 성공")
+    console.log("db 연결 ")
   })
   .catch(console.error)
 
@@ -38,6 +38,7 @@ if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
   server = https.createServer(credentials, app)
   server.listen(HTTPS_PORT, () => console.log("server runnning"))
 } else {
+  console.log("http로실행")
   server = app.listen(HTTPS_PORT)
 }
 
