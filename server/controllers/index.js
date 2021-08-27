@@ -1,4 +1,5 @@
 module.exports = {
-    login: require('./user/login')
-  };
-  
+  login: require("./user/Login"),
+  accessTokenRequest: require("./user/AccessTokenRequest"),
+  signup: require("./user/SiginUp"),
+}
