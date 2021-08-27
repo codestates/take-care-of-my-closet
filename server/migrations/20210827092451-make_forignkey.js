@@ -8,10 +8,10 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn("posts", "user_id", Sequelize.INTEGER)
+    await queryInterface.addColumn("posts", "userId", Sequelize.INTEGER)
 
     await queryInterface.addConstraint("posts", {
-      fields: ["user_id"],
+      fields: ["userId"],
       type: "foreign key",
       name: "FK_users",
       references: {
@@ -22,10 +22,10 @@ module.exports = {
       onUpdate: "cascade",
     })
 
-    await queryInterface.addColumn("comments", "post_id", Sequelize.INTEGER)
+    await queryInterface.addColumn("comments", "postId", Sequelize.INTEGER)
 
     await queryInterface.addConstraint("comments", {
-      fields: ["post_id"],
+      fields: ["postId"],
       type: "foreign key",
       name: "FK_comment_post",
       references: {
@@ -36,10 +36,10 @@ module.exports = {
       onUpdate: "cascade",
     })
 
-    await queryInterface.addColumn("comments", "user_id", Sequelize.INTEGER)
+    await queryInterface.addColumn("comments", "userId", Sequelize.INTEGER)
 
     await queryInterface.addConstraint("comments", {
-      fields: ["user_id"],
+      fields: ["userId"],
       type: "foreign key",
       name: "FK_comment_user",
       references: {

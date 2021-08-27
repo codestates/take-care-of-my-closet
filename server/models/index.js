@@ -54,23 +54,23 @@ comment.belongsTo(post)
 //likes table - n : m
 user.belongsToMany(post, {
   through: "likes",
-  foreignKey: "user_id",
+  foreignKey: "userId",
 })
 
 post.belongsToMany(user, {
   through: "likes",
-  foreignKey: "post_id",
+  foreignKey: "postId",
 })
 
 //unlikes table - n : m
 user.belongsToMany(post, {
   through: "unlikes",
-  foreignKey: "user_id",
+  foreignKey: "userId",
 })
 
 post.belongsToMany(user, {
   through: "unlikes",
-  foreignKey: "post_id",
+  foreignKey: "postId",
 })
 
 db.sequelize = sequelize
