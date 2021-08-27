@@ -1,8 +1,9 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, useLocation } from "react-router-dom";
 import Nav from "./Components/Nav";
 import Footer from "./Components/Footer";
+import axios from "axios";
 
 import Login from "./Components/Login";
 import Main from "./Components/Main";
@@ -15,11 +16,19 @@ import Content from "./Components/Content";
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [accessToken, setAccessToken] = useState("");
+  const [contents, setContents] = useState([]);
   const [userInfo, setUserInfo] = useState({
     login_id: "",
     image: "",
     nickname: "",
   });
+
+  useEffect(() => {
+    console.log("asdasdasd");
+    axios.get("https://takecareofmycloset/getposts").then((res) => {
+      contentsListHandler([...res.data]);
+    });
+  }, []);
 
   const getUserInfo = (userInfo) => {
     setUserInfo({
@@ -49,13 +58,16 @@ function App() {
     setIsLogin(boolean);
   };
 
+  const contentsListHandler = (contentsList) => {
+    setContents(contentsList);
+  };
+
   let loca = useLocation();
 
   console.log("로케이션 제발", loca);
 
   return (
     <React.Fragment>
-      {/* <div> */}
       {loca.pathname === "/login" || loca.pathname === "/signup" ? (
         <></>
       ) : (
@@ -68,7 +80,7 @@ function App() {
       <section>
         <Switch>
           <Route exact path="/">
-            <Main />
+            <Main contents={contents} />
           </Route>
           <Route path="/login">
             <Login loginHandler={loginHandler} />
@@ -77,7 +89,7 @@ function App() {
             <SignUp />
           </Route>
           <Route path="/mycontents">
-            <MyContents isLogin={isLogin} />
+            <MyContents contents={contents} userInfo={userInfo} />
           </Route>
           <Route path="/mypage">
             <MyPage isLogin={isLogin} />
