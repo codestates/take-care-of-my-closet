@@ -12,11 +12,24 @@ import MyPage from "./Components/MyPage";
 import SignUp from "./Components/SignUp";
 import ContentModiCreate from "./Components/ContentsModiCreate";
 import Content from "./Components/Content";
+import {
+  dummyMainPosts,
+  dummyContents,
+  dummyComment,
+} from "./dummyData/dummyData";
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [accessToken, setAccessToken] = useState("");
   const [contents, setContents] = useState([]);
+  const [selectedContent, setSelectedContent] = useState({
+    id: "",
+    title: "",
+    image: "",
+    contents: "",
+    likecount: "",
+    unlikecount: "",
+  });
   const [userInfo, setUserInfo] = useState({
     login_id: "",
     image: "",
@@ -24,10 +37,14 @@ function App() {
   });
 
   useEffect(() => {
-    console.log("asdasdasd");
-    axios.get("https://takecareofmycloset/getposts").then((res) => {
-      contentsListHandler([...res.data]);
-    });
+    axios
+      .post("https://takecareofmycloset/getposts")
+      .then((res) => {
+        contentsListHandler([...res.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const getUserInfo = (userInfo) => {
@@ -62,11 +79,36 @@ function App() {
     setContents(contentsList);
   };
 
+  const handleContentClick = (id) => {
+    console.log("게시글을 클릭했군요!");
+    console.log(id);
+    // let temp = contents.filter((el) => {
+    //   return el.id === id;
+    // });
+    let temp;
+    for (let el of contents) {
+      if (el.id === id) {
+        temp = el.id;
+      }
+    }
+    setSelectedContent({
+      id: temp,
+      title: selectedContent.title,
+      image: selectedContent.image,
+      contents: selectedContent.contents,
+      likecount: selectedContent.likecount,
+      unlikecount: selectedContent.unlikecount,
+    });
+  };
+
   let loca = useLocation();
 
   console.log("로케이션 제발", loca);
 
   return (
+    // <div>
+    //   <Content />
+    // </div>
     <React.Fragment>
       {loca.pathname === "/login" || loca.pathname === "/signup" ? (
         <></>
@@ -80,7 +122,7 @@ function App() {
       <section>
         <Switch>
           <Route exact path="/">
-            <Main contents={contents} />
+            <Main contents={contents} handleContentClick={handleContentClick} />
           </Route>
           <Route path="/login">
             <Login loginHandler={loginHandler} />
@@ -89,7 +131,7 @@ function App() {
             <SignUp />
           </Route>
           <Route path="/mycontents">
-            <MyContents contents={contents} userInfo={userInfo} />
+            <MyContents isLogin={isLogin} userInfo={userInfo} />
           </Route>
           <Route path="/mypage">
             <MyPage isLogin={isLogin} />
@@ -99,6 +141,7 @@ function App() {
               isLogin={isLogin}
               userInfo={userInfo}
               accessToken={accessToken}
+              selectedContent={selectedContent}
             />
           </Route>
           <Route path="/content-modi-create">
