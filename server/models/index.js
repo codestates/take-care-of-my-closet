@@ -32,28 +32,83 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-const {user,post,comment,like,unlike} = sequelize.models;
+const {user,post,comment} = sequelize.models;
 
-post.belongsTo(user);
-user.hasMany(post);
+// post.belongsTo(user);
+// user.hasMany(post);
 
-user.hasMany(comment);
-comment.belongsTo(user);
+// user.hasMany(comment);
+// comment.belongsTo(user);
 
-post.hasMany(like);
-like.belongsTo(post);
+// post.hasMany(comment);
+// comment.belongsTo(post);
 
-user.hasMany(like);
-like.belongsTo(user);
+//post
+post.belongsTo(user,{
+  foreignKey : "user_id",
+  targetKey: 'id',
+})
 
-post.hasMany(unlike);
-unlike.belongsTo(post);
+post.hasMany(comment,{
+  foreignKey : "post_id",
+  sourceKey: 'id',
+})
 
-user.hasMany(unlike);
-unlike.belongsTo(user);
+//user 
+user.hasMany(post,{
+  foreignKey: 'user_id',
+  sourceKey: 'id',
+});
 
-post.hasMany(unlike);
-unlike.belongsTo(post);
+user.hasMany(comment,{
+ foreignKey : 'user_id',
+ sourceKey: 'id',
+});
+
+//comment relations
+comment.belongsTo(user,{
+  foreignKey : "user_id",
+  targetKey: 'id',
+});
+comment.belongsTo(post,{
+  foreignKey : "post_id",
+  targetKey: 'id',
+})
+
+user.belongsToMany(post,{
+  through: 'likes',
+  foreignKey: 'user_id'
+});
+
+post.belongsToMany(user,{
+  through: 'likes',
+  foreignKey: 'post_id'
+});
+
+user.belongsToMany(post,{
+  through: 'unlikes',
+  foreignKey: 'user_id'
+});
+
+post.belongsToMany(user,{
+  through: 'unlikes',
+  foreignKey: 'post_id'
+});
+
+// post.hasMany(like);
+// like.belongsTo(post);
+
+// user.hasMany(like);
+// like.belongsTo(user);
+
+// post.hasMany(unlike);
+// unlike.belongsTo(post);
+
+// user.hasMany(unlike);
+// unlike.belongsTo(user);
+
+// post.hasMany(unlike);
+// unlike.belongsTo(post);
 
 
 db.sequelize = sequelize;
