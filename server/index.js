@@ -2,6 +2,7 @@ require("dotenv").config();
 const fs = require("fs");
 const https = require("https");
 const cors = require("cors");
+const db =require("./models/index")
 
 const express = require('express');
 const app = express();
@@ -18,8 +19,14 @@ app.use(
     })
 );
 
+db.sequelize.sync()
+  .then(() => {
+    console.log('db 연결 성공');
+  })
+  .catch(console.error);
 
-app.post("/login",controllers.login)
+
+//app.post("/login",controllers.login)
 
 
 const HTTPS_PORT = 4000;
