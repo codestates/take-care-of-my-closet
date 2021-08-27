@@ -11,16 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-    //   models.user.hasMany(models.post,{
-    //     foreignKey: 'user_id',
-    //     sourceKey: 'id',
-    //     onDelete: 'cascade',
-    //   });
-    //  models.user.hasMany(models.comment,{
-    //    foreignKey : 'user_id',
-    //    sourceKey: 'id',
-    //    onDelete: 'cascade',
-    //  });
+   
     }
   };
   user.init({
