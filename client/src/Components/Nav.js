@@ -27,13 +27,15 @@ function Nav({ isLogin, logoutHandler }) {
           ) : (
             <button>로그인</button>
           )} */}
-        <Link to="/content-modify-create">
+        <Link to="/content-modi-create">
           <button>새 글 작성</button>
         </Link>
         <ul>
           <User logoutHandler={logoutHandler} />
         </ul>
-        <button>로그인</button>
+        <Link to="/login">
+          <button>로그인</button>
+        </Link>
       </nav>
     </header>
   );
