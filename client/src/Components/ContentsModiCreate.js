@@ -24,9 +24,10 @@ function ContentModiCreate(){
     (한국 표준시), webkitRelativePath: "", size: 385201, …}*/
 
     if(!validImageType(file)){
-      console.log('이미지가 맞습니다');
+      console.log('The image file is correct. please continue');
     }else{
-      console.log('이미지가 아닙니다');
+      alert('이미지 파일이 아니다. 이미지 파일로 업로드 부탁드립니다.')
+      console.log('It is not an image file. Please upload it as an image file.');
     }
 
     setImageFile(file)

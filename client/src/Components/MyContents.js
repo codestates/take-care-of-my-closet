@@ -13,19 +13,19 @@ function MyContents({ isLogin }) {
         <li>
           <article>
             <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt=""/>My Content
+            <img src="fff" alt="dd"/>My Content
           </article>
           </li>
         <li>
           <article>
             <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt=""/>My Content
+            <img src="fff" alt="dd"/>My Content
           </article>
           </li>
         <li>
           <article >
             <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt=""/>My Content
+            <img src="fff" alt="dd"/>My Content
           </article>
           </li>
       </ul>
