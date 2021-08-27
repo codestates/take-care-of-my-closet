@@ -28,6 +28,7 @@ db.sequelize
 app.post("/login", controllers.login)
 app.get("/accessTokenrequest", controllers.accessTokenRequest)
 app.post("/signup", controllers.signup)
+app.post("/passwordCheck", controllers.passwordCheck)
 
 const HTTPS_PORT = 4000
 
