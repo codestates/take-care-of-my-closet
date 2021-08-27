@@ -1,14 +1,15 @@
-import "./App.css";
-import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Nav from "./Components/Nav";
-import Footer from "./Components/Footer";
+import "./App.css"
+import React, { useState } from "react"
+import { Switch, Route, useLocation } from "react-router-dom"
+import Nav from "./Components/Nav"
+import Footer from "./Components/Footer"
 
-import Login from "./Components/Login";
-import Main from "./Components/Main";
-import MyContents from "./Components/MyContents";
-import MyPage from "./Components/MyPage";
-import SignUp from "./Components/SignUp";
+import Login from "./Components/Login"
+import Main from "./Components/Main"
+import MyContents from "./Components/MyContents"
+import MyPage from "./Components/MyPage"
+import SignUp from "./Components/SignUp"
+import ContentModiCreate from "./Components/ContentsModiCreate"
 import Content from "./Components/Content";
 
 function App() {
@@ -45,24 +46,20 @@ function App() {
   };
 
   const ChangeLoginState = (boolean) => {
-    setIsLogin(boolean);
-  };
 
-  // console.log(location) // <-----------------------------
+    setIsLogin(boolean)
+  }
 
-  // let location = { pathname: "/login" }
+  let loca = useLocation()
+
+  console.log("로케이션 제발", loca)
 
   return (
     <React.Fragment>
-      <BrowserRouter>
-        <div>
-          <main>
-            {/* {location.pathname === "/login" ||
-            location.pathname === "/signup" ? (
-              <></>
-            ) : (
-              <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
-            )} */}
+        {/* <div> */}
+        {loca.pathname === "/login" || loca.pathname === "/signup" ? (
+            <></>
+          ) : (
             <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
             <section>
               <Switch>
@@ -93,7 +90,6 @@ function App() {
           </main>
         </div>
         <Footer />
-      </BrowserRouter>
     </React.Fragment>
   );
 }
