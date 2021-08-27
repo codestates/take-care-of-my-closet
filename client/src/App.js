@@ -31,6 +31,7 @@ function App() {
     unlikecount: "",
   });
   const [userInfo, setUserInfo] = useState({
+    id: "",
     login_id: "",
     image: "",
     nickname: "",
@@ -49,6 +50,7 @@ function App() {
 
   const getUserInfo = (userInfo) => {
     setUserInfo({
+      id: userInfo.id,
       login_id: userInfo.login_id,
       image: userInfo.image,
       nickname: userInfo.nickname,
@@ -65,6 +67,7 @@ function App() {
     setIsLogin(false);
     setAccessToken("");
     setUserInfo({
+      id: "",
       login_id: "",
       image: "",
       nickname: "",

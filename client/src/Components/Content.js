@@ -36,7 +36,7 @@ function Content({ isLogin, userInfo, accessToken, selectedContent }) {
     // 맞다면 게시글 수정 페이지로 이동
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.login_id === "해당 게시글 작성자 id") {
+      if (userInfo.id === "해당 게시글 작성자 id") {
         // 게시글 수정 페이지로 이동
         history.push("/content-modify-create");
       } else {
@@ -53,7 +53,7 @@ function Content({ isLogin, userInfo, accessToken, selectedContent }) {
     // 맞다면 게시글 삭제 요청
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.login_id === "해당 게시글 작성자 id") {
+      if (userInfo.id === "해당 게시글 작성자 id") {
         axios
           .delete("https://", {
             headers: { Authorization: accessToken },

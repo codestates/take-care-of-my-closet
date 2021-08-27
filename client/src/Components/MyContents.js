@@ -11,7 +11,7 @@ function MyContents({ isLogin, userInfo }) {
       .post(
         "https://takecareofmycloset/getposts",
         {
-          login_id: userInfo.login_id,
+          id: userInfo.id,
         },
         { withCredentials: true }
       )
