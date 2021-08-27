@@ -66,7 +66,7 @@ function SignUp() {
       .post(
         "https://takecareofmycloset/duplicate",
         {
-          nickname: nickName,
+          login_id: idValue,
         },
         { withCredentials: true }
       )
@@ -91,7 +91,7 @@ function SignUp() {
       .post(
         "https://takecareofmycloset/duplicate",
         {
-          login_id: idValue,
+          nickname: nickName,
         },
         { withCredentials: true }
       )
@@ -102,7 +102,7 @@ function SignUp() {
           setDuplicatedNickMessage("사용할 수 없는 닉네임 입니다.");
         } else if (res.message === "ok") {
           setDuplicatedNick(true);
-          setDuplicatedNickMessage("사용할 수 있는 닉네임 입니다.");
+          setDuplicatedNickMessage("사용 가능한 닉네임 입니다.");
         }
       })
       .catch((err) => {
