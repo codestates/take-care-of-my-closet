@@ -57,19 +57,23 @@ function SignUp() {
 
   const isDuplicated = (e) => {
     e.preventDefault();
+    if (idValue.length < 4) {
+      return alert("아이디는 네 글자 이상이어야 합니다.");
+    }
     axios
       .post(
-        "https://",
+        "https://takecareofmycloset/signup",
         {
           login_id: idValue,
         },
         { withCredentials: true }
       )
       .then((res) => {
-        if (res === false) {
+        console.log(res);
+        if (res.message === `It's already created`) {
           setDuplicatedId(false);
           setDuplicatedIdMessage("사용할 수 없는 아이디 입니다.");
-        } else {
+        } else if (res.message === "ok") {
           setDuplicatedId(true);
           setDuplicatedIdMessage("사용할 수 있는 아이디 입니다.");
         }
@@ -120,7 +124,7 @@ function SignUp() {
     }
     axios
       .post(
-        "https://",
+        "https://takecareofmycloset/signup",
         {
           login_id: idValue,
           password: pwValue,
@@ -130,8 +134,7 @@ function SignUp() {
         { withCredentials: true }
       )
       .then((res) => {
-        if (res === "성공") {
-        }
+        console.log(res.message);
       })
       .catch((err) => {
         console.log(err);
