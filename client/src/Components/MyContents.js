@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./MyContents.css";
 import "./reset.css";
 
-function MyContents({ userInfo, contents }) {
-  const myContents = contents.filter((el) => {
-    return el.user_id === userInfo.login_id;
-  });
-  console.log(myContents);
+function MyContents({ isLogin, userInfo }) {
+  const [myContents, setMyContents] = useState([]);
 
+  useEffect(() => {
+    axios
+      .post(
+        "https://takecareofmycloset/getposts",
+        {
+          id: userInfo.id,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res);
+        setMyContents([...res.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  if (!isLogin) {
+    return <div>로그인 후 이용하세요.</div>;
+  }
   if (myContents.length === 0) {
     return <div>작성한 글이 없습니다.</div>;
   }

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
+import { dummyContents } from "../dummyData/dummyData";
 
-function Content(isLogin, userInfo, accessToken) {
+function Content({ isLogin, userInfo, accessToken, selectedContent }) {
   const [likeCount, setLikeCount] = useState(0);
   const [isClickLike, setIsClickLike] = useState(false);
   const [dislikeCount, setDislikeCount] = useState(0);
@@ -11,12 +12,23 @@ function Content(isLogin, userInfo, accessToken) {
 
   const history = useHistory();
 
-  useEffect(() => {
-    requestLike();
-    requestDislike();
-  }, [likeCount, dislikeCount]);
+  // useEffect(() => {
+  //   requestContent();
+  // }, []);
 
-  axios.get("https://takecareofmycloset/content");
+  // const requestContent = () => {
+  //   axios
+  //     .post(
+  //       "https://takecareofmycloset/content",
+  //       {
+  //         id: selectedContent.id,
+  //       },
+  //       { withCredentials: true }
+  //     )
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
 
   const modifyHandler = () => {
     // 로그인 상태인지 확인
@@ -24,7 +36,7 @@ function Content(isLogin, userInfo, accessToken) {
     // 맞다면 게시글 수정 페이지로 이동
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.login_id === "해당 게시글 작성자 id") {
+      if (userInfo.id === "해당 게시글 작성자 id") {
         // 게시글 수정 페이지로 이동
         history.push("/content-modify-create");
       } else {
@@ -41,7 +53,7 @@ function Content(isLogin, userInfo, accessToken) {
     // 맞다면 게시글 삭제 요청
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.login_id === "해당 게시글 작성자 id") {
+      if (userInfo.id === "해당 게시글 작성자 id") {
         axios
           .delete("https://", {
             headers: { Authorization: accessToken },
@@ -111,14 +123,14 @@ function Content(isLogin, userInfo, accessToken) {
     <div>
       <h2>
         <main>
-          <img src="dd" alt="dd" />
-          <span>게시글 제목</span>
+          <img src={dummyContents[0].img} alt="" />
+          <span>{dummyContents[0].title}</span>
           <button onClick={modifyHandler}>수정</button>
           <button onClick={deleteHandler}>삭제</button>
-          <section>글 내용</section>
+          <section>{dummyContents[0].contents}</section>
           <button onClick={likeHandler}>좋아요 {likeCount}</button>
           <button onClick={dislikeHandler}>싫어요 {dislikeCount}</button>
-          <Replys />
+          <Replys isLogin={isLogin} userInfo={userInfo} />
         </main>
       </h2>
     </div>

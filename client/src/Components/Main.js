@@ -1,26 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Main.css";
 import "./reset.css";
+import { dummyMainPosts } from "../dummyData/dummyData";
 
-function Main({ contents }) {
-  if (contents.length === 0) {
-    return <div>게시글이 없습니다.</div>;
-  }
-
-  const selectContent = (e) => {};
+function Main({ contents, handleContentClick }) {
+  // if (contents.length === 0) {
+  //   return <div>게시글이 없습니다.</div>;
+  // }
 
   return (
     <main>
       <h2 className="a11yHidden">메인 페이지</h2>
       <ul>
-        {contents.map((el) => {
+        {dummyMainPosts.data.map((el) => {
           return (
-            <li key={el.id}>
-              <article onClick={(e) => selectContent(e)}>
-                <h3 className="a11yHidden">{el.title}</h3>
-                <img src={el.image} alt={el.title} />
-              </article>
-            </li>
+            <Link to="/content">
+              <li key={el.id} onClick={() => handleContentClick(el.id)}>
+                <article>
+                  <h3 className="a11yHidden">{el.title}</h3>
+                  <img src={el.image} alt="" />
+                </article>
+              </li>
+            </Link>
           );
         })}
         {/* <li>
