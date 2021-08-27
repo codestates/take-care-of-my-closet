@@ -26,7 +26,8 @@ db.sequelize.sync()
   .catch(console.error);
 
 
-app.post("/login",controllers.login)
+ app.post("/login",controllers.login);
+ app.post("/duplicate",controllers.duplicate);
 
 
 const HTTPS_PORT = 4000;

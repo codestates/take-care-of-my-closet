@@ -1,4 +1,5 @@
 module.exports = {
-    login: require('./user/login')
+    login: require('./user/Login'),
+    duplicate: require('./user/Duplicate')
   };
   
