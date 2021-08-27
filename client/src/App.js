@@ -59,7 +59,11 @@ function App() {
       {loca.pathname === "/login" || loca.pathname === "/signup" ? (
         <></>
       ) : (
-        <Nav isLogin={isLogin} ChangeLoginState={ChangeLoginState} />
+        <Nav
+          isLogin={isLogin}
+          ChangeLoginState={ChangeLoginState}
+          logoutHandler={logoutHandler}
+        />
       )}
       <section>
         <Switch>
@@ -84,6 +88,9 @@ function App() {
               userInfo={userInfo}
               accessToken={accessToken}
             />
+          </Route>
+          <Route path="/content-modi-create">
+            <ContentModiCreate isLogin={isLogin} userInfo={userInfo} />
           </Route>
         </Switch>
       </section>

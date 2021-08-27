@@ -111,7 +111,7 @@ function Content(isLogin, userInfo, accessToken) {
     <div>
       <h2>
         <main>
-          <img />
+          <img src="" alt="" />
           <span>게시글 제목</span>
           <button onClick={modifyHandler}>수정</button>
           <button onClick={deleteHandler}>삭제</button>
