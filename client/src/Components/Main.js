@@ -28,21 +28,21 @@ function Main({ contents, handleContentClick }) {
         {/* <li>
           <article>
             <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt="" />
+            <img src="fff" alt="dd" />
             Content
           </article>
         </li>
         <li>
           <article>
             <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt="" />
+            <img src="fff" alt="dd" />
             Content
           </article>
         </li>
         <li>
           <article>
             <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt="" />
+            <img src="fff" alt="dd" />
             Content
           </article>
         </li> */}
