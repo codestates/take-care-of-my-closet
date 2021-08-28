@@ -29,8 +29,11 @@ app.post("/login", controllers.login)
 app.get("/accessTokenrequest", controllers.accessTokenRequest)
 app.post("/signup", controllers.signup)
 app.post("/passwordCheck", controllers.passwordCheck)
-app.get("/getposts", controllers.getPosts)
+app.post("/getposts", controllers.getPosts)
 app.post("/duplicate", controllers.duplicate)
+app.post("/createFakeData", controllers.createFakeData)
+app.post("/createComment", controllers.createComment)
+app.post("/getContents", controllers.getContents)
 
 const HTTPS_PORT = 4000
 
