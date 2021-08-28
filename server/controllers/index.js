@@ -8,4 +8,6 @@ module.exports = {
   createFakeData: require("./create/CreateFakeData"),
   createComment: require("./create/CreateComment"),
   getContents: require("./post/GetContents"),
+  modifyuserinfo: require("./user/ModifyUserInfo"),
+  modifymypost: require("./post/ModifyMyPost"),
 }

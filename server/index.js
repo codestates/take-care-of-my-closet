@@ -34,6 +34,8 @@ app.post("/duplicate", controllers.duplicate)
 app.post("/createFakeData", controllers.createFakeData)
 app.post("/createComment", controllers.createComment)
 app.post("/getContents", controllers.getContents)
+app.put("/modifymypost", controllers.modifymypost)
+app.put("/modifyuserinfo", controllers.modifyuserinfo)
 
 const HTTPS_PORT = 4000
 

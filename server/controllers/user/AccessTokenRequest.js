@@ -1,16 +1,16 @@
 const { user } = require("../../models")
 const { verify } = require("jsonwebtoken")
 const dotenv = require("dotenv")
-const { decode } = require("punycode")
 dotenv.config()
 
 module.exports = (req, res) => {
   // TODO: urclass의 가이드를 참고하여 GET /accesstokenrequest 구현에 필요한 로직을 작성하세요.
-  // console.log(req.headers)
-  if (!req.cookies.jwt) {
+
+  if (!req.headers.cookie) {
     res.status(401).json({ data: null, message: "invalid access token" })
   } else {
-    verify(req.cookies.jwt, process.env.ACCESS_SECRET, async (err, decoded) => {
+    const accessToken = req.headers.cookie.split("=")
+    verify(accessToken[1], process.env.ACCESS_SECRET, async (err, decoded) => {
       if (err) {
         res.status(401).json({ data: null, message: "invalid access token" })
       } else {
