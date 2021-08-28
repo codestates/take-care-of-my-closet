@@ -4,7 +4,7 @@ import axios from "axios";
 import Replys from "./Replys";
 import { dummyContents } from "../dummyData/dummyData";
 
-function Content({ isLogin, userInfo, accessToken, selectedContent }) {
+function Content({ isLogin, userInfo, selectedContent, setSelectedContent }) {
   const [likeCount, setLikeCount] = useState(0);
   const [isClickLike, setIsClickLike] = useState(false);
   const [dislikeCount, setDislikeCount] = useState(0);
@@ -45,6 +45,8 @@ function Content({ isLogin, userInfo, accessToken, selectedContent }) {
     // } else {
     //   return alert("로그인 후 수정할 수 있습니다.");
     // }
+    console.log(selectedContent);
+
     history.push({
       pathname: "/content-modi-create",
       state: { selectedContent: selectedContent },
@@ -60,10 +62,10 @@ function Content({ isLogin, userInfo, accessToken, selectedContent }) {
       if (userInfo.id === "해당 게시글 작성자 id") {
         axios
           .delete("https://", {
-            headers: { Authorization: accessToken },
-            data: {
-              id: "해당 컨텐츠 id",
-            },
+            // headers: { Authorization: accessToken },
+            // data: {
+            //   id: "해당 컨텐츠 id",
+            // },
           })
           .then((res) => {
             // App.js에 삭제된 게시글 정보 전달
