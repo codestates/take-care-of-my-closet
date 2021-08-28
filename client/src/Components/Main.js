@@ -18,8 +18,9 @@ function Main({ contents, handleContentClick }) {
             <Link to="/content">
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
                 <article>
-                  <h3 className="a11yHidden">{el.title}</h3>
-                  <img src={el.image} alt="" />
+                  <p>{el.title}</p>
+                  <img src={el.image} alt="img-thumbnail" />
+                  <p>@{el.user.nickname}</p>
                 </article>
               </li>
             </Link>
