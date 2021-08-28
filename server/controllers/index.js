@@ -1,5 +1,6 @@
 module.exports = {
   login: require("./user/Login"),
+  logout: require("./user/Logout"),
   accessTokenRequest: require("./user/AccessTokenRequest"),
   signup: require("./user/SiginUp"),
   passwordCheck: require("./user/PasswordCheck"),
@@ -9,5 +10,5 @@ module.exports = {
   createComment: require("./create/CreateComment"),
   getContents: require("./post/GetContents"),
   modifyuserinfo: require("./user/ModifyUserInfo"),
-  modifymypost: require("./post/ModifyMyPost"),
+  createpost: require("./post/CreatePost"),
 }

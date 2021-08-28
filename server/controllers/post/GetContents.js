@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     include: [
       {
         model: comment,
-        attributes: ["contents", "createdAt"],
+        attributes: ["id", "contents", "createdAt"],
         required: true,
         include: [
           {

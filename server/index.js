@@ -26,6 +26,7 @@ db.sequelize
   .catch(console.error)
 
 app.post("/login", controllers.login)
+app.put("/logout", controllers.logout)
 app.get("/accessTokenrequest", controllers.accessTokenRequest)
 app.post("/signup", controllers.signup)
 app.post("/passwordCheck", controllers.passwordCheck)
@@ -34,7 +35,7 @@ app.post("/duplicate", controllers.duplicate)
 app.post("/createFakeData", controllers.createFakeData)
 app.post("/createComment", controllers.createComment)
 app.post("/getContents", controllers.getContents)
-app.put("/modifymypost", controllers.modifymypost)
+app.put("/modifymypost", controllers.createpost)
 app.put("/modifyuserinfo", controllers.modifyuserinfo)
 
 const HTTPS_PORT = 4000
