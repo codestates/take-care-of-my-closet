@@ -27,10 +27,14 @@ module.exports = async (req, res) => {
     expiresIn: "1d",
   })
 
-  res
-    .status(200)
-    .send({
-      data: { usrInfo: findUser, accessToken: accessToken },
-      message: "ok",
-    })
+  await res.cookie(
+    "set-cookie",
+    { jwt: accessToken },
+    { HttpOnly: true, Secure: false, SameSite: "None" }
+  )
+
+  res.status(200).json({
+    data: { usrInfo: findUser },
+    message: "ok",
+  })
 }
