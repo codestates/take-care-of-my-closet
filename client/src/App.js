@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import Nav from "./Components/Nav";
 import Footer from "./Components/Footer";
 
@@ -38,6 +38,8 @@ function App() {
     image: "",
     nickname: "",
   });
+  // const [newContentBtnOn,setNewContentBtnOn] = useState(false)
+
 
   useEffect(() => {
     axios
@@ -129,7 +131,10 @@ function App() {
     setReplyList(list);
   };
 
+
   let loca = useLocation();
+
+
 
   console.log("로케이션 제발", loca);
 
@@ -142,6 +147,8 @@ function App() {
           isLogin={isLogin}
           ChangeLoginState={ChangeLoginState}
           logoutHandler={logoutHandler}
+          selectedContent={selectedContent}
+          setSelectedContent={setSelectedContent}
         />
       )}
       <section>
@@ -170,12 +177,13 @@ function App() {
               isLogin={isLogin}
               userInfo={userInfo}
               selectedContent={selectedContent}
+              setSelectedContent={setSelectedContent}
               replyList={replyList}
               replyListHandler={replyListHandler}
             />
           </Route>
           <Route path="/content-modi-create">
-            <ContentModiCreate isLogin={isLogin} userInfo={userInfo} />
+            <ContentModiCreate isLogin={isLogin} userInfo={userInfo} selectedContent={selectedContent}/>
           </Route>
         </Switch>
       </section>

@@ -51,6 +51,8 @@ function Content({
     // } else {
     //   return alert("로그인 후 수정할 수 있습니다.");
     // }
+    console.log(selectedContent);
+
     history.push({
       pathname: "/content-modi-create",
       state: { selectedContent: selectedContent },
