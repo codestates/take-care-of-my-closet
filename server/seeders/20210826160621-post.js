@@ -29,15 +29,15 @@ module.exports = {
         userId: 1,
       },
       {
-        title: "승마복 아님",
+        title: "승마복 아닙니다.",
         image: "image3",
-        contents: "ㅈㄱㄴ",
+        contents: "괜찮아 보이나요?",
         createdAt: new Date(),
         updatedAt: new Date(),
         userId: 2,
       },
       {
-        title: "게이 아님",
+        title: "게이 같음?",
         image: "image4",
         contents: "ㅈㄱㄴ",
         createdAt: new Date(),
@@ -54,5 +54,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+
+    await queryInterface.bulkDelete("posts", null, {})
   },
 }

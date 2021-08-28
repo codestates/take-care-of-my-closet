@@ -14,6 +14,12 @@ module.exports = async (req, res) => {
       expiresIn: "1d",
     })
 
-    return res.json({ data: { accessToken: accessToken }, message: "ok" })
+    await res.cookie(
+      "set-cookie",
+      { jwt: accessToken },
+      { HttpOnly: true, Secure: false, SameSite: "None" }
+    )
+
+    res.status(200).send({ message: "ok" })
   }
 }

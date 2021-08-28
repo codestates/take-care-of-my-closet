@@ -76,4 +76,17 @@ post.belongsToMany(user, {
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
+// const likes = sequelize.models.likes
+
+// const unlikes = sequelize.models.unlikes
+
+// likes.belongsTo(post)
+// post.hasMany(likes)
+// likes.belongsTo(user)
+// user.hasMany(likes)
+// unlikes.belongsTo(post)
+// post.hasMany(unlikes)
+// unlikes.belongsTo(user)
+// user.hasMany(unlikes)
+
 module.exports = db
