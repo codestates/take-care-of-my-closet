@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useLocation } from "react-router-dom";
+import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import Nav from "./Components/Nav";
 import Footer from "./Components/Footer";
 
@@ -21,7 +21,7 @@ import {
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
-  const [accessToken, setAccessToken] = useState("");
+  // const [accessToken, setAccessToken] = useState("");
   const [contents, setContents] = useState([]);
   const [selectedContent, setSelectedContent] = useState({
     id: dummyContents[0].id,
@@ -38,6 +38,8 @@ function App() {
     image: "",
     nickname: "",
   });
+  // const [newContentBtnOn,setNewContentBtnOn] = useState(false)
+
 
   useEffect(() => {
     axios
@@ -59,15 +61,15 @@ function App() {
     });
   };
 
-  const loginHandler = (accessToken) => {
+  const loginHandler = () => {
     setIsLogin(true);
-    setAccessToken(accessToken);
+    // setAccessToken(accessToken);
     getUserInfo();
   };
 
   const logoutHandler = () => {
     setIsLogin(false);
-    setAccessToken("");
+    // setAccessToken("");
     setUserInfo({
       id: "",
       login_id: "",
@@ -96,16 +98,19 @@ function App() {
     }
     setSelectedContent({
       id: temp,
-      userId: selectedContent.userId,
-      title: selectedContent.title,
-      image: selectedContent.image,
-      contents: selectedContent.contents,
-      likecount: selectedContent.likecount,
-      unlikecount: selectedContent.unlikecount,
+      userId: dummyContents[0].userId,
+      title: dummyContents[0].title,
+      image: dummyContents[0].image,
+      contents: dummyContents[0].contents,
+      likecount: dummyContents[0].likecount,
+      unlikecount: dummyContents[0].unlikecount,
     });
   };
 
+
   let loca = useLocation();
+
+
 
   console.log("로케이션 제발", loca);
 
@@ -121,6 +126,8 @@ function App() {
           isLogin={isLogin}
           ChangeLoginState={ChangeLoginState}
           logoutHandler={logoutHandler}
+          selectedContent={selectedContent}
+          setSelectedContent={setSelectedContent}
         />
       )}
       <section>
@@ -148,12 +155,13 @@ function App() {
             <Content
               isLogin={isLogin}
               userInfo={userInfo}
-              accessToken={accessToken}
+              // accessToken={accessToken}
               selectedContent={selectedContent}
+              setSelectedContent={setSelectedContent}
             />
           </Route>
           <Route path="/content-modi-create">
-            <ContentModiCreate isLogin={isLogin} userInfo={userInfo} />
+            <ContentModiCreate isLogin={isLogin} userInfo={userInfo} selectedContent={selectedContent}/>
           </Route>
         </Switch>
       </section>

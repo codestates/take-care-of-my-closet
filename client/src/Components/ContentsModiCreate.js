@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import "./reset.css";
@@ -7,23 +7,43 @@ import "./ContentModiCreate.css";
 function ContentModiCreate() {
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
-
+  
+  // useEffect(()=> {}
+  // ,[selectedContent])
+  
   const location = useLocation();
-  const selectedContent = location.state.selectedContent;
-  console.log("--------------", selectedContent);
 
+  
+  // if(!newContentBtnOn){
+  //   const selectedContent = location.state.selectedContent;
+  //   console.log("--------------", selectedContent);
+  // }
+  const selectedContent = location.state.selectedContent;
+  const newContent = location.state.newContent;
+
+  console.log("--------------", selectedContent);
+  console.log(">>>>>>>" , newContent);
+
+
+  // <function>
+
+  // image 파일 확장자 유효성 함수
   function validImageType(img) {
-    const type = [
-      "image/jpeg",
-      "image/jpg",
-      "image/png",
-      "image/gif",
-      "image/bmp",
-    ];
+    const type = ["image/jpeg","image/jpg","image/png","image/gif","image/bmp"];
     const result = type.indexOf(img.type) > -1;
     console.log(result); // true
   }
 
+
+  // <서버요청>
+  const requestSave = (e) => {
+    e.preventDefault()
+    axios.put('https://takecareofmycloset/modifymypost', )
+  }
+
+  // <Event>
+
+  // 이미지 등록 이벤트 
   const setImageFromFile = (e) => {
     const file = e.target.files[0];
     // console.log(file);
@@ -49,6 +69,8 @@ function ContentModiCreate() {
     };
     reader.readAsDataURL(file);
   };
+
+
 
   return (
     <main>
@@ -77,7 +99,7 @@ function ContentModiCreate() {
             <input placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"></input>
             <textarea></textarea>
           </div>
-          <button>등록</button>
+          <button onClick={(e) =>requestSave(e)}>등록</button>
         </fieldset>
       </form>
       <Link to="/">
