@@ -1,4 +1,4 @@
-'use strict';
+"use strict"
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -10,7 +10,41 @@ module.exports = {
      *   name: 'John Doe',
      *   isBetaMember: false
      * }], {});
-    */
+     */
+    return queryInterface.bulkInsert("posts", [
+      {
+        title: "스트릿 코디입니다.",
+        image: "image1",
+        contents: "괜찮은가요?",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        userId: 1,
+      },
+      {
+        title: "쇼핑했는데 어떰?",
+        image: "image2",
+        contents: "세일하길래 삼",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        userId: 1,
+      },
+      {
+        title: "승마복 아닙니다.",
+        image: "image3",
+        contents: "괜찮아 보이나요?",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        userId: 2,
+      },
+      {
+        title: "게이 같음?",
+        image: "image4",
+        contents: "ㅈㄱㄴ",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        userId: 3,
+      },
+    ])
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -20,5 +54,7 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-  }
-};
+
+    await queryInterface.bulkDelete("posts", null, {})
+  },
+}

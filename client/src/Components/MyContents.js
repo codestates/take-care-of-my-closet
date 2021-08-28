@@ -1,13 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 import "./MyContents.css";
 import "./reset.css";
 
-function MyContents({ userInfo, contents }) {
-  const myContents = contents.filter((el) => {
-    return el.user_id === userInfo.login_id;
-  });
-  console.log(myContents);
+function MyContents({ isLogin, userInfo, handleContentClick }) {
+  const [myContents, setMyContents] = useState([]);
 
+  useEffect(() => {
+    axios
+      .post(
+        "https://takecareofmycloset/getposts",
+        {
+          id: userInfo.id,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res);
+        setMyContents([...res.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  if (!isLogin) {
+    return <div>로그인 후 이용하세요.</div>;
+  }
   if (myContents.length === 0) {
     return <div>작성한 글이 없습니다.</div>;
   }
@@ -18,12 +38,15 @@ function MyContents({ userInfo, contents }) {
       <ul>
         {myContents.map((el) => {
           return (
-            <li key={el.id}>
-              <article>
-                <h3 className="a11yHidden">{myContents.title}</h3>
-                <img src={myContents.image} alt={myContents.title} />
-              </article>
-            </li>
+            <Link to="/content">
+              <li key={el.id} onClick={() => handleContentClick(el.id)}>
+                <article>
+                  <p>{myContents.title}</p>
+                  <img src={myContents.image} alt="img-thumbnail" />
+                  <p>@{myContents.image}</p>
+                </article>
+              </li>
+            </Link>
           );
         })}
         {/* <li>

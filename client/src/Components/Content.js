@@ -2,8 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
+import { dummyContents } from "../dummyData/dummyData";
 
-function Content(isLogin, userInfo, accessToken) {
+function Content({
+  isLogin,
+  userInfo,
+  selectedContent,
+  replyList,
+  replyListHandler,
+}) {
   const [likeCount, setLikeCount] = useState(0);
   const [isClickLike, setIsClickLike] = useState(false);
   const [dislikeCount, setDislikeCount] = useState(0);
@@ -11,28 +18,45 @@ function Content(isLogin, userInfo, accessToken) {
 
   const history = useHistory();
 
-  useEffect(() => {
-    requestLike();
-    requestDislike();
-  }, [likeCount, dislikeCount]);
+  // useEffect(() => {
+  //   requestContent();
+  // }, []);
 
-  axios.get("https://takecareofmycloset/content");
+  // const requestContent = () => {
+  //   axios
+  //     .post(
+  //       "https://takecareofmycloset/content",
+  //       {
+  //         id: selectedContent.id,
+  //       },
+  //       { withCredentials: true }
+  //     )
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
 
   const modifyHandler = () => {
     // 로그인 상태인지 확인
     // 로그인 되어 있다면 본인 게시글인지 확인
     // 맞다면 게시글 수정 페이지로 이동
     // 다른 사람 글이면 권한이 없습니다.
-    if (isLogin) {
-      if (userInfo.login_id === "해당 게시글 작성자 id") {
-        // 게시글 수정 페이지로 이동
-        history.push("/content-modify-create");
-      } else {
-        return alert("자신의 게시글만 수정할 수 있습니다.");
-      }
-    } else {
-      return alert("로그인 후 수정할 수 있습니다.");
-    }
+    // if (isLogin) {
+    //   if (userInfo.id === dummyContents[0].userId) {
+    //     // 게시글 수정 페이지로 이동
+    //     history.push("/content-modi-create");
+    //   } else {
+    //     return alert("자신의 게시글만 수정할 수 있습니다.");
+    //   }
+    // } else {
+    //   return alert("로그인 후 수정할 수 있습니다.");
+    // }
+    console.log(selectedContent);
+
+    history.push({
+      pathname: "/content-modi-create",
+      state: { selectedContent: selectedContent },
+    });
   };
 
   const deleteHandler = () => {
@@ -41,13 +65,10 @@ function Content(isLogin, userInfo, accessToken) {
     // 맞다면 게시글 삭제 요청
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.login_id === "해당 게시글 작성자 id") {
+      if (userInfo.id === dummyContents[0].userId) {
         axios
           .delete("https://", {
-            headers: { Authorization: accessToken },
-            data: {
-              id: "해당 컨텐츠 id",
-            },
+            id: "해당 컨텐츠 id",
           })
           .then((res) => {
             // App.js에 삭제된 게시글 정보 전달
@@ -111,14 +132,26 @@ function Content(isLogin, userInfo, accessToken) {
     <div>
       <h2>
         <main>
-          <img src="" alt="" />
-          <span>게시글 제목</span>
+          <img src={dummyContents[0].img} alt="img-thumbnail" />
+          <span>{dummyContents[0].title}</span>
+          {/* {isLogin && userInfo.id === selectedContent.userId ? (
+            <button onClick={modifyHandler}>수정</button>
+          ) : null} */}
           <button onClick={modifyHandler}>수정</button>
+          {/* {isLogin && userInfo.id === selectedContent.userId ? (
+            <button onClick={deleteHandler}>삭제</button>
+          ) : null} */}
           <button onClick={deleteHandler}>삭제</button>
-          <section>글 내용</section>
+          <section>{dummyContents[0].contents}</section>
           <button onClick={likeHandler}>좋아요 {likeCount}</button>
           <button onClick={dislikeHandler}>싫어요 {dislikeCount}</button>
-          <Replys />
+          <Replys
+            isLogin={isLogin}
+            userInfo={userInfo}
+            selectedContent={selectedContent}
+            replyList={replyList}
+            replyListHandler={replyListHandler}
+          />
         </main>
       </h2>
     </div>

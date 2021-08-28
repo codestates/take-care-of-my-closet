@@ -11,9 +11,11 @@ function SignUp() {
   const [validIdLength, setValidIdLength] = useState(true);
   const [validPwLength, setValidPwLength] = useState(false);
   const [duplicatedId, setDuplicatedId] = useState(false);
+  const [duplicatedNick, setDuplicatedNick] = useState(false);
   const [pwMatch, setPwMatch] = useState(true);
   const [validIdMessage, setValidIdMessage] = useState("");
   const [duplicatedIdMessage, setDuplicatedIdMessage] = useState("");
+  const [duplicatedNickMessage, setDuplicatedNickMessage] = useState("");
 
   useEffect(() => {
     isValidPassword();
@@ -55,14 +57,14 @@ function SignUp() {
     setNickName(e.target.value);
   };
 
-  const isDuplicated = (e) => {
+  const isDuplicatedId = (e) => {
     e.preventDefault();
     if (idValue.length < 4) {
       return alert("아이디는 네 글자 이상이어야 합니다.");
     }
     axios
       .post(
-        "https://takecareofmycloset/signup",
+        "https://takecareofmycloset/duplicate",
         {
           login_id: idValue,
         },
@@ -70,12 +72,37 @@ function SignUp() {
       )
       .then((res) => {
         console.log(res);
-        if (res.message === `It's already created`) {
+        if (res.data.message === `It's already created`) {
           setDuplicatedId(false);
           setDuplicatedIdMessage("사용할 수 없는 아이디 입니다.");
-        } else if (res.message === "ok") {
+        } else if (res.data.message === "ok") {
           setDuplicatedId(true);
           setDuplicatedIdMessage("사용할 수 있는 아이디 입니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const isDuplicatedNick = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        "https://takecareofmycloset/duplicate",
+        {
+          nickname: nickName,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.data.message === `It's already created`) {
+          setDuplicatedNick(false);
+          setDuplicatedNickMessage("사용할 수 없는 닉네임 입니다.");
+        } else if (res.data.message === "ok") {
+          setDuplicatedNick(true);
+          setDuplicatedNickMessage("사용 가능한 닉네임 입니다.");
         }
       })
       .catch((err) => {
@@ -110,6 +137,7 @@ function SignUp() {
 
   const requestSignUp = (e) => {
     e.preventDefault();
+
     if (!idValue || !pwValue || !nickName) {
       return alert("아이디, 비밀번호, 닉네임을 입력하세요");
     }
@@ -122,6 +150,10 @@ function SignUp() {
     if (pwMatch === false) {
       return alert("비밀번호가 일치하지 않습니다.");
     }
+    if (duplicatedNick === false) {
+      return alert("닉네임이 유효하지 않습니다.");
+    }
+
     axios
       .post(
         "https://takecareofmycloset/signup",
@@ -135,6 +167,9 @@ function SignUp() {
       )
       .then((res) => {
         console.log(res.message);
+        if (res.message === "ok") {
+          alert("가입이 완료되었습니다.");
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -156,7 +191,7 @@ function SignUp() {
             value={idValue}
             placeholder="아이디를 입력하세요"
           />
-          <button onClick={(e) => isDuplicated(e)}>중복확인</button>
+          <button onClick={(e) => isDuplicatedId(e)}>중복확인</button>
           {duplicatedIdMessage ? duplicatedIdMessage : null}
           <br />
           {validIdLength ? null : validIdMessage}
@@ -191,6 +226,8 @@ function SignUp() {
             onChange={(e) => inputNickNameHandler(e)}
             placeholder="닉네임을 입력하세요"
           />
+          <button onClick={(e) => isDuplicatedNick(e)}>중복확인</button>
+          {duplicatedNickMessage ? duplicatedNickMessage : null}
           <br />
           <button onClick={(e) => requestSignUp(e)}>가입하기</button>
         </fieldset>
