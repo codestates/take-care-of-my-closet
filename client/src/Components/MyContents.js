@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyContents.css";
 import "./reset.css";
 
-function MyContents({ isLogin, userInfo }) {
+function MyContents({ isLogin, userInfo, handleContentClick }) {
   const [myContents, setMyContents] = useState([]);
 
   useEffect(() => {
@@ -37,12 +38,15 @@ function MyContents({ isLogin, userInfo }) {
       <ul>
         {myContents.map((el) => {
           return (
-            <li key={el.id}>
-              <article>
-                <h3 className="a11yHidden">{myContents.title}</h3>
-                <img src={myContents.image} alt={myContents.title} />
-              </article>
-            </li>
+            <Link to="/content">
+              <li key={el.id} onClick={() => handleContentClick(el.id)}>
+                <article>
+                  <p>{myContents.title}</p>
+                  <img src={myContents.image} alt="img-thumbnail" />
+                  <p>@{myContents.image}</p>
+                </article>
+              </li>
+            </Link>
           );
         })}
         {/* <li>

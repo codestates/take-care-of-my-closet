@@ -35,16 +35,20 @@ function Content({ isLogin, userInfo, accessToken, selectedContent }) {
     // 로그인 되어 있다면 본인 게시글인지 확인
     // 맞다면 게시글 수정 페이지로 이동
     // 다른 사람 글이면 권한이 없습니다.
-    if (isLogin) {
-      if (userInfo.id === "해당 게시글 작성자 id") {
-        // 게시글 수정 페이지로 이동
-        history.push("/content-modify-create");
-      } else {
-        return alert("자신의 게시글만 수정할 수 있습니다.");
-      }
-    } else {
-      return alert("로그인 후 수정할 수 있습니다.");
-    }
+    // if (isLogin) {
+    //   if (userInfo.id === dummyContents[0].userId) {
+    //     // 게시글 수정 페이지로 이동
+    //     history.push("/content-modi-create");
+    //   } else {
+    //     return alert("자신의 게시글만 수정할 수 있습니다.");
+    //   }
+    // } else {
+    //   return alert("로그인 후 수정할 수 있습니다.");
+    // }
+    history.push({
+      pathname: "/content-modi-create",
+      state: { selectedContent: selectedContent },
+    });
   };
 
   const deleteHandler = () => {
@@ -123,7 +127,7 @@ function Content({ isLogin, userInfo, accessToken, selectedContent }) {
     <div>
       <h2>
         <main>
-          <img src={dummyContents[0].img} alt="" />
+          <img src={dummyContents[0].img} alt="img-thumbnail" />
           <span>{dummyContents[0].title}</span>
           <button onClick={modifyHandler}>수정</button>
           <button onClick={deleteHandler}>삭제</button>

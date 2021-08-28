@@ -24,12 +24,13 @@ function App() {
   const [accessToken, setAccessToken] = useState("");
   const [contents, setContents] = useState([]);
   const [selectedContent, setSelectedContent] = useState({
-    id: "",
-    title: "",
-    image: "",
-    contents: "",
-    likecount: "",
-    unlikecount: "",
+    id: dummyContents[0].id,
+    userId: dummyContents[0].userId,
+    title: dummyContents[0].title,
+    image: dummyContents[0].img,
+    contents: dummyContents[0].contents,
+    likecount: dummyContents[0].likecount,
+    unlikecount: dummyContents[0].unlikecount,
   });
   const [userInfo, setUserInfo] = useState({
     id: "",
@@ -91,12 +92,11 @@ function App() {
     // });
     let temp;
     for (let el of contents) {
-      if (el.id === id) {
-        temp = el.id;
-      }
+      if (el.id === id) temp = el.id;
     }
     setSelectedContent({
       id: temp,
+      userId: selectedContent.userId,
       title: selectedContent.title,
       image: selectedContent.image,
       contents: selectedContent.contents,
@@ -135,7 +135,11 @@ function App() {
             <SignUp />
           </Route>
           <Route path="/mycontents">
-            <MyContents isLogin={isLogin} userInfo={userInfo} />
+            <MyContents
+              isLogin={isLogin}
+              userInfo={userInfo}
+              handleContentClick={handleContentClick}
+            />
           </Route>
           <Route path="/mypage">
             <MyPage isLogin={isLogin} />

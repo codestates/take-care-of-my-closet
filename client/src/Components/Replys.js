@@ -30,7 +30,7 @@ function Replys({ isLogin, userInfo }) {
         {dummyComment.map((el) => {
           return (
             <li key={el.id}>
-              <div>{el.nickname}</div>
+              <p>@{el.nickname}</p>
               <section>{el.content}</section>
             </li>
           );
