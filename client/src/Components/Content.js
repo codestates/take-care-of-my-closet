@@ -4,7 +4,13 @@ import axios from "axios";
 import Replys from "./Replys";
 import { dummyContents } from "../dummyData/dummyData";
 
-function Content({ isLogin, userInfo, accessToken, selectedContent }) {
+function Content({
+  isLogin,
+  userInfo,
+  selectedContent,
+  replyList,
+  replyListHandler,
+}) {
   const [likeCount, setLikeCount] = useState(0);
   const [isClickLike, setIsClickLike] = useState(false);
   const [dislikeCount, setDislikeCount] = useState(0);
@@ -57,13 +63,10 @@ function Content({ isLogin, userInfo, accessToken, selectedContent }) {
     // 맞다면 게시글 삭제 요청
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.id === "해당 게시글 작성자 id") {
+      if (userInfo.id === dummyContents[0].userId) {
         axios
           .delete("https://", {
-            headers: { Authorization: accessToken },
-            data: {
-              id: "해당 컨텐츠 id",
-            },
+            id: "해당 컨텐츠 id",
           })
           .then((res) => {
             // App.js에 삭제된 게시글 정보 전달
@@ -129,12 +132,24 @@ function Content({ isLogin, userInfo, accessToken, selectedContent }) {
         <main>
           <img src={dummyContents[0].img} alt="img-thumbnail" />
           <span>{dummyContents[0].title}</span>
+          {/* {isLogin && userInfo.id === selectedContent.userId ? (
+            <button onClick={modifyHandler}>수정</button>
+          ) : null} */}
           <button onClick={modifyHandler}>수정</button>
+          {/* {isLogin && userInfo.id === selectedContent.userId ? (
+            <button onClick={deleteHandler}>삭제</button>
+          ) : null} */}
           <button onClick={deleteHandler}>삭제</button>
           <section>{dummyContents[0].contents}</section>
           <button onClick={likeHandler}>좋아요 {likeCount}</button>
           <button onClick={dislikeHandler}>싫어요 {dislikeCount}</button>
-          <Replys isLogin={isLogin} userInfo={userInfo} />
+          <Replys
+            isLogin={isLogin}
+            userInfo={userInfo}
+            selectedContent={selectedContent}
+            replyList={replyList}
+            replyListHandler={replyListHandler}
+          />
         </main>
       </h2>
     </div>
