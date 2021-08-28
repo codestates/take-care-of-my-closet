@@ -90,19 +90,19 @@ const dummyComment = [
   {
     id: 1,
     nickname: "김코딩",
-    content: "옷진짜 못입는다",
+    comment: "옷진짜 못입는다",
     createdAt: "2021-08-27 10:58:38",
   },
   {
     id: 2,
     nickname: "박해커",
-    content: "김코딩 니가 더 못입음",
+    comment: "김코딩 니가 더 못입음",
     createdAt: "2021-08-27 11:33:21",
   },
   {
     id: 3,
     nickname: "김코딩",
-    content: "ㅇㅈ ㅎ",
+    comment: "ㅇㅈ ㅎ",
     createdAt: "2021-08-27 11:42:24",
   },
 ];

@@ -21,7 +21,6 @@ import {
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
-  // const [accessToken, setAccessToken] = useState("");
   const [contents, setContents] = useState([]);
   const [selectedContent, setSelectedContent] = useState({
     id: dummyContents[0].id,
@@ -32,6 +31,7 @@ function App() {
     likecount: dummyContents[0].likecount,
     unlikecount: dummyContents[0].unlikecount,
   });
+  const [replyList, setReplyList] = useState(dummyComment);
   const [userInfo, setUserInfo] = useState({
     id: "",
     login_id: "",
@@ -63,13 +63,11 @@ function App() {
 
   const loginHandler = () => {
     setIsLogin(true);
-    // setAccessToken(accessToken);
     getUserInfo();
   };
 
   const logoutHandler = () => {
     setIsLogin(false);
-    // setAccessToken("");
     setUserInfo({
       id: "",
       login_id: "",
@@ -86,18 +84,33 @@ function App() {
     setContents(contentsList);
   };
 
-  const handleContentClick = (id) => {
-    console.log("게시글을 클릭했군요!");
-    console.log(id);
-    // let temp = contents.filter((el) => {
-    //   return el.id === id;
-    // });
-    let temp;
-    for (let el of contents) {
-      if (el.id === id) temp = el.id;
-    }
+  const getSelectedContent = (id) => {
+    // axios
+    //   .post(
+    //     "https://",
+    //     {
+    //       postId: id,
+    //     },
+    //     { withCredentials: true }
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //     // 응답으로 클릭한 게시글 정보 + 해당 게시글의 댓글 정보 받음
+    //     setSelectedContent({
+    //       id: res.content.id,
+    //       userId: res.content.userId,
+    //       title: res.content.title,
+    //       image: res.content.image,
+    //       contents: res.content.contents,
+    //       likecount: res.content.likecount,
+    //       unlikecount: res.content.unlikecount,
+    //     });
+    //     setReplyList(res.comment);
+    //   });
+
+    // 더미데이터로 구현
     setSelectedContent({
-      id: temp,
+      id: dummyContents[0].id,
       userId: dummyContents[0].userId,
       title: dummyContents[0].title,
       image: dummyContents[0].image,
@@ -105,6 +118,17 @@ function App() {
       likecount: dummyContents[0].likecount,
       unlikecount: dummyContents[0].unlikecount,
     });
+    setReplyList(dummyComment);
+  };
+
+  const handleContentClick = (id) => {
+    console.log("게시글을 클릭했군요!");
+    console.log(id);
+    getSelectedContent(id);
+  };
+
+  const replyListHandler = (list) => {
+    setReplyList(list);
   };
 
 
@@ -115,9 +139,6 @@ function App() {
   console.log("로케이션 제발", loca);
 
   return (
-    // <div>
-    //   <Content />
-    // </div>
     <React.Fragment>
       {loca.pathname === "/login" || loca.pathname === "/signup" ? (
         <></>
@@ -155,9 +176,10 @@ function App() {
             <Content
               isLogin={isLogin}
               userInfo={userInfo}
-              // accessToken={accessToken}
               selectedContent={selectedContent}
               setSelectedContent={setSelectedContent}
+              replyList={replyList}
+              replyListHandler={replyListHandler}
             />
           </Route>
           <Route path="/content-modi-create">
