@@ -13,8 +13,8 @@ function Footer() {
         </span>
       </address>
       <small>
-        Copyright since &copy; 2021 by codenramsay of Code State CORPORATION ALL
-        RIGHTS RESERVED.
+        Copyright since &copy; 2021 by cordenramsay of Code State CORPORATION
+        ALL RIGHTS RESERVED.
       </small>
     </footer>
   );
