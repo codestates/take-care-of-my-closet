@@ -4,6 +4,8 @@ import axios from "axios";
 import Replys from "./Replys";
 import { dummyContents } from "../dummyData/dummyData";
 
+axios.defaults.withCredentials = true;
+
 function Content({
   isLogin,
   userInfo,
@@ -15,14 +17,10 @@ function Content({
   replyList,
   replyListHandler,
 }) {
-  const [isClickLike, setIsClickLike] = useState(false);
-  const [isClickUnlike, setIsClickUnlike] = useState(false);
+  // const [isClickLike, setIsClickLike] = useState(false);
+  // const [isClickUnlike, setIsClickUnlike] = useState(false);
 
   const history = useHistory();
-
-  useEffect(() => {
-    requestLikeUnlike();
-  }, [likeCount, unlikeCount]);
 
   // const requestContent = () => {
   //   axios
@@ -99,9 +97,26 @@ function Content({
   };
 
   const likeHandler = () => {
-    // if (!isLogin) {
-    //   return alert("로그인 후 이용하실 수 있습니다.");
-    // }
+    if (!isLogin) {
+      return alert("로그인 후 이용하실 수 있습니다.");
+    } else {
+      axios
+        .post("http://localhost:4000/likeunlike", {
+          userId: userInfo.id,
+          postId: selectedContent.id,
+          click: "like",
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.message === "ok") {
+            setLikeCount(res.data.like);
+            setUnlikeCount(res.data.unlike);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     // if (!isClickLike && isClickUnlike) {
     //   // 좋아요x 싫어요o 일때 좋아요 누르면
     //   setIsClickUnlike(false); // 싫어요 취소
@@ -117,10 +132,27 @@ function Content({
     // setIsClickLike(!isClickLike); // 좋아요 상태 변경
   };
 
-  const dislikeHandler = () => {
-    // if (!isLogin) {
-    //   return alert("로그인 후 이용하실 수 있습니다.");
-    // }
+  const unlikeHandler = () => {
+    if (!isLogin) {
+      return alert("로그인 후 이용하실 수 있습니다.");
+    } else {
+      axios
+        .post("http://localhost:4000/likeunlike", {
+          userId: userInfo.id,
+          postId: selectedContent.id,
+          click: "unlike",
+        })
+        .then((res) => {
+          console.log(res);
+          if (res.message === "ok") {
+            setLikeCount(res.data.like);
+            setUnlikeCount(res.data.unlike);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
     // if (!isClickUnlike && isClickLike) {
     //   // 싫어요x 좋아요o 일때 싫어요 누르면
     //   setIsClickLike(false); // 좋아요 취소
@@ -136,74 +168,29 @@ function Content({
     // setIsClickUnlike(!isClickUnlike); // 싫어요 상태 변경
   };
 
-  const requestLikeUnlike = () => {
-    // 현재 게시글의 id(postId)
-    // 현재 로그인한 유저의 id(고유키)
-    // 좋아요 눌렀는지, 싫어요 눌렀는지
-    let clicked = "";
-
-    if (isClickLike) {
-    }
-
-    axios
-      .post(
-        "http://localhost:4000/likeunlike",
-        {
-          userId: userInfo.id,
-          postId: selectedContent.id,
-          // click:
-        },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log(res);
-        if (res.message === "ok") {
-          setLikeCount(res.data.like);
-          setUnlikeCount(res.data.unlike);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  // const requestLike = () => {
-  //   // isClickLike가 true일 때는 좋아요 +1 요청
-  //   // isClickLike가 false일 때는 좋아요 -1 요청
-  //   console.log(likeCount, isClickLike);
-  //   axios.post("http://localhost:4000/", {}, { withCredentials: true });
-  // };
-
-  // const requestDislike = () => {
-  //   // isClickDislike가 true일 때는 싫어요 +1 요청
-  //   // isClickDislike가 false일 때는 싫어요 -1 요청
-  //   console.log(dislikeCount, isClickDislike);
-  //   // axios.post("https://");
-  // };
-
   return (
     <article>
       <h2>컨텐츠</h2>
-          <img src={dummyContents[0].img} alt="img-thumbnail" />
-          <span>{dummyContents[0].title}</span>
-          {/* {isLogin && userInfo.id === selectedContent.userId ? (
+      <img src={dummyContents[0].img} alt="img-thumbnail" />
+      <span>{dummyContents[0].title}</span>
+      {/* {isLogin && userInfo.id === selectedContent.userId ? (
             <button onClick={modifyHandler}>수정</button>
           ) : null} */}
-          {/* {isLogin && userInfo.id === selectedContent.userId ? (
+      {/* {isLogin && userInfo.id === selectedContent.userId ? (
             <button onClick={deleteHandler}>삭제</button>
           ) : null} */}
-          <textarea defaultValue={dummyContents[0].contents} disabled="true"/>
-          <button onClick={likeHandler}>좋아요 {likeCount}</button>
-          <button onClick={dislikeHandler}>싫어요 {unlikeCount}</button>
-          <Replys
-            isLogin={isLogin}
-            userInfo={userInfo}
-            selectedContent={selectedContent}
-            replyList={replyList}
-            replyListHandler={replyListHandler}
-          />
-          <button onClick={modifyHandler}>수정</button>
-          <button onClick={deleteHandler}>삭제</button>
+      <textarea defaultValue={dummyContents[0].contents} disabled="true" />
+      <button onClick={likeHandler}>좋아요 {likeCount}</button>
+      <button onClick={unlikeHandler}>싫어요 {unlikeCount}</button>
+      <Replys
+        isLogin={isLogin}
+        userInfo={userInfo}
+        selectedContent={selectedContent}
+        replyList={replyList}
+        replyListHandler={replyListHandler}
+      />
+      <button onClick={modifyHandler}>수정</button>
+      <button onClick={deleteHandler}>삭제</button>
     </article>
   );
 }
