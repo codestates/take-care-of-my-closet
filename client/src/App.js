@@ -1,27 +1,27 @@
-import "./App.css";
-import React, { useState, useEffect } from "react";
-import { Switch, Route, useLocation, useHistory } from "react-router-dom";
-import Nav from "./Components/Nav";
-import Footer from "./Components/Footer";
+import "./App.css"
+import React, { useState, useEffect } from "react"
+import { Switch, Route, useLocation, useHistory } from "react-router-dom"
+import Nav from "./Components/Nav"
+import Footer from "./Components/Footer"
 
-import axios from "axios";
+import axios from "axios"
 
-import Login from "./Components/Login";
-import Main from "./Components/Main";
-import MyContents from "./Components/MyContents";
-import MyPage from "./Components/MyPage";
-import SignUp from "./Components/SignUp";
-import ContentModiCreate from "./Components/ContentsModiCreate";
-import Content from "./Components/Content";
+import Login from "./Components/Login"
+import Main from "./Components/Main"
+import MyContents from "./Components/MyContents"
+import MyPage from "./Components/MyPage"
+import SignUp from "./Components/SignUp"
+import ContentModiCreate from "./Components/ContentsModiCreate"
+import Content from "./Components/Content"
 import {
   dummyMainPosts,
   dummyContents,
   dummyComment,
-} from "./dummyData/dummyData";
+} from "./dummyData/dummyData"
 
 function App() {
-  const [isLogin, setIsLogin] = useState(false);
-  const [contents, setContents] = useState([]);
+  const [isLogin, setIsLogin] = useState(false)
+  const [contents, setContents] = useState([])
   const [selectedContent, setSelectedContent] = useState({
     id: dummyContents[0].id,
     userId: dummyContents[0].userId,
@@ -30,27 +30,32 @@ function App() {
     contents: dummyContents[0].contents,
     likecount: dummyContents[0].likecount,
     unlikecount: dummyContents[0].unlikecount,
-  });
-  const [replyList, setReplyList] = useState(dummyComment);
+  })
+  // 로컬스토리지에 토큰이 있냐?
+  // localStorage.setItem('token', 토큰값)
+  // localStorage.removeItem
+  // localStorage.getItem()
+  const [replyList, setReplyList] = useState(dummyComment)
   const [userInfo, setUserInfo] = useState({
     id: "",
     login_id: "",
     image: "",
     nickname: "",
-  });
+  })
 
-  let loca = useLocation();
+  let loca = useLocation()
 
   useEffect(() => {
     axios
       .post("https://takecareofmycloset/getposts")
       .then((res) => {
-        contentsListHandler([...res.data]);
+        contentsListHandler([...res.data])
       })
       .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+        console.log(err)
+      })
+  }, [])
+
 
 
   // accessToken 보내는 요청 함수 만들자.
@@ -72,27 +77,27 @@ function App() {
   };
 
   const loginHandler = () => {
-    setIsLogin(true);
-    getUserInfo();
-  };
+    getUserInfo()
+    setIsLogin(true)
+  }
 
   const logoutHandler = () => {
-    setIsLogin(false);
+    setIsLogin(false)
     setUserInfo({
       id: "",
       login_id: "",
       image: "",
       nickname: "",
-    });
-  };
+    })
+  }
 
   const ChangeLoginState = (boolean) => {
-    setIsLogin(boolean);
-  };
+    setIsLogin(boolean)
+  }
 
   const contentsListHandler = (contentsList) => {
-    setContents(contentsList);
-  };
+    setContents(contentsList)
+  }
 
   const getSelectedContent = (id) => {
     // axios
@@ -127,21 +132,21 @@ function App() {
       contents: dummyContents[0].contents,
       likecount: dummyContents[0].likecount,
       unlikecount: dummyContents[0].unlikecount,
-    });
-    setReplyList(dummyComment);
-  };
+    })
+    setReplyList(dummyComment)
+  }
 
   const handleContentClick = (id) => {
-    console.log("게시글을 클릭했군요!");
-    console.log(id);
-    getSelectedContent(id);
-  };
+    console.log("게시글을 클릭했군요!")
+    console.log(id)
+    getSelectedContent(id)
+  }
 
   const replyListHandler = (list) => {
-    setReplyList(list);
-  };
+    setReplyList(list)
+  }
 
-  console.log("로케이션 제발", loca);
+  console.log("로케이션 제발", loca)
 
   return (
     <React.Fragment>
@@ -198,7 +203,7 @@ function App() {
       </section>
       <Footer />
     </React.Fragment>
-  );
+  )
 }
 
-export default App;
+export default App
