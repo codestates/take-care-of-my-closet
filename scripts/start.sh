@@ -10,4 +10,8 @@ export REFRESH_SECRET=$(aws ssm get-parameters --region ap-northeast-2 --names R
 export ID=$(aws ssm get-parameters --region ap-northeast-2 --names ID --query Parameters[0].Value | sed 's/"//g')
 export PASS=$(aws ssm get-parameters --region ap-northeast-2 --names PASS --query Parameters[0].Value | sed 's/"//g')
 
+npx sequelize-cli db:migrate
+
 authbind --deep pm2 start index.js
+
+npx sequelize-cli db:seed:all
