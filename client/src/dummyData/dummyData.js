@@ -108,3 +108,42 @@ const dummyComment = [
 ];
 
 export { dummyMainPosts, dummyContents, dummyComment };
+
+// 게시글 클릭할때 서버에서 오는 응답 형식
+const aaa = {
+  contents: {
+    id: 4,
+    title: "게이 같음?",
+    image: "image4",
+    contents: "ㅈㄱㄴ",
+    createdAt: "2021-08-28T07:58:19.000Z",
+    updatedAt: "2021-08-28T07:58:19.000Z",
+    userId: 3,
+    comments: [
+      {
+        contents: "게이야..",
+        createdAt: "2021-08-28T07:58:19.000Z",
+        user: {
+          nickname: "test1",
+        },
+      },
+      {
+        contents: "이건 좀...",
+        createdAt: "2021-08-28T07:58:19.000Z",
+        user: {
+          nickname: "test2",
+        },
+      },
+      {
+        contents: "난 좋은데?",
+        createdAt: "2021-08-28T07:58:19.000Z",
+        user: {
+          nickname: "test4",
+        },
+      },
+    ],
+  },
+  likeCount: 2,
+  unlikeCount: 3,
+  message: "ok",
+};
