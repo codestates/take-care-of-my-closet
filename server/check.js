@@ -1,3 +1,6 @@
+const dotenv = require("dotenv")
+dotenv.config()
+
 console.log({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
