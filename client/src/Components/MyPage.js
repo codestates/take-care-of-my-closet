@@ -70,17 +70,18 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
     // 이미지 아이디 비밀번호 닉네임 서버에 요청
     axios.put('https://takecareofmycloset/modifyUserInfo', {
       login_id:userInfo.login_id,
-      password: password,
-      image: imageUrl,
-      nickname: nickName,
+      password: password || null,
+      image: imageUrl  || userInfo.image,
+      nickname: nickName  || userInfo.nickname
     })
     .then(res => {
       if(res.message === 'ok'){
-        setUserInfo({
-          login_id:userInfo.login_id,
-          image: imageUrl || userInfo.image,
-          nickname: nickName || userInfo.nickname
-        })
+        // accessToken 
+        // setUserInfo({
+        //   login_id:userInfo.login_id,
+        //   image: imageUrl,
+        //   nickname: nickName
+        // })
       }
     })
   }
@@ -145,16 +146,15 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
 
 
   return (
-  <main>
+  <section>
     <h2 className="a11yHidden">회원정보 설정</h2>
     <form method="post" className="imageUpLoad" action="upload" encType="multipart/form-data">
     <fieldset>
       <legend>회원정보 설정 폼</legend>
-      <img className="imageContent" src={imageUrl} alt=""/>
+      <img className="imageContent" src={imageUrl} alt="img-thumbnail"/>
       <input type="file" name="imgFile" id="imgFile" onChange={(e) => {setImageFromFile(e)}}/>
       <section>
-        {/* <p className="userId">{userInfo.login_id}</p> */}
-        <p className="userId">아이디</p>
+        <p className="userId">{userInfo.login_id}</p>
         <input type="password" placeholder="비밀번호를 입력해주세요" onChange={(e) => {passwordChecking1(e)}}/>
         <span className={classNameOn}>비밀번호는 8자 이상 16자 이하여야 합니다</span>
         <input type="password" placeholder="비밀번호 확인" onChange={(e) => {passwordChecking2(e)}}/>
@@ -167,7 +167,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
       <button onClick={(e)=> {requestSave()}}>저장</button>
     </fieldset>
     </form>
-  </main>
+  </section>
   )
 }
 

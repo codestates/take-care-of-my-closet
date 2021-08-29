@@ -9,6 +9,8 @@ function Login({ ChangeLogin }) {
     password: "",
   })
 
+  const [userInfo, setUserInfo] = useState({})
+
   const [errorMessage, setErrorMessage] = useState("")
 
   const history = useHistory()
@@ -22,7 +24,7 @@ function Login({ ChangeLogin }) {
     // setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
     if (loginInfo.login_id && loginInfo.password) {
       axios
-        .post("https://TakeCareOfMyCloset/login", loginInfo, {
+        .post("http://localhost:4000/login", loginInfo, {
           withCredentials: true,
         })
         .then((res) => {
@@ -30,8 +32,15 @@ function Login({ ChangeLogin }) {
             setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
           } else {
             setErrorMessage("")
-            ChangeLogin(true)
-            history.push("/")
+            axios
+              .get("http://localhost:4000/accessTokenrequest", {
+                withCredentials: true,
+              })
+              .then((res) => console.log(res.data))
+            // 로컬스토리지 & 쿠키 에 토큰이 있는지 확인후 true
+            // ChangeLogin(true)
+            // history.push("/")
+            setUserInfo({ login: "login", password: "password" })
           }
         })
         .catch((err) => console.error(err))
@@ -44,12 +53,14 @@ function Login({ ChangeLogin }) {
 
   return (
     <div>
+      {console.log("제발", userInfo)}
       <h1>
         <img src={logo} alt="logo" width="500" />
       </h1>
       <h2>로그인</h2>
       <form styled="border: 0">
         <fieldset>
+          <legend>로그인 폼</legend>
           <input
             type="text"
             placeholder="아이디"
@@ -60,7 +71,7 @@ function Login({ ChangeLogin }) {
             placeholder="비밀번호"
             onChange={handleInputValue("password")}
           />
-          <div>{errorMessage}</div>
+          <span>{errorMessage}</span>
           <div>
             <button
               type="submit"
@@ -74,10 +85,8 @@ function Login({ ChangeLogin }) {
               <button>회원가입</button>
             </Link>
           </div>
-          <input type="checkbox"></input> 로그인 상태 유지
-          <div>
             <button>소셜 로그인</button>
-          </div>
+          <input type="checkbox"></input> 로그인 상태 유지
         </fieldset>
       </form>
     </div>

@@ -33,18 +33,16 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
   }
 
   return (
-    <main>
+    <section>
       <h2 className="a11yHidden">마이 콘텐츠</h2>
       <ul>
         {myContents.map((el) => {
           return (
             <Link to="/content">
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
-                <article>
                   <p>{myContents.title}</p>
                   <img src={myContents.image} alt="img-thumbnail" />
-                  <p>@{myContents.image}</p>
-                </article>
+                  <p>&copy; {myContents.nickname}</p>
               </li>
             </Link>
           );
@@ -71,7 +69,7 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
           </article>
         </li> */}
       </ul>
-    </main>
+    </section>
   );
 }
 
