@@ -17,7 +17,7 @@ function Replys({
       .post("http:localhost:4000/deleteComment", {
         postId: selectedContent.id,
         userId: userInfo.id,
-        // nickname:
+        // nickname: asdfadfasdsdfds
       })
       .then((res) => {
         console.log(res);
