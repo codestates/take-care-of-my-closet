@@ -191,7 +191,8 @@ function SignUp() {
       <h2>회원가입</h2>
       <form>
         <fieldset>
-          아이디 :{" "}
+          <legend>회원가입 폼</legend>
+          <label>아이디 : </label>
           <input
             type="text"
             onChange={(e) => inputIdHandler(e)}
@@ -200,26 +201,23 @@ function SignUp() {
           />
           <button onClick={(e) => isDuplicatedId(e)}>중복확인</button>
           {duplicatedIdMessage ? duplicatedIdMessage : null}
-          <br />
           {validIdLength ? null : validIdMessage}
-          비밀번호 :{" "}
+          <label>비밀번호 : </label>
           <input
             type="password"
             onChange={(e) => inputPwHandler(e)}
             value={pwValue}
             placeholder="비밀번호를 입력하세요"
           />
-          <br />
-          {validPwLength ? null : "비밀번호는 8자 이상 16자 이하여야 합니다."}
-          비밀번호 확인 :{" "}
+          {validPwLength ? null : <span>비밀번호는 8자 이상 16자 이하여야 합니다.</span>}
+          <label>비밀번호 확인 : </label>
           <input
             type="password"
             onChange={(e) => inputMatchPwHandler(e)}
             placeholder="비밀번호 확인"
           />
-          <br />
-          {pwMatch ? null : "비밀번호가 일치하지 않습니다."}
-          프로필 사진 첨부 :{" "}
+          {pwMatch ? null : <span>비밀번호가 일치하지 않습니다.</span>}
+          <label>프로필 사진 첨부 : </label>
           <input
             type="file"
             name="user_image"
@@ -227,16 +225,14 @@ function SignUp() {
             onChange={(e) => inputProfileHandler(e)}
           />
           <img src={profileUrl} alt="img-thumbnail" />
-          <br />
-          닉네임 :{" "}
+          <label>닉네임 : </label>
           <input
             type="text"
             onChange={(e) => inputNickNameHandler(e)}
             placeholder="닉네임을 입력하세요"
           />
           <button onClick={(e) => isDuplicatedNick(e)}>중복확인</button>
-          {duplicatedNickMessage ? duplicatedNickMessage : null}
-          <br />
+          {duplicatedNickMessage ? <span>{duplicatedNickMessage}</span> : null}
           <button onClick={(e) => requestSignUp(e)}>가입하기</button>
         </fieldset>
       </form>
