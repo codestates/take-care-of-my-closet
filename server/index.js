@@ -39,6 +39,7 @@ app.put("/modifyuserinfo", controllers.modifyuserinfo)
 app.post("/deletepost", controllers.deletepost)
 app.post("/likeunlike", controllers.likeunlike)
 app.post("/createpost", controllers.createpost)
+app.post("/deletecomment",controllers.deletepost)
 
 const HTTPS_PORT = 4000
 

@@ -2,7 +2,19 @@ const { user } = require("../../models")
 const { sign } = require("jsonwebtoken")
 
 module.exports = async (req, res) => {
-  const currentUser = req.body
+   
+   let currentUser
+  if(req.body.password){
+    currentUser = req.body
+  } else{
+    const findUser = await user.findOne({
+      where: {
+        login_id : req.body.login_id,
+      }
+    })
+    currentUser = req.body
+    currentUser.password = findUser.password
+  }
 
   //클라이언트에서 유효성검사를 하지만 혹시나해서 만들어 놓은것
   //if문 빼고 const updateuser = ~res.status(200).send("ok")까지만 있어도 됨
@@ -13,6 +25,9 @@ module.exports = async (req, res) => {
   // if(!findUser){
   //  res.status(404).send("not found");
   // }else{}
+
+  
+
   const updateUser = await user.update(currentUser, {
     where: {
       login_id: currentUser.login_id,
