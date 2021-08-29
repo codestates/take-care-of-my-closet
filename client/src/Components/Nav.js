@@ -8,7 +8,7 @@ import User from "./User";
 function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
  
   const [newContent, setNewContent] = useState({
-    id: '',
+      id: '',
       userId: '',
       title: '',
       image:'',
