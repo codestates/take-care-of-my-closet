@@ -7,6 +7,8 @@ import "./ContentModiCreate.css";
 function ContentModiCreate() {
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [title, setTitle] = useState('')
+  const [textContent, setTextContent] = useState('')
   
   // useEffect(()=> {}
   // ,[selectedContent])
@@ -30,15 +32,20 @@ function ContentModiCreate() {
   // image 파일 확장자 유효성 함수
   function validImageType(img) {
     const type = ["image/jpeg","image/jpg","image/png","image/gif","image/bmp"];
-    const result = type.indexOf(img.type) > -1;
-    console.log(result); // true
+    return type.indexOf(img.type) > -1;
+    // console.log(result); // true
   }
 
 
   // <서버요청>
   const requestSave = (e) => {
     e.preventDefault()
-    axios.put('https://takecareofmycloset/modifymypost', )
+    axios.put('https://takecareofmycloset/modifymypost', {
+      id: selectedContent.userId,
+      image : imageUrl,
+      title: title,
+      contents: textContent
+    })
   }
 
   // <Event>
@@ -46,18 +53,19 @@ function ContentModiCreate() {
   // 이미지 등록 이벤트 
   const setImageFromFile = (e) => {
     const file = e.target.files[0];
-    // console.log(file);
+    console.log(file);
     /* {name: "logo.jpeg", lastModified: 1629899741611, 
     lastModifiedDate: Wed Aug 25 2021 22:55:41 GMT+0900 
     (한국 표준시), webkitRelativePath: "", size: 385201, …}*/
 
     if (!validImageType(file)) {
-      console.log("The image file is correct. please continue");
-    } else {
-      alert("이미지 파일이 아니다. 이미지 파일로 업로드 부탁드립니다.");
+      alert("이미지 파일이 아닙니다. 이미지 파일로 업로드 부탁드립니다.");
       console.log(
         "It is not an image file. Please upload it as an image file."
       );
+      return
+    } else {
+      console.log("The image file is correct. please continue");
     }
 
     setImageFile(file);
@@ -72,34 +80,48 @@ function ContentModiCreate() {
 
 
 
+
   return (
     <main>
       <h2 className="a11yHidden">컨텐츠 작성 및 수정</h2>
-      <form
-        method="post"
-        className="imageUpLoad"
-        action="upload"
-        encType="multipart/form-data"
-      >
+      <form method="post" className="imageUpLoad" action="upload" encType="multipart/form-data">
         <fieldset>
           <legend>컨텐츠 업로드 폼</legend>
-          {/* <div className="imageContent"> */}
-          <img className="imageContent" src={imageUrl} alt={imageFile} />
-          {/* </div> */}
-          <input
-            type="file"
-            name="imgFile"
-            id="imgFile"
-            onChange={(e) => {
-              setImageFromFile(e);
-            }}
-          />
-          <input className="title" placeholder="제목을 입력해주세요"></input>
-          <div className="textContent">
-            <input placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"></input>
-            <textarea></textarea>
-          </div>
-          <button onClick={(e) =>requestSave(e)}>등록</button>
+          {/* newContent 가 ? true 명 데이터가 잇는 것임 : 새글임*/}
+          {newContent === undefined ? (
+              <>
+                <div className="imageContent" >
+                  <img src={selectedContent.image} alt="img-thumbnail" />
+                </div>
+                <input type="file" name="imgFile" id="imgFile" onChange={(e) => {setImageFromFile(e);}} />
+                <section>
+                  <input className="title" defaultValue={selectedContent.title}/>
+                  <div className="textContent">
+                    <input placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"/>
+                    <textarea value={selectedContent.contents}></textarea>
+                  </div>
+                </section>
+              </>
+          )
+          : 
+          (
+            <>
+            <div className="imageContent" >
+              <img className="imageContent" src={imageUrl} alt="img-thumbnail" />
+            </div>
+            <input type="file" name="imgFile" value='' onChange={(e) => {setImageFromFile(e)}} />
+            <input className="title" placeholder="제목을 입력해주세요" value='imgFile' onChange={(e) => setTitle(e.target.value)}>{title}</input>
+            <section>
+            <div className="textContent">
+              <input value='' placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"/>
+                <textarea defaultValue={textContent} onKeyUp={(e) => setTextContent(e.target.value)}>
+                
+                </textarea>
+            </div>
+          </section>
+          </>
+          )}
+          <button onClick={(e) =>requestSave(e)}>등록</button> 
         </fieldset>
       </form>
       <Link to="/">
