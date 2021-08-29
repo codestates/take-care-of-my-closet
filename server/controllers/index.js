@@ -17,7 +17,8 @@ module.exports = {
 
   //comment
   createComment: require("./comment/CreateComment"),
+  deleteComment: require("./comment/DeleteComment"),
 
   //etc..
   createFakeData: require("./CreateFakeData"),
-}
+};

@@ -28,9 +28,9 @@ function App() {
     title: dummyContents[0].title,
     image: dummyContents[0].img,
     contents: dummyContents[0].contents,
-    likecount: dummyContents[0].likecount,
-    unlikecount: dummyContents[0].unlikecount,
   });
+  const [likeCount, setLikeCount] = useState(dummyContents[0].likecount);
+  const [unlikeCount, setUnlikeCount] = useState(dummyContents[0].unlikecount);
   const [replyList, setReplyList] = useState(dummyComment);
   const [userInfo, setUserInfo] = useState({
     id: "",
@@ -43,13 +43,14 @@ function App() {
 
   useEffect(() => {
     axios
-      .post("https://takecareofmycloset/getposts")
+      .post("http://localhost:4000/getposts")
       .then((res) => {
-        contentsListHandler([...res.data]);
+        contentsListHandler(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
+    console.log("*****************");
   }, []);
 
   const getUserInfo = (userInfo) => {
@@ -85,28 +86,33 @@ function App() {
   };
 
   const getSelectedContent = (id) => {
-    // axios
-    //   .post(
-    //     "https://",
-    //     {
-    //       postId: id,
-    //     },
-    //     { withCredentials: true }
-    //   )
-    //   .then((res) => {
-    //     console.log(res);
-    //     // 응답으로 클릭한 게시글 정보 + 해당 게시글의 댓글 정보 받음
-    //     setSelectedContent({
-    //       id: res.content.id,
-    //       userId: res.content.userId,
-    //       title: res.content.title,
-    //       image: res.content.image,
-    //       contents: res.content.contents,
-    //       likecount: res.content.likecount,
-    //       unlikecount: res.content.unlikecount,
-    //     });
-    //     setReplyList(res.comment);
-    //   });
+    axios
+      .post(
+        "http://localhost:4000/getContents",
+        {
+          postId: id,
+        },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res);
+        // 응답으로 클릭한 게시글 정보 + 해당 게시글의 댓글 정보 받음
+        if (res.message === "ok") {
+        }
+        setSelectedContent({
+          id: res.contents.id,
+          userId: res.contents.userId,
+          title: res.contents.title,
+          image: res.contents.image,
+          contents: res.contents.contents,
+        });
+        setLikeCount(res.likeCount);
+        setUnlikeCount(res.unlikecount);
+        setReplyList(res.contents.comments);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
     // 더미데이터로 구현
     setSelectedContent({
@@ -172,7 +178,10 @@ function App() {
               isLogin={isLogin}
               userInfo={userInfo}
               selectedContent={selectedContent}
-              setSelectedContent={setSelectedContent}
+              likeCount={likeCount}
+              setLikeCount={setLikeCount}
+              unlikeCount={unlikeCount}
+              setUnlikeCount={setUnlikeCount}
               replyList={replyList}
               replyListHandler={replyListHandler}
             />

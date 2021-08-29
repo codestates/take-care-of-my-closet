@@ -23,7 +23,9 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
     };
 
     axios
-      .post("https://takecareofmycloset", payload, { withCredentials: true })
+      .post("http://localhost:4000/createComment", payload, {
+        withCredentials: true,
+      })
       .then((res) => {
         // 등록한 댓글이 추가됨
         console.log(res);

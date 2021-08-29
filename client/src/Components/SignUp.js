@@ -32,7 +32,7 @@ function SignUp() {
     validIdMessage,
     profileImage,
   ]);
-  console.log(profileImage);
+  // console.log(profileImage);
   const history = useHistory();
 
   const inputIdHandler = (e) => {
@@ -70,7 +70,7 @@ function SignUp() {
     }
     axios
       .post(
-        "https://takecareofmycloset/duplicate",
+        "http://localhost:4000/duplicate",
         {
           login_id: idValue,
         },
@@ -95,7 +95,7 @@ function SignUp() {
     e.preventDefault();
     axios
       .post(
-        "https://takecareofmycloset/duplicate",
+        "http://localhost:4000/duplicate",
         {
           nickname: nickName,
         },
@@ -162,7 +162,7 @@ function SignUp() {
 
     axios
       .post(
-        "https://takecareofmycloset/signup",
+        "http://localhost:4000/signup",
         {
           login_id: idValue,
           password: pwValue,
