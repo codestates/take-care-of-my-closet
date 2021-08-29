@@ -18,9 +18,10 @@ function Content({
 
   const history = useHistory();
 
-  // useEffect(() => {
-  //   requestContent();
-  // }, []);
+  useEffect(() => {
+    requestLike();
+    requestDislike();
+  }, [likeCount, dislikeCount]);
 
   // const requestContent = () => {
   //   axios
@@ -73,6 +74,9 @@ function Content({
           .then((res) => {
             // App.js에 삭제된 게시글 정보 전달
             history.push("/");
+          })
+          .catch((err) => {
+            console.log(err);
           });
       } else {
         return alert("자신의 게시글만 삭제할 수 있습니다.");
@@ -117,15 +121,15 @@ function Content({
   const requestLike = () => {
     // isClickLike가 true일 때는 좋아요 +1 요청
     // isClickLike가 false일 때는 좋아요 -1 요청
-    // axios.post("https://");
     console.log(likeCount, isClickLike);
+    axios.post("https://", {}, { withCredentials: true });
   };
 
   const requestDislike = () => {
     // isClickDislike가 true일 때는 싫어요 +1 요청
     // isClickDislike가 false일 때는 싫어요 -1 요청
-    // axios.post("https://");
     console.log(dislikeCount, isClickDislike);
+    // axios.post("https://");
   };
 
   return (

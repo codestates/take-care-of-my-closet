@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import logo from "../image/logo.jpeg";
 
@@ -6,7 +7,8 @@ function SignUp() {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
   const [nickName, setNickName] = useState("");
-  const [profileImage, setProfileImage] = useState([]);
+  const [profileImage, setProfileImage] = useState(null);
+  const [profileUrl, setProfileUrl] = useState(null);
   const [matchPwValue, setMatchPwValue] = useState("");
   const [validIdLength, setValidIdLength] = useState(true);
   const [validPwLength, setValidPwLength] = useState(false);
@@ -30,6 +32,8 @@ function SignUp() {
     validIdMessage,
     profileImage,
   ]);
+  console.log(profileImage);
+  const history = useHistory();
 
   const inputIdHandler = (e) => {
     setIdValue(e.target.value);
@@ -44,13 +48,15 @@ function SignUp() {
   };
 
   const inputProfileHandler = (e) => {
-    // console.log(e);
-    // const formData = new FormData();
-    // formData.append("user_image", e.target.name);
-    // formData.append("file", e.target.files[0]);
-    setProfileImage(e.target.files);
-    // console.log(formData);
+    // console.log(e.target.files[0]);
+    setProfileImage(e.target.files[0]);
     // console.log(profileImage);
+    let reader = new FileReader(); // -> 파일 읽기 완료
+
+    reader.onload = function () {
+      setProfileUrl(reader.result);
+    };
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   const inputNickNameHandler = (e) => {
@@ -161,7 +167,7 @@ function SignUp() {
           login_id: idValue,
           password: pwValue,
           nickname: nickName,
-          user_image: profileImage,
+          user_image: profileUrl,
         },
         { withCredentials: true }
       )
@@ -169,6 +175,7 @@ function SignUp() {
         console.log(res.message);
         if (res.message === "ok") {
           alert("가입이 완료되었습니다.");
+          history.push("/login");
         }
       })
       .catch((err) => {
@@ -219,6 +226,7 @@ function SignUp() {
             accept=".jpg, .jpeg, .png, .gif, .bmp"
             onChange={(e) => inputProfileHandler(e)}
           />
+          <img src={profileUrl} alt="img-thumbnail" />
           <br />
           닉네임 :{" "}
           <input

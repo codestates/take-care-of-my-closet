@@ -38,8 +38,8 @@ function App() {
     image: "",
     nickname: "",
   });
-  // const [newContentBtnOn,setNewContentBtnOn] = useState(false)
 
+  let loca = useLocation();
 
   useEffect(() => {
     axios
@@ -131,11 +131,6 @@ function App() {
     setReplyList(list);
   };
 
-
-  let loca = useLocation();
-
-
-
   console.log("로케이션 제발", loca);
 
   return (
@@ -183,7 +178,11 @@ function App() {
             />
           </Route>
           <Route path="/content-modi-create">
-            <ContentModiCreate isLogin={isLogin} userInfo={userInfo} selectedContent={selectedContent}/>
+            <ContentModiCreate
+              isLogin={isLogin}
+              userInfo={userInfo}
+              selectedContent={selectedContent}
+            />
           </Route>
         </Switch>
       </section>

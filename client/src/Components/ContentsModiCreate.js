@@ -7,15 +7,15 @@ import "./ContentModiCreate.css";
 function ContentModiCreate() {
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+
   const [title, setTitle] = useState('')
   const [textContent, setTextContent] = useState('')
   
   // useEffect(()=> {}
   // ,[selectedContent])
-  
+
   const location = useLocation();
 
-  
   // if(!newContentBtnOn){
   //   const selectedContent = location.state.selectedContent;
   //   console.log("--------------", selectedContent);
@@ -24,8 +24,7 @@ function ContentModiCreate() {
   const newContent = location.state.newContent;
 
   console.log("--------------", selectedContent);
-  console.log(">>>>>>>" , newContent);
-
+  console.log(">>>>>>>", newContent);
 
   // <function>
 
@@ -35,7 +34,6 @@ function ContentModiCreate() {
     return type.indexOf(img.type) > -1;
     // console.log(result); // true
   }
-
 
   // <서버요청>
   const requestSave = (e) => {
@@ -50,7 +48,7 @@ function ContentModiCreate() {
 
   // <Event>
 
-  // 이미지 등록 이벤트 
+  // 이미지 등록 이벤트
   const setImageFromFile = (e) => {
     const file = e.target.files[0];
     console.log(file);
@@ -77,9 +75,6 @@ function ContentModiCreate() {
     };
     reader.readAsDataURL(file);
   };
-
-
-
 
   return (
     <main>
