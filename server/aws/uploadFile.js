@@ -2,8 +2,8 @@ const fs = require("fs")
 const AWS = require("aws-sdk")
 const BUCKET_NAME = "take-closet-bucket"
 const s3 = new AWS.S3({
-  accessKeyId: "AKIAVTJBKKGMB4ZQA754",
-  secretAccessKey: "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",
+  accessKeyId: process.env.ID,
+  secretAccessKey: process.env.PASS,
 })
 const uploadFile = (fileName) => {
   const fileContent = fs.readFileSync(fileName)
