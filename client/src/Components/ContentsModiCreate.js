@@ -77,7 +77,7 @@ function ContentModiCreate() {
   };
 
   return (
-    <main>
+    <section>
       <h2 className="a11yHidden">컨텐츠 작성 및 수정</h2>
       <form method="post" className="imageUpLoad" action="upload" encType="multipart/form-data">
         <fieldset>
@@ -93,7 +93,7 @@ function ContentModiCreate() {
                   <input className="title" defaultValue={selectedContent.title}/>
                   <div className="textContent">
                     <input placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"/>
-                    <textarea value={selectedContent.contents}></textarea>
+                    <textarea defaultValue={selectedContent.contents}/>
                   </div>
                 </section>
               </>
@@ -104,14 +104,12 @@ function ContentModiCreate() {
             <div className="imageContent" >
               <img className="imageContent" src={imageUrl} alt="img-thumbnail" />
             </div>
-            <input type="file" name="imgFile" value='' onChange={(e) => {setImageFromFile(e)}} />
-            <input className="title" placeholder="제목을 입력해주세요" value='imgFile' onChange={(e) => setTitle(e.target.value)}>{title}</input>
+            <input type="file" name="imgFile" defaultValue='' onChange={(e) => {setImageFromFile(e)}} />
+            <input className="title" placeholder="제목을 입력해주세요" defaultValue={title} onChange={(e) => setTitle(e.target.value)}/>
             <section>
             <div className="textContent">
-              <input value='' placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"/>
-                <textarea defaultValue={textContent} onKeyUp={(e) => setTextContent(e.target.value)}>
-                
-                </textarea>
+              <input defaultValue='' placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"/>
+                <textarea defaultValue={textContent} onKeyUp={(e) => setTextContent(e.target.value)}/>
             </div>
           </section>
           </>
@@ -122,7 +120,7 @@ function ContentModiCreate() {
       <Link to="/">
         <button>취소</button>
       </Link>
-    </main>
+    </section>
   );
 }
 

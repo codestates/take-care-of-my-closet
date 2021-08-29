@@ -133,20 +133,17 @@ function Content({
   };
 
   return (
-    <div>
-      <h2>
-        <main>
+    <article>
+      <h2>컨텐츠</h2>
           <img src={dummyContents[0].img} alt="img-thumbnail" />
           <span>{dummyContents[0].title}</span>
           {/* {isLogin && userInfo.id === selectedContent.userId ? (
             <button onClick={modifyHandler}>수정</button>
           ) : null} */}
-          <button onClick={modifyHandler}>수정</button>
           {/* {isLogin && userInfo.id === selectedContent.userId ? (
             <button onClick={deleteHandler}>삭제</button>
           ) : null} */}
-          <button onClick={deleteHandler}>삭제</button>
-          <section>{dummyContents[0].contents}</section>
+          <textarea defaultValue={dummyContents[0].contents} disabled="true"/>
           <button onClick={likeHandler}>좋아요 {likeCount}</button>
           <button onClick={dislikeHandler}>싫어요 {dislikeCount}</button>
           <Replys
@@ -156,9 +153,9 @@ function Content({
             replyList={replyList}
             replyListHandler={replyListHandler}
           />
-        </main>
-      </h2>
-    </div>
+          <button onClick={modifyHandler}>수정</button>
+          <button onClick={deleteHandler}>삭제</button>
+    </article>
   );
 }
 

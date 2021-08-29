@@ -35,12 +35,10 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
 
   return (
     <div>
-      <ul>
-        <textarea
-          onChange={(e) => inputReplyHandler(e)}
-          placeholder="여기에 댓글을 입력하세요"
-        ></textarea>
-      </ul>
+      <textarea 
+        onChange={(e) => inputReplyHandler(e)}
+        placeholder="여기에 댓글을 입력하세요"/>
+      
       <button onClick={requestReply}>등록</button>
     </div>
   );

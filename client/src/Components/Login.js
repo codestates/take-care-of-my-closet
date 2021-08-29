@@ -50,6 +50,7 @@ function Login({ ChangeLogin }) {
       <h2>로그인</h2>
       <form styled="border: 0">
         <fieldset>
+          <legend>로그인 폼</legend>
           <input
             type="text"
             placeholder="아이디"
@@ -60,7 +61,7 @@ function Login({ ChangeLogin }) {
             placeholder="비밀번호"
             onChange={handleInputValue("password")}
           />
-          <div>{errorMessage}</div>
+          <span>{errorMessage}</span>
           <div>
             <button
               type="submit"
@@ -74,10 +75,8 @@ function Login({ ChangeLogin }) {
               <button>회원가입</button>
             </Link>
           </div>
-          <input type="checkbox"></input> 로그인 상태 유지
-          <div>
             <button>소셜 로그인</button>
-          </div>
+          <input type="checkbox"></input> 로그인 상태 유지
         </fieldset>
       </form>
     </div>
