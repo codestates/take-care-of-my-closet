@@ -179,7 +179,12 @@ function Content({
       {/* {isLogin && userInfo.id === selectedContent.userId ? (
             <button onClick={deleteHandler}>삭제</button>
           ) : null} */}
-      <textarea defaultValue={dummyContents[0].contents} disabled="true" />
+      <textarea
+        rows="10"
+        cols="40"
+        defaultValue={dummyContents[0].contents}
+        disabled="true"
+      />
       <button onClick={likeHandler}>좋아요 {likeCount}</button>
       <button onClick={unlikeHandler}>싫어요 {unlikeCount}</button>
       <Replys
