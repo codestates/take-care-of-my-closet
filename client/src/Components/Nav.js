@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import logo from "../image/logo.jpeg";
+import logo from "../image/LOGO.png";
 import "./Nav.css";
 import "./reset.css";
 import User from "./User";
