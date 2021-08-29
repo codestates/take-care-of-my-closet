@@ -56,14 +56,25 @@ function App() {
       })
   }, [])
 
+
+
+  // accessToken 보내는 요청 함수 만들자.
+
+
+
   const getUserInfo = () => {
-    setUserInfo({
-      id: userInfo.id,
-      login_id: userInfo.login_id,
-      image: userInfo.image,
-      nickname: userInfo.nickname,
+    axios.get('https://takecareofmycloset/userInfoaccessToken')
+    .then((res) => {
+      if(res.message === 'ok'){
+        setUserInfo({
+          id: res.data.userInfo.id,
+          login_id: res.data.userInfo.login_id,
+          image: res.data.userInfo.image,
+          nickname: res.data.userInfo.nickname,
+        });
+      }
     })
-  }
+  };
 
   const loginHandler = () => {
     getUserInfo()
