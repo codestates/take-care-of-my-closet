@@ -28,10 +28,10 @@ function App() {
     title: dummyContents[0].title,
     image: dummyContents[0].img,
     contents: dummyContents[0].contents,
-  });
-  const [likeCount, setLikeCount] = useState(dummyContents[0].likecount);
-  const [unlikeCount, setUnlikeCount] = useState(dummyContents[0].unlikecount);
-  const [replyList, setReplyList] = useState(dummyComment);
+  })
+  const [likeCount, setLikeCount] = useState(dummyContents[0].likecount)
+  const [unlikeCount, setUnlikeCount] = useState(dummyContents[0].unlikecount)
+  const [replyList, setReplyList] = useState(dummyComment)
   // 로컬스토리지에 토큰이 있냐?
   // localStorage.setItem('token', 토큰값)
   // localStorage.removeItem
@@ -46,37 +46,23 @@ function App() {
   let loca = useLocation()
 
   useEffect(() => {
-    axios
-      .post("http://localhost:4000/getposts")
-      .then((res) => {
-        contentsListHandler(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log("*****************");
-  }, []);
-
-
-
+    console.log("*****************")
+  }, [])
 
   // accessToken 보내는 요청 함수 만들자.
 
-
-
   const getUserInfo = () => {
-    axios.get('https://takecareofmycloset/userInfoaccessToken')
-    .then((res) => {
-      if(res.message === 'ok'){
+    axios.get("https://takecareofmycloset/userInfoaccessToken").then((res) => {
+      if (res.message === "ok") {
         setUserInfo({
           id: res.data.userInfo.id,
           login_id: res.data.userInfo.login_id,
           image: res.data.userInfo.image,
           nickname: res.data.userInfo.nickname,
-        });
+        })
       }
     })
-  };
+  }
 
   const loginHandler = () => {
     getUserInfo()
@@ -111,7 +97,7 @@ function App() {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res);
+        console.log(res)
         // 응답으로 클릭한 게시글 정보 + 해당 게시글의 댓글 정보 받음
         if (res.message === "ok") {
         }
@@ -121,14 +107,14 @@ function App() {
           title: res.contents.title,
           image: res.contents.image,
           contents: res.contents.contents,
-        });
-        setLikeCount(res.likeCount);
-        setUnlikeCount(res.unlikecount);
-        setReplyList(res.contents.comments);
+        })
+        setLikeCount(res.likeCount)
+        setUnlikeCount(res.unlikecount)
+        setReplyList(res.contents.comments)
       })
       .catch((err) => {
-        console.log(err);
-      });
+        console.log(err)
+      })
 
     // 더미데이터로 구현
     setSelectedContent({

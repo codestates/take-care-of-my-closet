@@ -1,7 +1,6 @@
 {
   "name": "take-care-of-my-closet",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --inspect index.js",
@@ -10,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.978.0",
     "axios": "^0.21.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -23,5 +23,6 @@
   "devDependencies": {
     "node": "^16.6.1",
     "nodemon": "^2.0.12"
-  }
+  },
+  "description": ""
 }

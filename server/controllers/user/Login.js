@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
   } else {
     delete userInfo.dataValues.password
     const accessToken = sign(userInfo.dataValues, process.env.ACCESS_SECRET, {
-      expiresIn: "1d",
+      expiresIn: "3d",
     })
 
     await res.cookie(
