@@ -21,12 +21,12 @@ module.exports = {
         userId: 1,
       },
       {
-        title: "쇼핑했는데 어떰?",
+        title: "오랜만에 놀러감",
         image: "image2",
         contents: "세일하길래 삼",
         createdAt: new Date(),
         updatedAt: new Date(),
-        userId: 1,
+        userId: 2,
       },
       {
         title: "승마복 아닙니다.",

@@ -9,6 +9,8 @@ function Login({ ChangeLogin }) {
     password: "",
   })
 
+  const [userInfo, setUserInfo] = useState({})
+
   const [errorMessage, setErrorMessage] = useState("")
 
   const history = useHistory()
@@ -22,7 +24,7 @@ function Login({ ChangeLogin }) {
     // setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
     if (loginInfo.login_id && loginInfo.password) {
       axios
-        .post("https://TakeCareOfMyCloset/login", loginInfo, {
+        .post("http://localhost:4000/login", loginInfo, {
           withCredentials: true,
         })
         .then((res) => {
@@ -30,8 +32,15 @@ function Login({ ChangeLogin }) {
             setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
           } else {
             setErrorMessage("")
-            ChangeLogin(true)
-            history.push("/")
+            axios
+              .get("http://localhost:4000/accessTokenrequest", {
+                withCredentials: true,
+              })
+              .then((res) => console.log(res.data))
+            // 로컬스토리지 & 쿠키 에 토큰이 있는지 확인후 true
+            // ChangeLogin(true)
+            // history.push("/")
+            setUserInfo({ login: "login", password: "password" })
           }
         })
         .catch((err) => console.error(err))
@@ -44,6 +53,7 @@ function Login({ ChangeLogin }) {
 
   return (
     <div>
+      {console.log("제발", userInfo)}
       <h1>
         <img src={logo} alt="logo" width="500" />
       </h1>

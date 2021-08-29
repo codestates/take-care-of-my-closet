@@ -1,4 +1,4 @@
-const db = require("../../models")
+const db require ("../../models") 
 
 module.exports = async (req, res) => {
   //   console.log(db.sequelize.models.likes)

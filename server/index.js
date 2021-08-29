@@ -31,7 +31,7 @@ app.post("/signup", controllers.signup)
 app.post("/passwordCheck", controllers.passwordCheck)
 app.post("/getposts", controllers.getPosts)
 app.post("/duplicate", controllers.duplicate)
-app.post("/createFakeData", controllers.createFakeData)
+// app.post("/createFakeData", controllers.createFakeData)
 app.post("/createComment", controllers.createComment)
 app.post("/getContents", controllers.getContents)
 app.put("/modifymypost", controllers.modifymypost)
@@ -39,6 +39,7 @@ app.put("/modifyuserinfo", controllers.modifyuserinfo)
 app.post("/deletepost", controllers.deletepost)
 app.post("/likeunlike", controllers.likeunlike)
 app.post("/createpost", controllers.createpost)
+app.post("/deleteComment", controllers.deleteComment)
 
 const HTTPS_PORT = 4000
 
