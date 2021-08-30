@@ -21,5 +21,4 @@ module.exports = {
 
   //etc..
   createFakeData: require("./CreateFakeData"),
-  test: require("./test"),
 }
