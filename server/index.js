@@ -26,7 +26,7 @@ db.sequelize
   .catch(console.error)
 
 app.get("/", (req, res) => {
-  res.status(200).send("Welcome, Server!")
+  res.status(200).send("Welcome, take_care_Server!")
   // status는 응답코드, send에 바디값을 넣어 응답을 보내줌
 })
 
