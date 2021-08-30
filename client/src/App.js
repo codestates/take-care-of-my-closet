@@ -13,6 +13,7 @@ import MyPage from "./Components/MyPage";
 import SignUp from "./Components/SignUp";
 import ContentModiCreate from "./Components/ContentsModiCreate";
 import Content from "./Components/Content";
+import LoadingIndicator from "./Components/LoadingIndicator";
 import {
   dummyMainPosts,
   dummyContents,
@@ -24,6 +25,7 @@ axios.defaults.withCredentials = true;
 function App() {
   const [isLogin, setIsLogin] = useState(false);
   const [contents, setContents] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
   const [selectedContent, setSelectedContent] = useState({
     id: dummyContents[0].id,
     userId: dummyContents[0].userId,
@@ -48,10 +50,12 @@ function App() {
   let loca = useLocation();
 
   useEffect(() => {
+    setIsloading(true);
     axios
       .post("http://localhost:4000/getposts")
       .then((res) => {
         contentsListHandler(res.data);
+        setIsloading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -86,7 +90,6 @@ function App() {
 
   const loginHandler = () => {
     getUserInfo();
-    setIsLogin(true);
   };
 
   const logoutHandler = () => {
@@ -116,17 +119,17 @@ function App() {
         console.log(res);
         // 응답으로 클릭한 게시글 정보 + 해당 게시글의 댓글 정보 받음
         if (res.message === "ok") {
+          setSelectedContent({
+            id: res.contents.id,
+            userId: res.contents.userId,
+            title: res.contents.title,
+            image: res.contents.image,
+            contents: res.contents.contents,
+          });
+          setLikeCount(res.likeCount);
+          setUnlikeCount(res.unlikecount);
+          setReplyList(res.contents.comments);
         }
-        setSelectedContent({
-          id: res.contents.id,
-          userId: res.contents.userId,
-          title: res.contents.title,
-          image: res.contents.image,
-          contents: res.contents.contents,
-        });
-        setLikeCount(res.likeCount);
-        setUnlikeCount(res.unlikecount);
-        setReplyList(res.contents.comments);
       })
       .catch((err) => {
         console.log(err);
@@ -173,6 +176,7 @@ function App() {
       <section>
         <Switch>
           <Route exact path="/">
+            {/* {isLoading ? <LoadingIndicator/> : <Main contents={contents} handleContentClick={handleContentClick} />} */}
             <Main contents={contents} handleContentClick={handleContentClick} />
           </Route>
           <Route path="/login">
