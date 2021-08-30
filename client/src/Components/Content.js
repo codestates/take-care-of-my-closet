@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
-import { dummyContents } from "../dummyData/dummyData";
+// import { dummyContents } from "../dummyData/dummyData";
 
 axios.defaults.withCredentials = true;
 
@@ -19,7 +19,7 @@ function Content({
 }) {
   // const [isClickLike, setIsClickLike] = useState(false);
   // const [isClickUnlike, setIsClickUnlike] = useState(false);
-
+  console.log("게시글 선택창", selectedContent);
   const history = useHistory();
 
   // const requestContent = () => {
@@ -72,7 +72,7 @@ function Content({
     // 맞다면 게시글 삭제 요청
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.id === dummyContents[0].userId) {
+      if (userInfo.id === selectedContent.userId) {
         axios
           .delete("http://localhost:4000/deletepost", {
             postId: selectedContent.id,
@@ -97,26 +97,28 @@ function Content({
   };
 
   const likeHandler = () => {
-    if (!isLogin) {
-      return alert("로그인 후 이용하실 수 있습니다.");
-    } else {
-      axios
-        .post("http://localhost:4000/likeunlike", {
-          userId: userInfo.id,
-          postId: selectedContent.id,
-          click: "like",
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.message === "ok") {
-            setLikeCount(res.data.like);
-            setUnlikeCount(res.data.unlike);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    // if (!isLogin) {
+    //   return alert("로그인 후 이용하실 수 있습니다.");
+    // }
+    console.log(userInfo.id);
+    console.log(selectedContent.id);
+    axios
+      .post("http://localhost:4000/likeunlike", {
+        userId: userInfo.id,
+        postId: selectedContent.id,
+        click: "like",
+      })
+      .then((res) => {
+        console.log("좋아요 요청에 대한 응답", res.data);
+        if (res.message === "ok") {
+          setLikeCount(res.data.like);
+          setUnlikeCount(res.data.unlike);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     // if (!isClickLike && isClickUnlike) {
     //   // 좋아요x 싫어요o 일때 좋아요 누르면
     //   setIsClickUnlike(false); // 싫어요 취소
@@ -133,26 +135,26 @@ function Content({
   };
 
   const unlikeHandler = () => {
-    if (!isLogin) {
-      return alert("로그인 후 이용하실 수 있습니다.");
-    } else {
-      axios
-        .post("http://localhost:4000/likeunlike", {
-          userId: userInfo.id,
-          postId: selectedContent.id,
-          click: "unlike",
-        })
-        .then((res) => {
-          console.log(res);
-          if (res.message === "ok") {
-            setLikeCount(res.data.like);
-            setUnlikeCount(res.data.unlike);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+    // if (!isLogin) {
+    //   return alert("로그인 후 이용하실 수 있습니다.");
+    // }
+    axios
+      .post("http://localhost:4000/likeunlike", {
+        userId: userInfo.id,
+        postId: selectedContent.id,
+        click: "unlike",
+      })
+      .then((res) => {
+        console.log("싫어요 요청에 대한 응답", res);
+        if (res.message === "ok") {
+          setLikeCount(res.data.like);
+          setUnlikeCount(res.data.unlike);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     // if (!isClickUnlike && isClickLike) {
     //   // 싫어요x 좋아요o 일때 싫어요 누르면
     //   setIsClickLike(false); // 좋아요 취소

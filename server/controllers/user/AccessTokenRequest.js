@@ -1,30 +1,18 @@
-const { user } = require("../../models")
-const { verify } = require("jsonwebtoken")
-const dotenv = require("dotenv")
-dotenv.config()
+const { user } = require("../../models");
+const { verify } = require("jsonwebtoken");
+const dotenv = require("dotenv");
+dotenv.config();
 
 module.exports = (req, res) => {
-  // TODO: urclass의 가이드를 참고하여 GET /accesstokenrequest 구현에 필요한 로직을 작성하세요.
-
-  if (!req.headers.cookie) {
-    res.status(401).json({ data: null, message: "invalid access token" })
+  const accessToken = req.headers["accesstoken"];
+  console.log(accessToken);
+  if (!accessToken) {
+    res.status(401).json({ data: null, message: "invalid access token" });
   } else {
-    const accessToken = req.headers.cookie.split("=")
-    verify(accessToken[1], process.env.ACCESS_SECRET, async (err, decoded) => {
-      if (err) {
-        res.status(401).json({ data: null, message: "invalid access token" })
-      } else {
-        const userInfo = await user.findOne({
-          where: { login_id: decoded.login_id },
-        })
-        console.log(userInfo)
+    const userInfo = verify(accessToken, process.env.ACCESS_SECRET);
 
-        if (!userInfo) {
-          res.status(404).send("access token has been tempred")
-        } else {
-          res.status(200).json({ data: { userInfo: userInfo }, message: "ok" })
-        }
-      }
-    })
+    return res
+      .status(200)
+      .json({ data: { userInfo: userInfo }, message: "ok" });
   }
-}
+};

@@ -44,7 +44,7 @@ function ContentModiCreate() {
   // <서버요청>
   const requestSave = (e) => {
     e.preventDefault();
-    axios.put("https://takecareofmycloset/modifymypost", {
+    axios.put("http://takecareofmycloset/modifymypost", {
       id: selectedContent.userId,
       image: imageFile,
       title: title,

@@ -1,59 +1,67 @@
-import React, { useState } from "react"
-import { Link, useHistory } from "react-router-dom"
-import logo from "../image/logo.jpeg"
-import axios from "axios"
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import logo from "../image/logo.jpeg";
+import { Cookies } from "react-cookie";
+import axios from "axios";
 
-function Login({ ChangeLogin }) {
-  const [loginInfo, setLoginInfo] = useState({
-    login_id: "",
-    password: "",
-  })
+axios.defaults.withCredentials = true;
 
-  const [userInfo, setUserInfo] = useState({})
+const cookies = new Cookies();
 
-  const [errorMessage, setErrorMessage] = useState("")
+function Login({ getUserInfo }) {
+  const [inputId, setInputId] = useState("");
+  const [inputPw, setInputPw] = useState("");
 
-  const history = useHistory()
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleInputValue = (key) => (e) => {
-    setLoginInfo({ ...loginInfo, [key]: e.target.value })
-  }
+  const history = useHistory();
+
+  const inputIdHandler = (e) => {
+    e.preventDefault();
+    setInputId(e.target.value);
+  };
+
+  const inputPwHandler = (e) => {
+    e.preventDefault();
+    setInputPw(e.target.value);
+  };
+
+  // const handleInputValue = (key) => (e) => {
+  //   setLoginInfo({ ...loginInfo, [key]: e.target.value });
+  // };
 
   const handleLogin = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
-    if (loginInfo.login_id && loginInfo.password) {
+    if (inputId && inputPw) {
       axios
-        .post("http://localhost:4000/login", loginInfo, {
-          withCredentials: true,
+        .post("http://localhost:4000/login", {
+          login_id: inputId,
+          password: inputPw,
         })
         .then((res) => {
-          if (res.data.message === "Invalid user or Wrong password") {
-            setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
+          console.log(
+            "로그인 요청 후 받은 액세스 토큰",
+            cookies.get("accessToken")
+          );
+          const accessToken = cookies.get("accessToken");
+          // console.log(accessToken);
+          if (res.data.message === "not authorized") {
+            setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.");
           } else {
-            setErrorMessage("")
-            axios
-              .get("http://localhost:4000/accessTokenrequest", {
-                withCredentials: true,
-              })
-              .then((res) => console.log(res.data))
-            // 로컬스토리지 & 쿠키 에 토큰이 있는지 확인후 true
-            // ChangeLogin(true)
-            // history.push("/")
-            setUserInfo({ login: "login", password: "password" })
+            setErrorMessage("");
+            getUserInfo(accessToken);
+            history.push("/");
           }
         })
-        .catch((err) => console.error(err))
+        .catch((err) => console.error(err));
     } else {
-      setErrorMessage("아이디와 비밀번호를 입력해주세요")
+      setErrorMessage("아이디와 비밀번호를 입력해주세요");
     }
-  }
-
-  console.log(loginInfo)
+  };
 
   return (
     <div>
-      {console.log("제발", userInfo)}
       <h1>
         <img src={logo} alt="logo" width="500" />
       </h1>
@@ -64,33 +72,26 @@ function Login({ ChangeLogin }) {
           <input
             type="text"
             placeholder="아이디"
-            onChange={handleInputValue("login_id")}
+            onChange={(e) => inputIdHandler(e)}
           />
           <input
             type="password"
             placeholder="비밀번호"
-            onChange={handleInputValue("password")}
+            onChange={(e) => inputPwHandler(e)}
           />
           <span>{errorMessage}</span>
           <div>
-            <button
-              type="submit"
-              onClick={(e) => {
-                handleLogin(e)
-              }}
-            >
+            <button type="submit" onClick={(e) => handleLogin(e)}>
               로그인
             </button>
             <Link to="/signup">
               <button>회원가입</button>
             </Link>
           </div>
-            <button>소셜 로그인</button>
-          <input type="checkbox"></input> 로그인 상태 유지
         </fieldset>
       </form>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
