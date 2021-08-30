@@ -89,9 +89,11 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
         <ul>
           <User logoutHandler={logoutHandler} />
         </ul>
-        <Link to="/login">
-          <button>로그인</button>
-        </Link>
+        {isLogin ? null : (
+          <Link to="/login">
+            <button>로그인</button>
+          </Link>
+        )}
       </nav>
     </header>
   );
