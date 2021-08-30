@@ -48,7 +48,7 @@ app.post("/deleteComment", controllers.deleteComment)
 
 const http = 433
 
-const HTTPS_PORT = 4000
+const HTTPS_PORT = 80
 
 let server
 
