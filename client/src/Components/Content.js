@@ -171,8 +171,8 @@ function Content({
   return (
     <article>
       <h2>컨텐츠</h2>
-      <img src={dummyContents[0].img} alt="img-thumbnail" />
-      <span>{dummyContents[0].title}</span>
+      <img src={selectedContent.image} alt="img-thumbnail" />
+      <span>{selectedContent.title}</span>
       {/* {isLogin && userInfo.id === selectedContent.userId ? (
             <button onClick={modifyHandler}>수정</button>
           ) : null} */}
@@ -182,7 +182,7 @@ function Content({
       <textarea
         rows="10"
         cols="40"
-        defaultValue={dummyContents[0].contents}
+        defaultValue={selectedContent.contents}
         disabled="true"
       />
       <button onClick={likeHandler}>좋아요 {likeCount}</button>
