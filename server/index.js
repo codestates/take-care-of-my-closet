@@ -46,7 +46,7 @@ app.post("/likeunlike", controllers.likeunlike)
 app.post("/createpost", controllers.createpost)
 app.post("/deleteComment", controllers.deleteComment)
 
-const HTTPS_PORT = 80
+const HTTPS_PORT = 4000
 
 let server
 
