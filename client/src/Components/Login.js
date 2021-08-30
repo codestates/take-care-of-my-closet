@@ -55,7 +55,7 @@ function Login({ ChangeLogin }) {
     <div>
       {console.log("제발", userInfo)}
       <h1>
-        <img src={logo} alt="logo" width="500" />
+        <img src={logo} alt="logo" width="500"/>
       </h1>
       <h2>로그인</h2>
       <form styled="border: 0">

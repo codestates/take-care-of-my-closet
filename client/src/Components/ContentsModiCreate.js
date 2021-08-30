@@ -97,7 +97,7 @@ function ContentModiCreate() {
           {newContent === undefined ? (
             <>
               <div className="imageContent">
-                <img src={selectedContent.image} alt="img-thumbnail" />
+                <img src={selectedContent.image} alt="img-thumbnail"/>
               </div>
               <input
                 type="file"
@@ -121,8 +121,7 @@ function ContentModiCreate() {
                 <img
                   className="imageContent"
                   src={imageUrl}
-                  alt="img-thumbnail"
-                />
+                  alt="img-thumbnail"/>
               </div>
               <input
                 type="file"

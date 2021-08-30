@@ -171,7 +171,7 @@ function Content({
   return (
     <article>
       <h2>컨텐츠</h2>
-      <img src={dummyContents[0].img} alt="img-thumbnail" />
+      <img src={dummyContents[0].img} alt="img-thumbnail"/>
       <span>{dummyContents[0].title}</span>
       {/* {isLogin && userInfo.id === selectedContent.userId ? (
             <button onClick={modifyHandler}>수정</button>

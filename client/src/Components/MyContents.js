@@ -41,7 +41,7 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
             <Link to="/content">
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
                   <p>{myContents.title}</p>
-                  <img src={myContents.image} alt="img-thumbnail" />
+                  <img src={myContents.image} alt="img-thumbnail"/>
                   <p>&copy; {myContents.nickname}</p>
               </li>
             </Link>

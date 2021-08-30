@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../image/LOGO.png";
-import "./Nav.css";
-import "./reset.css";
 import User from "./User";
+// import PropTypes from 'prop-types';
+// import './Nav.css'; // CSS
 
 function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
- 
+
   const [newContent, setNewContent] = useState({
       id: '',
       userId: '',
@@ -67,7 +67,7 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
     <header>
       <h1 className="logo">
         <Link to="/">
-          <img src={logo} alt="logo" width="500" />
+          <img src={logo} alt="logo" width="500"/>
         </Link>
       </h1>
       <nav>
@@ -98,4 +98,10 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
   );
 }
 
+
+
 export default Nav;
+
+// Nav.propTypes = {
+//   logoutHandler: PropTypes.func,
+// };

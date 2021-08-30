@@ -19,7 +19,7 @@ function Main({ contents, handleContentClick }) {
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
                 <article>
                   <p>{el.title}</p>
-                  <img src={el.image} alt="img-thumbnail" />
+                  <img src={el.image} alt="img-thumbnail"/>
                   <p>@{el.user.nickname}</p>
                 </article>
               </li>

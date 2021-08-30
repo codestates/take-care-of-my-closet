@@ -186,7 +186,7 @@ function SignUp() {
   return (
     <div>
       <h1>
-        <img src={logo} alt="logo" width="500px" />
+        <img src={logo} alt="logo" width="500px"/>
       </h1>
       <h2>회원가입</h2>
       <form>
@@ -224,7 +224,7 @@ function SignUp() {
             accept=".jpg, .jpeg, .png, .gif, .bmp"
             onChange={(e) => inputProfileHandler(e)}
           />
-          <img src={profileUrl} alt="img-thumbnail" />
+          <img src={profileUrl} alt="img-thumbnail"/>
           <label>닉네임 : </label>
           <input
             type="text"
