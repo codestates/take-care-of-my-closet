@@ -73,7 +73,7 @@ const dummyContents = [
   {
     id: 1,
     userId: 3,
-    img: `https://randomuser.me/api/portraits/men/${getRandomNumber(
+    image: `https://randomuser.me/api/portraits/men/${getRandomNumber(
       1,
       98
     )}.jpg`,

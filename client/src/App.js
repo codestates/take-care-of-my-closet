@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
-import { Switch, Route, useLocation, useHistory } from "react-router-dom";
+import { Switch, Route, useLocation } from "react-router-dom";
 import Nav from "./Components/Nav";
 import Footer from "./Components/Footer";
 
@@ -30,7 +30,7 @@ function App() {
     id: dummyContents[0].id,
     userId: dummyContents[0].userId,
     title: dummyContents[0].title,
-    image: dummyContents[0].img,
+    image: dummyContents[0].image,
     contents: dummyContents[0].contents,
   });
   const [likeCount, setLikeCount] = useState(dummyContents[0].likecount);
@@ -54,7 +54,8 @@ function App() {
     axios
       .post("http://localhost:4000/getposts")
       .then((res) => {
-        contentsListHandler(res.data);
+        console.log("전체게시글 요청 응답", res);
+        contentsListHandler(res.data.data);
         setIsloading(false);
       })
       .catch((err) => {
@@ -63,6 +64,7 @@ function App() {
     getUserInfo();
     getSelectedContent();
   }, []);
+  console.log("받아온 컨텐츠 정보", contents);
 
   // accessToken 보내는 요청 함수 만들자.
 
@@ -193,7 +195,7 @@ function App() {
             />
           </Route>
           <Route path="/mypage">
-            <MyPage isLogin={isLogin} />
+            <MyPage isLogin={isLogin} userInfo={userInfo} />
           </Route>
           <Route path="/content">
             <Content
