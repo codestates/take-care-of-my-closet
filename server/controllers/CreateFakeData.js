@@ -1,11 +1,11 @@
-const db require ("../../models") 
+const db = require("../models");
 
 module.exports = async (req, res) => {
   //   console.log(db.sequelize.models.likes)
 
-  const likes = db.sequelize.models.likes
+  const likes = db.sequelize.models.likes;
 
-  const unlikes = db.sequelize.models.unlikes
+  const unlikes = db.sequelize.models.unlikes;
 
   const likesData = [
     {
@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
       userId: 4,
       postId: 4,
     },
-  ]
+  ];
 
   const unlikesData = [
     {
@@ -71,11 +71,11 @@ module.exports = async (req, res) => {
       userId: 4,
       postId: 3,
     },
-  ]
+  ];
 
-  const test = await likes.bulkCreate(likesData)
+  const test = await likes.bulkCreate(likesData);
 
-  const test2 = await unlikes.bulkCreate(unlikesData)
+  const test2 = await unlikes.bulkCreate(unlikesData);
 
-  res.status(200).json({ message: "test" })
-}
+  res.status(200).json({ message: "test" });
+};

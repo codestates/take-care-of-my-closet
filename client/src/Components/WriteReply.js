@@ -41,6 +41,8 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
   return (
     <div>
       <textarea
+        rows="10"
+        cols="40"
         onChange={(e) => inputReplyHandler(e)}
         placeholder="여기에 댓글을 입력하세요"
       />

@@ -111,7 +111,7 @@ function ContentModiCreate() {
                 <input className="title" defaultValue={selectedContent.title} />
                 <div className="textContent">
                   <input placeholder="상의: S / M / L / XL & 하의: S / M / L /XL" />
-                  <textarea value={selectedContent.contents}></textarea>
+                  <textarea defaultValue={selectedContent.contents}></textarea>
                 </div>
               </section>
             </>
@@ -135,18 +135,13 @@ function ContentModiCreate() {
               <input
                 className="title"
                 placeholder="제목을 입력해주세요"
-                value="imgFile"
+                defaultValue={title}
                 onChange={(e) => setTitle(e.target.value)}
-              >
-                {title}
-              </input>
+              />
               <section>
                 <div className="textContent">
-                  <input
-                    value=""
-                    placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"
-                  />
                   <textarea
+                    placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"
                     defaultValue={textContent}
                     onKeyUp={(e) => setTextContent(e.target.value)}
                   ></textarea>
