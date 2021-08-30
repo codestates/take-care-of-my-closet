@@ -25,6 +25,11 @@ db.sequelize
   })
   .catch(console.error)
 
+app.get("/", (req, res) => {
+  res.status(200).send("Welcome, Server!")
+  // status는 응답코드, send에 바디값을 넣어 응답을 보내줌
+})
+
 app.post("/login", controllers.login)
 app.get("/accessTokenrequest", controllers.accessTokenRequest)
 app.post("/signup", controllers.signup)
