@@ -13,17 +13,10 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
-    origin: true,
+    origin: false,
     credentials: true,
   })
 )
-
-db.sequelize
-  .sync()
-  .then(() => {
-    console.log("db 연결 ")
-  })
-  .catch(console.error)
 
 app.get("/", (req, res) => {
   res.status(200).send("Welcome, take_care_Server!")
