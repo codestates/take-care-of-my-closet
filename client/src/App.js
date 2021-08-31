@@ -15,11 +15,6 @@ import SignUp from "./Components/SignUp";
 import ContentModiCreate from "./Components/ContentsModiCreate";
 import Content from "./Components/Content";
 import LoadingIndicator from "./Components/LoadingIndicator";
-import {
-  dummyMainPosts,
-  dummyContents,
-  dummyComment,
-} from "./dummyData/dummyData";
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -29,15 +24,15 @@ function App() {
   const [contents, setContents] = useState([]);
   const [isLoading, setIsloading] = useState(false);
   const [selectedContent, setSelectedContent] = useState({
-    id: dummyContents[0].id,
-    userId: dummyContents[0].userId,
-    title: dummyContents[0].title,
-    image: dummyContents[0].image,
-    contents: dummyContents[0].contents,
+    id: "",
+    userId: "",
+    title: "",
+    image: "",
+    contents: "",
   });
-  const [likeCount, setLikeCount] = useState(dummyContents[0].likecount);
-  const [unlikeCount, setUnlikeCount] = useState(dummyContents[0].unlikecount);
-  const [replyList, setReplyList] = useState(dummyComment);
+  const [likeCount, setLikeCount] = useState(0);
+  const [unlikeCount, setUnlikeCount] = useState(0);
+  const [replyList, setReplyList] = useState([]);
   // 로컬스토리지에 토큰이 있냐?
   // localStorage.setItem('token', 토큰값)
   // localStorage.removeItem
@@ -48,6 +43,7 @@ function App() {
     image: "",
     nickname: "",
   });
+  const [selectedId, setSelectedId] = useState();
 
   let loca = useLocation();
   const history = useHistory();
@@ -64,12 +60,11 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+    getUserInfo(cookies.get("accessToken"));
     console.log(userInfo);
     console.log(isLogin);
   }, []);
   console.log("받아온 컨텐츠 정보", contents);
-
-  // accessToken 보내는 요청 함수 만들자.
 
   const getUserInfo = (accessToken) => {
     axios
@@ -82,15 +77,16 @@ function App() {
         console.log("유저 정보 요청 응답", res.data.data);
         if (res.data.message === "invalid access token") {
           setIsLogin(false);
-          console.log("토큰이 유효하지 않습니다.");
+          const refreshToken = cookies.get("refreshToken");
+          refreshTokenRequest(refreshToken);
         } else {
-          setIsLogin(true);
           setUserInfo({
             id: res.data.data.userInfo.id,
             login_id: res.data.data.userInfo.login_id,
             image: res.data.data.userInfo.user_image,
             nickname: res.data.data.userInfo.nickname,
           });
+          setIsLogin(true);
         }
       })
       .catch((err) => {
@@ -112,8 +108,8 @@ function App() {
         );
         // 새로 발급받은 액세스 토큰이 옴
         if (res.data.message === "ok") {
-          const accessToken = cookies.get("accessToken");
-          getUserInfo(accessToken);
+          const newAccessToken = cookies.get("accessToken");
+          getUserInfo(newAccessToken);
         } else {
           // 리프레시 토큰마저 만료된 경우
           console.log("로그인이 필요합니다.");
@@ -142,6 +138,7 @@ function App() {
   };
 
   const getSelectedContent = (id) => {
+    console.log("선택한 게시글 아이디", id);
     axios
       .post("http://localhost:4000/getContents", {
         postId: id,
@@ -158,30 +155,19 @@ function App() {
             contents: res.data.contents.contents,
           });
           setLikeCount(res.data.likeCount);
-          setUnlikeCount(res.data.unlikecount);
+          setUnlikeCount(res.data.unlikeCount);
           setReplyList(res.data.contents.comments);
         }
       })
       .catch((err) => {
         console.log(err);
       });
-
-    // 더미데이터로 구현
-    // setSelectedContent({
-    //   id: dummyContents[0].id,
-    //   userId: dummyContents[0].userId,
-    //   title: dummyContents[0].title,
-    //   image: dummyContents[0].image,
-    //   contents: dummyContents[0].contents,
-    //   likecount: dummyContents[0].likecount,
-    //   unlikecount: dummyContents[0].unlikecount,
-    // });
-    // setReplyList(dummyComment);
   };
 
   const handleContentClick = (id) => {
     console.log("게시글을 클릭했군요!");
     console.log(id);
+    setSelectedId(id);
     getSelectedContent(id);
   };
 
@@ -241,6 +227,8 @@ function App() {
               setUnlikeCount={setUnlikeCount}
               replyList={replyList}
               replyListHandler={replyListHandler}
+              getSelectedContent={getSelectedContent}
+              selectedId={selectedId}
             />
           </Route>
           <Route path="/content-modi-create">

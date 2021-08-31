@@ -42,10 +42,10 @@ function Replys({
             <li key={el.id} className={el.id}>
               <p>@{el.user.nickname}</p>
               <section>{el.contents}</section>
-              {/* {isLogin && el.user.nickname === userInfo.nickname ? (
+              {isLogin && el.user.nickname === userInfo.nickname ? (
                 <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
-              ) : null} */}
-              <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
+              ) : null}
+              {/* <button onClick={(e) => deleteReply(e)}>댓글 삭제</button> */}
             </li>
           );
         })}

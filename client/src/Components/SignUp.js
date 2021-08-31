@@ -209,7 +209,9 @@ function SignUp() {
             value={pwValue}
             placeholder="비밀번호를 입력하세요"
           />
-          {validPwLength ? null : <span>비밀번호는 8자 이상 16자 이하여야 합니다.</span>}
+          {validPwLength ? null : (
+            <span>비밀번호는 8자 이상 16자 이하여야 합니다.</span>
+          )}
           <label>비밀번호 확인 : </label>
           <input
             type="password"

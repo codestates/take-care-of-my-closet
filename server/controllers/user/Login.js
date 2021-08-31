@@ -13,8 +13,9 @@ module.exports = async (req, res) => {
 
     const accessToken = sign(userInfo, process.env.ACCESS_SECRET, {
       expiresIn: "1h",
-    })
-    const refreshToken = sign(userInfo, process.env.REFRESH_SECRET,{
+    });
+    const refreshToken = sign(userInfo, process.env.REFRESH_SECRET, {
+
       expiresIn: "14d",
     })
     

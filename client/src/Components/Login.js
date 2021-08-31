@@ -46,6 +46,7 @@ function Login({ getUserInfo }) {
           );
           const accessToken = cookies.get("accessToken");
           // console.log(accessToken);
+
           if (res.data.message === "not authorized") {
             setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.");
           } else {

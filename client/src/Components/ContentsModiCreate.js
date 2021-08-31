@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import "./reset.css";
 import "./ContentModiCreate.css";
 
-function ContentModiCreate() {
+axios.defaults.withCredentials = true;
+
+function ContentModiCreate({ userInfo }) {
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 
@@ -15,6 +17,7 @@ function ContentModiCreate() {
   // ,[selectedContent])
 
   const location = useLocation();
+  const history = useHistory();
 
   // if(!newContentBtnOn){
   //   const selectedContent = location.state.selectedContent;
@@ -44,12 +47,45 @@ function ContentModiCreate() {
   // <서버요청>
   const requestSave = (e) => {
     e.preventDefault();
-    axios.put("http://takecareofmycloset/modifymypost", {
-      id: selectedContent.userId,
-      image: imageFile,
-      title: title,
-      contents: textContent,
-    });
+    if (newContent) {
+      // 새글 작성 요청
+      axios
+        .post("http://localhost:4000/createpost", {
+          id: userInfo.id,
+          image: imageFile,
+          title: title,
+          contents: textContent,
+        })
+        .then((res) => {
+          console.log("새글작성 응답", res.data);
+          if (res.data.message === "ok") {
+            alert("게시글 작성이 완료되었습니다.");
+            history.push("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      // 게시글 수정 요청
+      axios
+        .put("http://localhost:4000/modifymypost", {
+          id: selectedContent.userId,
+          image: imageFile,
+          title: title,
+          contents: textContent,
+        })
+        .then((res) => {
+          console.log("게시글 수정요청 응답", res.data);
+          if (res.data.message === "ok") {
+            alert("게시글 수정이 완료되었습니다.");
+            history.push("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   // <Event>
