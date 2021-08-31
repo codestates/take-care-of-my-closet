@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(
   cors({
-    origin: false,
+    origin: true,
     credentials: true,
     methods: ["GET", "OPTIONS", "POST", "PUT"],
   })
@@ -40,7 +40,7 @@ app.post("/likeunlike", controllers.likeunlike)
 app.post("/createpost", controllers.createpost)
 app.post("/deleteComment", controllers.deleteComment)
 
-const HTTPS_PORT = 80
+const HTTPS_PORT = 4000
 
 console.log("https server 실행")
 

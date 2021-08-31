@@ -66,7 +66,7 @@ module.exports = {
         contents: "고수님들 평가좀 부탁 드립니다ㅠㅠ",
         createdAt: new Date(),
         updatedAt: new Date(),
-        userId: 3,
+        userId: 4,
       },
     ])
   },
