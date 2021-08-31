@@ -3,12 +3,11 @@ const fs = require("fs")
 const https = require("https")
 const cors = require("cors")
 const db = require("./models/index")
-
 const express = require("express")
 const app = express()
-
 const controllers = require("./controllers")
 const cookieParser = require('cookie-parser');
+const upload = require('./modules/multer')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -17,6 +16,7 @@ app.use(
   cors({
     origin: true,
     credentials: true,
+    methods: ["GET", "OPTIONS", "POST", "PUT"],
   })
 )
 
@@ -52,20 +52,11 @@ app.post("/deletecomment",controllers.deletepost)
 
 //etc
 app.post("/createFakeData", controllers.createFakeData)
+app.post("/upload", upload.single('closet'),controllers.upload)
 
 
 const HTTPS_PORT = 4000
 let server
-if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
-  const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8")
-  const certificate = fs.readFileSync(__dirname + "/cert.pem", "utf8")
-  const credentials = { key: privateKey, cert: certificate }
-
-  server = https.createServer(credentials, app)
-  server.listen(HTTPS_PORT, () => console.log("server runnning"))
-} else {
-  console.log("http로실행")
-  server = app.listen(HTTPS_PORT)
-}
+server = app.listen(HTTPS_PORT)
 
 module.exports = server
