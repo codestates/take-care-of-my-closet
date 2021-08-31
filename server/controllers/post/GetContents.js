@@ -1,14 +1,14 @@
-const { post, user, comment } = require("../../models")
-const db = require("../../models")
+const { post, user, comment } = require("../../models");
+const db = require("../../models");
 module.exports = async (req, res) => {
   // console.log(db)
 
-  const likes = db.sequelize.models.likes
+  const likes = db.sequelize.models.likes;
 
-  const unlikes = db.sequelize.models.unlikes
+  const unlikes = db.sequelize.models.unlikes;
 
   const contents = await post.findAll({
-    where: { id: req.body.id },
+    where: { id: req.body.postId },
     include: [
       {
         model: user,
@@ -30,23 +30,23 @@ module.exports = async (req, res) => {
         ],
       },
     ],
-  })
+  });
 
-  const like = await likes.findAll({ where: { postId: req.body.id } })
+  const like = await likes.findAll({ where: { postId: req.body.postId } });
 
-  const unlike = await unlikes.findAll({ where: { postId: req.body.id } })
+  const unlike = await unlikes.findAll({ where: { postId: req.body.postId } });
 
-  const final = contents[0]
+  const final = contents[0];
 
-  console.log(final)
+  console.log(final);
 
   res.status(200).json({
     contents: contents[0],
     likeCount: like.length,
     unlikeCount: unlike.length,
     message: "ok",
-  })
-}
+  });
+};
 
 // {
 //   "contents": [

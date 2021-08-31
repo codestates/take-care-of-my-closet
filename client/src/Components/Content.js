@@ -2,62 +2,51 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
-import { dummyContents } from "../dummyData/dummyData";
+
+axios.defaults.withCredentials = true;
 
 function Content({
   isLogin,
   userInfo,
   selectedContent,
+  likeCount,
+  setLikeCount,
+  unlikeCount,
+  setUnlikeCount,
   replyList,
   replyListHandler,
+  getSelectedContent,
+  selectedId,
 }) {
-  const [likeCount, setLikeCount] = useState(0);
-  const [isClickLike, setIsClickLike] = useState(false);
-  const [dislikeCount, setDislikeCount] = useState(0);
-  const [isClickDislike, setIsClickDislike] = useState(false);
+  const [currentPageId, setCurrentPageId] = useState();
 
+  console.log("게시글 선택창", selectedContent);
   const history = useHistory();
 
   useEffect(() => {
-    requestLike();
-    requestDislike();
-  }, [likeCount, dislikeCount]);
-
-  // const requestContent = () => {
-  //   axios
-  //     .post(
-  //       "https://takecareofmycloset/content",
-  //       {
-  //         id: selectedContent.id,
-  //       },
-  //       { withCredentials: true }
-  //     )
-  //     .then((res) => {
-  //       console.log(res);
-  //     });
-  // };
+    getSelectedContent(selectedId);
+  }, []);
 
   const modifyHandler = () => {
     // 로그인 상태인지 확인
     // 로그인 되어 있다면 본인 게시글인지 확인
     // 맞다면 게시글 수정 페이지로 이동
     // 다른 사람 글이면 권한이 없습니다.
-    // if (isLogin) {
-    //   if (userInfo.id === dummyContents[0].userId) {
-    //     // 게시글 수정 페이지로 이동
-    //     history.push("/content-modi-create");
-    //   } else {
-    //     return alert("자신의 게시글만 수정할 수 있습니다.");
-    //   }
-    // } else {
-    //   return alert("로그인 후 수정할 수 있습니다.");
-    // }
+    if (isLogin) {
+      if (userInfo.id === selectedContent.id) {
+        // 게시글 수정 페이지로 이동
+        // history.push("/content-modi-create");
+        history.push({
+          pathname: "/content-modi-create",
+          state: { selectedContent: selectedContent },
+        });
+      } else {
+        return alert("자신의 게시글만 수정할 수 있습니다.");
+      }
+    } else {
+      return alert("로그인 후 수정할 수 있습니다.");
+    }
     console.log(selectedContent);
-
-    history.push({
-      pathname: "/content-modi-create",
-      state: { selectedContent: selectedContent },
-    });
   };
 
   const deleteHandler = () => {
@@ -66,14 +55,18 @@ function Content({
     // 맞다면 게시글 삭제 요청
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.id === dummyContents[0].userId) {
+      if (userInfo.id === selectedContent.userId) {
         axios
-          .delete("https://", {
-            id: "해당 컨텐츠 id",
+          .delete("http://localhost:4000/deletepost", {
+            postId: selectedContent.id,
+            login_id: userInfo.login_id,
           })
           .then((res) => {
             // App.js에 삭제된 게시글 정보 전달
-            history.push("/");
+            if (res.message === "success!") {
+              alert("게시글이 삭제되었습니다.");
+              history.push("/");
+            }
           })
           .catch((err) => {
             console.log(err);
@@ -87,78 +80,82 @@ function Content({
   };
 
   const likeHandler = () => {
-    if (!isClickLike && isClickDislike) {
-      // 좋아요x 싫어요o 일때 좋아요 누르면
-      setIsClickDislike(false); // 싫어요 취소
-      setDislikeCount(dislikeCount - 1); // 싫어요 카운트 -1
-      setLikeCount(likeCount + 1); // 좋아요 카운트 +1
-    } else if (!isClickLike && !isClickDislike) {
-      // 좋아요x 싫어요x 일때 좋아요 누르면
-      setLikeCount(likeCount + 1); // 좋아요 카운트 +1
-    } else if (isClickLike && !isClickDislike) {
-      // 좋아요o 싫어요x 일때 좋아요 누르면
-      setLikeCount(likeCount - 1); // 좋아요 카운트 -1
+    if (!isLogin) {
+      return alert("로그인 후 이용하실 수 있습니다.");
     }
-    setIsClickLike(!isClickLike); // 좋아요 상태 변경
+    console.log(likeCount);
+    axios
+      .post("http://localhost:4000/likeunlike", {
+        userId: userInfo.id,
+        postId: selectedContent.id,
+        click: "like",
+      })
+      .then((res) => {
+        console.log("좋아요 요청에 대한 응답", res.data);
+        if (res.data.message === "ok") {
+          console.log("-------", res.data);
+          setLikeCount(res.data.data.like);
+          setUnlikeCount(res.data.data.unlike);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
-  const dislikeHandler = () => {
-    if (!isClickDislike && isClickLike) {
-      // 싫어요x 좋아요o 일때 싫어요 누르면
-      setIsClickLike(false); // 좋아요 취소
-      setLikeCount(likeCount - 1); // 좋아요 카운트 -1
-      setDislikeCount(dislikeCount + 1); // 싫어요 카운트 +1
-    } else if (!isClickDislike && !isClickLike) {
-      // 싫어요x 좋아요x 일때 싫어요 누르면
-      setDislikeCount(dislikeCount + 1); // 싫어요 카운트 +1
-    } else if (isClickDislike && !isClickLike) {
-      // 싫어요o 좋아요x 일때 싫어요 누르면
-      setDislikeCount(dislikeCount - 1); // 싫어요 카운트 -1
+  const unlikeHandler = () => {
+    console.log(unlikeCount);
+    if (!isLogin) {
+      return alert("로그인 후 이용하실 수 있습니다.");
     }
-    setIsClickDislike(!isClickDislike); // 싫어요 상태 변경
-  };
-
-  const requestLike = () => {
-    // isClickLike가 true일 때는 좋아요 +1 요청
-    // isClickLike가 false일 때는 좋아요 -1 요청
-    console.log(likeCount, isClickLike);
-    axios.post("https://", {}, { withCredentials: true });
-  };
-
-  const requestDislike = () => {
-    // isClickDislike가 true일 때는 싫어요 +1 요청
-    // isClickDislike가 false일 때는 싫어요 -1 요청
-    console.log(dislikeCount, isClickDislike);
-    // axios.post("https://");
+    axios
+      .post("http://localhost:4000/likeunlike", {
+        userId: userInfo.id,
+        postId: selectedContent.id,
+        click: "unlike",
+      })
+      .then((res) => {
+        console.log("싫어요 요청에 대한 응답", res.data);
+        if (res.data.message === "ok") {
+          // console.log("------", res);
+          setLikeCount(res.data.data.like);
+          setUnlikeCount(res.data.data.unlike);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <div>
-      <h2>
-        <main>
-          <img src={dummyContents[0].img} alt="img-thumbnail" />
-          <span>{dummyContents[0].title}</span>
-          {/* {isLogin && userInfo.id === selectedContent.userId ? (
-            <button onClick={modifyHandler}>수정</button>
-          ) : null} */}
-          <button onClick={modifyHandler}>수정</button>
-          {/* {isLogin && userInfo.id === selectedContent.userId ? (
-            <button onClick={deleteHandler}>삭제</button>
-          ) : null} */}
-          <button onClick={deleteHandler}>삭제</button>
-          <section>{dummyContents[0].contents}</section>
-          <button onClick={likeHandler}>좋아요 {likeCount}</button>
-          <button onClick={dislikeHandler}>싫어요 {dislikeCount}</button>
-          <Replys
-            isLogin={isLogin}
-            userInfo={userInfo}
-            selectedContent={selectedContent}
-            replyList={replyList}
-            replyListHandler={replyListHandler}
-          />
-        </main>
-      </h2>
-    </div>
+    <article>
+      <h2>컨텐츠</h2>
+      <img src={selectedContent.image} alt="img-thumbnail" />
+      <span>{selectedContent.title}</span>
+      {isLogin && userInfo.id === selectedContent.userId ? (
+        <button onClick={modifyHandler}>수정</button>
+      ) : null}
+      {isLogin && userInfo.id === selectedContent.userId ? (
+        <button onClick={deleteHandler}>삭제</button>
+      ) : null}
+      <textarea
+        rows="10"
+        cols="40"
+        defaultValue={selectedContent.contents}
+        disabled="true"
+      />
+      <button onClick={likeHandler}>좋아요 {likeCount}</button>
+      <button onClick={unlikeHandler}>싫어요 {unlikeCount}</button>
+      <Replys
+        isLogin={isLogin}
+        userInfo={userInfo}
+        selectedContent={selectedContent}
+        replyList={replyList}
+        replyListHandler={replyListHandler}
+      />
+      {/* <button onClick={modifyHandler}>수정</button>
+      <button onClick={deleteHandler}>삭제</button> */}
+    </article>
   );
 }
 

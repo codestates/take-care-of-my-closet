@@ -21,6 +21,7 @@ module.exports = {
         userId: 1,
       },
       {
+
         title: "소개팅 코디",
         image: "image2",
         contents: "예전에 놀러갈때 룩.. 소개팅 자리에도 괜찮을까요?",
