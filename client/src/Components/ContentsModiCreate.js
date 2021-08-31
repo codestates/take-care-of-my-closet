@@ -9,6 +9,7 @@ axios.defaults.withCredentials = true;
 function ContentModiCreate({ userInfo }) {
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
+  const [url, setUrl] = useState();
 
   const [title, setTitle] = useState("");
   const [textContent, setTextContent] = useState("");
@@ -52,7 +53,7 @@ function ContentModiCreate({ userInfo }) {
       axios
         .post("http://localhost:4000/createpost", {
           id: userInfo.id,
-          image: imageFile,
+          image: url,
           title: title,
           contents: textContent,
         })
@@ -71,9 +72,9 @@ function ContentModiCreate({ userInfo }) {
       axios
         .put("http://localhost:4000/modifymypost", {
           id: selectedContent.userId,
-          image: imageFile,
-          title: title,
-          contents: textContent,
+          image: url || selectedContent.image,
+          title: title || selectedContent.title,
+          contents: textContent || selectedContent.contents,
         })
         .then((res) => {
           console.log("게시글 수정요청 응답", res.data);
@@ -93,7 +94,7 @@ function ContentModiCreate({ userInfo }) {
   // 이미지 등록 이벤트
   const setImageFromFile = (e) => {
     const file = e.target.files[0];
-    console.log(file);
+    // console.log(file);
     /* {name: "logo.jpeg", lastModified: 1629899741611, 
     lastModifiedDate: Wed Aug 25 2021 22:55:41 GMT+0900 
     (한국 표준시), webkitRelativePath: "", size: 385201, …}*/
@@ -116,6 +117,23 @@ function ContentModiCreate({ userInfo }) {
       setImageUrl(reader.result);
     };
     reader.readAsDataURL(file);
+
+    const formData = new FormData();
+    formData.append("closet", file);
+
+    axios
+      .post("http://localhost:4000/upload", formData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.message === "ok") {
+          setUrl(res.data.image_url);
+        } else {
+          alert("이미지 업로드에 실패했습니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (

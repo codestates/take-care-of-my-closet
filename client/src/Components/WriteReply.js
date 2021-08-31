@@ -28,9 +28,9 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
       .post("http://localhost:4000/createComment", payload)
       .then((res) => {
         // 등록한 댓글이 추가됨
-        console.log(res);
-        if (res.message === "create!") {
-          replyListHandler(res.contents);
+        console.log(res.data);
+        if (res.data.message === "create!") {
+          replyListHandler(res.data.contents);
         }
       })
       .catch((err) => {

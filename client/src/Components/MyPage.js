@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./MyPage.css";
 
+axios.defaults.withCredentials = true;
+
 function MyPage({ isLogin, userInfo, setUserInfo }) {
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [password, setPassword] = useState("");
   const [nickName, setNickName] = useState("");
+  const [url, setUrl] = useState();
 
   const [nickNameClassNameOn, setNickNameClassNameOn] = useState("");
   const [classNameOn, setClassNameOn] = useState("hide");
@@ -77,7 +80,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
       .put("https://takecareofmycloset/modifyUserInfo", {
         login_id: userInfo.login_id,
         password: password || null,
-        image: imageUrl || userInfo.image,
+        image: url || userInfo.image,
         nickname: nickName || userInfo.nickname,
       })
       .then((res) => {
@@ -120,6 +123,23 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
       setImageUrl(reader.result);
     };
     reader.readAsDataURL(file);
+
+    const formData = new FormData();
+    formData.append("closet", file);
+
+    axios
+      .post("http://localhost:4000/upload", formData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.message === "ok") {
+          setUrl(res.data.image_url);
+        } else {
+          alert("이미지 업로드에 실패했습니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // 유효성 검사 이벤트

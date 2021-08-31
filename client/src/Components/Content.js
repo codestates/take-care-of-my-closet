@@ -25,7 +25,6 @@ function Content({
 
   useEffect(() => {
     getSelectedContent(selectedId);
-    console.log("좋아요 싫어요 갯수 변경 감지");
   }, []);
 
   const modifyHandler = () => {
