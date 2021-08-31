@@ -12,7 +12,7 @@ module.exports = async (req, res) => {
     delete userInfo.password;
     //console.log(userInfo.dataValues)
     const accessToken = sign(userInfo, process.env.ACCESS_SECRET, {
-      expiresIn: "30s",
+      expiresIn: "1h",
     });
     const refreshToken = sign(userInfo, process.env.REFRESH_SECRET, {
       expiresIn: "14d",
