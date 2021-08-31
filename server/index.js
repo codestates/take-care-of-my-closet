@@ -41,7 +41,7 @@ app.post("/likeunlike", controllers.likeunlike)
 app.post("/createpost", controllers.createpost)
 app.post("/deleteComment", controllers.deleteComment)
 
-const HTTPS_PORT = 4000
+const HTTPS_PORT = 80
 
 console.log("https server 실행")
 
