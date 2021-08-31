@@ -1,23 +1,26 @@
 module.exports = {
+ 
   //user
-  login: require("./user/Login"),
   accessTokenRequest: require("./user/AccessTokenRequest"),
-  signup: require("./user/SiginUp"),
-  passwordCheck: require("./user/PasswordCheck"),
   duplicate: require("./user/Duplicate"),
+  login: require("./user/Login"),
+  logout: require("./user/Logout"),
   modifyuserinfo: require("./user/ModifyUserInfo"),
-
+  passwordCheck: require("./user/PasswordCheck"),
+  refreshTokenRequest: require("./user/RefreshTokenRequest"),
+  signup: require("./user/SiginUp"),
+  
   //post
-  getPosts: require("./post/GetPosts"),
+  createpost : require("./post/CreatePost"),
+  deletepost : require("./post/DeletePost"),
   getContents: require("./post/GetContents"),
+  getPosts: require("./post/GetPosts"),
+  likeunlike : require("./post/LikeUnlike"),
   modifymypost: require("./post/ModifyMyPost"),
-  deletepost: require("./post/DeletePost"),
-  likeunlike: require("./post/LikeUnlike"),
-  createpost: require("./post/CreatePost"),
-
+  
   //comment
   createComment: require("./comment/CreateComment"),
-  deleteComment: require("./comment/DeleteComment"),
+  deletecomment: require("./comment/DeleteComment"),
 
   //etc..
   createFakeData: require("./CreateFakeData"),

@@ -7,10 +7,12 @@ const db = require("./models/index");
 const express = require("express");
 const app = express();
 
-const controllers = require("./controllers");
+const controllers = require("./controllers")
+const cookieParser = require('cookie-parser');
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
+
 app.use(
   cors({
     origin: true,
@@ -23,27 +25,37 @@ db.sequelize
   .then(() => {
     console.log("db 연결 ");
   })
-  .catch(console.error);
+  .catch(console.error)
 
-app.post("/login", controllers.login);
-app.get("/accessTokenrequest", controllers.accessTokenRequest);
-app.post("/signup", controllers.signup);
-app.post("/passwordCheck", controllers.passwordCheck);
-app.post("/getposts", controllers.getPosts);
-app.post("/duplicate", controllers.duplicate);
-app.post("/createFakeData", controllers.createFakeData);
-app.post("/createComment", controllers.createComment);
-app.post("/getContents", controllers.getContents);
-app.put("/modifymypost", controllers.modifymypost);
-app.put("/modifyuserinfo", controllers.modifyuserinfo);
-app.post("/deletepost", controllers.deletepost);
-app.post("/likeunlike", controllers.likeunlike);
-app.post("/createpost", controllers.createpost);
-app.post("/deleteComment", controllers.deleteComment);
+app.use(cookieParser());
+//user
+app.post("/login", controllers.login)
+app.get("/accessTokenrequest", controllers.accessTokenRequest)
+app.get("/refreshTokenrequest",controllers.refreshTokenRequest)
+app.post("/signup", controllers.signup)
+app.get("/logout", controllers.logout)
+app.post("/passwordCheck", controllers.passwordCheck)
+app.post("/duplicate", controllers.duplicate)
+app.put("/modifyuserinfo", controllers.modifyuserinfo)
 
-const HTTPS_PORT = 4000;
+//post
+app.post("/getposts", controllers.getPosts)
+app.post("/getContents", controllers.getContents)
+app.put("/modifymypost", controllers.modifymypost)
+app.post("/likeunlike", controllers.likeunlike)
+app.post("/deletepost", controllers.deletepost)
+app.post("/createpost", controllers.createpost)
 
-let server;
+//comment
+app.post("/createComment", controllers.createComment)
+app.post("/deletecomment",controllers.deletepost)
+
+//etc
+app.post("/createFakeData", controllers.createFakeData)
+
+
+const HTTPS_PORT = 4000
+let server
 
 if (fs.existsSync("./key.pem") && fs.existsSync("./cert.pem")) {
   const privateKey = fs.readFileSync(__dirname + "/key.pem", "utf8");
