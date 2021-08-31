@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Main.css";
-import "./reset.css";
-import { dummyMainPosts } from "../dummyData/dummyData";
+
+import { dummyMainPosts } from "../../dummyData/dummyData";
+import {FlexMain} from '../Flex'
+import {A11yHidden} from '../Common'
+import {MainUl, MainArticle, MainImg, MainP} from './MainStyled'
+
+
+
 
 function Main({ contents, handleContentClick }) {
   // if (contents.length === 0) {
@@ -10,18 +15,21 @@ function Main({ contents, handleContentClick }) {
   // }
 
   return (
-    <main>
-      <h2 className="a11yHidden">메인 페이지</h2>
-      <ul>
+    <FlexMain>
+      {/* <h2 className="a11yHidden">메인 페이지</h2> */}
+      <A11yHidden>메인 페이지</A11yHidden>
+      <MainUl>
         {dummyMainPosts.data.map((el) => {
           return (
-            <Link to="/content">
+            <Link to="/content"  style={{ textDecoration: 'none' }}>
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
-                <article>
-                  <p>{el.title}</p>
-                  <img src={el.image} alt="img-thumbnail"/>
-                  <p>@{el.user.nickname}</p>
-                </article>
+                <MainArticle>
+                  <MainP>{el.title}</MainP>
+                  {/* <MainTitle>{el.title}</MainTitle> */}
+                  < MainImg src={el.image} alt="img-thumbnail"/>
+                  {/* <img src=s{el.image} alt="img-thumbnail"/> */}
+                  <MainP>@{el.user.nickname}</MainP>
+                </MainArticle>
               </li>
             </Link>
           );
@@ -47,8 +55,8 @@ function Main({ contents, handleContentClick }) {
             Content
           </article>
         </li> */}
-      </ul>
-    </main>
+      </MainUl>
+    </FlexMain>
   );
 }
 

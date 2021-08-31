@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function User({ logoutHandler }) {
+function User({ logoutHandler }, className) {
   const [userBtnIsOn, setUserBtnIsOn] = useState("");
 
   const UserBtnHandler = () => {
@@ -9,8 +9,10 @@ function User({ logoutHandler }) {
   };
 
   return (
-    <>
-      <span onClick={UserBtnHandler}>유저</span>
+    <ul>
+      <button className="navBtn">
+      <span onClick={UserBtnHandler}>User</span>
+      </button>
       {userBtnIsOn ? (
         <>
           <Link to="/mycontents">
@@ -24,7 +26,7 @@ function User({ logoutHandler }) {
           </Link>
         </>
       ) : null}
-    </>
+    </ul>
   );
 }
 export default User;

@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Replys from "./Replys";
-import { dummyContents } from "../dummyData/dummyData";
+import Replys from "../Replys/Replys"
+import { dummyContents } from "../../dummyData/dummyData";
+
+
+// import './Content.css'
+import {FlexArticle} from '../Flex'
+import {A11yHidden, Btn} from '../Common'
+import {Article, ContentImg, Section, Title, TextContent, UserMindBtn, UserMindBtnLike, UserMindBtnDisLike,ModifyBtn,  DeleteBtn} from'./ContentStyled'
+import like from '../../image/like.png'
+import disLike from '../../image/bad.png'
 
 axios.defaults.withCredentials = true;
 
@@ -117,19 +125,6 @@ function Content({
           console.log(err);
         });
     }
-    // if (!isClickLike && isClickUnlike) {
-    //   // 좋아요x 싫어요o 일때 좋아요 누르면
-    //   setIsClickUnlike(false); // 싫어요 취소
-    //   setUnlikeCount(unlikeCount - 1); // 싫어요 카운트 -1
-    //   setLikeCount(likeCount + 1); // 좋아요 카운트 +1
-    // } else if (!isClickLike && !isClickUnlike) {
-    //   // 좋아요x 싫어요x 일때 좋아요 누르면
-    //   setLikeCount(likeCount + 1); // 좋아요 카운트 +1
-    // } else if (isClickLike && !isClickUnlike) {
-    //   // 좋아요o 싫어요x 일때 좋아요 누르면
-    //   setLikeCount(likeCount - 1); // 좋아요 카운트 -1
-    // }
-    // setIsClickLike(!isClickLike); // 좋아요 상태 변경
   };
 
   const unlikeHandler = () => {
@@ -153,45 +148,40 @@ function Content({
           console.log(err);
         });
     }
-    // if (!isClickUnlike && isClickLike) {
-    //   // 싫어요x 좋아요o 일때 싫어요 누르면
-    //   setIsClickLike(false); // 좋아요 취소
-    //   setLikeCount(likeCount - 1); // 좋아요 카운트 -1
-    //   setUnlikeCount(unlikeCount + 1); // 싫어요 카운트 +1
-    // } else if (!isClickUnlike && !isClickLike) {
-    //   // 싫어요x 좋아요x 일때 싫어요 누르면
-    //   setUnlikeCount(unlikeCount + 1); // 싫어요 카운트 +1
-    // } else if (isClickUnlike && !isClickLike) {
-    //   // 싫어요o 좋아요x 일때 싫어요 누르면
-    //   setUnlikeCount(unlikeCount - 1); // 싫어요 카운트 -1
-    // }
-    // setIsClickUnlike(!isClickUnlike); // 싫어요 상태 변경
   };
 
   return (
-    <article>
-      <h2>컨텐츠</h2>
-      <img src={dummyContents[0].img} alt="img-thumbnail"/>
-      <span>{dummyContents[0].title}</span>
-      {/* {isLogin && userInfo.id === selectedContent.userId ? (
-            <button onClick={modifyHandler}>수정</button>
-          ) : null} */}
-      {/* {isLogin && userInfo.id === selectedContent.userId ? (
-            <button onClick={deleteHandler}>삭제</button>
-          ) : null} */}
-      <textarea defaultValue={dummyContents[0].contents} disabled="true" />
-      <button onClick={likeHandler}>좋아요 {likeCount}</button>
-      <button onClick={unlikeHandler}>싫어요 {unlikeCount}</button>
-      <Replys
-        isLogin={isLogin}
-        userInfo={userInfo}
-        selectedContent={selectedContent}
-        replyList={replyList}
-        replyListHandler={replyListHandler}
-      />
-      <button onClick={modifyHandler}>수정</button>
-      <button onClick={deleteHandler}>삭제</button>
-    </article>
+    <FlexArticle>
+      <A11yHidden>컨텐츠</A11yHidden>
+      <Article>
+        {/* <img src={dummyContents[0].img} alt="img-thumbnail"/> */}
+        <ContentImg src={dummyContents[0].img} alt="img-thumbnail"/>
+        <Section>
+          <Title>{dummyContents[0].title}</Title>
+          {/* <p>{dummyContents[0].title}</p> */}
+          <TextContent readOnly="true" cols="30"
+          rows="10">{dummyContents[0].contents}</TextContent>
+          <UserMindBtn>
+              <UserMindBtnLike src={like}  onClick={likeHandler}>
+                {/* <Btn onClick={likeHandler}>{likeCount}</Btn> */}
+                <Btn>{likeCount}</Btn>
+              </UserMindBtnLike>
+              <UserMindBtnDisLike src={disLike} onClick={unlikeHandler}>
+               <Btn>{unlikeCount}</Btn>
+              </UserMindBtnDisLike>
+          </UserMindBtn>
+          <Replys
+            isLogin={isLogin}
+            userInfo={userInfo}
+            selectedContent={selectedContent}
+            replyList={replyList}
+            replyListHandler={replyListHandler}
+            />
+        <ModifyBtn onClick={modifyHandler}>수정</ModifyBtn>
+        <DeleteBtn onClick={deleteHandler}>삭제</DeleteBtn>
+      </Section>
+      </Article>
+    </FlexArticle>
   );
 }
 

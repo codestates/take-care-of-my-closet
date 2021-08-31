@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyContents.css";
-import "./reset.css";
+// import "./reset.css";
 
 function MyContents({ isLogin, userInfo, handleContentClick }) {
   const [myContents, setMyContents] = useState([]);
@@ -33,7 +33,7 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
   }
 
   return (
-    <section>
+    <section className="myContentsContainer">
       <h2 className="a11yHidden">마이 콘텐츠</h2>
       <ul>
         {myContents.map((el) => {

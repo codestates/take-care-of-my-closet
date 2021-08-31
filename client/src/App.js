@@ -1,23 +1,33 @@
 import "./App.css";
+
+// 라이브러리
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
-import Nav from "./Components/Nav";
-import Footer from "./Components/Footer";
-
 import axios from "axios";
+// import styled from 'styled-components'
 
+// Component
+import Nav from "./Components/Nav/Nav";
+import Footer from "./Components/Footer";
 import Login from "./Components/Login";
-import Main from "./Components/Main";
-import MyContents from "./Components/MyContents";
+import Main from "./Components/Main/Main";
+import MyContents from "./Components/MyContent/MyContents";
 import MyPage from "./Components/MyPage";
 import SignUp from "./Components/SignUp";
 import ContentModiCreate from "./Components/ContentsModiCreate";
-import Content from "./Components/Content";
+import Content from "./Components/Content/Content"
+
+// Design
+import {FlexDiv} from './Components/Flex'
+
+// dummyData
 import {
   dummyMainPosts,
   dummyContents,
   dummyComment,
 } from "./dummyData/dummyData";
+// import { Flex } from "./Components/Flex";
+
 
 axios.defaults.withCredentials = true;
 
@@ -159,9 +169,11 @@ function App() {
 
   return (
     <React.Fragment>
+    {/* <Flex> */}
+    <FlexDiv>
       {loca.pathname === "/login" || loca.pathname === "/signup" ? (
         <></>
-      ) : (
+        ) : (
         <Nav
           isLogin={isLogin}
           ChangeLoginState={ChangeLoginState}
@@ -170,26 +182,10 @@ function App() {
           setSelectedContent={setSelectedContent}
         />
       )}
-      <section>
+      {/* <section> */}
         <Switch>
           <Route exact path="/">
             <Main contents={contents} handleContentClick={handleContentClick} />
-          </Route>
-          <Route path="/login">
-            <Login loginHandler={loginHandler} />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/mycontents">
-            <MyContents
-              isLogin={isLogin}
-              userInfo={userInfo}
-              handleContentClick={handleContentClick}
-            />
-          </Route>
-          <Route path="/mypage">
-            <MyPage isLogin={isLogin} />
           </Route>
           <Route path="/content">
             <Content
@@ -204,18 +200,44 @@ function App() {
               replyListHandler={replyListHandler}
             />
           </Route>
-          <Route path="/content-modi-create">
-            <ContentModiCreate
+            <Route path="/content-modi-create">
+              <ContentModiCreate
+                isLogin={isLogin}
+                userInfo={userInfo}
+                selectedContent={selectedContent}
+              />
+          <Route path="/mycontents">
+            <MyContents
               isLogin={isLogin}
               userInfo={userInfo}
-              selectedContent={selectedContent}
+              handleContentClick={handleContentClick}
             />
           </Route>
+          <Route path="/mypage">
+            <MyPage isLogin={isLogin} />
+          </Route>
+          </Route>
+          <Route path="/login">
+            <Login loginHandler={loginHandler} />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
+          </Route>
         </Switch>
-      </section>
-      <Footer />
+      {/* </section> */}
+    {/* </Flex> */}
+    <Footer />
+    </FlexDiv>
     </React.Fragment>
-  );
+  )
 }
+
+
+
+// const StyledFlex = styled.div`
+//   display: flex;
+// `
+
+
 
 export default App;
