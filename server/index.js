@@ -48,7 +48,7 @@ app.post("/deleteComment", controllers.deleteComment)
 
 const HTTPS_PORT = 80
 
-console.log("server 실행")
+console.log("https server 실행")
 
 server = app.listen(HTTPS_PORT)
 
