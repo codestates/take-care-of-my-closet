@@ -15,7 +15,7 @@ app.use(
   cors({
     origin: false,
     credentials: true,
-    methods: ["GET", "OPTIONS"],
+    methods: ["GET", "OPTIONS", "POST", "PUT"],
   })
 )
 
