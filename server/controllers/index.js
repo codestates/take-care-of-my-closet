@@ -24,5 +24,5 @@ module.exports = {
 
   //etc..
   createFakeData: require("./CreateFakeData"),
-};
+  upload: require("./upload")
 

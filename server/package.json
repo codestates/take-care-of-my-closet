@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.980.0",
     "axios": "^0.21.1",
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
@@ -17,6 +18,8 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.3",
+    "multer-s3": "^2.9.0",
     "mysql2": "^2.3.0",
     "sequelize": "^6.6.5"
   },
