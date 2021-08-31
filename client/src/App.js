@@ -61,9 +61,10 @@ function App() {
         console.log(err);
       });
     getUserInfo(cookies.get("accessToken"));
-    console.log(userInfo);
-    console.log(isLogin);
   }, []);
+  console.log(userInfo);
+  console.log(isLogin);
+  console.log(selectedContent);
   console.log("받아온 컨텐츠 정보", contents);
 
   const getUserInfo = (accessToken) => {
@@ -124,6 +125,21 @@ function App() {
 
   const logoutHandler = () => {
     // 액세스 토큰 지우는 메소드 구현?
+    axios
+      .get("http://localhost:4000/logout", {
+        headers: {
+          refreshToken: cookies.get("refreshToken"),
+        },
+      })
+      .then((res) => {
+        console.log("로그아웃 요청 응답", res);
+        cookies.remove("refreshToken");
+        cookies.remove("accessToken");
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setIsLogin(false);
     setUserInfo({
       id: "",

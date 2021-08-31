@@ -25,8 +25,8 @@ function Replys({
       })
       .then((res) => {
         console.log(res);
-        if (res.message === "delete!") {
-          replyListHandler(res.comments);
+        if (res.data.message === "delete!") {
+          replyListHandler(res.data.comments);
         }
       })
       .catch((err) => {

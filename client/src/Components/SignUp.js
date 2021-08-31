@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import logo from "../image/logo.jpeg";
 
+axios.defaults.withCredentials = true;
+
 function SignUp() {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
@@ -18,6 +20,9 @@ function SignUp() {
   const [validIdMessage, setValidIdMessage] = useState("");
   const [duplicatedIdMessage, setDuplicatedIdMessage] = useState("");
   const [duplicatedNickMessage, setDuplicatedNickMessage] = useState("");
+
+  const [imageUrl, setImageUrl] = useState("");
+  const formData = new FormData();
 
   useEffect(() => {
     isValidPassword();
@@ -48,15 +53,33 @@ function SignUp() {
   };
 
   const inputProfileHandler = (e) => {
-    // console.log(e.target.files[0]);
+    console.log(e.target.files[0]);
     setProfileImage(e.target.files[0]);
-    // console.log(profileImage);
+    // console.log("프로필 사진", profileImage);
     let reader = new FileReader(); // -> 파일 읽기 완료
 
     reader.onload = function () {
       setProfileUrl(reader.result);
     };
     reader.readAsDataURL(e.target.files[0]);
+
+    const img = e.target.files[0];
+    formData.append("closet", img);
+    // console.log(formData); // FormData {}
+    // for (const keyValue of formData) console.log("폼데이터", keyValue); // ["img", File] File은 객체
+    axios
+      .post("http://localhost:4000/upload", formData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.message === "ok") {
+          setImageUrl(res.data.image_url);
+        } else {
+          alert("이미지 업로드에 실패했습니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const inputNickNameHandler = (e) => {
@@ -159,23 +182,20 @@ function SignUp() {
     if (duplicatedNick === false) {
       return alert("닉네임이 유효하지 않습니다.");
     }
-
     axios
-      .post(
-        "http://localhost:4000/signup",
-        {
-          login_id: idValue,
-          password: pwValue,
-          nickname: nickName,
-          user_image: profileUrl,
-        },
-        { withCredentials: true }
-      )
+      .post("http://localhost:4000/signup", {
+        login_id: idValue,
+        password: pwValue,
+        nickname: nickName,
+        user_image: imageUrl,
+      })
       .then((res) => {
-        console.log(res.message);
-        if (res.message === "ok") {
+        console.log(res.data.message);
+        if (res.data.message === "create!") {
           alert("가입이 완료되었습니다.");
           history.push("/login");
+        } else {
+          alert("이미 존재하는 회원입니다.");
         }
       })
       .catch((err) => {
