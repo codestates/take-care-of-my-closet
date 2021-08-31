@@ -46,7 +46,7 @@ module.exports = {
       },
       {
         title: "오늘의 착샷",
-        image: "image4",
+        image: "image5",
         contents: "날씨 선선해지니 가을 코디",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -54,7 +54,7 @@ module.exports = {
       },
       {
         title: "샌들 샀습니다~",
-        image: "image4",
+        image: "image6",
         contents: "반바지에~ 마눌님이 사준 양말~ 가을에도 괜찮죠~?^^",
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -62,11 +62,11 @@ module.exports = {
       },
       {
         title: "이 조합 괜찮나요??",
-        image: "image4",
+        image: "image7",
         contents: "고수님들 평가좀 부탁 드립니다ㅠㅠ",
         createdAt: new Date(),
         updatedAt: new Date(),
-        userId: 3,
+        userId: 4,
       },
     ])
   },

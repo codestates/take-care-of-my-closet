@@ -48,7 +48,7 @@ module.exports = {
       {
         login_id: "devil112",
         password: "test5",
-        user_image: "image4",
+        user_image: "image5",
         nickname: "아재사랑",
         createdAt: new Date(),
         updatedAt: new Date(),
