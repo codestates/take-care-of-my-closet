@@ -27,7 +27,6 @@ app.get("/", (req, res) => {
 
 app.use(cookieParser())
 
-app.use(cookieParser())
 //user
 app.post("/login", controllers.login)
 app.get("/accessTokenrequest", controllers.accessTokenRequest)
