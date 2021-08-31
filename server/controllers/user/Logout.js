@@ -1,11 +1,12 @@
+const { refreshtoken } = require("../../models")
+
 module.exports = async (req, res) => {
-  console.log(req.cookie)
-  res.cookie("set-cookie", null, {
-    sameSite: "None",
-    httpOnly: true,
-    secure: false,
-    maxAge: 0,
-  })
+
+  const refreshToken = req.headers['refreshtoken']
+
+  await refreshtoken.destroy({
+    where: { value:refreshToken }
+    })
 
   res.status(205).send("Logged out successfully")
 }
