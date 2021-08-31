@@ -1,5 +1,5 @@
-const { user,refreshtoken } = require("../../models")
-const { sign } = require("jsonwebtoken")
+const { user, refreshtoken } = require("../../models");
+const { sign } = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
   const findUserInfo = await user.findOne({
@@ -34,7 +34,7 @@ module.exports = async (req, res) => {
       value: refreshToken,
       userId: userInfo.id
   })
-
-    res.status(200).send({ message: "ok" })
+    
+    res.status(200).send({ message: "ok" });
   }
-}
+};

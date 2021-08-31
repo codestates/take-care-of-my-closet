@@ -73,7 +73,7 @@ const dummyContents = [
   {
     id: 1,
     userId: 3,
-    img: `https://randomuser.me/api/portraits/men/${getRandomNumber(
+    image: `https://randomuser.me/api/portraits/men/${getRandomNumber(
       1,
       98
     )}.jpg`,
@@ -88,22 +88,28 @@ const dummyContents = [
 // 댓글
 const dummyComment = [
   {
-    id: 1,
-    nickname: "김코딩",
-    comment: "옷진짜 못입는다",
-    createdAt: "2021-08-27 10:58:38",
-  },
-  {
-    id: 2,
-    nickname: "박해커",
-    comment: "김코딩 니가 더 못입음",
-    createdAt: "2021-08-27 11:33:21",
-  },
-  {
     id: 3,
-    nickname: "김코딩",
-    comment: "ㅇㅈ ㅎ",
-    createdAt: "2021-08-27 11:42:24",
+    contents: "게이야..",
+    createdAt: "2021-08-28T07:58:19.000Z",
+    user: {
+      nickname: "test1",
+    },
+  },
+  {
+    id: 5,
+    contents: "이건 좀...",
+    createdAt: "2021-08-28T07:58:19.000Z",
+    user: {
+      nickname: "test2",
+    },
+  },
+  {
+    id: 10,
+    contents: "난 좋은데?",
+    createdAt: "2021-08-28T07:58:19.000Z",
+    user: {
+      nickname: "test4",
+    },
   },
 ];
 
@@ -121,6 +127,7 @@ const aaa = {
     userId: 3,
     comments: [
       {
+        id: 3,
         contents: "게이야..",
         createdAt: "2021-08-28T07:58:19.000Z",
         user: {
@@ -128,6 +135,7 @@ const aaa = {
         },
       },
       {
+        id: 5,
         contents: "이건 좀...",
         createdAt: "2021-08-28T07:58:19.000Z",
         user: {
@@ -135,6 +143,7 @@ const aaa = {
         },
       },
       {
+        id: 10,
         contents: "난 좋은데?",
         createdAt: "2021-08-28T07:58:19.000Z",
         user: {
@@ -147,3 +156,6 @@ const aaa = {
   unlikeCount: 3,
   message: "ok",
 };
+
+// 좋아요, 싫어요 버튼 눌렀을 때 서버에서 오는 응답 형식
+const res = { data: { like: 4, unlike: 4 }, message: "ok" };
