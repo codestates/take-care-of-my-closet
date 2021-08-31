@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import WriteReply from "./WriteReply";
+import {WriteReply} from "../WriteReply";
 import axios from "axios";
 
 axios.defaults.withCredentials = true;
@@ -25,8 +25,8 @@ function Replys({
       })
       .then((res) => {
         console.log(res);
-        if (res.message === "delete!") {
-          replyListHandler(res.comments);
+        if (res.data.message === "delete!") {
+          replyListHandler(res.data.comments);
         }
       })
       .catch((err) => {
@@ -42,10 +42,10 @@ function Replys({
             <li key={el.id} className={el.id}>
               <p>@{el.user.nickname}</p>
               <section>{el.contents}</section>
-              {/* {isLogin && el.user.nickname === userInfo.nickname ? (
+              {isLogin && el.user.nickname === userInfo.nickname ? (
                 <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
-              ) : null} */}
-              <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
+              ) : null}
+              {/* <button onClick={(e) => deleteReply(e)}>댓글 삭제</button> */}
             </li>
           );
         })}

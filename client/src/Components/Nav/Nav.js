@@ -1,11 +1,19 @@
+<<<<<<< HEAD:client/src/Components/Nav.js
 import React, { useState } from "react";
+=======
+import React , {useState} from 'react';
+>>>>>>> ed8cf19c95f8cfa9e19baa9d0bb7166ffc85857d:client/src/Components/Nav/Nav.js
 import { Link, useHistory } from "react-router-dom";
-import logo from "../image/LOGO.png";
-import "./Nav.css";
-import "./reset.css";
-import User from "./User";
+import logo from "../../image/LOGO.png";
+import User from "../User";
+import {NavContainer, Logo, Navigation, NavBtn} from './NavStyled'
 
+function Nav({  logoutHandler }) {
+
+<<<<<<< HEAD:client/src/Components/Nav.js
 function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
+=======
+>>>>>>> ed8cf19c95f8cfa9e19baa9d0bb7166ffc85857d:client/src/Components/Nav/Nav.js
   const [newContent, setNewContent] = useState({
     id: "",
     userId: "",
@@ -63,13 +71,17 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
   // }
 
   return (
-    <header>
-      <h1 className="logo">
-        <Link to="/">
-          <img src={logo} alt="logo" width="500" />
-        </Link>
-      </h1>
-      <nav>
+    <NavContainer>
+      <header className="appHeader">
+        <h1>
+          <Link to="/">
+            <Logo src={logo} alt="img-thumbnail"/>
+          </Link>
+        </h1>
+      </header>
+
+      <Navigation>
+
         <h2 className="a11yHidden">메인 메뉴</h2>
         {/* {isLogin ? (
           <>
@@ -84,17 +96,22 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
             <button>로그인</button>
           )} */}
         {/* <Link to="/content-modi-create"> */}
+<<<<<<< HEAD:client/src/Components/Nav.js
         <button onClick={(e) => createContent(e)}>새 글 작성</button>
+=======
+        <NavBtn onClick={(e) =>createContent(e)}>새 글 작성</NavBtn>
+>>>>>>> ed8cf19c95f8cfa9e19baa9d0bb7166ffc85857d:client/src/Components/Nav/Nav.js
         {/* </Link> */}
-        <ul>
-          <User logoutHandler={logoutHandler} />
-        </ul>
+        <NavBtn>
+        <User logoutHandler={logoutHandler} />
+        </NavBtn>
         <Link to="/login">
-          <button>로그인</button>
+          <NavBtn>로그인</NavBtn>
         </Link>
-      </nav>
-    </header>
+      </Navigation>
+      </NavContainer>
   );
 }
 
 export default Nav;
+
