@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {ReplyTextContent, ReplyBtn, CreateReplyBox} from '../Styled/ReplysStyled'
 
 axios.defaults.withCredentials = true;
 
@@ -28,9 +29,10 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
       .post(`${process.env.REACT_APP_API_URL}/createComment`, payload)
       .then((res) => {
         // 등록한 댓글이 추가됨
-        console.log(res.data);
+        console.log("댓글 등록 요청 응답", res.data);
         if (res.data.message === "create!") {
-          replyListHandler(res.data.contents);
+          replyListHandler(res.data.data);
+          // setReplyValue("");
         }
       })
       .catch((err) => {
@@ -39,16 +41,13 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
   };
 
   return (
-    <div>
-      <textarea
-        rows="10"
-        cols="40"
+    <CreateReplyBox>
+      <ReplyTextContent
         onChange={(e) => inputReplyHandler(e)}
         placeholder="여기에 댓글을 입력하세요"
       />
-
-      <button onClick={requestReply}>등록</button>
-    </div>
+      <ReplyBtn onClick={requestReply}>등록</ReplyBtn>
+    </CreateReplyBox>
   );
 }
 
