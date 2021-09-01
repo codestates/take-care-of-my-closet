@@ -12,7 +12,7 @@ module.exports = {
      * }], {});
      */
 
-     return queryInterface.bulkInsert("users", [
+    return queryInterface.bulkInsert("users", [
       {
         login_id: "dailyLook123",
         password: "test1",
@@ -50,6 +50,14 @@ module.exports = {
         password: "test5",
         user_image: "image4",
         nickname: "아재사랑",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        login_id: "jjub0217",
+        password: "test6",
+        user_image: "image5",
+        nickname: "joo",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

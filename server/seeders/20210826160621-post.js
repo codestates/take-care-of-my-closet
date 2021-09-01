@@ -68,6 +68,14 @@ module.exports = {
         updatedAt: new Date(),
         userId: 4,
       },
+      {
+        title: "제목 테스트",
+        image: "image6",
+        contents: "내용 테스트",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        userId: 6,
+      },
     ])
   },
 
