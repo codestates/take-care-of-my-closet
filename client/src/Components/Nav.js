@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import logo from "../image/LOGO.png";
-import "./Nav.css";
-import "./reset.css";
+import logo from "../image/logo.jpeg";
+
 import User from "./User";
+import { NavContainer, Logo, Navigation, NavBtn } from "../Styled/NavStyled";
 
 function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
   const [newContent, setNewContent] = useState({
@@ -63,39 +63,43 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
   // }
 
   return (
-    <header>
-      <h1 className="logo">
-        <Link to="/">
-          <img src={logo} alt="logo" width="500" />
-        </Link>
-      </h1>
-      <nav>
-        <h2 className="a11yHidden">메인 메뉴</h2>
-        {/* {isLogin ? (
-          <>
-          <Link to="/content-modify-create">
-          <button>새 글 작성</button>
+    <NavContainer>
+      <header className="appHeader">
+        <h1>
+          <Link to="/">
+            <Logo src={logo} alt="logo" width="500" />
           </Link>
-          <ul>
-            <User ChangeLoginState={ChangeLoginState}/>
-          </ul>
+        </h1>
+      </header>
+      <Navigation>
+        <h2 className="a11yHidden">메인 메뉴</h2>
+        {isLogin ? (
+          <>
+            {/* <Link to="/content-modify-create"> */}
+            <NavBtn onClick={(e) => createContent(e)}>새 글 작성</NavBtn>
+            {/* </Link> */}
+            <NavBtn>
+              <User logoutHandler={logoutHandler} />
+            </NavBtn>
           </>
-          ) : (
-            <button>로그인</button>
-          )} */}
+        ) : (
+          <Link to="/login">
+            <NavBtn>로그인</NavBtn>
+          </Link>
+        )}
         {/* <Link to="/content-modi-create"> */}
-        <button onClick={(e) => createContent(e)}>새 글 작성</button>
+        {/* <button onClick={(e) => createContent(e)}>새 글 작성</button> */}
         {/* </Link> */}
-        <ul>
+        {/* <ul>
           <User logoutHandler={logoutHandler} />
         </ul>
         {isLogin ? null : (
           <Link to="/login">
             <button>로그인</button>
           </Link>
-        )}
-      </nav>
-    </header>
+        )} */}
+      </Navigation>
+    </NavContainer>
   );
 }
 

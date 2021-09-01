@@ -51,7 +51,7 @@ function ContentModiCreate({ userInfo }) {
     if (newContent) {
       // 새글 작성 요청
       axios
-        .post("http://localhost:4000/createpost", {
+        .post(`${process.env.REACT_APP_API_URL}/createpost`, {
           id: userInfo.id,
           image: url,
           title: title,
@@ -70,7 +70,7 @@ function ContentModiCreate({ userInfo }) {
     } else {
       // 게시글 수정 요청
       axios
-        .put("http://localhost:4000/modifymypost", {
+        .put(`${process.env.REACT_APP_API_URL}/modifymypost`, {
           id: selectedContent.userId,
           image: url || selectedContent.image,
           title: title || selectedContent.title,
@@ -122,7 +122,7 @@ function ContentModiCreate({ userInfo }) {
     formData.append("closet", file);
 
     axios
-      .post("http://localhost:4000/upload", formData)
+      .post(`${process.env.REACT_APP_API_URL}/upload`, formData)
       .then((res) => {
         console.log(res.data);
         if (res.data.message === "ok") {
