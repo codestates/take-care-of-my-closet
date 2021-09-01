@@ -4,6 +4,12 @@ import logo from "../image/logo.jpeg";
 import { Cookies } from "react-cookie";
 import axios from "axios";
 
+import { A11yHidden, Legend } from "../Styled/Common";
+import {Logo} from '../Styled/NavStyled'
+import './login.css'
+
+
+
 axios.defaults.withCredentials = true;
 
 const cookies = new Cookies();
@@ -61,15 +67,21 @@ function Login({ getUserInfo }) {
     }
   };
 
+  const goToSignUp = (e) =>{
+    e.preventDefault();
+  
+     history.push('/signup')
+   }
+  
   return (
     <div>
       <h1>
-        <img src={logo} alt="logo" width="500" />
+        <Logo src={logo} />
       </h1>
-      <h2>로그인</h2>
+      <A11yHidden>로그인</A11yHidden>
       <form styled="border: 0">
         <fieldset>
-          <legend>로그인 폼</legend>
+          <Legend>로그인 폼</Legend>
           <input
             type="text"
             placeholder="아이디"
@@ -85,9 +97,7 @@ function Login({ getUserInfo }) {
             <button type="submit" onClick={(e) => handleLogin(e)}>
               로그인
             </button>
-            <Link to="/signup">
-              <button>회원가입</button>
-            </Link>
+            <button onClick ={(e)=>goToSignUp(e)}>회원가입</button>
           </div>
         </fieldset>
       </form>
