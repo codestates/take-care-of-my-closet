@@ -2,11 +2,11 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
 import { Cookies } from "react-cookie";
-import Nav from "./Components/Nav";
-import Footer from "./Components/Footer";
 
 import axios from "axios";
 
+import Nav from "./Components/Nav";
+import Footer from "./Components/Footer";
 import Login from "./Components/Login";
 import Main from "./Components/Main";
 import MyContents from "./Components/MyContents";
@@ -15,6 +15,8 @@ import SignUp from "./Components/SignUp";
 import ContentModiCreate from "./Components/ContentsModiCreate";
 import Content from "./Components/Content";
 import LoadingIndicator from "./Components/LoadingIndicator";
+
+import { FlexDiv } from "./Styled/Flex";
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -51,7 +53,7 @@ function App() {
   useEffect(() => {
     setIsloading(true);
     axios
-      .post("http://localhost:4000/getposts")
+      .post(`${process.env.REACT_APP_API_URL}/getposts`)
       .then((res) => {
         console.log("전체게시글 요청 응답", res.data);
         contentsListHandler(res.data.data);
@@ -69,7 +71,7 @@ function App() {
 
   const getUserInfo = (accessToken) => {
     axios
-      .get("http://localhost:4000/accessTokenrequest", {
+      .get(`${process.env.REACT_APP_API_URL}/accessTokenrequest`, {
         headers: {
           accessToken: accessToken,
         },
@@ -97,7 +99,7 @@ function App() {
 
   const refreshTokenRequest = (refreshToken) => {
     axios
-      .get("http://localhost:4000/refreshTokenrequest", {
+      .get(`${process.env.REACT_APP_API_URL}/refreshTokenrequest`, {
         headers: {
           refreshToken: refreshToken,
         },
@@ -126,7 +128,7 @@ function App() {
   const logoutHandler = () => {
     // 액세스 토큰 지우는 메소드 구현?
     axios
-      .get("http://localhost:4000/logout", {
+      .get(`${process.env.REACT_APP_API_URL}/logout`, {
         headers: {
           refreshToken: cookies.get("refreshToken"),
         },
@@ -156,7 +158,7 @@ function App() {
   const getSelectedContent = (id) => {
     console.log("선택한 게시글 아이디", id);
     axios
-      .post("http://localhost:4000/getContents", {
+      .post(`${process.env.REACT_APP_API_URL}/getContents`, {
         postId: id,
       })
       .then((res) => {
@@ -193,17 +195,18 @@ function App() {
 
   return (
     <React.Fragment>
-      {loca.pathname === "/login" || loca.pathname === "/signup" ? (
-        <></>
-      ) : (
-        <Nav
-          isLogin={isLogin}
-          logoutHandler={logoutHandler}
-          selectedContent={selectedContent}
-          setSelectedContent={setSelectedContent}
-        />
-      )}
-      <section>
+      <FlexDiv>
+        {loca.pathname === "/login" || loca.pathname === "/signup" ? (
+          <></>
+        ) : (
+          <Nav
+            isLogin={isLogin}
+            logoutHandler={logoutHandler}
+            selectedContent={selectedContent}
+            setSelectedContent={setSelectedContent}
+          />
+        )}
+        {/* <section> */}
         <Switch>
           <Route exact path="/">
             {isLoading ? (
@@ -255,8 +258,9 @@ function App() {
             />
           </Route>
         </Switch>
-      </section>
-      <Footer />
+        {/* </section> */}
+        <Footer />
+      </FlexDiv>
     </React.Fragment>
   );
 }

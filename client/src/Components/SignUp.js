@@ -68,7 +68,7 @@ function SignUp() {
     // console.log(formData); // FormData {}
     // for (const keyValue of formData) console.log("폼데이터", keyValue); // ["img", File] File은 객체
     axios
-      .post("http://localhost:4000/upload", formData)
+      .post(`${process.env.REACT_APP_API_URL}/upload`, formData)
       .then((res) => {
         console.log(res.data);
         if (res.data.message === "ok") {
@@ -93,7 +93,7 @@ function SignUp() {
     }
     axios
       .post(
-        "http://localhost:4000/duplicate",
+        `${process.env.REACT_APP_API_URL}/duplicate`,
         {
           login_id: idValue,
         },
@@ -118,7 +118,7 @@ function SignUp() {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:4000/duplicate",
+        `${process.env.REACT_APP_API_URL}/duplicate`,
         {
           nickname: nickName,
         },
@@ -183,7 +183,7 @@ function SignUp() {
       return alert("닉네임이 유효하지 않습니다.");
     }
     axios
-      .post("http://localhost:4000/signup", {
+      .post(`${process.env.REACT_APP_API_URL}/signup`, {
         login_id: idValue,
         password: pwValue,
         nickname: nickName,
