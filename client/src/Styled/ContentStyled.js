@@ -3,14 +3,12 @@ import styled from "styled-components";
 export const Article = styled.article`
   display: flex;
   align-items: center;
-  background-color: aqua;
+  background-color: green;
   margin: 0 auto;
   width: 1000px;
   /* height: 900px; */
   padding: 90px 60px;
   position: relative;
-
-  
 `;
 
 export const ContentImg = styled.div`
@@ -28,14 +26,12 @@ export const ContentImg = styled.div`
 `;
 
 export const Section = styled.div`
-  /* padding: 80px 0; */
 
-  /* background-color: blanchedalmond; */
 `;
 
 export const Title = styled.p`
   position: absolute;
-  top: 25px;
+  top: 0px;
   background-color: blue;
   /* margin-top: 30px; */
   font-size: 20px;
@@ -62,10 +58,10 @@ export const TextContent = styled.textarea`
 `;
 
 export const UserMindBtn = styled.div`
-  /* background-color: blueviolet; */
+  background-color: blueviolet;
   position: absolute;
-  top: 280px;
-  margin-left: 10px;
+  top: 270px;
+  /* margin-left: 10px; */
 `;
 
 export const UserMindBtnLike = styled.figure`
@@ -78,7 +74,8 @@ export const UserMindBtnLike = styled.figure`
   cursor: pointer;
   vertical-align: middle;
   text-align: center;
-  /* background-color: bisque; */
+  background-color: bisque;
+  margin: 0 10px;
   /* background-color: transparent; */
 `;
 
@@ -92,7 +89,7 @@ export const UserMindBtnDisLike = styled.figure`
   vertical-align: middle;
   text-align: center;
 
-  margin-left: 40px;
+  margin-left: 20px;
   cursor: pointer;
   /* background-color: green; */
   /* background-color: transparent; */
@@ -100,20 +97,20 @@ export const UserMindBtnDisLike = styled.figure`
 
 export const ModifyBtn = styled.button`
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: 140px;
   background-color: chartreuse;
-  padding: 8.5px 0;
+  padding: 9.5px 0;
   width: 50px;
   border: 0;
 `;
 
 export const DeleteBtn = styled.button`
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: 70px;
   background-color: chartreuse;
-  padding: 8.5px 0;
+  padding: 9.5px 0;
   width: 50px;
   border: 0;
 `;

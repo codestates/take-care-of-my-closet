@@ -51,7 +51,7 @@ function Replys({
             return (
               <ReplyLi key={el.id} className={el.id}>
                 <p>&#64;{el.user.nickname}</p>
-                <span>{el.contents}</span>
+                <p style="margin-top:-10px">{el.contents}</p>
                 {isLogin && el.user.nickname === userInfo.nickname ? (
                   <ReplyDeleteBtn src={deleteBtn} onClick={(e) => deleteReply(e)}/>
                 ) : null}

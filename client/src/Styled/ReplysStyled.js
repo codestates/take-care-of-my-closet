@@ -23,10 +23,11 @@ export const ReplysUl = styled.ul`
 `;
 
 export const ReplyLi = styled.li`
-  /* background-color: beige; */
-  margin-bottom: 7px;
-  padding-top: 10px;
+  background-color: beige;
+  /* margin-bottom: 7px; */
+  /* padding-top: 10px; */
   width: 420px;
+  /* margin-top: -10px; */
   /* white-space: pre-wrap; */
   /* width: 300px; */
 `
