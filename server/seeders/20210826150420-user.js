@@ -58,7 +58,15 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-    ]);
+      {
+        login_id: "jjub0217",
+        password: "test6",
+        user_image: "image5",
+        nickname: "joo",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ])
   },
   down: async (queryInterface, Sequelize) => {
     /**
