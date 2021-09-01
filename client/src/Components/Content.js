@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
 import { Cookies } from "react-cookie";
@@ -40,10 +40,16 @@ function Content({
 }) {
   console.log("게시글 선택창", selectedContent);
   const history = useHistory();
-
-  console.log(userInfo.id, selectedContent.userId);
+  // const location = useLocation();
+  console.log(
+    "유저 아이디 vs 게시글 작성자 아이디",
+    userInfo.id,
+    "vs",
+    selectedContent.userId
+  );
+  console.log("글내용 :", selectedContent.contents);
   useEffect(() => {
-    // localStorage.setItem("selectedPostId", selectedId);
+    // localStorage.setItem("selectedPostId", selectedContent.id);
     // console.log(localStorage.getItem("selectedPostId"));
     getSelectedContent(localStorage.getItem("selectedPostId"));
     // console.log("987987987987987987987", selectedContent);
@@ -56,7 +62,7 @@ function Content({
     // 맞다면 게시글 수정 페이지로 이동
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.id === selectedContent.id) {
+      if (userInfo.id === selectedContent.userId) {
         // 게시글 수정 페이지로 이동
         // history.push("/content-modi-create");
         history.push({
@@ -69,7 +75,7 @@ function Content({
     } else {
       return alert("로그인 후 수정할 수 있습니다.");
     }
-    console.log(selectedContent);
+    // console.log(selectedContent);
   };
 
   const deleteHandler = () => {
@@ -169,14 +175,13 @@ function Content({
         <Section>
           <Title>{selectedContent.title}</Title>
           <TextContent
-            readOnly="true"
+            readOnly={true}
             cols="30"
             rows="10"
             defaultValue={selectedContent.contents}
             // disabled="true"
-          >
-            {/* {selectedContent.contents} */}
-          </TextContent>
+          ></TextContent>
+          {/* <div>{selectedContent.contents}</div> */}
           <UserMindBtn>
             <UserMindBtnLike src={like} onClick={likeHandler}>
               <Btn>{likeCount}</Btn>
