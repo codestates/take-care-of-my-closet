@@ -5,7 +5,6 @@ import axios from "axios";
 import { A11yHidden } from "../Styled/Common";
 import { ReplysUl , ReplyLi, ReplysSection, ReplyDeleteBtn} from "../Styled/ReplysStyled";
 
-
 import deleteBtn from '../image/x-mark.png'
 axios.defaults.withCredentials = true;
 
@@ -38,8 +37,8 @@ function Replys({
 
   const deleteReply = (e) => {
     e.preventDefault();
-    console.log(e.target.parentElement.getAttribute("class"));
-    setselectedReplyId(e.target.parentElement.getAttribute("class"));
+    console.log(e.target.parentElement.getAttribute("id"));
+    setselectedReplyId(e.target.parentElement.getAttribute("id"));
   };
 
   return (
@@ -49,7 +48,7 @@ function Replys({
         <ReplysUl>
           {replyList.map((el) => {
             return (
-              <ReplyLi key={el.id} className={el.id}>
+              <ReplyLi key={el.id} id={el.id}>
                 <p>&#64;{el.user.nickname}</p>
                 <p style="margin-top:-10px">{el.contents}</p>
                 {isLogin && el.user.nickname === userInfo.nickname ? (
