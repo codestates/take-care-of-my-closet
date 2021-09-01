@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
+import { Cookies } from "react-cookie";
 
 import { FlexArticle } from "../Styled/Flex";
 import { A11yHidden, Btn } from "../Styled/Common";
@@ -21,6 +22,7 @@ import like from "../image/like.png";
 import disLike from "../image/bad.png";
 
 axios.defaults.withCredentials = true;
+const cookies = new Cookies();
 
 function Content({
   isLogin,
@@ -34,14 +36,19 @@ function Content({
   replyListHandler,
   getSelectedContent,
   selectedId,
+  contentsListHandler,
+  getUserInfo,
 }) {
   const [currentPageId, setCurrentPageId] = useState();
 
   console.log("게시글 선택창", selectedContent);
   const history = useHistory();
 
+  console.log(userInfo.id, selectedContent.userId);
   useEffect(() => {
-    getSelectedContent(selectedId);
+    localStorage.setItem("selectedPostId", selectedId);
+    console.log(localStorage.getItem("selectedPostId"));
+    getSelectedContent(localStorage.getItem("selectedPostId"));
   }, []);
 
   const modifyHandler = () => {
@@ -80,7 +87,18 @@ function Content({
           })
           .then((res) => {
             // App.js에 삭제된 게시글 정보 전달
-            if (res.message === "success!") {
+            console.log("게시글 삭제 요청 응답", res);
+            if (res.data === "success!") {
+              axios
+                .post(`${process.env.REACT_APP_API_URL}/getposts`)
+                .then((res) => {
+                  console.log("전체게시글 요청 응답", res.data);
+                  contentsListHandler(res.data.data);
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+              getUserInfo(cookies.get("accessToken"));
               alert("게시글이 삭제되었습니다.");
               history.push("/");
             }
