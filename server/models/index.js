@@ -40,7 +40,8 @@ Object.keys(db).forEach((modelName) => {
   }
 });
 
-const { user, post, comment, refreshtoken } = sequelize.models;
+const { user, post, comment, refreshtoken } = sequelize.models
+
 
 post.belongsTo(user);
 user.hasMany(post);
@@ -73,10 +74,12 @@ post.belongsToMany(user, {
   foreignKey: "postId",
 });
 
-user.hasOne(refreshtoken);
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+user.hasOne(refreshtoken)
+
+db.sequelize = sequelize
+db.Sequelize = Sequelize
+
 
 // const likes = sequelize.models.likes
 
