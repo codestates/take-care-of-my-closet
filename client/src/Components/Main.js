@@ -22,7 +22,7 @@ function Main({ contents, handleContentClick }) {
                 <MainArticle>
                   <MainP>{el.title}</MainP>
                   <MainImg src={el.image} alt="img-thumbnail" />
-                  <MainP>@{el.user.nickname}</MainP>
+                  <MainP>&#64;{el.user.nickname}</MainP>
                 </MainArticle>
               </li>
             </Link>

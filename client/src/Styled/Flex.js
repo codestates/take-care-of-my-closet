@@ -10,12 +10,12 @@ export const FlexMain = styled.main`
   flex-flow: column wrap;
   align-items: center;
   background-color: blue;
-  height: 1000px;
+  /* height: 1000px; */
 `;
 export const FlexArticle = styled.div`
   /* display: flex;
   flex-flow: row;
   align-items: center; */
-  padding: 30px;
+  padding: 70px 30px;
   background-color: red;
 `;
