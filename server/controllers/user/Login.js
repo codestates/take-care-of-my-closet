@@ -2,6 +2,11 @@ const { user, refreshtoken } = require("../../models")
 const { sign } = require("jsonwebtoken")
 
 module.exports = async (req, res) => {
+
+  if(!req.body.login_id || !req.body.password){
+    res.status(401).json({message: "unauthorized"})
+  }
+
   const findUserInfo = await user.findOne({
     where: { login_id: req.body.login_id, password: req.body.password },
   })
@@ -20,7 +25,7 @@ module.exports = async (req, res) => {
 
     await res.cookie("accessToken", accessToken, {
       HttpOnly: true,
-      Secure: false,
+      Secure: false, // https 에서는 true로 하기
       SameSite: "None",
     })
 
