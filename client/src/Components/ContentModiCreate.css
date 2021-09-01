@@ -1,5 +1,15 @@
-.imageContent {
+/* .imageContent {
   width: 500px;
   height: 600px;
   background-color: blueviolet;
+} */
+
+/* form {
+
+  background-color: aqua;
+} */
+
+fieldset {
+
+  border: 0;
 }

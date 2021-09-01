@@ -18,3 +18,18 @@ export const Btn = styled.button`
   width: 30px;
   height: 30px;
 `;
+
+export const Legend = styled.legend`
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  -webkit-clip-path: polygon(0 0, 0 0, 0 0);
+  clip-path: polygon(0 0, 0 0, 0 0);
+`
+
+
+export const Section = styled.div`
+
+`;

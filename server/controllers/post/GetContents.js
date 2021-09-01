@@ -7,6 +7,18 @@ module.exports = async (req, res) => {
 
   const unlikes = db.sequelize.models.unlikes
 
+  if(req.body.postId){
+   return res.status(400).json({message:"bad Request"}) 
+  }
+
+  let findContents = await post.findOne({
+    where: { id: req.body.postId },
+  })
+
+  if (!findContents) {
+    return res.status(404).json({message: "Not Found!"})
+  }
+
   let contents = await post.findAll({
     where: { id: req.body.postId },
     include: [
@@ -32,10 +44,9 @@ module.exports = async (req, res) => {
     ],
   })
 
-  console.log(contents)
-
+  
   if (contents.length === 0) {
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    
     contents = await post.findOne({ where: { id: req.body.postId } })
 
     const like = await likes.findAll({ where: { postId: req.body.postId } })

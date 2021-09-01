@@ -1,4 +1,6 @@
 const db = require("../../models");
+const { post } = require("../../models")
+
 
 module.exports = async (req, res) => {
   const data = req.body;
@@ -6,6 +8,14 @@ module.exports = async (req, res) => {
   const likes = db.sequelize.models.likes;
   const unlikes = db.sequelize.models.unlikes;
 
+     const posts = await post.findOne({
+       where : {id :data.postId}
+     })
+
+     if(!posts){
+       return res.status(404).json({message: "not found"})
+     }
+  
   if (data.click === "like") {
     const isUnlike = await unlikes.findOne({
       where: { userId: data.userId, postId: data.postId },

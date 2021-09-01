@@ -5,7 +5,7 @@ import Replys from "./Replys";
 import { Cookies } from "react-cookie";
 
 import { FlexArticle } from "../Styled/Flex";
-import { A11yHidden, Btn } from "../Styled/Common";
+import { A11yHidden, Btn,  } from "../Styled/Common";
 import {
   Article,
   ContentImg,
