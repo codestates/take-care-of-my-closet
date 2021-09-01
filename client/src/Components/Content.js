@@ -173,10 +173,10 @@ function Content({
             readOnly="true"
             cols="30"
             rows="10"
-            // defaultValue={selectedContent.contents}
+            defaultValue={selectedContent.contents}
             // disabled="true"
           >
-            {selectedContent.contents}
+            {/* {selectedContent.contents} */}
           </TextContent>
           <UserMindBtn>
             <UserMindBtnLike src={like} onClick={likeHandler}>

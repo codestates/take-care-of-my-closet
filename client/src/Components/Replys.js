@@ -24,9 +24,9 @@ function Replys({
         id: selectedReplyId,
       })
       .then((res) => {
-        console.log(res);
-        if (res.data === "delete!") {
-          replyListHandler(res.data.comments);
+        console.log("댓글 삭제 요청 응답", res.data);
+        if (res.data.message === "delete!") {
+          replyListHandler(res.data.data);
         }
       })
       .catch((err) => {

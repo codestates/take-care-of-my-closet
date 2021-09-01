@@ -50,6 +50,10 @@ function ContentModiCreate({
     e.preventDefault();
     if (newContent) {
       // 새글 작성 요청
+      if (!userInfo) return alert("로그인 후 이용하실 수 있습니다.");
+      if (!title) return alert("제목을 입력해주세요.");
+      if (!textContent) return alert("내용을 입력해주세요.");
+      if (!url) return alert("사진을 등록해주세요");
       axios
         .post(`${process.env.REACT_APP_API_URL}/createpost`, {
           userId: userInfo.id,
