@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WriteReply from "./WriteReply";
 import axios from "axios";
 
@@ -18,25 +18,28 @@ function Replys({
 }) {
   const [selectedReplyId, setselectedReplyId] = useState("");
 
-  const deleteReply = (e) => {
-    e.preventDefault();
-    console.log(e.target.parentElement.getAttribute("class"));
-    setselectedReplyId(e.target.parentElement.getAttribute("class"));
+  useEffect(() => {
     axios
-      .post(`${process.env.REACT_APP_API_URL}/deleteComment`, {
+      .post(`${process.env.REACT_APP_API_URL}/deletecomment`, {
         postId: selectedContent.id,
         userId: userInfo.id,
         id: selectedReplyId,
       })
       .then((res) => {
         console.log(res);
-        if (res.data.message === "delete!") {
+        if (res.data === "delete!") {
           replyListHandler(res.data.comments);
         }
       })
       .catch((err) => {
         console.log(err);
       });
+  }, [selectedReplyId]);
+
+  const deleteReply = (e) => {
+    e.preventDefault();
+    console.log(e.target.parentElement.getAttribute("class"));
+    setselectedReplyId(e.target.parentElement.getAttribute("class"));
   };
 
   return (

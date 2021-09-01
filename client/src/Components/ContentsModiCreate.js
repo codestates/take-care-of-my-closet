@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation, useHistory } from "react-router-dom";
-// import "./reset.css";
+
 import {imageContent} from '../Styled/ContentModiCreateStyled'
-// import "./ContentModiCreate.css";
+
+import { Cookies } from "react-cookie";
 
 axios.defaults.withCredentials = true;
+const cookies = new Cookies();
 
-function ContentModiCreate({ userInfo }) {
+function ContentModiCreate({
+  userInfo,
+  contentsListHandler,
+  getUserInfo,
+  setSelectedContent,
+}) {
   const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
   const [url, setUrl] = useState();
@@ -15,16 +22,9 @@ function ContentModiCreate({ userInfo }) {
   const [title, setTitle] = useState("");
   const [textContent, setTextContent] = useState("");
 
-  // useEffect(()=> {}
-  // ,[selectedContent])
-
   const location = useLocation();
   const history = useHistory();
 
-  // if(!newContentBtnOn){
-  //   const selectedContent = location.state.selectedContent;
-  //   console.log("--------------", selectedContent);
-  // }
   const selectedContent = location.state.selectedContent;
   const newContent = location.state.newContent;
 
@@ -53,7 +53,7 @@ function ContentModiCreate({ userInfo }) {
       // 새글 작성 요청
       axios
         .post(`${process.env.REACT_APP_API_URL}/createpost`, {
-          id: userInfo.id,
+          userId: userInfo.id,
           image: url,
           title: title,
           contents: textContent,
@@ -61,6 +61,16 @@ function ContentModiCreate({ userInfo }) {
         .then((res) => {
           console.log("새글작성 응답", res.data);
           if (res.data.message === "ok") {
+            axios
+              .post(`${process.env.REACT_APP_API_URL}/getposts`)
+              .then((res) => {
+                console.log("전체게시글 요청 응답", res.data);
+                contentsListHandler(res.data.data);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+            getUserInfo(cookies.get("accessToken"));
             alert("게시글 작성이 완료되었습니다.");
             history.push("/");
           }
@@ -80,8 +90,9 @@ function ContentModiCreate({ userInfo }) {
         .then((res) => {
           console.log("게시글 수정요청 응답", res.data);
           if (res.data.message === "ok") {
+            setSelectedContent(res.data.data.userInfo);
             alert("게시글 수정이 완료되었습니다.");
-            history.push("/");
+            history.push("/content");
           }
         })
         .catch((err) => {
