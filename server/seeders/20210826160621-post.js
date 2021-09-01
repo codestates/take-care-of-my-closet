@@ -37,7 +37,7 @@ module.exports = {
         contents: "가을 준비 다해놔서 이제 겨울을 준비한다.",
         createdAt: new Date(),
         updatedAt: new Date(),
-        userId: 2,
+        userId: 3,
       },
       {
         title: "게이 같나요?",

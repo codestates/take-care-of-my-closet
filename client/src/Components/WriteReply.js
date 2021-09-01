@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import {ReplyTextContent, ReplyBtn, CreateReplyBox} from '../Styled/ReplysStyled'
 
 axios.defaults.withCredentials = true;
 
@@ -40,16 +41,13 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
   };
 
   return (
-    <div>
-      <textarea
-        rows="10"
-        cols="40"
+    <CreateReplyBox>
+      <ReplyTextContent
         onChange={(e) => inputReplyHandler(e)}
         placeholder="여기에 댓글을 입력하세요"
       />
-
-      <button onClick={requestReply}>등록</button>
-    </div>
+      <ReplyBtn onClick={requestReply}>등록</ReplyBtn>
+    </CreateReplyBox>
   );
 }
 

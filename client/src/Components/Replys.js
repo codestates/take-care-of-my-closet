@@ -3,7 +3,7 @@ import WriteReply from "./WriteReply";
 import axios from "axios";
 
 import { A11yHidden } from "../Styled/Common";
-import { ContentList } from "../Styled/ReplysStyled";
+import { ReplysUl , ReplyLi} from "../Styled/ReplysStyled";
 
 axios.defaults.withCredentials = true;
 
@@ -44,20 +44,20 @@ function Replys({
     <>
       <section>
         <A11yHidden>댓글</A11yHidden>
-        <ContentList>
+        <ReplysUl>
           {replyList.map((el) => {
             return (
-              <li key={el.id} className={el.id}>
-                <p>@{el.user.nickname}</p>
+              <ReplyLi key={el.id} className={el.id}>
+                <p>&#64;{el.user.nickname}</p>
                 <span>{el.contents}</span>
                 {isLogin && el.user.nickname === userInfo.nickname ? (
                   <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
                 ) : null}
                 {/* <button onClick={(e) => deleteReply(e)}>댓글 삭제</button> */}
-              </li>
+              </ReplyLi>
             );
           })}
-        </ContentList>
+        </ReplysUl>
       </section>
       <WriteReply
         isLogin={isLogin}
