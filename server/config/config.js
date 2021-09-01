@@ -1,5 +1,5 @@
-const dotenv = require("dotenv");
-dotenv.config();
+const dotenv = require("dotenv")
+dotenv.config()
 
 module.exports = {
   development: {
@@ -26,4 +26,4 @@ module.exports = {
     // port: process.env.DATABASE_PORT,
     dialect: "mysql",
   },
-};
+}

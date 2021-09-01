@@ -1,4 +1,4 @@
-const { post, user } = require("../../models");
+const { post, user } = require("../../models")
 
 module.exports = async (req, res) => {
   //   const posts = await post.findAll({
@@ -20,8 +20,8 @@ module.exports = async (req, res) => {
         required: true,
         attributes: ["nickname"],
       },
-    });
+    })
 
     res.status(200).json({ data: posts, message: "my posts" });
   }
-};
+}
