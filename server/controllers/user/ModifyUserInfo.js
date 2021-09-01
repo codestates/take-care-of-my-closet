@@ -2,18 +2,23 @@ const { user, refreshtoken } = require("../../models")
 const { sign } = require("jsonwebtoken")
 
 module.exports = async (req, res) => {
-  let currentUser
-  if (req.body.password) {
-    currentUser = req.body
-  } else {
-    const findUser = await user.findOne({
-      where: {
-        login_id: req.body.login_id,
-      },
-    })
-    currentUser = req.body
-    currentUser.password = findUser.password
-  }
+  
+  const findUser1 = await user.findOne({
+    where: {
+      login_id: req.body.login_id,
+    },
+  })
+  console.log(req.body)
+  
+  let currentUser = {
+    id : 2,
+     login_id : req.body.login_id,
+     password : req.body.password || findUser1.password,
+     user_image : req.body.image || findUser1.user_image,
+     nickname :req.body.nickname || findUser1.nickname,
+    }
+   
+   console.log('asdfadsfadf',currentUser);
 
   await user.update(currentUser, {
     where: {
@@ -24,8 +29,7 @@ module.exports = async (req, res) => {
   const findUser = await user.findOne({
     where: { login_id: currentUser.login_id },
   })
-
-  console.log(findUser.dataValues)
+  
   delete findUser.dataValues.password
 
   const accessToken = sign(findUser.dataValues, process.env.ACCESS_SECRET, {
@@ -49,7 +53,7 @@ module.exports = async (req, res) => {
   })
 
   res.status(200).json({
-    data: { usrInfo: findUser },
+    data: { userInfo: findUser },
     message: "ok",
   })
 }
