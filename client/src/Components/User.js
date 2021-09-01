@@ -11,7 +11,7 @@ function User({ logoutHandler }, className) {
   return (
     <ul>
       <button className="navBtn">
-      <span onClick={UserBtnHandler}>User</span>
+        <span onClick={UserBtnHandler}>User</span>
       </button>
       {userBtnIsOn ? (
         <>

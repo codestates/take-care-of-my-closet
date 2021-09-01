@@ -1,19 +1,21 @@
-const { user } = require("../../models")
+const { user, refreshtoken } = require("../../models")
 const { sign } = require("jsonwebtoken")
 
 module.exports = async (req, res) => {
-  const currentUser = req.body
+  let currentUser
+  if (req.body.password) {
+    currentUser = req.body
+  } else {
+    const findUser = await user.findOne({
+      where: {
+        login_id: req.body.login_id,
+      },
+    })
+    currentUser = req.body
+    currentUser.password = findUser.password
+  }
 
-  //클라이언트에서 유효성검사를 하지만 혹시나해서 만들어 놓은것
-  //if문 빼고 const updateuser = ~res.status(200).send("ok")까지만 있어도 됨
-  // const findUser = await user.findOne({
-  //  where : { login_id: currentUser.login_id }
-  // })
-
-  // if(!findUser){
-  //  res.status(404).send("not found");
-  // }else{}
-  const updateUser = await user.update(currentUser, {
+  await user.update(currentUser, {
     where: {
       login_id: currentUser.login_id,
     },
@@ -22,16 +24,29 @@ module.exports = async (req, res) => {
   const findUser = await user.findOne({
     where: { login_id: currentUser.login_id },
   })
+
+  console.log(findUser.dataValues)
   delete findUser.dataValues.password
+
   const accessToken = sign(findUser.dataValues, process.env.ACCESS_SECRET, {
-    expiresIn: "1d",
+    expiresIn: "1h",
   })
 
-  await res.cookie(
-    "set-cookie",
-    { jwt: accessToken },
-    { HttpOnly: true, Secure: false, SameSite: "None" }
-  )
+  const refreshToken = sign(findUser.dataValues, process.env.REFRESH_SECRET, {
+    expiresIn: "14d",
+  })
+
+  await res.cookie("accessToken", accessToken, {
+    HttpOnly: true,
+    Secure: false,
+    SameSite: "None",
+  })
+
+  await res.cookie("refreshToken", refreshToken, {
+    HttpOnly: true,
+    Secure: false,
+    SameSite: "None",
+  })
 
   res.status(200).json({
     data: { usrInfo: findUser },

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const A11yHidden = styled.h2`
   position: absolute;
@@ -7,8 +7,8 @@ export const A11yHidden = styled.h2`
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   -webkit-clip-path: polygon(0 0, 0 0, 0 0);
-          clip-path: polygon(0 0, 0 0, 0 0);
-`
+  clip-path: polygon(0 0, 0 0, 0 0);
+`;
 
 export const Btn = styled.button`
   font-size: 16px;
@@ -17,4 +17,4 @@ export const Btn = styled.button`
   margin-left: 25px;
   width: 30px;
   height: 30px;
-`
+`;

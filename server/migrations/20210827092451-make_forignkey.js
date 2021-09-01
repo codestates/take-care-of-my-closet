@@ -49,6 +49,20 @@ module.exports = {
       onDelete: "cascade",
       onUpdate: "cascade",
     })
+
+    await queryInterface.addColumn("refreshtokens", "userId", Sequelize.INTEGER)
+
+    await queryInterface.addConstraint("refreshtokens", {
+      fields: ["userId"],
+      type: "foreign key",
+      name: "FK_refreshtoken_user",
+      references: {
+        table: "users",
+        field: "id",
+      },
+      onDelete: "cascade",
+      onUpdate: "cascade",
+    })
   },
 
   down: async (queryInterface, Sequelize) => {

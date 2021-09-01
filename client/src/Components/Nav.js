@@ -1,19 +1,11 @@
-<<<<<<< HEAD:client/src/Components/Nav.js
 import React, { useState } from "react";
-=======
-import React , {useState} from 'react';
->>>>>>> ed8cf19c95f8cfa9e19baa9d0bb7166ffc85857d:client/src/Components/Nav/Nav.js
 import { Link, useHistory } from "react-router-dom";
-import logo from "../../image/LOGO.png";
-import User from "../User";
-import {NavContainer, Logo, Navigation, NavBtn} from './NavStyled'
+import logo from "../image/logo.jpeg";
 
-function Nav({  logoutHandler }) {
+import User from "./User";
+import { NavContainer, Logo, Navigation, NavBtn } from "../Styled/NavStyled";
 
-<<<<<<< HEAD:client/src/Components/Nav.js
 function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
-=======
->>>>>>> ed8cf19c95f8cfa9e19baa9d0bb7166ffc85857d:client/src/Components/Nav/Nav.js
   const [newContent, setNewContent] = useState({
     id: "",
     userId: "",
@@ -75,43 +67,40 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
       <header className="appHeader">
         <h1>
           <Link to="/">
-            <Logo src={logo} alt="img-thumbnail"/>
+            <Logo src={logo} alt="logo" width="500" />
           </Link>
         </h1>
       </header>
-
       <Navigation>
-
         <h2 className="a11yHidden">메인 메뉴</h2>
-        {/* {isLogin ? (
+        {isLogin ? (
           <>
-          <Link to="/content-modify-create">
-          <button>새 글 작성</button>
-          </Link>
-          <ul>
-            <User ChangeLoginState={ChangeLoginState}/>
-          </ul>
+            {/* <Link to="/content-modify-create"> */}
+            <NavBtn onClick={(e) => createContent(e)}>새 글 작성</NavBtn>
+            {/* </Link> */}
+            <NavBtn>
+              <User logoutHandler={logoutHandler} />
+            </NavBtn>
           </>
-          ) : (
-            <button>로그인</button>
-          )} */}
+        ) : (
+          <Link to="/login">
+            <NavBtn>로그인</NavBtn>
+          </Link>
+        )}
         {/* <Link to="/content-modi-create"> */}
-<<<<<<< HEAD:client/src/Components/Nav.js
-        <button onClick={(e) => createContent(e)}>새 글 작성</button>
-=======
-        <NavBtn onClick={(e) =>createContent(e)}>새 글 작성</NavBtn>
->>>>>>> ed8cf19c95f8cfa9e19baa9d0bb7166ffc85857d:client/src/Components/Nav/Nav.js
+        {/* <button onClick={(e) => createContent(e)}>새 글 작성</button> */}
         {/* </Link> */}
-        <NavBtn>
-        <User logoutHandler={logoutHandler} />
-        </NavBtn>
-        <Link to="/login">
-          <NavBtn>로그인</NavBtn>
-        </Link>
+        {/* <ul>
+          <User logoutHandler={logoutHandler} />
+        </ul>
+        {isLogin ? null : (
+          <Link to="/login">
+            <button>로그인</button>
+          </Link>
+        )} */}
       </Navigation>
-      </NavContainer>
+    </NavContainer>
   );
 }
 
 export default Nav;
-

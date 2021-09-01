@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import Replys from "../Replys/Replys";
+import Replys from "./Replys";
 
-
-
-// import './Content.css'
-import {FlexArticle} from '../Flex'
-import {A11yHidden, Btn} from '../Common'
-import {Article, ContentImg, Section, Title, TextContent, UserMindBtn, UserMindBtnLike, UserMindBtnDisLike,ModifyBtn,  DeleteBtn} from'./ContentStyled'
-import like from '../../image/like.png'
-import disLike from '../../image/bad.png'
+import { FlexArticle } from "../Styled/Flex";
+import { A11yHidden, Btn } from "../Styled/Common";
+import {
+  Article,
+  ContentImg,
+  Section,
+  Title,
+  TextContent,
+  UserMindBtn,
+  UserMindBtnLike,
+  UserMindBtnDisLike,
+  ModifyBtn,
+  DeleteBtn,
+} from "../Styled/ContentStyled";
+import like from "../image/like.png";
+import disLike from "../image/bad.png";
 
 axios.defaults.withCredentials = true;
 
@@ -66,7 +74,7 @@ function Content({
     if (isLogin) {
       if (userInfo.id === selectedContent.userId) {
         axios
-          .delete("http://localhost:4000/deletepost", {
+          .post(`${process.env.REACT_APP_API_URL}/deletepost`, {
             postId: selectedContent.id,
             login_id: userInfo.login_id,
           })
@@ -94,7 +102,7 @@ function Content({
     }
     console.log(likeCount);
     axios
-      .post("http://localhost:4000/likeunlike", {
+      .post(`${process.env.REACT_APP_API_URL}/likeunlike`, {
         userId: userInfo.id,
         postId: selectedContent.id,
         click: "like",
@@ -118,7 +126,7 @@ function Content({
       return alert("로그인 후 이용하실 수 있습니다.");
     }
     axios
-      .post("http://localhost:4000/likeunlike", {
+      .post(`${process.env.REACT_APP_API_URL}/likeunlike`, {
         userId: userInfo.id,
         postId: selectedContent.id,
         click: "unlike",
@@ -136,26 +144,29 @@ function Content({
       });
   };
 
-
   return (
     <FlexArticle>
       <A11yHidden>컨텐츠</A11yHidden>
       <Article>
-        {/* <img src={dummyContents[0].img} alt="img-thumbnail"/> */}
-        <ContentImg src={selectedContent.image} alt="img-thumbnail"/>
+        <ContentImg src={selectedContent.image} alt="img-thumbnail" />
         <Section>
           <Title>{selectedContent.title}</Title>
-          
-          <TextContent readOnly="true" cols="30"
-          rows="10">{selectedContent.contents}</TextContent>
+          <TextContent
+            readOnly="true"
+            cols="30"
+            rows="10"
+            // defaultValue={selectedContent.contents}
+            // disabled="true"
+          >
+            {selectedContent.contents}
+          </TextContent>
           <UserMindBtn>
-              <UserMindBtnLike src={like}  onClick={likeHandler}>
-                {/* <Btn onClick={likeHandler}>{likeCount}</Btn> */}
-                <Btn>{likeCount}</Btn>
-              </UserMindBtnLike>
-              <UserMindBtnDisLike src={disLike} onClick={unlikeHandler}>
-                <Btn>{unlikeCount}</Btn>
-              </UserMindBtnDisLike>
+            <UserMindBtnLike src={like} onClick={likeHandler}>
+              <Btn>{likeCount}</Btn>
+            </UserMindBtnLike>
+            <UserMindBtnDisLike src={disLike} onClick={unlikeHandler}>
+              <Btn>{unlikeCount}</Btn>
+            </UserMindBtnDisLike>
           </UserMindBtn>
           <Replys
             isLogin={isLogin}
@@ -163,14 +174,16 @@ function Content({
             selectedContent={selectedContent}
             replyList={replyList}
             replyListHandler={replyListHandler}
-            />
-            {isLogin && userInfo.id === selectedContent.userId ? (
-              <ModifyBtn onClick={modifyHandler}>수정</ModifyBtn>
+          />
+          {isLogin && userInfo.id === selectedContent.userId ? (
+            <ModifyBtn onClick={modifyHandler}>수정</ModifyBtn>
           ) : null}
-      {isLogin && userInfo.id === selectedContent.userId ? (
-        <DeleteBtn onClick={deleteHandler}>삭제</DeleteBtn>
+          {isLogin && userInfo.id === selectedContent.userId ? (
+            <DeleteBtn onClick={deleteHandler}>삭제</DeleteBtn>
           ) : null}
-      </Section>
+          {/* <button onClick={modifyHandler}>수정</button>
+      <button onClick={deleteHandler}>삭제</button> */}
+        </Section>
       </Article>
     </FlexArticle>
   );

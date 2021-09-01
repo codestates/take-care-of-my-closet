@@ -1,24 +1,39 @@
-const { user } = require("../../models")
+const { user, refreshtoken } = require("../../models")
 const { sign } = require("jsonwebtoken")
 
 module.exports = async (req, res) => {
-  const userInfo = await user.findOne({
+  const findUserInfo = await user.findOne({
     where: { login_id: req.body.login_id, password: req.body.password },
   })
-
-  if (!userInfo) {
+  if (!findUserInfo) {
     return res.json({ message: "not authorized" })
   } else {
-    delete userInfo.dataValues.password
-    const accessToken = sign(userInfo.dataValues, process.env.ACCESS_SECRET, {
-      expiresIn: "1d",
+    const userInfo = findUserInfo.dataValues
+    delete userInfo.password
+
+    const accessToken = sign(userInfo, process.env.ACCESS_SECRET, {
+      expiresIn: "1h",
+    })
+    const refreshToken = sign(userInfo, process.env.REFRESH_SECRET, {
+      expiresIn: "14d",
     })
 
-    await res.cookie(
-      "set-cookie",
-      { jwt: accessToken },
-      { HttpOnly: true, Secure: false, SameSite: "None" }
-    )
+    await res.cookie("accessToken", accessToken, {
+      HttpOnly: true,
+      Secure: false,
+      SameSite: "None",
+    })
+
+    await res.cookie("refreshToken", refreshToken, {
+      HttpOnly: true,
+      Secure: false,
+      SameSite: "None",
+    })
+
+    await refreshtoken.create({
+      value: refreshToken,
+      userId: userInfo.id,
+    })
 
     res.status(200).send({ message: "ok" })
   }

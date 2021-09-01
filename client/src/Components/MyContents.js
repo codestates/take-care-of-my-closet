@@ -10,15 +10,17 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
   useEffect(() => {
     axios
       .post(
-        "https://takecareofmycloset/getposts",
+        `${process.env.REACT_APP_API_URL}/getposts`,
         {
           id: userInfo.id,
         },
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res);
-        setMyContents([...res.data]);
+        console.log(res.data);
+        if (res.data.message === "my posts") {
+          setMyContents(res.data.data);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -33,41 +35,20 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
   }
 
   return (
-    <section className="myContentsContainer">
+    <section>
       <h2 className="a11yHidden">마이 콘텐츠</h2>
       <ul>
         {myContents.map((el) => {
           return (
             <Link to="/content">
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
-                  <p>{myContents.title}</p>
-                  <img src={myContents.image} alt="img-thumbnail"/>
-                  <p>&copy; {myContents.nickname}</p>
+                <p>{myContents.title}</p>
+                <img src={myContents.image} alt="img-thumbnail" />
+                <p>&copy; {myContents.nickname}</p>
               </li>
             </Link>
           );
         })}
-        {/* <li>
-          <article>
-            <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt="" />
-            My Content
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt="" />
-            My Content
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3 className="a11yHidden">content</h3>
-            <img src="fff" alt="" />
-            My Content
-          </article>
-        </li> */}
       </ul>
     </section>
   );

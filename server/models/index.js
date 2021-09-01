@@ -40,7 +40,11 @@ Object.keys(db).forEach((modelName) => {
   }
 })
 
-const { user, post, comment } = sequelize.models
+<<<<<<< HEAD
+const { user, post, comment, refreshtoken } = sequelize.models
+=======
+const { user, post, comment ,refreshtoken} = sequelize.models
+>>>>>>> 7aa404179257ae6bc00cc6f33c239d68c3f85290
 
 post.belongsTo(user)
 user.hasMany(post)
@@ -72,6 +76,10 @@ post.belongsToMany(user, {
   through: "unlikes",
   foreignKey: "postId",
 })
+
+user.hasOne(refreshtoken);
+
+
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
