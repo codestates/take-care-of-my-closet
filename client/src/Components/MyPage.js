@@ -58,7 +58,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
     e.preventDefault();
 
     axios
-      .post("https://takecareofmycloset/duplicate", nickName, {
+      .post(`${process.env.REACT_APP_API_URL}/duplicate`, nickName, {
         withCredentials: true,
       })
       .then((res) => {
@@ -77,7 +77,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
     e.preventDefault();
     // 이미지 아이디 비밀번호 닉네임 서버에 요청
     axios
-      .put("https://takecareofmycloset/modifyUserInfo", {
+      .put(`${process.env.REACT_APP_API_URL}/modifyUserInfo`, {
         login_id: userInfo.login_id,
         password: password || null,
         image: url || userInfo.image,
@@ -128,7 +128,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
     formData.append("closet", file);
 
     axios
-      .post("http://localhost:4000/upload", formData)
+      .post(`${process.env.REACT_APP_API_URL}/upload`, formData)
       .then((res) => {
         console.log(res.data);
         if (res.data.message === "ok") {

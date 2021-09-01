@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyContents.css";
-import "./reset.css";
+// import "./reset.css";
 
 function MyContents({ isLogin, userInfo, handleContentClick }) {
   const [myContents, setMyContents] = useState([]);
@@ -10,7 +10,7 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
   useEffect(() => {
     axios
       .post(
-        "http://localhost:4000/getposts",
+        `${process.env.REACT_APP_API_URL}/getposts`,
         {
           id: userInfo.id,
         },

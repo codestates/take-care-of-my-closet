@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Main.css";
-import "./reset.css";
+// import "./Main.css";
+// import "./reset.css";
+import { FlexMain } from "../Styled/Flex";
+import { A11yHidden } from "../Styled/Common";
+import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
 
 function Main({ contents, handleContentClick }) {
   if (contents.length === 0) {
@@ -9,24 +12,24 @@ function Main({ contents, handleContentClick }) {
   }
   console.log("메인페이지 컨텐츠", contents);
   return (
-    <main>
-      <h2 className="a11yHidden">메인 페이지</h2>
-      <ul>
+    <FlexMain>
+      <A11yHidden>메인 페이지</A11yHidden>
+      <MainUl>
         {contents.map((el) => {
           return (
-            <Link to="/content">
+            <Link to="/content" style={{ textDecoration: "none" }}>
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
-                <article>
-                  <p>{el.title}</p>
-                  <img src={el.image} alt="img-thumbnail" />
-                  <p>@{el.user.nickname}</p>
-                </article>
+                <MainArticle>
+                  <MainP>{el.title}</MainP>
+                  <MainImg src={el.image} alt="img-thumbnail" />
+                  <MainP>@{el.user.nickname}</MainP>
+                </MainArticle>
               </li>
             </Link>
           );
         })}
-      </ul>
-    </main>
+      </MainUl>
+    </FlexMain>
   );
 }
 

@@ -35,7 +35,7 @@ function Login({ getUserInfo }) {
     // setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
     if (inputId && inputPw) {
       axios
-        .post("http://localhost:4000/login", {
+        .post(`${process.env.REACT_APP_API_URL}/login`, {
           login_id: inputId,
           password: inputPw,
         })

@@ -25,7 +25,7 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
     };
 
     axios
-      .post("http://localhost:4000/createComment", payload)
+      .post(`${process.env.REACT_APP_API_URL}/createComment`, payload)
       .then((res) => {
         // 등록한 댓글이 추가됨
         console.log(res.data);
