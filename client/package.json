@@ -75,7 +75,7 @@
     "babel-loader": "^8.2.2"
   },
   "resolutions": {
-    "styled-components": "^5"
+    "styled-components": "^5",
     "@babel/core": "^7.15.0"
 
   }

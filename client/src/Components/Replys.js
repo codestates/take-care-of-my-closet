@@ -3,8 +3,10 @@ import WriteReply from "./WriteReply";
 import axios from "axios";
 
 import { A11yHidden } from "../Styled/Common";
-import { ReplysUl , ReplyLi} from "../Styled/ReplysStyled";
+import { ReplysUl , ReplyLi, ReplysSection, ReplyDeleteBtn} from "../Styled/ReplysStyled";
 
+
+import deleteBtn from '../image/x-mark.png'
 axios.defaults.withCredentials = true;
 
 function Replys({
@@ -42,23 +44,23 @@ function Replys({
 
   return (
     <>
-      <section>
+      <ReplysSection>
         <A11yHidden>댓글</A11yHidden>
         <ReplysUl>
           {replyList.map((el) => {
             return (
               <ReplyLi key={el.id} className={el.id}>
                 <p>&#64;{el.user.nickname}</p>
-                <span>{el.contents}</span>
+                <p style="margin-top:-10px">{el.contents}</p>
                 {isLogin && el.user.nickname === userInfo.nickname ? (
-                  <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
+                  <ReplyDeleteBtn src={deleteBtn} onClick={(e) => deleteReply(e)}/>
                 ) : null}
                 {/* <button onClick={(e) => deleteReply(e)}>댓글 삭제</button> */}
               </ReplyLi>
             );
           })}
         </ReplysUl>
-      </section>
+      </ReplysSection>
       <WriteReply
         isLogin={isLogin}
         userInfo={userInfo}
