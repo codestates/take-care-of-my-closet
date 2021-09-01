@@ -75,17 +75,11 @@ post.belongsToMany(user, {
 
 user.hasOne(refreshtoken);
 
-<<<<<<< HEAD
-user.hasOne(refreshtoken);
 
 
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
-=======
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
->>>>>>> 708078ddd655141b1898c4d37c1ef5c1bdcaef3b
 
 // const likes = sequelize.models.likes
 
