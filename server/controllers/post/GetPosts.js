@@ -1,4 +1,4 @@
-const { post, user } = require("../../models")
+const { post, user } = require("../../models");
 
 module.exports = async (req, res) => {
   //   const posts = await post.findAll({
@@ -8,10 +8,12 @@ module.exports = async (req, res) => {
     let posts = await post.findAll({
       include: { model: user, required: true, attributes: ["nickname"] },
     });
+
     
     posts.sort(function (a,b){
       return b.id -a.id
     })
+
 
     res.status(200).json({ data: posts, message: "all posts" });
   } else {
@@ -32,12 +34,14 @@ module.exports = async (req, res) => {
         required: true,
         attributes: ["nickname"],
       },
+
     })
-    
-    posts.sort(function (a,b){
-      return b.id -a.id
-    })
-    
+  
+    posts.sort(function (a, b) {
+      return b.id - a.id;
+    });
+
+
     res.status(200).json({ data: posts, message: "my posts" });
   }
-}
+};

@@ -39,29 +39,21 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
         <h2 className="a11yHidden">메인 메뉴</h2>
         {isLogin ? (
           <>
-            {/* <Link to="/content-modify-create"> */}
             <NavBtn onClick={(e) => createContent(e)}>새 글 작성</NavBtn>
-            {/* </Link> */}
             <NavBtn>
               <User logoutHandler={logoutHandler} />
             </NavBtn>
           </>
         ) : (
-          <Link to="/login">
-            <NavBtn>로그인</NavBtn>
-          </Link>
+          <>
+            <Link to="/login">
+              <NavBtn>로그인</NavBtn>
+            </Link>
+            <Link to="/signup">
+              <NavBtn>회원가입</NavBtn>
+            </Link>
+          </>
         )}
-        {/* <Link to="/content-modi-create"> */}
-        {/* <button onClick={(e) => createContent(e)}>새 글 작성</button> */}
-        {/* </Link> */}
-        {/* <ul>
-          <User logoutHandler={logoutHandler} />
-        </ul>
-        {isLogin ? null : (
-          <Link to="/login">
-            <button>로그인</button>
-          </Link>
-        )} */}
       </Navigation>
     </NavContainer>
   );

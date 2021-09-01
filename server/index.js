@@ -21,9 +21,9 @@ app.use(
 db.sequelize
   .sync()
   .then(() => {
-    console.log("db 연결 ")
+    console.log("db 연결 ");
   })
-  .catch(console.error)
+  .catch(console.error);
 
 app.use(cookieParser());
 
@@ -58,13 +58,12 @@ app.post("/deletecomment", controllers.deletecomment);
 app.post("/createFakeData", controllers.createFakeData);
 app.post("/upload", upload.single("closet"), controllers.upload);
 
-
 const HTTPS_PORT = 4000
 let server
+
 
 server = app.listen(HTTPS_PORT, () => {
   console.log("server 실행");
 });
 
 module.exports = server;
-
