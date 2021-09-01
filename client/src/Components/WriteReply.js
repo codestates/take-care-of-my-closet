@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {ReplyTextContent, ReplyBtn, CreateReplyBox} from '../Styled/ReplysStyled'
-
+import {Btn} from '../Styled/Common'
 axios.defaults.withCredentials = true;
 
 function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {

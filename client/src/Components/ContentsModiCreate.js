@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import "./reset.css";
-import "./ContentModiCreate.css";
+// import "./reset.css";
+import {imageContent} from '../Styled/ContentModiCreateStyled'
+// import "./ContentModiCreate.css";
 
 axios.defaults.withCredentials = true;
 

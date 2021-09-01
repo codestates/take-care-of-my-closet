@@ -30,7 +30,7 @@ export const ContentImg = styled.div`
 export const Section = styled.div`
   /* padding: 80px 0; */
 
-  background-color: blanchedalmond;
+  /* background-color: blanchedalmond; */
 `;
 
 export const Title = styled.p`
@@ -52,15 +52,19 @@ export const Title = styled.p`
 export const TextContent = styled.textarea`
   background-color: white;
   font-size: 16px;
-  margin-top: -40px;
+  /* margin-top: -100px; */
   margin-bottom: 10px;
   width: 465px;
+  position: absolute;
+  top: 80px;
   /* margin-top: 20px; */
   resize: none;
 `;
 
 export const UserMindBtn = styled.div`
   /* background-color: blueviolet; */
+  position: absolute;
+  top: 280px;
   margin-left: 10px;
 `;
 
@@ -74,7 +78,7 @@ export const UserMindBtnLike = styled.figure`
   cursor: pointer;
   vertical-align: middle;
   text-align: center;
-  background-color: bisque;
+  /* background-color: bisque; */
   /* background-color: transparent; */
 `;
 
