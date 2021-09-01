@@ -76,5 +76,7 @@
   },
   "resolutions": {
     "styled-components": "^5"
+    "@babel/core": "^7.15.0"
+
   }
 }

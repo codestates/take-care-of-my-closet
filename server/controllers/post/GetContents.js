@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
 
   const final = contents[0];
 
-  console.log(final);
+  // console.log(final);
 
   res.status(200).json({
     contents: contents[0],
