@@ -7,44 +7,56 @@ export const Article = styled.article`
   margin: 0 auto;
   width: 1000px;
   /* height: 900px; */
-  padding: 50px;
+  padding: 90px 60px;
+  position: relative;
+
+  
 `;
 
 export const ContentImg = styled.div`
   background-color: chartreuse;
   width: 500px;
   height: 500px;
-  margin-right: 30px;
+  margin-right: 40px;
   /* margin: 0 40px 0 50px; */
   background-image: url(${(props) => props.src || ""});
   background-size: cover;
+  /* background-size: contain; */
   background-position: center;
   background-repeat: no-repeat;
+  padding: 30px;
 `;
 
 export const Section = styled.div`
-  padding-left: 30px;
+  /* padding: 80px 0; */
+
   background-color: blanchedalmond;
-  position: relative;
 `;
 
 export const Title = styled.p`
+  position: absolute;
+  top: 25px;
   background-color: blue;
   /* margin-top: 30px; */
   font-size: 20px;
   width: 300px;
   padding: 3px 0 3px 10px;
   line-height: 1.5;
+  white-space: nowrap;
+  overflow: hidden;
   /* margin-right: 50px; */
   /* text-align: center; */
+
 `;
 
 export const TextContent = styled.textarea`
   background-color: white;
   font-size: 16px;
+  margin-top: -40px;
   margin-bottom: 10px;
-  width: 450px;
-  margin-top: 20px;
+  width: 465px;
+  /* margin-top: 20px; */
+  resize: none;
 `;
 
 export const UserMindBtn = styled.div`
@@ -84,8 +96,8 @@ export const UserMindBtnDisLike = styled.figure`
 
 export const ModifyBtn = styled.button`
   position: absolute;
-  top: 0px;
-  right: 120px;
+  top: 25px;
+  right: 140px;
   background-color: chartreuse;
   padding: 8.5px 0;
   width: 50px;
@@ -94,8 +106,8 @@ export const ModifyBtn = styled.button`
 
 export const DeleteBtn = styled.button`
   position: absolute;
-  top: 0px;
-  right: 50px;
+  top: 25px;
+  right: 70px;
   background-color: chartreuse;
   padding: 8.5px 0;
   width: 50px;
