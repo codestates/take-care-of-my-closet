@@ -18,14 +18,20 @@ app.use(
   })
 )
 
-db.sequelize
-  .sync()
-  .then(() => {
-    console.log("db 연결 ")
-  })
-  .catch(console.error)
+// db.sequelize
+//   .sync()
+//   .then(() => {
+//     console.log("db 연결 ")
+//   })
+//   .catch(console.error)
 
 app.use(cookieParser())
+
+//get Server
+app.get("/", (req, res) => {
+  res.status(200).send("Welcome, closet Server!")
+})
+
 //user
 app.post("/login", controllers.login)
 app.get("/accessTokenrequest", controllers.accessTokenRequest)
@@ -52,8 +58,10 @@ app.post("/deletecomment", controllers.deletepost)
 app.post("/createFakeData", controllers.createFakeData)
 app.post("/upload", upload.single("closet"), controllers.upload)
 
-const HTTPS_PORT = 4000
+const HTTPS_PORT = 80
 let server
-server = app.listen(HTTPS_PORT)
+server = app.listen(HTTPS_PORT, () => {
+  console.log("server 실행")
+})
 
 module.exports = server
