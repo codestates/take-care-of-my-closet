@@ -7,11 +7,11 @@ module.exports = async (req, res) => {
   if (!req.body.id) {
     const posts = await post.findAll({
       include: { model: user, required: true, attributes: ["nickname"] },
-    })
+    });
 
-    res.status(200).json({ data: posts, message: "all posts" })
+    res.status(200).json({ data: posts, message: "all posts" });
   } else {
-    const dataUserId = req.body.id
+    const dataUserId = req.body.id;
 
     const posts = await post.findAll({
       where: { userId: dataUserId },
@@ -22,6 +22,6 @@ module.exports = async (req, res) => {
       },
     })
 
-    res.status(200).json({ data: posts, message: "my posts" })
+    res.status(200).json({ data: posts, message: "my posts" });
   }
 }

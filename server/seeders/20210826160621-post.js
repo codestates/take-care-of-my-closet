@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-     return queryInterface.bulkInsert("posts", [
+    return queryInterface.bulkInsert("posts", [
       {
         title: "스트릿 코디입니다.",
         image: "image1",
@@ -66,7 +66,7 @@ module.exports = {
         contents: "고수님들 평가좀 부탁 드립니다ㅠㅠ",
         createdAt: new Date(),
         updatedAt: new Date(),
-        userId: 3,
+        userId: 4,
       },
     ])
   },

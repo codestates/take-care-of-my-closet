@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import WriteReply from "./WriteReply";
-// import { dummyComment } from "../dummyData/dummyData";
+import axios from "axios";
+
+import { A11yHidden } from "../Styled/Common";
+import { ContentList } from "../Styled/ReplysStyled";
+
+axios.defaults.withCredentials = true;
 
 function Replys({
   isLogin,
@@ -9,25 +14,55 @@ function Replys({
   replyList,
   replyListHandler,
 }) {
+  const [selectedReplyId, setselectedReplyId] = useState("");
+
+  const deleteReply = (e) => {
+    e.preventDefault();
+    console.log(e.target.parentElement.getAttribute("class"));
+    setselectedReplyId(e.target.parentElement.getAttribute("class"));
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/deleteComment`, {
+        postId: selectedContent.id,
+        userId: userInfo.id,
+        id: selectedReplyId,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.message === "delete!") {
+          replyListHandler(res.data.comments);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
-    <div>
-      <ul>
-        {replyList.map((el) => {
-          return (
-            <li key={el.id}>
-              <p>@{el.nickname}</p>
-              <section>{el.comment}</section>
-            </li>
-          );
-        })}
-      </ul>
+    <>
+      <section>
+        <A11yHidden>댓글</A11yHidden>
+        <ContentList>
+          {replyList.map((el) => {
+            return (
+              <li key={el.id} className={el.id}>
+                <p>@{el.user.nickname}</p>
+                <span>{el.contents}</span>
+                {isLogin && el.user.nickname === userInfo.nickname ? (
+                  <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
+                ) : null}
+                {/* <button onClick={(e) => deleteReply(e)}>댓글 삭제</button> */}
+              </li>
+            );
+          })}
+        </ContentList>
+      </section>
       <WriteReply
         isLogin={isLogin}
         userInfo={userInfo}
         selectedContent={selectedContent}
         replyListHandler={replyListHandler}
       />
-    </div>
+    </>
   );
 }
 

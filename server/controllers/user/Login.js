@@ -1,4 +1,4 @@
-const { user,refreshtoken } = require("../../models")
+const { user, refreshtoken } = require("../../models")
 const { sign } = require("jsonwebtoken")
 
 module.exports = async (req, res) => {
@@ -14,26 +14,26 @@ module.exports = async (req, res) => {
     const accessToken = sign(userInfo, process.env.ACCESS_SECRET, {
       expiresIn: "1h",
     })
-    const refreshToken = sign(userInfo, process.env.REFRESH_SECRET,{
+    const refreshToken = sign(userInfo, process.env.REFRESH_SECRET, {
       expiresIn: "14d",
     })
-    
-     await res.cookie(
-      "accessToken",
-      accessToken,
-      { HttpOnly: true, Secure: false, SameSite: "None" }
-    )
 
-    await res.cookie(
-      "refreshToken",
-       refreshToken,
-      { HttpOnly: true, Secure: false, SameSite: "None" }
-    )
-    
-   await refreshtoken.create({
+    await res.cookie("accessToken", accessToken, {
+      HttpOnly: true,
+      Secure: false,
+      SameSite: "None",
+    })
+
+    await res.cookie("refreshToken", refreshToken, {
+      HttpOnly: true,
+      Secure: false,
+      SameSite: "None",
+    })
+
+    await refreshtoken.create({
       value: refreshToken,
-      userId: userInfo.id
-  })
+      userId: userInfo.id,
+    })
 
     res.status(200).send({ message: "ok" })
   }

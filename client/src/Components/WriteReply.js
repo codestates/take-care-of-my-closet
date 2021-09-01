@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
   const [replyValue, setReplyValue] = useState("");
 
@@ -9,38 +11,42 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
   };
 
   const requestReply = () => {
-    if (!isLogin) {
-      return alert("로그인 후 등록 가능합니다.");
-    }
     if (!replyValue) {
       return alert("댓글을 입력하세요.");
+    }
+    if (!isLogin) {
+      return alert("로그인 후 등록 가능합니다.");
     }
 
     const payload = {
       postId: selectedContent.id,
       userId: userInfo.id,
-      comment: replyValue,
+      comments: replyValue,
     };
 
     axios
-      .post("https://takecareofmycloset", payload, { withCredentials: true })
+      .post(`${process.env.REACT_APP_API_URL}/createComment`, payload)
       .then((res) => {
         // 등록한 댓글이 추가됨
-        console.log(res);
-        if (res.message === "ok") {
-          replyListHandler(res.comments);
+        console.log(res.data);
+        if (res.data.message === "create!") {
+          replyListHandler(res.data.contents);
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
   return (
     <div>
-      <ul>
-        <textarea
-          onChange={(e) => inputReplyHandler(e)}
-          placeholder="여기에 댓글을 입력하세요"
-        ></textarea>
-      </ul>
+      <textarea
+        rows="10"
+        cols="40"
+        onChange={(e) => inputReplyHandler(e)}
+        placeholder="여기에 댓글을 입력하세요"
+      />
+
       <button onClick={requestReply}>등록</button>
     </div>
   );

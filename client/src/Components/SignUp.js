@@ -3,6 +3,8 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import logo from "../image/logo.jpeg";
 
+axios.defaults.withCredentials = true;
+
 function SignUp() {
   const [idValue, setIdValue] = useState("");
   const [pwValue, setPwValue] = useState("");
@@ -19,6 +21,9 @@ function SignUp() {
   const [duplicatedIdMessage, setDuplicatedIdMessage] = useState("");
   const [duplicatedNickMessage, setDuplicatedNickMessage] = useState("");
 
+  const [imageUrl, setImageUrl] = useState("");
+  const formData = new FormData();
+
   useEffect(() => {
     isValidPassword();
     isMatch();
@@ -32,7 +37,7 @@ function SignUp() {
     validIdMessage,
     profileImage,
   ]);
-  console.log(profileImage);
+  // console.log(profileImage);
   const history = useHistory();
 
   const inputIdHandler = (e) => {
@@ -48,15 +53,33 @@ function SignUp() {
   };
 
   const inputProfileHandler = (e) => {
-    // console.log(e.target.files[0]);
+    console.log(e.target.files[0]);
     setProfileImage(e.target.files[0]);
-    // console.log(profileImage);
+    // console.log("프로필 사진", profileImage);
     let reader = new FileReader(); // -> 파일 읽기 완료
 
     reader.onload = function () {
       setProfileUrl(reader.result);
     };
     reader.readAsDataURL(e.target.files[0]);
+
+    const img = e.target.files[0];
+    formData.append("closet", img);
+    // console.log(formData); // FormData {}
+    // for (const keyValue of formData) console.log("폼데이터", keyValue); // ["img", File] File은 객체
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/upload`, formData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.message === "ok") {
+          setImageUrl(res.data.image_url);
+        } else {
+          alert("이미지 업로드에 실패했습니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const inputNickNameHandler = (e) => {
@@ -70,7 +93,7 @@ function SignUp() {
     }
     axios
       .post(
-        "https://takecareofmycloset/duplicate",
+        `${process.env.REACT_APP_API_URL}/duplicate`,
         {
           login_id: idValue,
         },
@@ -95,7 +118,7 @@ function SignUp() {
     e.preventDefault();
     axios
       .post(
-        "https://takecareofmycloset/duplicate",
+        `${process.env.REACT_APP_API_URL}/duplicate`,
         {
           nickname: nickName,
         },
@@ -159,23 +182,20 @@ function SignUp() {
     if (duplicatedNick === false) {
       return alert("닉네임이 유효하지 않습니다.");
     }
-
     axios
-      .post(
-        "https://takecareofmycloset/signup",
-        {
-          login_id: idValue,
-          password: pwValue,
-          nickname: nickName,
-          user_image: profileUrl,
-        },
-        { withCredentials: true }
-      )
+      .post(`${process.env.REACT_APP_API_URL}/signup`, {
+        login_id: idValue,
+        password: pwValue,
+        nickname: nickName,
+        user_image: imageUrl,
+      })
       .then((res) => {
-        console.log(res.message);
-        if (res.message === "ok") {
+        console.log(res.data.message);
+        if (res.data.message === "create!") {
           alert("가입이 완료되었습니다.");
           history.push("/login");
+        } else {
+          alert("이미 존재하는 회원입니다.");
         }
       })
       .catch((err) => {
@@ -191,7 +211,8 @@ function SignUp() {
       <h2>회원가입</h2>
       <form>
         <fieldset>
-          아이디 :{" "}
+          <legend>회원가입 폼</legend>
+          <label>아이디 : </label>
           <input
             type="text"
             onChange={(e) => inputIdHandler(e)}
@@ -200,26 +221,25 @@ function SignUp() {
           />
           <button onClick={(e) => isDuplicatedId(e)}>중복확인</button>
           {duplicatedIdMessage ? duplicatedIdMessage : null}
-          <br />
           {validIdLength ? null : validIdMessage}
-          비밀번호 :{" "}
+          <label>비밀번호 : </label>
           <input
             type="password"
             onChange={(e) => inputPwHandler(e)}
             value={pwValue}
             placeholder="비밀번호를 입력하세요"
           />
-          <br />
-          {validPwLength ? null : "비밀번호는 8자 이상 16자 이하여야 합니다."}
-          비밀번호 확인 :{" "}
+          {validPwLength ? null : (
+            <span>비밀번호는 8자 이상 16자 이하여야 합니다.</span>
+          )}
+          <label>비밀번호 확인 : </label>
           <input
             type="password"
             onChange={(e) => inputMatchPwHandler(e)}
             placeholder="비밀번호 확인"
           />
-          <br />
-          {pwMatch ? null : "비밀번호가 일치하지 않습니다."}
-          프로필 사진 첨부 :{" "}
+          {pwMatch ? null : <span>비밀번호가 일치하지 않습니다.</span>}
+          <label>프로필 사진 첨부 : </label>
           <input
             type="file"
             name="user_image"
@@ -227,16 +247,14 @@ function SignUp() {
             onChange={(e) => inputProfileHandler(e)}
           />
           <img src={profileUrl} alt="img-thumbnail" />
-          <br />
-          닉네임 :{" "}
+          <label>닉네임 : </label>
           <input
             type="text"
             onChange={(e) => inputNickNameHandler(e)}
             placeholder="닉네임을 입력하세요"
           />
           <button onClick={(e) => isDuplicatedNick(e)}>중복확인</button>
-          {duplicatedNickMessage ? duplicatedNickMessage : null}
-          <br />
+          {duplicatedNickMessage ? <span>{duplicatedNickMessage}</span> : null}
           <button onClick={(e) => requestSignUp(e)}>가입하기</button>
         </fieldset>
       </form>

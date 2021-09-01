@@ -1,8 +1,8 @@
 const { user } = require("../../models")
 
 module.exports = async (req, res) => {
-  console.log(req.body.userinfo)
-  const { login_id, password, nickname, image } = req.body.userinfo
+  console.log("qwerqwerqwerewr", req.body)
+  const { login_id, password, nickname, user_image } = req.body
 
   const [userInfo, created] = await user.findOrCreate({
     where: { login_id: login_id },
@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
       login_id: login_id,
       password: password,
       nickname: nickname,
-      user_image: image,
+      user_image: user_image,
     },
   })
 
