@@ -3,7 +3,8 @@ import styled from "styled-components";
 export const MainUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 80px;
+  margin-top: 60px;
+  list-style: none;
   /* margin-bottom:100px ; */
   /* justify-content: space-around; */
   justify-content: space-between;
@@ -17,9 +18,9 @@ export const MainArticle = styled.article`
   /* display: flex;
   flex-direction: column; */
   /* justify-content: space-between; */
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   border-radius: 15px;
-  border: 0;
+  border: 1px solid #BDBDBD;
   /* padding: 0 30px; */
   margin: 90px 40px;
 `;

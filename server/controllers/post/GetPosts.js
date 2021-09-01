@@ -5,14 +5,19 @@ module.exports = async (req, res) => {
   //     include: [{ model: user, attributes: ["nickname"] }],
   //   })
   if (!req.body.id) {
-    const posts = await post.findAll({
+    let posts = await post.findAll({
       include: { model: user, required: true, attributes: ["nickname"] },
-    });
+    })
     //console.log(posts)
-    res.status(200).json({ data: posts, message: "all posts" });
+
+    posts.sort(function (a, b) {
+      return b.id - a.id
+    })
+
+    res.status(200).json({ data: posts, message: "all posts" })
   } else {
-    const dataUserId = req.body.id;
-     
+    const dataUserId = req.body.id
+
     const posts = await post.findAll({
       where: { userId: dataUserId },
       include: {
@@ -21,7 +26,13 @@ module.exports = async (req, res) => {
         attributes: ["nickname"],
       },
     })
-    
-    res.status(200).json({ data: posts, message: "my posts" });
+
+    // console.log(posts)
+
+    posts.sort(function (a, b) {
+      return b.id - a.id
+    })
+
+    res.status(200).json({ data: posts, message: "my posts" })
   }
 }
