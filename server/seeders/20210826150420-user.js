@@ -12,7 +12,7 @@ module.exports = {
      * }], {});
      */
 
-    return queryInterface.bulkInsert("users", [
+     return queryInterface.bulkInsert("users", [
       {
         login_id: "dailyLook123",
         password: "test1",
@@ -55,7 +55,6 @@ module.exports = {
       },
     ])
   },
-
   down: async (queryInterface, Sequelize) => {
     /**
      * Add commands to revert seed here.

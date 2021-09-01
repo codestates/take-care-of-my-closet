@@ -1,6 +1,7 @@
 const db = require("../../models")
 
 module.exports = async (req, res) => {
+  console.log("*********", req.body)
   const data = req.body
 
   const likes = db.sequelize.models.likes
@@ -31,12 +32,10 @@ module.exports = async (req, res) => {
     const like = await likes.findAll({ where: { postId: data.postId } })
     const unlike = await unlikes.findAll({ where: { postId: data.postId } })
 
-    res
-      .status(200)
-      .json({
-        data: { like: like.length, unlike: unlike.length },
-        message: "ok",
-      })
+    res.status(200).json({
+      data: { like: like.length, unlike: unlike.length },
+      message: "ok",
+    })
   } else {
     const islike = await likes.findOne({
       where: { postId: data.postId, userId: data.userId },
@@ -59,11 +58,9 @@ module.exports = async (req, res) => {
     const like = await likes.findAll({ where: { postId: data.postId } })
     const unlike = await unlikes.findAll({ where: { postId: data.postId } })
 
-    res
-      .status(200)
-      .json({
-        data: { like: like.length, unlike: unlike.length },
-        message: "ok",
-      })
+    res.status(200).json({
+      data: { like: like.length, unlike: unlike.length },
+      message: "ok",
+    })
   }
 }

@@ -11,7 +11,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
-    return queryInterface.bulkInsert("comments", [
+     return queryInterface.bulkInsert("comments", [
       {
         contents: "멋있네요!!",
         userId: 2,
@@ -61,7 +61,6 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-
       {
         contents: "난 올블랙 극호",
         userId: 4,

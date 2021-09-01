@@ -20,13 +20,14 @@ app.use(
   })
 )
 
-app.get("/", (req, res) => {
-  res.status(200).send("Welcome, take_care_Server!")
-  // status는 응답코드, send에 바디값을 넣어 응답을 보내줌
-})
+db.sequelize
+  .sync()
+  .then(() => {
+    console.log("db 연결 ")
+  })
+  .catch(console.error)
 
 app.use(cookieParser())
-
 //user
 app.post("/login", controllers.login)
 app.get("/accessTokenrequest", controllers.accessTokenRequest)
@@ -53,7 +54,7 @@ app.post("/deletecomment", controllers.deletepost)
 app.post("/createFakeData", controllers.createFakeData)
 app.post("/upload", upload.single("closet"), controllers.upload)
 
-const HTTPS_PORT = 80
+const HTTPS_PORT = 4000
 let server
 server = app.listen(HTTPS_PORT)
 
