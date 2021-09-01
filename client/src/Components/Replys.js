@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import WriteReply from "./WriteReply";
-import axios from "axios";
+import React, { useState, useEffect } from "react"
+import WriteReply from "./WriteReply"
+import axios from "axios"
 
-import { A11yHidden } from "../Styled/Common";
-import { ReplysUl , ReplyLi} from "../Styled/ReplysStyled";
+import { A11yHidden } from "../Styled/Common"
+import { ReplysUl, ReplyLi } from "../Styled/ReplysStyled"
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true
 
 function Replys({
   isLogin,
@@ -14,7 +14,7 @@ function Replys({
   replyList,
   replyListHandler,
 }) {
-  const [selectedReplyId, setselectedReplyId] = useState("");
+  const [selectedReplyId, setselectedReplyId] = useState("")
 
   useEffect(() => {
     axios
@@ -24,39 +24,41 @@ function Replys({
         id: selectedReplyId,
       })
       .then((res) => {
-        console.log("댓글 삭제 요청 응답", res.data);
+        console.log("댓글 삭제 요청 응답", res.data)
         if (res.data.message === "delete!") {
-          replyListHandler(res.data.data);
+          replyListHandler(res.data.data)
         }
       })
       .catch((err) => {
-        console.log(err);
-      });
-  }, [selectedReplyId]);
+        console.log(err)
+      })
+  }, [selectedReplyId])
 
   const deleteReply = (e) => {
-    e.preventDefault();
-    console.log(e.target.parentElement.getAttribute("class"));
-    setselectedReplyId(e.target.parentElement.getAttribute("class"));
-  };
+    e.preventDefault()
+    console.log(e.target.parentElement.getAttribute("class"))
+    setselectedReplyId(e.target.parentElement.getAttribute("class"))
+  }
 
   return (
     <>
       <section>
         <A11yHidden>댓글</A11yHidden>
         <ReplysUl>
-          {replyList.map((el) => {
-            return (
-              <ReplyLi key={el.id} className={el.id}>
-                <p>&#64;{el.user.nickname}</p>
-                <span>{el.contents}</span>
-                {isLogin && el.user.nickname === userInfo.nickname ? (
-                  <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
-                ) : null}
-                {/* <button onClick={(e) => deleteReply(e)}>댓글 삭제</button> */}
-              </ReplyLi>
-            );
-          })}
+          {replyList
+            ? replyList.map((el) => {
+                return (
+                  <ReplyLi key={el.id} className={el.id}>
+                    <p>&#64;{el.user.nickname}</p>
+                    <span>{el.contents}</span>
+                    {isLogin && el.user.nickname === userInfo.nickname ? (
+                      <button onClick={(e) => deleteReply(e)}>댓글 삭제</button>
+                    ) : null}
+                    {/* <button onClick={(e) => deleteReply(e)}>댓글 삭제</button> */}
+                  </ReplyLi>
+                )
+              })
+            : null}
         </ReplysUl>
       </section>
       <WriteReply
@@ -66,7 +68,7 @@ function Replys({
         replyListHandler={replyListHandler}
       />
     </>
-  );
+  )
 }
 
-export default Replys;
+export default Replys

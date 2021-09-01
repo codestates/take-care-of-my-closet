@@ -1,18 +1,20 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "./MyPage.css";
+import React, { useState } from "react"
+import axios from "axios"
+import "./MyPage.css"
 
-axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true
 
 function MyPage({ isLogin, userInfo, setUserInfo }) {
-  const [imageFile, setImageFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
-  const [password, setPassword] = useState("");
-  const [nickName, setNickName] = useState("");
-  const [url, setUrl] = useState();
+  const [imageFile, setImageFile] = useState(null)
+  const [imageUrl, setImageUrl] = useState(null)
+  const [password, setPassword] = useState("")
+  const [nickName, setNickName] = useState("")
+  const [url, setUrl] = useState("")
 
-  const [nickNameClassNameOn, setNickNameClassNameOn] = useState("");
-  const [classNameOn, setClassNameOn] = useState("hide");
+  const [nickNameClassNameOn, setNickNameClassNameOn] = useState("")
+  const [classNameOn, setClassNameOn] = useState("hide")
+
+  console.log("url", url)
 
   // <function>
 
@@ -25,37 +27,37 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
       "image/png",
       "image/gif",
       "image/bmp",
-    ];
-    return type.indexOf(img.type) > -1; // true or false
+    ]
+    return type.indexOf(img.type) > -1 // true or false
   }
 
   // 비밀번호 유효성 검사 함수
   function validationPw(value) {
     // console.log(`비밀번호 길이 ${value.length}`); // 비밀번호 길이
-    return (value.length >= 8) & (value.length <= 16);
+    return (value.length >= 8) & (value.length <= 16)
   }
 
   // 클래스네임 붙이는 함수
   function classNaming(value) {
     if (validationPw(value)) {
       // 여기로 넘어오게 되면 비밀번호 유효성 검사가 통과 된것이다.
-      setClassNameOn("hide");
+      setClassNameOn("hide")
     } else {
       // 그게 아니면 비밀번호 유효성 검사가 실패한것이다.
-      setClassNameOn("check");
+      setClassNameOn("check")
     }
   }
 
   // 비밀번호 확인 함수
   function pwIsMatch(secondPw) {
-    console.log(password, secondPw);
-    return password === secondPw;
+    console.log(password, secondPw)
+    return password === secondPw
   }
 
   // <서버 요청>
   // 닉네임 수정 요청
   function nickNameDuplicated(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/duplicate`, nickName, {
@@ -64,20 +66,21 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
       .then((res) => {
         if (res.status === 409) {
           // 닉네임 중복
-          setNickNameClassNameOn("check");
+          setNickNameClassNameOn("check")
         } else {
           // 닉네임 중복 아님
-          setNickNameClassNameOn("hide");
+          setNickNameClassNameOn("hide")
         }
-      });
+      })
   }
 
   // 저장 요청
   function requestSave(e) {
-    e.preventDefault();
+    e.preventDefault()
     // 이미지 아이디 비밀번호 닉네임 서버에 요청
+
     axios
-      .put(`${process.env.REACT_APP_API_URL}/modifyUserInfo`, {
+      .put(`${process.env.REACT_APP_API_URL}/modifyUserinfo`, {
         login_id: userInfo.login_id,
         password: password || null,
         image: url || userInfo.image,
@@ -92,79 +95,77 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
           //   nickname: nickName
           // })
         }
-      });
+      })
   }
 
   // <Event>
 
   // image 등록 이벤트
   const setImageFromFile = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     // console.log(file);
     /* {name: "logo.jpeg", lastModified: 1629899741611, 
     lastModifiedDate: Wed Aug 25 2021 22:55:41 GMT+0900 
     (한국 표준시), webkitRelativePath: "", size: 385201, …}*/
 
     if (!validImageType(file)) {
-      alert("이미지 파일이 아닙니다. 이미지 파일로 업로드 부탁드립니다.");
-      console.log(
-        "It is not an image file. Please upload it as an image file."
-      );
-      return;
+      alert("이미지 파일이 아닙니다. 이미지 파일로 업로드 부탁드립니다.")
+      console.log("It is not an image file. Please upload it as an image file.")
+      return
     } else {
-      console.log("The image file is correct. please continue");
+      console.log("The image file is correct. please continue")
     }
 
-    setImageFile(file);
+    setImageFile(file)
 
-    let reader = new FileReader(); // -> 파일 읽기 완료
+    let reader = new FileReader() // -> 파일 읽기 완료
 
     reader.onload = function () {
-      setImageUrl(reader.result);
-    };
-    reader.readAsDataURL(file);
+      setImageUrl(reader.result)
+    }
+    reader.readAsDataURL(file)
 
-    const formData = new FormData();
-    formData.append("closet", file);
+    const formData = new FormData()
+    formData.append("closet", file)
 
     axios
       .post(`${process.env.REACT_APP_API_URL}/upload`, formData)
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data)
         if (res.data.message === "ok") {
-          setUrl(res.data.image_url);
+          setUrl(res.data.image_url)
         } else {
-          alert("이미지 업로드에 실패했습니다.");
+          alert("이미지 업로드에 실패했습니다.")
         }
       })
       .catch((err) => {
-        console.log(err);
-      });
-  };
+        console.log(err)
+      })
+  }
 
   // 유효성 검사 이벤트
   // - 첫번째 비밀번호 onChange 이벤트
   function passwordChecking1(e) {
-    setPassword(e.target.value); // 비밀번호 바뀌었음
-    validationPw(e.target.value); // 비밀번호 유효성 검사 함수
-    classNaming(e.target.value);
+    setPassword(e.target.value) // 비밀번호 바뀌었음
+    validationPw(e.target.value) // 비밀번호 유효성 검사 함수
+    classNaming(e.target.value)
   }
 
   // - 두번째 비밀번호 onChange 이벤트
   function passwordChecking2(e) {
     if (!pwIsMatch(e.target.value)) {
       // 여기로 넘어오면 중복되는 것이다.
-      setClassNameOn("check");
+      setClassNameOn("check")
     } else {
       // 여기로 넘어오면 중복되지 않는 것이다.
-      setClassNameOn("hide");
+      setClassNameOn("hide")
     }
   }
 
   // 닉네임 수정하는 이벤트
   function nickNameChange(e) {
     // console.log(e.target.value);
-    setNickName(e.target.value);
+    setNickName(e.target.value)
   }
 
   return (
@@ -184,7 +185,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
             name="imgFile"
             id="imgFile"
             onChange={(e) => {
-              setImageFromFile(e);
+              setImageFromFile(e)
             }}
           />
           <section>
@@ -193,7 +194,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
               type="password"
               placeholder="비밀번호를 입력해주세요"
               onChange={(e) => {
-                passwordChecking1(e);
+                passwordChecking1(e)
               }}
             />
             <span className={classNameOn}>
@@ -203,7 +204,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
               type="password"
               placeholder="비밀번호 확인"
               onChange={(e) => {
-                passwordChecking2(e);
+                passwordChecking2(e)
               }}
             />
             <span className={classNameOn}>비밀번호가 일치하지 않습니다</span>
@@ -212,7 +213,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
               type="text"
               placeholder="닉네임을 입력해주세요"
               onChange={(e) => {
-                nickNameChange(e);
+                nickNameChange(e)
               }}
             />
             <span className={nickNameClassNameOn}>
@@ -220,7 +221,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
             </span>
             <button
               onClick={(e) => {
-                nickNameDuplicated(e);
+                nickNameDuplicated(e)
               }}
             >
               중복확인
@@ -228,7 +229,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
           </section>
           <button
             onClick={(e) => {
-              requestSave();
+              requestSave(e)
             }}
           >
             저장
@@ -236,7 +237,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
         </fieldset>
       </form>
     </section>
-  );
+  )
 }
 
-export default MyPage;
+export default MyPage
