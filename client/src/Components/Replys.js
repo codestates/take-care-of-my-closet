@@ -3,7 +3,7 @@ import WriteReply from "./WriteReply";
 import axios from "axios";
 
 import { A11yHidden } from "../Styled/Common";
-import { ReplysUl , ReplyLi} from "../Styled/ReplysStyled";
+import { ReplysUl, ReplyLi } from "../Styled/ReplysStyled";
 
 axios.defaults.withCredentials = true;
 
@@ -36,8 +36,8 @@ function Replys({
 
   const deleteReply = (e) => {
     e.preventDefault();
-    console.log(e.target.parentElement.getAttribute("class"));
-    setselectedReplyId(e.target.parentElement.getAttribute("class"));
+    console.log(e.target.parentElement.getAttribute("id"));
+    setselectedReplyId(e.target.parentElement.getAttribute("id"));
   };
 
   return (
@@ -47,7 +47,7 @@ function Replys({
         <ReplysUl>
           {replyList.map((el) => {
             return (
-              <ReplyLi key={el.id} className={el.id}>
+              <ReplyLi key={el.id} id={el.id}>
                 <p>&#64;{el.user.nickname}</p>
                 <span>{el.contents}</span>
                 {isLogin && el.user.nickname === userInfo.nickname ? (
