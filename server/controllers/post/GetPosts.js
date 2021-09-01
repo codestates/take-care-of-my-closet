@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
     res.status(200).json({ data: posts, message: "all posts" });
   } else {
     const dataUserId = req.body.id;
-     
+
     const posts = await post.findAll({
       where: { userId: dataUserId },
       include: {

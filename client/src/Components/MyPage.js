@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./MyPage.css";
+import { useHistory } from "react-router-dom";
 
 axios.defaults.withCredentials = true;
 
@@ -13,6 +14,8 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
 
   const [nickNameClassNameOn, setNickNameClassNameOn] = useState("");
   const [classNameOn, setClassNameOn] = useState("hide");
+
+  const history = useHistory();
 
   // <function>
 
@@ -58,9 +61,15 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
     e.preventDefault();
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/duplicate`, nickName, {
-        withCredentials: true,
-      })
+      .post(
+        `${process.env.REACT_APP_API_URL}/duplicate`,
+        {
+          nickname: nickName,
+        },
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         if (res.status === 409) {
           // 닉네임 중복
@@ -74,24 +83,32 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
 
   // 저장 요청
   function requestSave(e) {
+    console.log(userInfo);
     e.preventDefault();
     // 이미지 아이디 비밀번호 닉네임 서버에 요청
     axios
-      .put(`${process.env.REACT_APP_API_URL}/modifyUserInfo`, {
+      .put(`${process.env.REACT_APP_API_URL}/modifyuserinfo`, {
         login_id: userInfo.login_id,
         password: password || null,
         image: url || userInfo.image,
         nickname: nickName || userInfo.nickname,
       })
       .then((res) => {
-        if (res.message === "ok") {
+        console.log("회원정보 수정 요청 응답", res.data);
+        if (res.data.message === "ok") {
           // accessToken
-          // setUserInfo({
-          //   login_id:userInfo.login_id,
-          //   image: imageUrl,
-          //   nickname: nickName
-          // })
+          setUserInfo({
+            id: res.data.data.userInfo.id,
+            login_id: res.data.data.userInfo.login_id,
+            image: res.data.data.userInfo.user_image,
+            nickname: res.data.data.userInfo.nickname,
+          });
+          alert("회원정보 수정이 완료되었습니다.");
+          history.push("/");
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 
@@ -228,7 +245,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
           </section>
           <button
             onClick={(e) => {
-              requestSave();
+              requestSave(e);
             }}
           >
             저장

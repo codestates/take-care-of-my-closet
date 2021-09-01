@@ -35,20 +35,19 @@ function Content({
   replyList,
   replyListHandler,
   getSelectedContent,
-  selectedId,
   contentsListHandler,
   getUserInfo,
 }) {
-  const [currentPageId, setCurrentPageId] = useState();
-
   console.log("게시글 선택창", selectedContent);
   const history = useHistory();
 
   console.log(userInfo.id, selectedContent.userId);
   useEffect(() => {
-    localStorage.setItem("selectedPostId", selectedId);
-    console.log(localStorage.getItem("selectedPostId"));
+    // localStorage.setItem("selectedPostId", selectedId);
+    // console.log(localStorage.getItem("selectedPostId"));
     getSelectedContent(localStorage.getItem("selectedPostId"));
+    // console.log("987987987987987987987", selectedContent);
+    // if (localStorage.getItem("selectedPostId"))
   }, []);
 
   const modifyHandler = () => {
