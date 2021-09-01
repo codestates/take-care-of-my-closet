@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../image/logo.jpeg";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 708078ddd655141b1898c4d37c1ef5c1bdcaef3b
 import User from "./User";
 import { NavContainer, Logo, Navigation, NavBtn } from "../Styled/NavStyled";
 
@@ -20,47 +23,11 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
 
   const createContent = (e) => {
     e.preventDefault();
-    // setNewContentBtnOn(true)
-    // console.log(newContentBtnOn);
-    // setSelectedContent({
-    //   id: '',
-    //   userId: '',
-    //   title: '',
-    //   image:'',
-    //   contents: '',
-    //   likecount: '',
-    //   unlikecount: ''
-    // }, sendData())
     history.push({
       pathname: "/content-modi-create",
       state: { newContent },
     });
   };
-
-  // const sendData = () =>{
-  //   history.push({
-  //     pathname :'/content-modi-create',
-  //     state: {selectedContent : selectedContent}
-  //   })
-  // }
-  // const createContent = async (e) => {
-  //   e.preventDefault()
-  //   // setNewContentBtnOn(true)
-  //   // console.log(newContentBtnOn);
-  //   setSelectedContent({
-  //     id: '',
-  //     userId: '',
-  //     title: '',
-  //     image:'',
-  //     contents: '',
-  //     likecount: '',
-  //     unlikecount: ''
-  //   }, () => {history.push({
-  //     pathname :'/content-modi-create',
-  //     state: {selectedContent : selectedContent}
-  // })})
-
-  // }
 
   return (
     <NavContainer>

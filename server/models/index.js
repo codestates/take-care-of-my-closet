@@ -1,84 +1,91 @@
-"use strict"
+"use strict";
 
-const fs = require("fs")
-const path = require("path")
-const Sequelize = require("sequelize")
-const basename = path.basename(__filename)
-const env = process.env.NODE_ENV || "development"
-const config = require(__dirname + "/../config/config.js")[env]
-const db = {}
+const fs = require("fs");
+const path = require("path");
+const Sequelize = require("sequelize");
+const basename = path.basename(__filename);
+const env = process.env.NODE_ENV || "development";
+const config = require(__dirname + "/../config/config.js")[env];
+const db = {};
 
-let sequelize
+let sequelize;
 if (config.use_env_variable) {
-  sequelize = new Sequelize(process.env[config.use_env_variable], config)
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(
     config.database,
     config.username,
     config.password,
     config
-  )
+  );
 }
 
 fs.readdirSync(__dirname)
   .filter((file) => {
     return (
       file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
-    )
+    );
   })
   .forEach((file) => {
     const model = require(path.join(__dirname, file))(
       sequelize,
       Sequelize.DataTypes
-    )
-    db[model.name] = model
-  })
+    );
+    db[model.name] = model;
+  });
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
-    db[modelName].associate(db)
+    db[modelName].associate(db);
   }
-})
+});
 
-const { user, post, comment ,refreshtoken} = sequelize.models
+const { user, post, comment, refreshtoken } = sequelize.models;
 
-post.belongsTo(user)
-user.hasMany(post)
+post.belongsTo(user);
+user.hasMany(post);
 
-user.hasMany(comment)
-comment.belongsTo(user)
+user.hasMany(comment);
+comment.belongsTo(user);
 
-post.hasMany(comment)
-comment.belongsTo(post)
+post.hasMany(comment);
+comment.belongsTo(post);
 
 //likes table - n : m
 user.belongsToMany(post, {
   through: "likes",
   foreignKey: "userId",
-})
+});
 
 post.belongsToMany(user, {
   through: "likes",
   foreignKey: "postId",
-})
+});
 
 //unlikes table - n : m
 user.belongsToMany(post, {
   through: "unlikes",
   foreignKey: "userId",
-})
+});
 
 post.belongsToMany(user, {
   through: "unlikes",
   foreignKey: "postId",
-})
+});
 
+user.hasOne(refreshtoken);
+
+<<<<<<< HEAD
 user.hasOne(refreshtoken);
 
 
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
+=======
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+>>>>>>> 708078ddd655141b1898c4d37c1ef5c1bdcaef3b
 
 // const likes = sequelize.models.likes
 
@@ -93,4 +100,4 @@ db.Sequelize = Sequelize
 // unlikes.belongsTo(user)
 // user.hasMany(unlikes)
 
-module.exports = db
+module.exports = db;
