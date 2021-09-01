@@ -48,7 +48,7 @@ app.post("/createpost", controllers.createpost)
 
 //comment
 app.post("/createComment", controllers.createComment)
-app.post("/deletecomment",controllers.deletepost)
+app.post("/deletecomment",controllers.deletecomment)
 
 //etc
 app.post("/createFakeData", controllers.createFakeData)
