@@ -1,6 +1,4 @@
 require("dotenv").config()
-const fs = require("fs")
-const https = require("https")
 const cors = require("cors")
 const db = require("./models/index")
 const express = require("express")
