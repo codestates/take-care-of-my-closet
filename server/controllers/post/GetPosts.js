@@ -8,13 +8,9 @@ module.exports = async (req, res) => {
     let posts = await post.findAll({
       include: { model: user, required: true, attributes: ["nickname"] },
     });
-
-    
     posts.sort(function (a,b){
       return b.id -a.id
     })
-
-
     res.status(200).json({ data: posts, message: "all posts" });
   } else {
     const dataUserId = req.body.id;

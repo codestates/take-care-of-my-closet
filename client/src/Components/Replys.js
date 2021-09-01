@@ -24,8 +24,7 @@ function Replys({
   const [selectedReplyId, setselectedReplyId] = useState("")
 
   useEffect(() => {
-
-    if (selectedReplyId) {
+    if(selectedReplyId){
       axios
         .post(`${process.env.REACT_APP_API_URL}/deletecomment`, {
           postId: selectedContent.id,
@@ -55,7 +54,7 @@ function Replys({
       <ReplysSection>
         <A11yHidden>댓글</A11yHidden>
         <ReplysUl>
-          {replyList
+        {replyList
             ? replyList.map((el) => {
                 return (
                   <ReplyLi key={el.id} id={el.id}>
@@ -64,8 +63,7 @@ function Replys({
                     {isLogin && el.user.nickname === userInfo.nickname ? (
                       <ReplyDeleteBtn
                         src={deleteBtn}
-                        onClick={(e) => deleteReply(e)}
-                      />
+                        onClick={(e) => deleteReply(e)}/>
                     ) : null}
                   </ReplyLi>
                 );

@@ -5,7 +5,7 @@ import Replys from "./Replys";
 import { Cookies } from "react-cookie";
 
 import { FlexArticle } from "../Styled/Flex";
-import { A11yHidden, Btn } from "../Styled/Common";
+import { A11yHidden, Btn,  } from "../Styled/Common";
 import {
   Article,
   ContentImg,
@@ -169,14 +169,13 @@ function Content({
         <Section>
           <Title>{selectedContent.title}</Title>
           <TextContent
-            readOnly="true"
+            readOnly={true}
             cols="30"
             rows="10"
             defaultValue={selectedContent.contents}
             // disabled="true"
-          >
+          />
             {/* {selectedContent.contents} */}
-          </TextContent>
           <UserMindBtn>
             <UserMindBtnLike src={like} onClick={likeHandler}>
               <Btn>{likeCount}</Btn>

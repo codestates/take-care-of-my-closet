@@ -1,29 +1,38 @@
 import styled from "styled-components";
-// import '../../image/LOGO.png'
 
 export const NavContainer = styled.div`
-  background-color: orange;
-  padding: 40px 60px 30px 60px;
-`;
+  background-color: white;
+  padding: 30px 120px 30px 60px;
+  border: 1px solid #BDBDBD;
+`
 
-export const Logo = styled.img`
-  background-color: bisque;
-  width: 250px;
-  vertical-align: middle;
+export const NavHeader = styled.header`
+  display:flex;
+  justify-content: space-between;
+`
+
+export const Logo = styled.div`
+  background-image: url(${props => props.src || ''});
+  background-repeat: no-repeat;
+  background-size: contain;
+  /* background-color: bisque; */
+  width: 240px;
+  height: 90px;
 `;
 
 export const Navigation = styled.nav`
   background-color: chartreuse;
-  width: 400px;
+  height: 50px;
   display: flex;
-  justify-content: space-around;
 `;
+
+
 export const NavBtn = styled.button`
-  display: inline-block;
   border: 0;
   cursor: pointer;
   background-color: darkkhaki;
-  width: 100px;
   height: 79px;
-  font-size: 20px;
+  font-size: 20px; 
+  margin-right: 40px;
 `;
+
