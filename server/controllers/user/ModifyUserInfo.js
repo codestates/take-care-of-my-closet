@@ -28,9 +28,7 @@ module.exports = async (req, res) => {
 
   })
   
-  delete findUser.dataValues.password
 
-  });
 
   delete findUser.dataValues.password;
 

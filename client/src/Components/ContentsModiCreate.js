@@ -8,7 +8,6 @@ import { ContentForm, ImageContent, FieldSet, CreateTitle , Section, CreateBtn, 
 import { TextContent} from "../Styled/ContentStyled";
 
 
-import './ContentModiCreate.css'
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -226,8 +225,7 @@ function ContentModiCreate({
           )}
           <CreateBtn onClick={(e) => requestSave(e)}>등록</CreateBtn>
           <Link to="/">
-            <CancelBtn>취소              
-              </CancelBtn>
+            <CancelBtn>취소</CancelBtn>
           </Link>
         </FieldSet>
       </ContentForm>
