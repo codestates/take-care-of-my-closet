@@ -50,10 +50,11 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
             <Link to="/login">
               <NavBtn style={{width:"80px"}}>로그인</NavBtn>
             </Link>
+             <Link to="/signup">
+              <NavBtn>회원가입</NavBtn>
+            </Link>
         )}
-        </Navigation>
-      </NavHeader>
-      {/* <hr> */}
+      </Navigation>
     </NavContainer>
   );
 }

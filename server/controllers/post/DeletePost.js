@@ -6,8 +6,16 @@ module.exports = async (req, res) => {
 
   const unlikes = db.sequelize.models.unlikes;
 
+  const posts = await post.findOne({
+    where :{id : req.body.postId, userId : req.body.login_id}
+  })  
+ 
+  if(!posts){
+    return res.status(401).json({message:"Unauthorized"})
+  }
+
   await post.destroy({
-    where: { id: req.body.postId },
+    where: { id: req.body.id },
   });
 
   await comment.destroy({
