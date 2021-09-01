@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation, useHistory } from "react-router-dom";
-
-import {imageContent} from '../Styled/ContentModiCreateStyled'
-
+// import "./reset.css";
+import "./ContentModiCreate.css";
 import { Cookies } from "react-cookie";
 
 axios.defaults.withCredentials = true;
