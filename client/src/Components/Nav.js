@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../image/logo.jpeg";
-<<<<<<< HEAD
 
-=======
->>>>>>> 708078ddd655141b1898c4d37c1ef5c1bdcaef3b
 import User from "./User";
 import { NavContainer, Logo, Navigation, NavBtn } from "../Styled/NavStyled";
 
