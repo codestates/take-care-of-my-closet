@@ -1,16 +1,15 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 // import "./Main.css";
 // import "./reset.css";
-
 import { A11yHidden } from "../Styled/Common";
-import { MainUl, MainArticle, MainImg, MainP, Nick } from "../Styled/MainStyled";
+import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
 
 function Main({ contents, handleContentClick }) {
   if (contents.length === 0) {
-    return <div>게시글이 없습니다.</div>
+    return <div>게시글이 없습니다.</div>;
   }
-  console.log("메인페이지 컨텐츠", contents)
+  console.log("메인페이지 컨텐츠", contents);
   return (
     <main  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
       <A11yHidden>메인 페이지</A11yHidden>
@@ -25,15 +24,13 @@ function Main({ contents, handleContentClick }) {
                   {/* <img style={{width: "100px"}} src={el.user_image} alt="dd"/> */}
                   <MainP style={ {borderTop:"1px solid #ccc"}}>&#64;{el.user.nickname}</MainP>
                 </MainArticle>
-              </Link>
+              </Link >
             </li>
-
           );
-
         })}
       </MainUl>
     </main>
-  )
+  );
 }
 
-export default Main
+export default Main;

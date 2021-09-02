@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-// import "./MyContents.css";
+import "./MyContents.css";
 // import "./reset.css";
-import {ul} from '../Styled/MyContentStyled'
 import { Cookies } from "react-cookie";
 import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
-import { A11yHidden, Legend } from "../Styled/Common";
-
-
+import { A11yHidden } from "../Styled/Common";
 
 const cookies = new Cookies();
 
@@ -37,6 +34,8 @@ function MyContents({
       .catch((err) => {
         console.log(err);
       });
+    
+
   }, [userInfo]);
 
   if (!isLogin) {
@@ -47,6 +46,7 @@ function MyContents({
   }
 
   return (
+
     <section  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
        <A11yHidden>마이 콘텐츠</A11yHidden>
        <MainUl>
@@ -63,7 +63,7 @@ function MyContents({
             </Link>
           );
         })}
-     </MainUl>
+      </MainUl>
     </section>
   );
 }

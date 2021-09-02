@@ -81,7 +81,6 @@ export const ReplyDeleteBtn = styled.button`
   background-size: contain;
   position: absolute;
   right: 0px;
-  margin-top: -13%;
   cursor: pointer;
 `;
 

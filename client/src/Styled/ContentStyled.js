@@ -124,3 +124,7 @@ export const DeleteBtn = styled.button`
   width: 50px;
   border: 0;
 `;
+
+
+const add = ( a, b) => { return a + b}
+add(2, 3)

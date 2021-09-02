@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -61,17 +61,13 @@ module.exports = {
       {
         login_id: "jjub0217",
         password: "test6",
-<<<<<<< HEAD
         user_image:
           "https://take-closet-bucket.s3.ap-northeast-2.amazonaws.com/data/%ED%94%84%EB%A1%9C%ED%95%84+%EC%9D%B4%EB%AF%B8%EC%A7%80/%EC%9C%A0%EC%A0%806.jpg",
-=======
-        user_image: "image5",
->>>>>>> d4169a4e1d5ff483c99681c240c542907b09a866
         nickname: "joo",
         createdAt: new Date(),
         updatedAt: new Date(),
       },
-    ])
+    ]);
   },
   down: async (queryInterface, Sequelize) => {
     /**
@@ -81,6 +77,6 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
 
-    await queryInterface.bulkDelete("users", null, {})
+    await queryInterface.bulkDelete("users", null, {});
   },
-}
+};
