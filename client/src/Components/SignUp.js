@@ -280,7 +280,7 @@ function SignUp() {
             />
             <DuplicateBtn onClick={(e) => isDuplicatedNick(e)}>중복확인</DuplicateBtn>
           </div>
-          {duplicatedNickMessage ? <span>{duplicatedNickMessage}</span> : null}
+          {duplicatedNickMessage ? <span style={{marginLeft: "-160px" ,color: "red"}}>{duplicatedNickMessage}</span> : null}
           <UserSave onClick={(e) => requestSignUp(e)}>가입하기</UserSave>
         </SignUpFieldset>
       </SignUpForm>
