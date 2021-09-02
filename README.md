@@ -1,5 +1,5 @@
 # PROJECT
-![LOGO](https://user-images.githubusercontent.com/83861190/131789966-9cae979b-e9fb-4f4b-806a-7146f077746b.png)
+![LOGO](https://images-ext-2.discordapp.net/external/CgG-sYgcMFqTvMW3WwVV0Hj1yE-kVRcYpRwtGX00zRA/https/user-images.githubusercontent.com/83861190/131800904-0f2759dc-7e1e-460d-880d-f62d7c1955df.jpeg?width=1027&height=387)
 
 ## ABOUT
 급하게 소개팅이 잡힌 당신! 옷을 어떻게 입어야 할지 고민이신가요?
@@ -16,7 +16,44 @@
 
 '옷장을 부탁해'입니다. :)
 
-## 기술 스택
+## 💻 기술 스택
+
+![기술스택](https://user-images.githubusercontent.com/81761175/131806554-7a7ce0c1-59b0-4943-8664-c08c166dc764.png)
+
 ### FRONT
 
+<img width= 180 src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+
+<img width= 180 src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styled-components&logoColor=black">
+
+<img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=aws&logoColor=white">
+
+
+JAVASCRIPT
+
+REACT / REACT HOOKS, REACT - ROUTER - DOM, REACT-COOKIE
+
+AXIOS
+
+STYLED-COMPONENTS
+
 ### BACK
+
+NODE.JS
+
+MYSQL
+
+SEQUELIZE
+
+EXPRESS / EXPRESS-CORS,  
+
+JSON WEB TOKEN
+
+MULTER
+
+AWS-SDK
+
+### 
+
+
+
