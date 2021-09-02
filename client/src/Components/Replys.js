@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import WriteReply from "./WriteReply";
 import axios from "axios";
@@ -8,10 +9,10 @@ import {
   ReplyLi,
   ReplysSection,
   ReplyDeleteBtn,
-} from "../Styled/ReplysStyled";
+} from "../Styled/ReplysStyled"
 
-import deleteBtn from "../image/x-mark.png";
-axios.defaults.withCredentials = true;
+import deleteBtn from "../image/x-mark.png"
+axios.defaults.withCredentials = true
 
 function Replys({
   isLogin,
@@ -31,22 +32,22 @@ function Replys({
           id: selectedReplyId,
         })
         .then((res) => {
-          console.log("댓글 삭제 요청 응답", res.data);
+          console.log("댓글 삭제 요청 응답", res.data)
           if (res.data.message === "delete!") {
-            replyListHandler(res.data.data);
+            replyListHandler(res.data.data)
           }
         })
         .catch((err) => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     }
-  }, [selectedReplyId]);
+  }, [selectedReplyId])
 
   const deleteReply = (e) => {
-    e.preventDefault();
-    console.log(e.target.parentElement.getAttribute("id"));
-    setselectedReplyId(e.target.parentElement.getAttribute("id"));
-  };
+    e.preventDefault()
+    console.log(e.target.parentElement.getAttribute("id"))
+    setselectedReplyId(e.target.parentElement.getAttribute("id"))
+  }
 
   return (
     <>
@@ -66,7 +67,7 @@ function Replys({
                       />
                     ) : null}
                   </ReplyLi>
-                );
+                )
               })
             : null}
         </ReplysUl>
