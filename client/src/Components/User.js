@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import '../Styled/UserStyled.css'
 import {FlexNavUl} from '../Styled/Flex'
 import {NavBtn} from '../Styled/NavStyled'
+import { Ul } from "../Styled/UserStyled";
 
 function User({ logoutHandler }, className) {
   const [userBtnIsOn, setUserBtnIsOn] = useState("");
@@ -29,7 +30,7 @@ function User({ logoutHandler }, className) {
           </Link>
         </div>
       ) : null}
-    </FlexNavUl>
+    </Ul>
   );
 }
 export default User;

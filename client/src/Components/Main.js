@@ -16,15 +16,15 @@ function Main({ contents, handleContentClick }) {
       <MainUl>
         {contents.map((el) => {
           return (
-            <Link to="/content" style={{ textDecoration: "none" }}>
-              <li key={el.id} onClick={() => handleContentClick(el.id)}>
+            <li key={el.id} onClick={() => handleContentClick(el.id)}>
+              <Link to="/content" style={{ textDecoration: "none" }}>
                 <MainArticle>
-                  <MainP>{el.title}</MainP>
+                  <p className="title">{el.title}</p>
                   <MainImg src={el.image} alt="img-thumbnail" />
                   <MainP>&#64;{el.user.nickname}</MainP>
                 </MainArticle>
-              </li>
-            </Link>
+              </Link>
+            </li>
           );
         })}
       </MainUl>

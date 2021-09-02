@@ -9,7 +9,7 @@ module.exports = async (req, res) => {
   });
 
   let currentUser = {
-    id: 2,
+    id: req.body.id,
     login_id: req.body.login_id,
     password: req.body.password || findUser1.password,
     user_image: req.body.image || findUser1.user_image,

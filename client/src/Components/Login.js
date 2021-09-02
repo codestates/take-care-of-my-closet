@@ -11,8 +11,6 @@ import {LoginForm, LoginFieldset, LoginInput, LoginBtn, LoginBtns} from '../Styl
 import './login.css'
 import '../Styled/Common.css'
 
-
-
 axios.defaults.withCredentials = true;
 
 const cookies = new Cookies();
@@ -79,7 +77,9 @@ function Login({ getUserInfo }) {
   return (
     <div class="login">
       <h1>
-        <Logo src={logo} />
+        <Link to="/">
+          <Logo src={logo} />
+        </Link>
       </h1>
       <A11yHidden>로그인</A11yHidden>
       <LoginForm>
