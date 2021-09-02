@@ -7,12 +7,14 @@ import { Cookies } from "react-cookie";
 
 const cookies = new Cookies();
 
-function MyContents({ isLogin, userInfo, handleContentClick, getUserInfo }) {
-  const [myContents, setMyContents] = useState([]);
-
+function MyContents({
+  isLogin,
+  userInfo,
+  handleContentClick,
+  myContents,
+  setMyContents,
+}) {
   useEffect(() => {
-    getUserInfo(cookies.get("accessToken"));
-    console.log("aaaaaaaaaaaaaaa", userInfo);
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/getposts`,
@@ -30,7 +32,7 @@ function MyContents({ isLogin, userInfo, handleContentClick, getUserInfo }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userInfo]);
 
   if (!isLogin) {
     return <div>로그인 후 이용하세요.</div>;

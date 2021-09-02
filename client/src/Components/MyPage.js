@@ -16,7 +16,6 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
   const [classNameOn, setClassNameOn] = useState("hide");
 
   console.log("url", url);
-
   const history = useHistory();
 
   // <function>
@@ -198,7 +197,11 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
       >
         <fieldset>
           <legend>회원정보 설정 폼</legend>
-          <img className="imageContent" src={imageUrl} alt="img-thumbnail" />
+          <img
+            className="imageContent"
+            src={imageUrl || userInfo.image}
+            alt="img-thumbnail"
+          />
           <input
             type="file"
             name="imgFile"
