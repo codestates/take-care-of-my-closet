@@ -3,26 +3,24 @@ import styled from "styled-components";
 export const MainUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 60px;
   list-style: none;
-  /* margin-bottom:100px ; */
-  /* justify-content: space-around; */
-  justify-content: space-between;
-  /* width: 1400px; */
-  /* height: 100%; */
-  width: 1300px;
-  /* background-color: blanchedalmond; */
+  justify-content: space-around;
+  /* margin: 10px 0; */
+  background-color: green;
+  margin: 0;
 `;
 
 export const MainArticle = styled.article`
-  /* display: flex;
-  flex-direction: column; */
-  /* justify-content: space-between; */
-  /* background-color: blueviolet; */
+
+  background-color: blueviolet;
   border-radius: 15px;
   border: 1px solid #BDBDBD;
-  /* padding: 0 30px; */
-  margin: 90px 40px;
+  border-radius: 15px 15px ;
+  margin: 90px 30px;
+
+
+  /* padding: 0 25px; */
+  width: 350px;
 `;
 
 export const MainImg = styled.div`
@@ -30,7 +28,6 @@ export const MainImg = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 300px;
   height: 400px;
   background-color: chartreuse;
 `;
@@ -39,6 +36,8 @@ export const MainP = styled.p`
   margin: 0;
   padding: 15px;
 
+  /* background-color: orange; */
+  border-radius: 15px 15px;
   font-size: 15px;
   /* text-align: center; */
   color: white;

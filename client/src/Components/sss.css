@@ -1,0 +1,11 @@
+.fdd {
+  background-color: blueviolet;
+  /* display: flex; */
+}
+
+.ContentImg1 {
+  width: 800px;
+  height: 900px;
+  border: 1px solid;
+
+}
