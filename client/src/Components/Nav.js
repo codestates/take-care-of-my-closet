@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import logo from "../image/logo.jpeg";
+import logo from "../image/LOGO.png";
 
 import User from "./User";
 import {

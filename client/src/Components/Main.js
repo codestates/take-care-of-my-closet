@@ -2,8 +2,9 @@ import React from "react"
 import { Link } from "react-router-dom"
 // import "./Main.css";
 // import "./reset.css";
-import { A11yHidden } from "../Styled/Common"
-import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled"
+
+import { A11yHidden } from "../Styled/Common";
+import { MainUl, MainArticle, MainImg, MainP, Nick } from "../Styled/MainStyled";
 
 function Main({ contents, handleContentClick }) {
   if (contents.length === 0) {
@@ -19,9 +20,10 @@ function Main({ contents, handleContentClick }) {
             <li key={el.id} onClick={() => handleContentClick(el.id)}>
               <Link to="/content" style={{ textDecoration: "none" }}>
                 <MainArticle>
-                  <p className="title">{el.title}</p>
+                <p style={{borderBottom:"1px solid #ccc",borderRadius:0} } className="title">{el.title}</p>
                   <MainImg src={el.image} alt="img-thumbnail" />
-                  <MainP>&#64;{el.user.nickname}</MainP>
+                  <img style={{width: "100px"}} src={el.user_image} alt="dd"/>
+                  <MainP style={ {borderTop:"1px solid #ccc"}}>&#64;{el.user.nickname}</MainP>
                 </MainArticle>
               </Link>
             </li>

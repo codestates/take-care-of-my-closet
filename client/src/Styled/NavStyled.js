@@ -10,7 +10,7 @@ export const NavHeader = styled.header`
   display: flex;
   justify-content: space-between;
   /* background-color: orange; */
-  padding: 0 60px;
+  padding: 0 90px;
 `
 
 export const Logo = styled.div`
@@ -18,8 +18,9 @@ export const Logo = styled.div`
   background-repeat: no-repeat;
   background-size: contain;
   /* background-color: bisque; */
-  width: 240px;
-  height: 90px;
+  margin-top:10px;
+  width: 150px;
+  height: 60px;
 `
 
 export const Navigation = styled.nav`

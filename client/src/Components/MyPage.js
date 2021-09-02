@@ -1,7 +1,15 @@
-import React, { useState } from "react"
-import axios from "axios"
-import "./MyPage.css"
-import { useHistory } from "react-router-dom"
+
+import React, { useState } from "react";
+import axios from "axios";
+import "../Styled/Common.css";
+import { useHistory } from "react-router-dom";
+import { A11yHidden, Legend } from "../Styled/Common";
+
+import {ModiProfile,ModiProfileBox, MyPageForm, MyPageFieldSet, 
+  MyPageAttach, UserIdInfo, ModiPassword, 
+  ModiPasswordValidation,
+  ModiNickName, ModiNickNameValidation, ModiUserInfoSave} from '../Styled/MyPageStyled'
+
 
 axios.defaults.withCredentials = true
 
@@ -187,77 +195,82 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
   }
 
   return (
-    <section>
-      <h2 className="a11yHidden">회원정보 설정</h2>
-      <form
+    <section className="my-page">
+      <A11yHidden>회원정보 설정</A11yHidden>
+      <MyPageForm
         method="post"
         className="imageUpLoad"
         action="upload"
         encType="multipart/form-data"
       >
-        <fieldset>
-          <legend>회원정보 설정 폼</legend>
-          <img
-            className="imageContent"
-            src={imageUrl || userInfo.image}
-            alt="img-thumbnail"
-          />
-          <input
-            type="file"
-            name="imgFile"
-            id="imgFile"
-            onChange={(e) => {
-              setImageFromFile(e)
-            }}
-          />
-          <section>
-            <p className="userId">{userInfo.login_id}</p>
+
+        <MyPageFieldSet>
+          <Legend>회원정보 설정 폼</Legend>
+          <ModiProfileBox>
+            <ModiProfile src={imageUrl || userInfo.image} />
+            <MyPageAttach for="input-file">이미지 업로드</MyPageAttach>
             <input
+              id="input-file"
+              type="file"
+              style={{ display: "none" }}
+              name="imgFile"
+              onChange={(e) => {
+                setImageFromFile(e);
+              }}
+            />
+          </ModiProfileBox>
+          <section className="modi-user-info-section">
+            <UserIdInfo>{userInfo.login_id}</UserIdInfo>
+            <ModiPassword
               type="password"
               placeholder="비밀번호를 입력해주세요"
               onChange={(e) => {
                 passwordChecking1(e)
               }}
             />
-            <span className={classNameOn}>
-              비밀번호는 8자 이상 16자 이하여야 합니다
+            <span className={classNameOn} style={{color:"red" , position:"absolute", fontSize: "16px",  top:"96px"}}>
+              * 비밀번호는 8자 이상 16자 이하여야 합니다
             </span>
-            <input
+            <ModiPasswordValidation
               type="password"
               placeholder="비밀번호 확인"
               onChange={(e) => {
                 passwordChecking2(e)
               }}
             />
-            <span className={classNameOn}>비밀번호가 일치하지 않습니다</span>
+            <span className={classNameOn} style={{ color:"red" , position:"absolute", fontSize: "16px",  top:"155px"}}>* 비밀번호가 일치하지 않습니다</span>
             {/* <input type="text" placeholder={userInfo.nickname}/> */}
-            <input
-              type="text"
-              placeholder="닉네임을 입력해주세요"
-              onChange={(e) => {
-                nickNameChange(e)
-              }}
-            />
-            <span className={nickNameClassNameOn}>
-              중복된 닉네임입니다. 다른 닉네임을 입력해주세요.
-            </span>
-            <button
-              onClick={(e) => {
-                nickNameDuplicated(e)
-              }}
-            >
-              중복확인
-            </button>
+            <ModiNickNameValidation>
+              <ModiNickName
+                type="text"
+                placeholder="닉네임을 입력해주세요"
+                onChange={(e) => {
+                  nickNameChange(e);
+                }}
+              />
+              <button
+                style={{marginLeft : "20px", fontSize: "16px", borderRadius: "10px", border: 0}}
+                onClick={(e) => {
+                  nickNameDuplicated(e);
+                }}
+              >
+                중복확인
+              </button>
+            </ModiNickNameValidation>
+              <span className={nickNameClassNameOn} style={{ color:"red" , position:"absolute", fontSize: "16px",  top:"230px"}}>
+                * 중복된 닉네임입니다. 다른 닉네임을 입력해주세요.
+              </span>
+
+          
           </section>
-          <button
+        </MyPageFieldSet>
+          <ModiUserInfoSave
             onClick={(e) => {
-              requestSave(e)
-            }}
-          >
-            저장
-          </button>
-        </fieldset>
-      </form>
+              requestSave(e);
+            }}>저장
+          </ModiUserInfoSave>
+      </MyPageForm>
+
     </section>
   )
 }

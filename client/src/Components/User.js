@@ -15,10 +15,11 @@ function User({ logoutHandler }, className) {
     e.preventDefault()
     setUserBtnIsOn(!userBtnIsOn);
   };
+  
 
   return (
     <FlexNavUl>
-        <button className="dkd" onClick={(e) => UserBtnHandler(e)}>User</button>
+        <button style={{background: "transparent", border:0, fontSize:"20px"}} onClick={(e) => UserBtnHandler(e)}>User</button>
       {userBtnIsOn ? (
         <div className="userli">
           <Link to="/mycontents" style={{textDecoration:"none", color: "black"}} >
@@ -32,12 +33,7 @@ function User({ logoutHandler }, className) {
           </Link>
         </div>
       ) : null}
-
     </FlexNavUl>
   )
-
-    </Ul>
-  );
-
 }
 export default User
