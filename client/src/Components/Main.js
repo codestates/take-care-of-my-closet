@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import "./Main.css";
 // import "./reset.css";
 import { A11yHidden } from "../Styled/Common";
-import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
+import { MainUl, MainArticle, MainImg, MainP, Nick } from "../Styled/MainStyled";
 
 function Main({ contents, handleContentClick }) {
   if (contents.length === 0) {
@@ -21,7 +21,8 @@ function Main({ contents, handleContentClick }) {
                 <MainArticle>
                   <MainP>{el.title}</MainP>
                   <MainImg src={el.image} alt="img-thumbnail" />
-                  <MainP>&#64;{el.user.nickname}</MainP>
+                  <img style={{width: "100px"}} src={el.user_image} alt="dd"/>
+                  <Nick>&#64;{el.user.nickname}</Nick>
                 </MainArticle>
               </li>
             </Link>

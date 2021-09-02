@@ -1,22 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "./MyPage.css";
+import "../Styled/Common.css";
 import { useHistory } from "react-router-dom";
-import {
-  ContentForm
-} from "../Styled/ContentModiCreateStyled";
 import { A11yHidden, Legend } from "../Styled/Common";
-import {
-  // ContentForm,
-  // ImageContent,
-  FieldSet,
-  // CreateTitle,
-  Section,
-  // CreateBtn,
-  // CancelBtn,
-  FileAttach,
-  // CreateTextContent
-} from "../Styled/ContentModiCreateStyled";
+
 import {ModiProfile,ModiProfileBox, MyPageForm, MyPageFieldSet, 
   MyPageAttach, UserIdInfo, ModiPassword, 
   ModiPasswordValidation,

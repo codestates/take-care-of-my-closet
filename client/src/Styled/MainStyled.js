@@ -44,3 +44,13 @@ export const MainP = styled.p`
   white-space: nowrap;
   overflow: hidden;
 `;
+export const Nick = styled.span`
+  display: inline-block;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 15px 15px;
+  font-size: 15px;
+  margin: 0;
+  padding: 15px;
+`
