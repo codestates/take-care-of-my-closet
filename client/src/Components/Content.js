@@ -5,7 +5,7 @@ import Replys from "./Replys";
 import { Cookies } from "react-cookie";
 
 import { FlexArticle } from "../Styled/Flex";
-import { A11yHidden, Btn,  } from "../Styled/Common";
+import { A11yHidden, Btn } from "../Styled/Common";
 import {
   Article,
   ContentImg,
@@ -174,14 +174,15 @@ function Content({
         <ContentImg src={selectedContent.image} alt="img-thumbnail" />
         <Section>
           <Title>{selectedContent.title}</Title>
-          <TextContent
+          {/* <TextContent
+            autoComplete={false}
             readOnly={true}
             cols="30"
             rows="10"
             defaultValue={selectedContent.contents}
             // disabled="true"
-          ></TextContent>
-          {/* <div>{selectedContent.contents}</div> */}
+          ></TextContent> */}
+          <div>{selectedContent.contents}</div>
           <UserMindBtn>
             <UserMindBtnLike src={like} onClick={likeHandler}>
               <Btn>{likeCount}</Btn>

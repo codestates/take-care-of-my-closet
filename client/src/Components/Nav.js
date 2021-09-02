@@ -3,10 +3,15 @@ import { Link, useHistory } from "react-router-dom";
 import logo from "../image/logo.jpeg";
 
 import User from "./User";
-import { NavContainer, NavHeader, Logo, Navigation, NavBtn } from "../Styled/NavStyled";
+import {
+  NavContainer,
+  NavHeader,
+  Logo,
+  Navigation,
+  NavBtn,
+} from "../Styled/NavStyled";
 import { A11yHidden } from "../Styled/Common";
 // import { FlexNavBtn } from "../Styled/Flex";
-
 
 function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
   const [newContent, setNewContent] = useState({
@@ -32,9 +37,9 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
   return (
     <NavContainer>
       <NavHeader>
-        <h1 style={{margin:0}}>
+        <h1 style={{ margin: 0 }}>
           <Link to="/">
-            <Logo src={logo}/>
+            <Logo src={logo} />
           </Link>
         </h1>
         <Navigation>
@@ -43,18 +48,21 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
             <>
               <NavBtn onClick={(e) => createContent(e)}>새 글 작성</NavBtn>
               <NavBtn>
-              <User logoutHandler={logoutHandler} />
+                <User logoutHandler={logoutHandler} />
               </NavBtn>
             </>
-        ) : (
-            <Link to="/login">
-              <NavBtn style={{width:"80px"}}>로그인</NavBtn>
-            </Link>
-             <Link to="/signup">
-              <NavBtn>회원가입</NavBtn>
-            </Link>
-        )}
-      </Navigation>
+          ) : (
+            <>
+              <Link to="/login">
+                <NavBtn style={{ width: "80px" }}>로그인</NavBtn>
+              </Link>
+              <Link to="/signup">
+                <NavBtn>회원가입</NavBtn>
+              </Link>
+            </>
+          )}
+        </Navigation>
+      </NavHeader>
     </NavContainer>
   );
 }

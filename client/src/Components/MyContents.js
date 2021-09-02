@@ -3,11 +3,16 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyContents.css";
 // import "./reset.css";
+import { Cookies } from "react-cookie";
 
-function MyContents({ isLogin, userInfo, handleContentClick }) {
+const cookies = new Cookies();
+
+function MyContents({ isLogin, userInfo, handleContentClick, getUserInfo }) {
   const [myContents, setMyContents] = useState([]);
 
   useEffect(() => {
+    getUserInfo(cookies.get("accessToken"));
+    console.log("aaaaaaaaaaaaaaa", userInfo);
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/getposts`,

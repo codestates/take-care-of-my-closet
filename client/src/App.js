@@ -49,7 +49,7 @@ function App() {
 
   let loca = useLocation();
   const history = useHistory();
-  console.log(loca.pathname);
+  // console.log(loca.pathname);
   useEffect(() => {
     setIsloading(true);
     axios
@@ -237,6 +237,7 @@ function App() {
               isLogin={isLogin}
               userInfo={userInfo}
               handleContentClick={handleContentClick}
+              getUserInfo={getUserInfo}
             />
           </Route>
           <Route path="/mypage">

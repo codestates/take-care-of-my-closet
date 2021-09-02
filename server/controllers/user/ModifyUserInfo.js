@@ -2,20 +2,19 @@ const { user, refreshtoken } = require("../../models");
 const { sign } = require("jsonwebtoken");
 
 module.exports = async (req, res) => {
-
   const findUser1 = await user.findOne({
     where: {
       login_id: req.body.login_id,
     },
-  })
-  
+  });
+
   let currentUser = {
-    id : 2,
-     login_id : req.body.login_id,
-     password : req.body.password || findUser1.password,
-     user_image : req.body.image || findUser1.user_image,
-     nickname :req.body.nickname || findUser1.nickname,
-    }
+    id: 2,
+    login_id: req.body.login_id,
+    password: req.body.password || findUser1.password,
+    user_image: req.body.image || findUser1.user_image,
+    nickname: req.body.nickname || findUser1.nickname,
+  };
 
   await user.update(currentUser, {
     where: {
@@ -25,15 +24,9 @@ module.exports = async (req, res) => {
 
   const findUser = await user.findOne({
     where: { login_id: currentUser.login_id },
-
-  })
-  
-  delete findUser.dataValues.password
-
   });
 
   delete findUser.dataValues.password;
-
 
   const accessToken = sign(findUser.dataValues, process.env.ACCESS_SECRET, {
     expiresIn: "1h",
