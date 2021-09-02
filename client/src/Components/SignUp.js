@@ -104,14 +104,15 @@ function SignUp() {
       .then((res) => {
         console.log(res);
         if (res.data.message === `It's already created`) {
-         return alert("중복된 아이디입니다")
+          setDuplicatedId(false);
+          setDuplicatedIdMessage("사용할 수 없는 아이디 입니다.");
         } else if (res.data.message === "ok") {
-          
-          return alert("사용할 수 있는 아이디 입니다.");
+          setDuplicatedId(true);
+          setDuplicatedIdMessage("사용할 수 있는 아이디 입니다.");
         }
       })
       .catch((err) => {
-        console.log("중복된 아이디입니다");
+        console.log(err);
       });
   };
 
