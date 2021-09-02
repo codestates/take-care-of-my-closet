@@ -180,7 +180,7 @@ function ContentModiCreate({
   // };
 
   return (
-    <section className="modi-create-section">
+    <section className="modi-create-section"  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
       <A11yHidden>컨텐츠 작성 및 수정</A11yHidden>
       <ContentForm
         method="post"

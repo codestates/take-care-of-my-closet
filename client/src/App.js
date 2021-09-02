@@ -237,7 +237,7 @@ function App() {
             />
           </Route>
           <Route path="/mypage">
-            <MyPage isLogin={isLogin} userInfo={userInfo} />
+            <MyPage isLogin={isLogin} userInfo={userInfo} setUserInfo={setUserInfo}/>
           </Route>
           <Route path="/content">
             <Content

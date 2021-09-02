@@ -12,7 +12,7 @@ function Main({ contents, handleContentClick }) {
   }
   console.log("메인페이지 컨텐츠", contents)
   return (
-    <main>
+    <main  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
       <A11yHidden>메인 페이지</A11yHidden>
       <MainUl>
         {contents.map((el) => {
@@ -20,9 +20,9 @@ function Main({ contents, handleContentClick }) {
             <li key={el.id} onClick={() => handleContentClick(el.id)}>
               <Link to="/content" style={{ textDecoration: "none" }}>
                 <MainArticle>
-                <p style={{borderBottom:"1px solid #ccc",borderRadius:0} } className="title">{el.title}</p>
+                  <p style={{borderBottom:"1px solid #ccc",borderRadius:0 , margin: 0, padding:"15px", color: "black" } } className="title">{el.title}</p>
                   <MainImg src={el.image} alt="img-thumbnail" />
-                  <img style={{width: "100px"}} src={el.user_image} alt="dd"/>
+                  {/* <img style={{width: "100px"}} src={el.user_image} alt="dd"/> */}
                   <MainP style={ {borderTop:"1px solid #ccc"}}>&#64;{el.user.nickname}</MainP>
                 </MainArticle>
               </Link>

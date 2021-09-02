@@ -1,11 +1,11 @@
 import React from "react"
 //import "./Footer.css"
-import {FooterBox} from "../Styled/FooterStyed"
+import {FooterBox} from "../Styled/FooterStyled"
 // import "./reset.css";
 
 function Footer() {
   return (
-    <FooterBox>
+    <FooterBox >
       <address>
         <span>
           contact us :{"    "}
@@ -15,7 +15,7 @@ function Footer() {
           {" ,   "}
           <a href="https://github.com/Achates09">Wi Seok-Ryang</a>
           {" ,   "}
-          <a href="https://github.com/jjub0217">Jung Jaemin</a>
+          <a href="https://github.com/jjub0217">Kang Joo-Hyun</a>
           {"      "}
         </span>
         <div>

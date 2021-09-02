@@ -43,7 +43,8 @@ width: 550px;
 export const LoginBtn = styled.button`
   border: 0;
   /* background-color: transparent; */
-  background-color: #ccc;
+  background-color:rgb(224, 219, 219);
+  border: 1px solid #ccc;
   width: 200px;
   height: 90px;
   /* margin-right: 40px; */

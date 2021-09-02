@@ -5,6 +5,7 @@ import Replys from "./Replys";
 import { Cookies } from "react-cookie";
 import styled from 'styled-components'
 // import '../image/1111.png'
+import '../Styled/Common.css'
 
 import { FlexArticle } from "../Styled/Flex";
 import { A11yHidden, Btn } from "../Styled/Common";
@@ -58,7 +59,17 @@ function Content({
     // console.log(localStorage.getItem("selectedPostId"));
     getSelectedContent(localStorage.getItem("selectedPostId"));
     // console.log("987987987987987987987", selectedContent);
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/getposts`)
+      .then((res) => {
+        console.log("전체게시글 요청 응답", res.data);
+        contentsListHandler(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     // if (localStorage.getItem("selectedPostId"))
+
   }, []);
 
   const modifyHandler = () => {
@@ -66,6 +77,7 @@ function Content({
     // 로그인 되어 있다면 본인 게시글인지 확인
     // 맞다면 게시글 수정 페이지로 이동
     // 다른 사람 글이면 권한이 없습니다.
+
     if (isLogin) {
       if (userInfo.id === selectedContent.userId) {
         // 게시글 수정 페이지로 이동
@@ -173,7 +185,7 @@ function Content({
   };
 
   return (
-    <div className="ContentContainer">
+    <div className="ContentContainer" style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
       <A11yHidden>컨텐츠</A11yHidden>
       <Article>
         <ContentImg src={selectedContent.image}/>

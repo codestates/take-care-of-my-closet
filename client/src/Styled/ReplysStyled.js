@@ -10,7 +10,7 @@ export const ReplysUl = styled.ul`
   /* background-color: red; */
   list-style: none;
   padding: 0;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-left: 10px;
   margin-bottom: 30px;
   overflow-y: auto;
@@ -20,11 +20,12 @@ export const ReplysUl = styled.ul`
   top: 0; */
   position: relative;
   top: 110px;
+  border: 1px solid #ccc;
 `
 
 export const ReplyLi = styled.li`
   position: relative;
-  background-color: beige;
+  /* background-color: beige; */
   /* margin-bottom: 7px; */
   /* padding-top: 10px; */
   width: 420px;
@@ -32,6 +33,10 @@ export const ReplyLi = styled.li`
   /* margin-top: -10px; */
   white-space: pre-wrap;
   /* width: 300px; */
+  border-bottom: 1px solid #ccc;
+  border-width: 20%;
+  margin-left: 20px;
+
 `;
 
 export const ReplyTextContent = styled.input`
@@ -56,7 +61,7 @@ export const CreateReplyBox = styled.div`
 `;
 
 export const ReplyBtn = styled.button`
-  background-color: chartreuse;
+  /* background-color: chartreuse; */
   padding: 8.5px 0;
   width: 50px;
   border: 0;
