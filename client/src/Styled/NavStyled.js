@@ -9,6 +9,8 @@ import styled from "styled-components"
 export const NavHeader = styled.header`
   display: flex;
   justify-content: space-between;
+  /* background-color: orange; */
+  padding: 0 60px;
 `
 
 export const Logo = styled.div`
@@ -21,15 +23,20 @@ export const Logo = styled.div`
 `
 
 export const Navigation = styled.nav`
-  background-color: chartreuse;
+  /* background-color: chartreuse; */
+  margin-top: 5px;
   height: 50px;
   display: flex;
-`
+  margin-right: 50px;
+  position: relative;
+  width: 300px;
+`;
 
 export const NavBtn = styled.button`
   border: 0;
   cursor: pointer;
-  background-color: darkkhaki;
+  background-color: transparent;
+  /* background-color: darkkhaki; */
   height: 79px;
   font-size: 20px;
   margin-right: 40px;

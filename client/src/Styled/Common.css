@@ -7,7 +7,7 @@
 .ContentContainer {
 
   /* display: flex; */
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   /* justify-content: row; */
 }
 
@@ -18,7 +18,7 @@
 }
 
 .modi-create-section {
-  background-color: greenyellow;
+  /* background-color: greenyellow; */
   /* background-color: ; */
 }
 
@@ -28,8 +28,62 @@
   align-items: center;
   justify-content: space-around;
   margin: 0 auto;
+  padding-top: 80px;
+
+}
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 80px;
+}
+
+/* .id-form {
+  background-color: red;
+  width: 500px;
+  height: 55px;
+} */
+
+.profile-form {
+  margin-top: 30px;
+  margin-left: -60px;
+  /* background-color: red; */
+  display: flex;
+  height: 100px;
+}
+
+.efgs {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+
+  /* background-color: aqua; */
+  /* align-items: center; */
+  /* justify-content: co; */
+}
+
+.nickname-form {
+  margin-top: 20px;
+  margin-left: 60px;
   /* width: 100%; */
   /* height: 100%; */
   /* padding: 40px 30px 0 30px; */
   background-color: green;
+}
+
+.title {
+  margin: 0;
+  padding: 15px;
+
+  /* background-color: orange; */
+  border-radius: 15px 15px;
+  font-size: 15px;
+  /* text-align: center; */
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: transparent;
+
 }

@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import logo from "../image/logo.jpeg";
+import {Logo} from '../Styled/NavStyled'
+import { A11yHidden, Legend } from "../Styled/Common";
+import {SignUpForm, SignUpFieldset,SignUpInput, PassWordCheck, FileAttachProfile , ProfileImageBox, UserSave, DuplicateBtn} from "../Styled/SignUpStyled";
+// import {FileAttach} from "../Styled/ContentModiCreateStyled";
+
 
 axios.defaults.withCredentials = true;
 
@@ -104,11 +109,13 @@ function SignUp() {
       .then((res) => {
         console.log(res);
         if (res.data.message === `It's already created`) {
-          setDuplicatedId(false);
-          setDuplicatedIdMessage("사용할 수 없는 아이디 입니다.");
+          // setDuplicatedId(false);
+          // setDuplicatedIdMessage("사용할 수 없는 아이디 입니다.");
+          return alert("사용할 수 없는 아이디 입니다.")
         } else if (res.data.message === "ok") {
-          setDuplicatedId(true);
-          setDuplicatedIdMessage("사용할 수 있는 아이디 입니다.");
+          // setDuplicatedId(true);
+          // setDuplicatedIdMessage("사용할 수 있는 아이디 입니다.");
+         return alert("사용할 수 있는 아이디 입니다.")
         }
       })
       .catch((err) => {
@@ -147,7 +154,7 @@ function SignUp() {
       setValidIdLength(true);
     } else {
       setValidIdLength(false);
-      setValidIdMessage("아이디는 네 글자 이상이어야 합니다.");
+      setValidIdMessage("* 아이디는 네 글자 이상이어야 합니다.");
     }
   };
 
@@ -207,62 +214,81 @@ function SignUp() {
   };
 
   return (
-    <div>
+    <div class="sign-up">
       <h1>
+<<<<<<< HEAD
         <Link to="/">
           <img src={logo} alt="logo" width="500px" />
+=======
+    <Link to="/">
+        <Logo src={logo}/>
+>>>>>>> fbb55996e86982a1bb048542bea50037df815918
         </Link>
       </h1>
+      <SignUpForm>
       <h2>회원가입</h2>
-      <form>
-        <fieldset>
-          <legend>회원가입 폼</legend>
-          <label>아이디 : </label>
-          <input
-            type="text"
-            onChange={(e) => inputIdHandler(e)}
-            value={idValue}
-            placeholder="아이디를 입력하세요"
-          />
-          <button onClick={(e) => isDuplicatedId(e)}>중복확인</button>
-          {duplicatedIdMessage ? duplicatedIdMessage : null}
-          {validIdLength ? null : validIdMessage}
-          <label>비밀번호 : </label>
-          <input
+        <SignUpFieldset>
+          <Legend>회원가입</Legend>
+          <div className="id-form">
+            <SignUpInput
+              type="text"
+              onChange={(e) => inputIdHandler(e)}
+              value={idValue}
+              placeholder="아이디"
+            />
+            <DuplicateBtn onClick={(e) => isDuplicatedId(e)}>중복확인</DuplicateBtn>
+          </div>
+          {duplicatedIdMessage ? <p>{duplicatedIdMessage}</p> : null}
+          {validIdLength ? null : <p style={{marginLeft:"-100px", marginTop: "-5px",  color: "red"}}>{validIdMessage}</p>}
+          <SignUpInput
+          style={{marginLeft: "-70px"}}
             type="password"
             onChange={(e) => inputPwHandler(e)}
             value={pwValue}
-            placeholder="비밀번호를 입력하세요"
+            placeholder="비밀번호"
           />
           {validPwLength ? null : (
-            <span>비밀번호는 8자 이상 16자 이하여야 합니다.</span>
+            <p style={{marginLeft:"-50px", marginTop: "-5px", color: "red"}}>* 비밀번호는 8자 이상 16자 이하여야 합니다.</p>
           )}
-          <label>비밀번호 확인 : </label>
-          <input
+          <PassWordCheck
+          style={{marginLeft: "-60px"}}
             type="password"
             onChange={(e) => inputMatchPwHandler(e)}
             placeholder="비밀번호 확인"
           />
-          {pwMatch ? null : <span>비밀번호가 일치하지 않습니다.</span>}
-          <label>프로필 사진 첨부 : </label>
-          <input
-            type="file"
-            name="user_image"
-            accept=".jpg, .jpeg, .png, .gif, .bmp"
-            onChange={(e) => inputProfileHandler(e)}
-          />
-          <img src={profileUrl} alt="img-thumbnail" />
-          <label>닉네임 : </label>
-          <input
-            type="text"
-            onChange={(e) => inputNickNameHandler(e)}
-            placeholder="닉네임을 입력하세요"
-          />
-          <button onClick={(e) => isDuplicatedNick(e)}>중복확인</button>
+          {pwMatch ? null : <p style={{marginLeft:"-130px", marginTop: "-5px", color: "red"}}>*비밀번호가 일치하지 않습니다.</p>}
+          <div className="profile-form">
+            <ProfileImageBox src={profileUrl} />
+            {/* <img src={profileUrl} alt="img-thumbnail" /> */}
+              <div className="efgs">
+                <FileAttachProfile for="input-file">이미지 업로드</FileAttachProfile>
+                <FileAttachProfile for="input-file">이미지 삭제</FileAttachProfile>
+              </div>
+              {/* <button>이미지 삭제</button> */}
+              {/* <p>프로필 사진을 업로드 해주세요</p> */}
+              <input
+              style={{ display: "none"}}
+              id="input-file"
+              type="file"
+              name="user_image"
+              accept=".jpg, .jpeg, .png, .gif, .bmp"
+              onChange={(e) => inputProfileHandler(e)}
+              />
+          </div>
+          {/* <label>닉네임 : </label> */}
+          <div className="nickname-form">
+            <SignUpInput
+            style={{marginLeft: "-60px"}}
+              type="text"
+              onChange={(e) => inputNickNameHandler(e)}
+              placeholder="닉네임"
+            />
+            <DuplicateBtn onClick={(e) => isDuplicatedNick(e)}>중복확인</DuplicateBtn>
+          </div>
           {duplicatedNickMessage ? <span>{duplicatedNickMessage}</span> : null}
-          <button onClick={(e) => requestSignUp(e)}>가입하기</button>
-        </fieldset>
-      </form>
+          <UserSave onClick={(e) => requestSignUp(e)}>가입하기</UserSave>
+        </SignUpFieldset>
+      </SignUpForm>
     </div>
   );
 }

@@ -24,7 +24,6 @@ import {
 import like from "../image/like.png";
 import disLike from "../image/bad.png";
 
-import './sss.css'
 
 
 axios.defaults.withCredentials = true;

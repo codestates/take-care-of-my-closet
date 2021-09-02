@@ -6,24 +6,24 @@ export const MainUl = styled.ul`
   list-style: none;
   justify-content: space-around;
   /* margin: 10px 0; */
-  background: -webkit-gradient(
-    linear,
-    to right bottom,
-    color-stop(0, #e2e2e2),
-    color-stop(1, #c9d6ff)
-  );
+  background: linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5);
+  /* background: linear-gradient(to right bottom, #ffd194, #70e1f5); */
   margin: 0;
 `
 
 export const MainArticle = styled.article`
-  background-color: blueviolet;
+
+  background: linear-gradient(to right, #f5f5f5, #fce4ec, #d1c4e9);
   border-radius: 15px;
-  border: 1px solid #bdbdbd;
+  border: 5px solid #bdbdbd;
   border-radius: 15px 15px;
   margin: 90px 30px;
+
   /* padding: 0 25px; */
   width: 350px;
-`
+  box-shadow: 10px, 10px, 5px, grey;
+`;
+
 
 export const MainImg = styled.div`
   background-image: url(${(props) => props.src || ""});
@@ -42,7 +42,10 @@ export const MainP = styled.p`
   border-radius: 15px 15px;
   font-size: 15px;
   /* text-align: center; */
-  color: white;
+  color: black;
   white-space: nowrap;
   overflow: hidden;
-`
+
+  background-color: transparent;
+`;
+

@@ -19,13 +19,15 @@ function Main({ contents, handleContentClick }) {
             <li key={el.id} onClick={() => handleContentClick(el.id)}>
               <Link to="/content" style={{ textDecoration: "none" }}>
                 <MainArticle>
-                  <MainP>{el.title}</MainP>
+                  <p className="title">{el.title}</p>
                   <MainImg src={el.image} alt="img-thumbnail" />
                   <MainP>&#64;{el.user.nickname}</MainP>
                 </MainArticle>
               </Link>
             </li>
-          )
+
+          );
+
         })}
       </MainUl>
     </main>
