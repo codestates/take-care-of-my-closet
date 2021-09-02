@@ -30,7 +30,7 @@ export const SignUpInput = styled.input`
   background-color: transparent;
   margin-bottom: 10px;
   border: 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #aaa;
   border-width: 20%;
   margin-right: 30px;
 `
@@ -42,7 +42,7 @@ export const PassWordCheck = styled.input`
   background-color: transparent;
   margin-bottom: 10px;
   border: 0;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #aaa;
   border-width: 20%;
   margin-right: 30px;
   margin-top: 20px;
@@ -51,7 +51,8 @@ export const PassWordCheck = styled.input`
 
 export const FileAttachProfile = styled.label`
   /* background-color: blue; */
-  background-color: #ccc;
+  background-color: rgb(224, 219, 219);
+  border: 1px solid #ccc;
   /* position: absolute;
   bottom: 30px;
   left: 60px; */
@@ -70,7 +71,7 @@ export const FileAttachProfile = styled.label`
   padding-right: 5px;
   
   /* vertical-align: middle; */
-  font-size: 16px;
+  font-size: 15px;
 `
 
 
@@ -78,7 +79,7 @@ export const ProfileImageBox = styled.div`
   width: 100px;
   height: 100px;
   /* background-color: green; */
-  border: 1px solid #ccc;
+  border: 1px solid #aaa;
   margin-right: 30px;
   margin-left: -30px;
   background-image: url(${props => props.src || ''});

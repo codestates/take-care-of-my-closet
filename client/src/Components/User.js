@@ -5,6 +5,7 @@ import '../Styled/UserStyled.css'
 import {FlexNavUl} from '../Styled/Flex'
 import {NavBtn} from '../Styled/NavStyled'
 import { Ul } from "../Styled/UserStyled";
+import '../Styled/Common.css'
 
 function User({ logoutHandler }, className) {
   const [userBtnIsOn, setUserBtnIsOn] = useState("");
@@ -16,11 +17,13 @@ function User({ logoutHandler }, className) {
 
   return (
     <FlexNavUl>
-        <button className="dkd" onClick={(e) => UserBtnHandler(e)}>User</button>
+
+        <button style={{background: "transparent", border:0, padding:0, fontSize:"20px", cursor:"pointer" , color:"rgb(85, 83, 83"}} onClick={(e) => UserBtnHandler(e)}>User</button>
+
       {userBtnIsOn ? (
-        <div className="userli">
+        <div className="userLi" style={{color:"rgb(85, 83, 83"}}>
           <Link to="/mycontents" style={{textDecoration:"none", color: "black"}} >
-            <li t>My Contents</li>
+            <li>My Contents</li>
           </Link>
           <Link to="/mypage" style={{textDecoration:"none", color: "black"}}>
             <li style={{marginTop:"6px"}}>My page</li>
@@ -33,4 +36,6 @@ function User({ logoutHandler }, className) {
     </FlexNavUl>
   );
 }
-export default User;
+
+export default User
+

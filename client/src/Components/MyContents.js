@@ -46,15 +46,16 @@ function MyContents({
   }
 
   return (
-    <section>
-      <A11yHidden>마이 콘텐츠</A11yHidden>
+
+    <section  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
+       <A11yHidden>마이 콘텐츠</A11yHidden>
        <MainUl>
         {myContents.map((el) => {
           return (
             <Link to="/content">
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
               <MainArticle>
-                <p style={{borderBottom:"1px solid #ccc",borderRadius:0}} className="title">{el.title}</p>
+                <p style={{borderBottom:"1px solid #ccc",borderRadius:0, margin:0, padding:"15px"}} className="title">{el.title}</p>
                 <MainImg src={el.image} alt="img-thumbnail" />
                 <MainP style={ {borderTop:"1px solid #ccc"}} >&copy; {el.user.nickname}</MainP>
               </MainArticle>

@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import logo from "../image/logo.jpeg";
-import { Cookies } from "react-cookie";
-import axios from "axios";
+import React, { useState } from "react"
+import { Link, useHistory } from "react-router-dom"
+import logo from "../image/LOGO.png"
+import { Cookies } from "react-cookie"
+import axios from "axios"
+
 
 import { A11yHidden, Legend } from "../Styled/Common";
 import {Logo} from '../Styled/NavStyled'
@@ -75,7 +76,9 @@ function Login({ getUserInfo }) {
   };
 
   return (
-    <div class="login">
+
+    <div className="login"  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
+
       <h1>
         <Link to="/">
           <Logo src={logo} />

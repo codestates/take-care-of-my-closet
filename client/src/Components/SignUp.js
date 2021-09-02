@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
-import logo from "../image/logo.jpeg";
+import logo from "../image/LOGO.png";
 import {Logo} from '../Styled/NavStyled'
 import { A11yHidden, Legend } from "../Styled/Common";
 import {SignUpForm, SignUpFieldset,SignUpInput, PassWordCheck, FileAttachProfile , ProfileImageBox, UserSave, DuplicateBtn} from "../Styled/SignUpStyled";
@@ -214,7 +214,7 @@ function SignUp() {
   };
 
   return (
-    <div class="sign-up">
+    <div class="sign-up"  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
       <h1>
     <Link to="/">
         <Logo src={logo}/>
@@ -255,7 +255,7 @@ function SignUp() {
           <div className="profile-form">
             <ProfileImageBox src={profileUrl} />
             {/* <img src={profileUrl} alt="img-thumbnail" /> */}
-              <div className="efgs">
+              <div className="profileUpload">
                 <FileAttachProfile for="input-file">이미지 업로드</FileAttachProfile>
                 <FileAttachProfile for="input-file">이미지 삭제</FileAttachProfile>
               </div>

@@ -8,7 +8,7 @@ export const ContentForm = styled.form`
   padding: 80px 60px;
   position: relative;
 
-  background-color: brown;
+  /* background-color: brown; */
   /* background-color: black; */
 
 `
@@ -37,8 +37,9 @@ export const CreateTitle = styled.input`
   line-height: 1.5;
   white-space: nowrap;
   overflow: hidden;
-  background-color: aqua;
-
+  /* background-color: aqua; */
+  border-bottom: 1px solid #ccc;
+  border-width: 20%;
 
   margin: 20px 0;
   
@@ -53,6 +54,8 @@ export const CreateTextContent = styled.textarea`
   /* height: 450px; */
   padding-left: 20px;
   padding-top: 20px;
+  border: 0;
+  border:  1px solid #ccc;
 
 `
 
@@ -72,8 +75,9 @@ export const ImageContent = styled.div`
   padding: 15px;
   /* position: absolute; */
   /* top: 50px; */
+  border: 1px solid #ccc;
 
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
 `
 
 export const Section = styled.div`
@@ -87,6 +91,8 @@ export const CreateBtn = styled.button`
   padding: 9.5px 0;
   width: 50px;
   border: 0;
+  border-radius: 10px;
+  font-size: 16px;
 `
 
 export const CancelBtn = styled.button`
@@ -97,10 +103,14 @@ export const CancelBtn = styled.button`
   padding: 9.5px 0;
   width: 50px;
   border: 0;
+  font-size: 16px;
+  border-radius: 10px;
 `;
 
 export const FileAttach = styled.label`
-  background-color: blue;
+  /* background-color: blue; */
+  border: 1px solid #ccc;
+ background-color: #ccc;
   position: absolute;
   bottom: 30px;
   left: 60px;
