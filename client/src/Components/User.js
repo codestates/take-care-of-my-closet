@@ -1,13 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
 
 // import '../Styled/UserStyled.css'
+
 import {FlexNavUl} from '../Styled/Flex'
 import {NavBtn} from '../Styled/NavStyled'
 import { Ul } from "../Styled/UserStyled";
 
 function User({ logoutHandler }, className) {
-  const [userBtnIsOn, setUserBtnIsOn] = useState("");
+  const [userBtnIsOn, setUserBtnIsOn] = useState("")
+
 
   const UserBtnHandler = (e) => {
     e.preventDefault()
@@ -32,6 +34,6 @@ function User({ logoutHandler }, className) {
         </div>
       ) : null}
     </FlexNavUl>
-  );
+  )
 }
-export default User;
+export default User

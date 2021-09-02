@@ -104,7 +104,6 @@ module.exports = {
         userId: 4,
       },
       {
-<<<<<<< HEAD
         title: "다가오는 가을은..",
         image:
           "https://take-closet-bucket.s3.ap-northeast-2.amazonaws.com/data/11.jpg",
@@ -142,16 +141,6 @@ module.exports = {
       },
     ])
   },
-=======
-        title: "제목 테스트",
-        image: "image6",
-        contents: "내용 테스트",
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        userId: 6,
-      },
-    ])
->>>>>>> d4169a4e1d5ff483c99681c240c542907b09a866
 
   down: async (queryInterface, Sequelize) => {
     /**

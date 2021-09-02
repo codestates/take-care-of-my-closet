@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const MainUl = styled.ul`
   display: flex;
@@ -9,9 +9,10 @@ export const MainUl = styled.ul`
   background: linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5);
   /* background: linear-gradient(to right bottom, #ffd194, #70e1f5); */
   margin: 0;
-`;
+`
 
 export const MainArticle = styled.article`
+
   background: linear-gradient(to right, #f5f5f5, #fce4ec, #d1c4e9);
   border-radius: 15px;
   border: 5px solid #bdbdbd;
@@ -23,6 +24,7 @@ export const MainArticle = styled.article`
   box-shadow: 10px, 10px, 5px, grey;
 `;
 
+
 export const MainImg = styled.div`
   background-image: url(${(props) => props.src || ""});
   background-size: cover;
@@ -30,7 +32,7 @@ export const MainImg = styled.div`
   background-repeat: no-repeat;
   height: 400px;
   background-color: chartreuse;
-`;
+`
 
 export const MainP = styled.p`
   margin: 0;
@@ -43,8 +45,10 @@ export const MainP = styled.p`
   color: black;
   white-space: nowrap;
   overflow: hidden;
+
   background-color: transparent;
 `;
+
 export const Nick = styled.span`
   display: inline-block;
   color: white;

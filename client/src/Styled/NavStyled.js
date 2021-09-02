@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 // export const NavContainer = styled.div`
 //   background-color: white;
@@ -7,20 +7,20 @@ import styled from "styled-components";
 // `
 
 export const NavHeader = styled.header`
-  display:flex;
+  display: flex;
   justify-content: space-between;
   /* background-color: orange; */
   padding: 0 60px;
 `
 
 export const Logo = styled.div`
-  background-image: url(${props => props.src || ''});
+  background-image: url(${(props) => props.src || ""});
   background-repeat: no-repeat;
   background-size: contain;
   /* background-color: bisque; */
   width: 240px;
   height: 90px;
-`;
+`
 
 export const Navigation = styled.nav`
   /* background-color: chartreuse; */
@@ -32,14 +32,12 @@ export const Navigation = styled.nav`
   width: 300px;
 `;
 
-
 export const NavBtn = styled.button`
   border: 0;
   cursor: pointer;
   background-color: transparent;
   /* background-color: darkkhaki; */
   height: 79px;
-  font-size: 20px; 
+  font-size: 20px;
   margin-right: 40px;
-`;
-
+`

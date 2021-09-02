@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+
 export const ReplysSection = styled.section`
   /* position: relative; */
 `;
@@ -19,7 +20,7 @@ export const ReplysUl = styled.ul`
   top: 0; */
   position: relative;
   top: 110px;
-`;
+`
 
 export const ReplyLi = styled.li`
   position: relative;
@@ -27,6 +28,7 @@ export const ReplyLi = styled.li`
   /* margin-bottom: 7px; */
   /* padding-top: 10px; */
   width: 420px;
+  position: relative;
   /* margin-top: -10px; */
   white-space: pre-wrap;
   /* width: 300px; */
@@ -50,7 +52,9 @@ export const CreateReplyBox = styled.div`
   justify-content: space-between;
 
   /* margin-top: 60px; */
+
 `;
+
 export const ReplyBtn = styled.button`
   background-color: chartreuse;
   padding: 8.5px 0;
@@ -65,6 +69,7 @@ export const ReplyDeleteBtn = styled.button`
   padding: 5px 0;
   width: 20px;
   height: 20px;
+  top: 0px;
   border: 0;
   background-image: url(${(props) => props.src || ""});
   background-repeat: no-repeat;
@@ -76,3 +81,4 @@ export const ReplyDeleteBtn = styled.button`
 `;
 
 export const ReplyP = styled.p``;
+

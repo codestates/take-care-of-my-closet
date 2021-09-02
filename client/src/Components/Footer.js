@@ -1,23 +1,35 @@
-import React from "react";
-import "./Footer.css";
+import React from "react"
+import "./Footer.css"
 // import "./reset.css";
 
 function Footer() {
   return (
     <footer>
       <address>
-        <span>갤럭시 지구 금은동 코든램지아파트 1004동 101호</span>
         <span>
-          email :{" "}
-          <a href="mailto:cordonramsay@smile.com">cordonramsay@smile.com</a>
+          contact us :{"    "}
+          <a href="https://github.com/Realroot">Lee Youn-Geun</a>
+          {" ,   "}
+          <a href="https://github.com/James940522">Jung Jae-min</a>
+          {" ,   "}
+          <a href="https://github.com/Achates09">Wi Seok-Ryang</a>
+          {" ,   "}
+          <a href="https://github.com/jjub0217">Jung Jaemin</a>
+          {"      "}
         </span>
+        <div>
+          <span>
+            email :{" "}
+            <a href="mailto:codenramsay@smile.com">cordonramsay@smile.com</a>
+          </span>
+        </div>
       </address>
       <small>
         Copyright since &copy; 2021 by cordonramsay of Code State CORPORATION
         ALL RIGHTS RESERVED.
       </small>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer
