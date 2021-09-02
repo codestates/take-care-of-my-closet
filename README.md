@@ -1,5 +1,5 @@
 # PROJECT
-![LOGO](https://images-ext-2.discordapp.net/external/CgG-sYgcMFqTvMW3WwVV0Hj1yE-kVRcYpRwtGX00zRA/https/user-images.githubusercontent.com/83861190/131800904-0f2759dc-7e1e-460d-880d-f62d7c1955df.jpeg?width=1027&height=387)
+<img src="https://images-ext-2.discordapp.net/external/CgG-sYgcMFqTvMW3WwVV0Hj1yE-kVRcYpRwtGX00zRA/https/user-images.githubusercontent.com/83861190/131800904-0f2759dc-7e1e-460d-880d-f62d7c1955df.jpeg?width=1027&height=387" alt="LOGO" height="300" width=700>
 
 # ABOUT
 급하게 소개팅이 잡힌 당신! 옷을 어떻게 입어야 할지 고민이신가요?
@@ -17,7 +17,7 @@
 '옷장을 부탁해'입니다. :)
 
 ## 💻 기술 스택
-
+<img src="https://user-images.githubusercontent.com/81761175/131806554-7a7ce0c1-59b0-4943-8664-c08c166dc764.png" alt="기술스택" height="750" width="700">
 ![기술스택](https://user-images.githubusercontent.com/81761175/131806554-7a7ce0c1-59b0-4943-8664-c08c166dc764.png)
 
 # 🔨 Architecture
