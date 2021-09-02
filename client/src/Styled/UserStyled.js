@@ -1,7 +1,7 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Ul = styled.ul`
   /* width: 400px; */
-  /* display: flex; */
+  background-color: red;
   z-index: 1;
-`
+`;

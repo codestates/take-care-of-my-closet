@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react"
-import WriteReply from "./WriteReply"
-import axios from "axios"
 
-import { A11yHidden } from "../Styled/Common"
+import React, { useState, useEffect } from "react";
+import WriteReply from "./WriteReply";
+import axios from "axios";
+
+import { A11yHidden } from "../Styled/Common";
 import {
   ReplysUl,
   ReplyLi,
@@ -20,7 +21,7 @@ function Replys({
   replyList,
   replyListHandler,
 }) {
-  const [selectedReplyId, setselectedReplyId] = useState("")
+  const [selectedReplyId, setselectedReplyId] = useState("");
 
   useEffect(() => {
     if (selectedReplyId) {
@@ -78,7 +79,7 @@ function Replys({
         replyListHandler={replyListHandler}
       />
     </>
-  )
+  );
 }
 
-export default Replys
+export default Replys;

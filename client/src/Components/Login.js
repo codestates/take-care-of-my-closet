@@ -4,14 +4,17 @@ import logo from "../image/logo.jpeg"
 import { Cookies } from "react-cookie"
 import axios from "axios"
 
-import { A11yHidden, Legend } from "../Styled/Common"
-import { Logo } from "../Styled/NavStyled"
-import "./login.css"
-import "../Styled/Common.css"
 
-axios.defaults.withCredentials = true
+import { A11yHidden, Legend } from "../Styled/Common";
+import {Logo} from '../Styled/NavStyled'
+import {LoginForm, LoginFieldset, LoginInput, LoginBtn, LoginBtns} from '../Styled/LoginStyled'
 
-const cookies = new Cookies()
+// import './login.css'
+import '../Styled/Common.css'
+
+axios.defaults.withCredentials = true;
+
+const cookies = new Cookies();
 
 function Login({ getUserInfo }) {
   const [inputId, setInputId] = useState("")
@@ -75,31 +78,34 @@ function Login({ getUserInfo }) {
   return (
     <div className="login">
       <h1>
-        <Logo src={logo} />
+        <Link to="/">
+          <Logo src={logo} />
+        </Link>
       </h1>
       <A11yHidden>로그인</A11yHidden>
-      <form className="ddd" styled="border: 0">
-        <fieldset>
+
+      <LoginForm>
+        <LoginFieldset>
           <Legend>로그인 폼</Legend>
-          <input
+          <LoginInput
             type="text"
             placeholder="아이디"
             onChange={(e) => inputIdHandler(e)}
           />
-          <input
+          <LoginInput
             type="password"
             placeholder="비밀번호"
             onChange={(e) => inputPwHandler(e)}
           />
           <span>{errorMessage}</span>
-          <div>
-            <button type="submit" onClick={(e) => handleLogin(e)}>
+          <LoginBtns>
+            <LoginBtn type="submit" onClick={(e) => handleLogin(e)}>
               로그인
-            </button>
-            <button onClick={(e) => goToSignUp(e)}>회원가입</button>
-          </div>
-        </fieldset>
-      </form>
+            </LoginBtn>
+            <LoginBtn onClick={(e) => goToSignUp(e)}>회원가입</LoginBtn>
+          </LoginBtns>
+        </LoginFieldset>
+      </LoginForm>
     </div>
   )
 }
