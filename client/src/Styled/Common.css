@@ -33,3 +33,17 @@
   /* padding: 40px 30px 0 30px; */
   background-color: green;
 }
+.title {
+  margin: 0;
+  padding: 15px;
+
+  /* background-color: orange; */
+  border-radius: 15px 15px;
+  font-size: 15px;
+  /* text-align: center; */
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  background-color: transparent;
+  
+}

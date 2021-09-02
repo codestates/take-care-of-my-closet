@@ -5,11 +5,9 @@ import { Cookies } from "react-cookie";
 import axios from "axios";
 
 import { A11yHidden, Legend } from "../Styled/Common";
-import {Logo} from '../Styled/NavStyled'
-import './login.css'
-import '../Styled/Common.css'
-
-
+import { Logo } from "../Styled/NavStyled";
+import "./login.css";
+import "../Styled/Common.css";
 
 axios.defaults.withCredentials = true;
 
@@ -77,10 +75,12 @@ function Login({ getUserInfo }) {
   return (
     <div class="login">
       <h1>
-        <Logo src={logo} />
+        <Link to="/">
+          <Logo src={logo} />
+        </Link>
       </h1>
       <A11yHidden>로그인</A11yHidden>
-      <form className ="ddd" styled="border: 0">
+      <form className="ddd" styled="border: 0">
         <fieldset>
           <Legend>로그인 폼</Legend>
           <input
