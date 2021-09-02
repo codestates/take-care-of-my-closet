@@ -3,64 +3,65 @@ import styled from "styled-components";
 export const Article = styled.article`
   display: flex;
   align-items: center;
-  background-color: green;
-  margin: 0 auto;
   width: 1000px;
-  /* height: 900px; */
-  padding: 90px 60px;
+  margin: 0 auto;
+  padding: 80px 60px;
   position: relative;
-`;
 
+  border: 0;
+  border: 1px solid;
+  /* width: 1000px; */
+  /* padding: 30px; */
+  /* margin: 0 auto; */
+  /* border-color: orange; */
+  background-color: orange;
+`;
 export const ContentImg = styled.div`
-  background-color: chartreuse;
   width: 500px;
   height: 500px;
+  /* width: 500px; */
   margin-right: 40px;
-  /* margin: 0 40px 0 50px; */
   background-image: url(${(props) => props.src || ""});
   background-size: cover;
-  /* background-size: contain; */
   background-position: center;
   background-repeat: no-repeat;
-  padding: 30px;
+  /* padding: 30px; */
+  /* background-color: red; */
 `;
 
-export const Section = styled.div`
+// export const Section = styled.div`
 
-`;
+// `;
 
 export const Title = styled.p`
   position: absolute;
   top: 0px;
-  background-color: blue;
-  /* margin-top: 30px; */
   font-size: 20px;
   width: 300px;
   padding: 3px 0 3px 10px;
   line-height: 1.5;
   white-space: nowrap;
   overflow: hidden;
-  /* margin-right: 50px; */
-  /* text-align: center; */
-
+  background-color: white;
 `;
 
-export const TextContent = styled.textarea`
+export const TextContent = styled.div`
   background-color: white;
   font-size: 16px;
   /* margin-top: -100px; */
   margin-bottom: 10px;
   width: 465px;
+  height: 180px;
   position: absolute;
   top: 80px;
+  padding: 20px 0 0 20px;
   /* margin-top: 20px; */
-  resize: none;
 `;
 
 export const UserMindBtn = styled.div`
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   position: absolute;
-  top: 270px;
+  top: 280px;
   /* margin-left: 10px; */
 `;
 
@@ -74,7 +75,7 @@ export const UserMindBtnLike = styled.figure`
   cursor: pointer;
   vertical-align: middle;
   text-align: center;
-  background-color: bisque;
+  /* background-color: bisque; */
   margin: 0 10px;
   /* background-color: transparent; */
 `;
@@ -99,7 +100,7 @@ export const ModifyBtn = styled.button`
   position: absolute;
   top: 20px;
   right: 140px;
-  background-color: chartreuse;
+  /* background-color: chartreuse; */
   padding: 9.5px 0;
   width: 50px;
   border: 0;
@@ -109,7 +110,7 @@ export const DeleteBtn = styled.button`
   position: absolute;
   top: 20px;
   right: 70px;
-  background-color: chartreuse;
+  /* background-color: chartreuse; */
   padding: 9.5px 0;
   width: 50px;
   border: 0;

@@ -3,10 +3,19 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyContents.css";
 // import "./reset.css";
+import { Cookies } from "react-cookie";
+import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
+import { A11yHidden } from "../Styled/Common";
 
-function MyContents({ isLogin, userInfo, handleContentClick }) {
-  const [myContents, setMyContents] = useState([]);
+const cookies = new Cookies();
 
+function MyContents({
+  isLogin,
+  userInfo,
+  handleContentClick,
+  myContents,
+  setMyContents,
+}) {
   useEffect(() => {
     axios
       .post(
@@ -25,7 +34,7 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userInfo]);
 
   if (!isLogin) {
     return <div>로그인 후 이용하세요.</div>;
@@ -36,20 +45,22 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
 
   return (
     <section>
-      <h2 className="a11yHidden">마이 콘텐츠</h2>
-      <ul>
+      <A11yHidden>마이 콘텐츠</A11yHidden>
+       <MainUl>
         {myContents.map((el) => {
           return (
             <Link to="/content">
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
-                <p>{el.title}</p>
-                <img src={el.image} alt="img-thumbnail" />
-                <p>&copy; {el.nickname}</p>
+              <MainArticle>
+                <p style={{borderBottom:"1px solid #ccc",borderRadius:0}} className="title">{el.title}</p>
+                <MainImg src={el.image} alt="img-thumbnail" />
+                <MainP style={ {borderTop:"1px solid #ccc"}} >&copy; {el.nickname}</MainP>
+              </MainArticle>
               </li>
             </Link>
           );
         })}
-      </ul>
+      </MainUl>
     </section>
   );
 }

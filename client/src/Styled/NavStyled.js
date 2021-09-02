@@ -1,29 +1,52 @@
 import styled from "styled-components";
-// import '../../image/LOGO.png'
 
-export const NavContainer = styled.div`
-  background-color: orange;
-  padding: 40px 60px 30px 60px;
-`;
+// export const NavContainer = styled.div`
+//   background-color: red;
+//   // padding: 30px 0px 30px 0px;
+//   // border: 1px solid #BDBDBD;
+// `
 
-export const Logo = styled.img`
-  background-color: bisque;
-  width: 250px;
-  vertical-align: middle;
+export const NavHeader = styled.header`
+  display:flex;
+  justify-content: space-between;
+  //  background-color: orange;
+  padding: 0 90px;
+`
+
+export const Logo = styled.div`
+  background-image: url(${props => props.src || ''});
+  background-repeat: no-repeat;
+  background-size: contain;
+  // background-color: bisque; 
+  margin-top:10px;
+  width: 150px;
+  height: 60px;
 `;
 
 export const Navigation = styled.nav`
-  background-color: chartreuse;
-  width: 400px;
+  /* background-color: chartreuse; */
+  margin-top: 5px;
+  height: 50px;
   display: flex;
-  justify-content: space-around;
+  margin-right: 50px;
+  position: relative;
+  width: 300px;
 `;
+
+
 export const NavBtn = styled.button`
-  display: inline-block;
   border: 0;
   cursor: pointer;
-  background-color: darkkhaki;
-  width: 100px;
-  height: 79px;
-  font-size: 20px;
+  background-color: transparent;
+  /* background-color: darkkhaki;*/ 
+  height: 60px;
+  font-size: 20px; 
+  margin-right: 40px;
+
+  &:hover{
+    color: rgb(214, 150, 76);
+  }
 `;
+
+
+

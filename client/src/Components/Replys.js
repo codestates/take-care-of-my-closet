@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react"
-import WriteReply from "./WriteReply"
-import axios from "axios"
-
+import React, { useState, useEffect } from "react";
+import WriteReply from "./WriteReply";
+import axios from "axios";
 
 import { A11yHidden } from "../Styled/Common";
 import {
@@ -21,10 +20,9 @@ function Replys({
   replyList,
   replyListHandler,
 }) {
-  const [selectedReplyId, setselectedReplyId] = useState("")
+  const [selectedReplyId, setselectedReplyId] = useState("");
 
   useEffect(() => {
-
     if (selectedReplyId) {
       axios
         .post(`${process.env.REACT_APP_API_URL}/deletecomment`, {
@@ -80,7 +78,7 @@ function Replys({
         replyListHandler={replyListHandler}
       />
     </>
-  )
+  );
 }
 
-export default Replys
+export default Replys;

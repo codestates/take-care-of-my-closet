@@ -1,13 +1,12 @@
 import styled from "styled-components";
 
-
 export const ReplysSection = styled.section`
   /* position: relative; */
-`
+`;
 export const ReplysUl = styled.ul`
   width: 470px;
-  height: 220px;
-  background-color: red;
+  height: 200px;
+  /* background-color: red; */
   list-style: none;
   padding: 0;
   margin-top: 20px;
@@ -23,14 +22,15 @@ export const ReplysUl = styled.ul`
 `;
 
 export const ReplyLi = styled.li`
+  position: relative;
   background-color: beige;
   /* margin-bottom: 7px; */
   /* padding-top: 10px; */
   width: 420px;
   /* margin-top: -10px; */
-  /* white-space: pre-wrap; */
+  white-space: pre-wrap;
   /* width: 300px; */
-`
+`;
 
 export const ReplyTextContent = styled.input`
   font-size: 16px;
@@ -39,19 +39,18 @@ export const ReplyTextContent = styled.input`
 
   margin-left: 10px;
   border: 0;
-`
+`;
 
 export const CreateReplyBox = styled.div`
   display: flex;
-  background-color: blue;
+  /* background-color: blue; */
   position: absolute;
   bottom: 60px;
   width: 480px;
   justify-content: space-between;
 
   /* margin-top: 60px; */
-
-`
+`;
 export const ReplyBtn = styled.button`
   background-color: chartreuse;
   padding: 8.5px 0;
@@ -59,18 +58,21 @@ export const ReplyBtn = styled.button`
   border: 0;
 
   /* margin-left: 20px; */
-`
+`;
 
 export const ReplyDeleteBtn = styled.button`
-
-  background-color: chartreuse;
+  background-color: transparent;
   padding: 5px 0;
   width: 20px;
   height: 20px;
   border: 0;
-  background-image: url(${props => props.src || ''});
+  background-image: url(${(props) => props.src || ""});
   background-repeat: no-repeat;
   background-size: contain;
   position: absolute;
-  right: 10px;
+  right: 0px;
+  margin-top: -13%;
+  cursor: pointer;
 `;
+
+export const ReplyP = styled.p``;

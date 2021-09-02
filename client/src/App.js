@@ -16,8 +16,6 @@ import ContentModiCreate from "./Components/ContentsModiCreate";
 import Content from "./Components/Content";
 import LoadingIndicator from "./Components/LoadingIndicator";
 
-import { FlexDiv } from "./Styled/Flex";
-
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
 
@@ -46,10 +44,11 @@ function App() {
     nickname: "",
   });
   const [selectedId, setSelectedId] = useState();
+  const [myContents, setMyContents] = useState([]);
 
   let loca = useLocation();
   const history = useHistory();
-
+  // console.log(loca.pathname);
   useEffect(() => {
     setIsloading(true);
     axios
@@ -64,14 +63,11 @@ function App() {
       });
     getUserInfo(cookies.get("accessToken"));
   }, []);
-  // console.log(userInfo);
-  // console.log(isLogin);
-  // console.log(selectedContent);
-  // console.log("받아온 컨텐츠 정보", contents);
+
   useEffect(() => {
     localStorage.setItem("selectedPostId", selectedContent.id);
     console.log("로컬 스토리지", localStorage.getItem("selectedPostId"));
-  }, [selectedContent]);
+  }, [selectedContent, loca.pathname]);
 
   useEffect(() => {
     console.log("위치 변경 감지");
@@ -79,6 +75,7 @@ function App() {
   }, [loca]);
 
   const getUserInfo = (accessToken) => {
+    if (!cookies.get("accessToken")) return;
     axios
       .get(`${process.env.REACT_APP_API_URL}/accessTokenrequest`, {
         headers: {
@@ -205,16 +202,11 @@ function App() {
 
   return (
     <React.Fragment>
-      <FlexDiv>
+      <div>
         {loca.pathname === "/login" || loca.pathname === "/signup" ? (
           <></>
         ) : (
-          <Nav
-            isLogin={isLogin}
-            logoutHandler={logoutHandler}
-            selectedContent={selectedContent}
-            setSelectedContent={setSelectedContent}
-          />
+          <Nav isLogin={isLogin} logoutHandler={logoutHandler} />
         )}
         {/* <section> */}
         <Switch>
@@ -240,6 +232,8 @@ function App() {
               isLogin={isLogin}
               userInfo={userInfo}
               handleContentClick={handleContentClick}
+              myContents={myContents}
+              setMyContents={setMyContents}
             />
           </Route>
           <Route path="/mypage">
@@ -257,7 +251,6 @@ function App() {
               replyList={replyList}
               replyListHandler={replyListHandler}
               getSelectedContent={getSelectedContent}
-              // selectedId={selectedId}
               getUserInfo={getUserInfo}
               contentsListHandler={contentsListHandler}
             />
@@ -273,7 +266,7 @@ function App() {
         </Switch>
         {/* </section> */}
         <Footer />
-      </FlexDiv>
+      </div>
     </React.Fragment>
   );
 }

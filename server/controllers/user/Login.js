@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
     where: { login_id: req.body.login_id, password: req.body.password },
   })
   if (!findUserInfo) {
-    return res.json({ message: "unauthorized" })
+    return res.json({ message: "not authorized" })
   } else {
     const userInfo = findUserInfo.dataValues
     delete userInfo.password

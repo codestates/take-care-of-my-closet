@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
 import { Cookies } from "react-cookie";
+import styled from 'styled-components'
+// import '../image/1111.png'
 
 import { FlexArticle } from "../Styled/Flex";
 import { A11yHidden, Btn } from "../Styled/Common";
@@ -17,9 +19,13 @@ import {
   UserMindBtnDisLike,
   ModifyBtn,
   DeleteBtn,
+
 } from "../Styled/ContentStyled";
 import like from "../image/like.png";
 import disLike from "../image/bad.png";
+
+import './sss.css'
+
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -40,10 +46,16 @@ function Content({
 }) {
   console.log("게시글 선택창", selectedContent);
   const history = useHistory();
-
-  console.log(userInfo.id, selectedContent.userId);
+  // const location = useLocation();
+  console.log(
+    "유저 아이디 vs 게시글 작성자 아이디",
+    userInfo.id,
+    "vs",
+    selectedContent.userId
+  );
+  console.log("글내용 :", selectedContent.contents);
   useEffect(() => {
-    // localStorage.setItem("selectedPostId", selectedId);
+    // localStorage.setItem("selectedPostId", selectedContent.id);
     // console.log(localStorage.getItem("selectedPostId"));
     getSelectedContent(localStorage.getItem("selectedPostId"));
     // console.log("987987987987987987987", selectedContent);
@@ -56,7 +68,7 @@ function Content({
     // 맞다면 게시글 수정 페이지로 이동
     // 다른 사람 글이면 권한이 없습니다.
     if (isLogin) {
-      if (userInfo.id === selectedContent.id) {
+      if (userInfo.id === selectedContent.userId) {
         // 게시글 수정 페이지로 이동
         // history.push("/content-modi-create");
         history.push({
@@ -69,7 +81,7 @@ function Content({
     } else {
       return alert("로그인 후 수정할 수 있습니다.");
     }
-    console.log(selectedContent);
+    // console.log(selectedContent);
   };
 
   const deleteHandler = () => {
@@ -162,21 +174,13 @@ function Content({
   };
 
   return (
-    <FlexArticle>
+    <div className="ContentContainer">
       <A11yHidden>컨텐츠</A11yHidden>
       <Article>
-        <ContentImg src={selectedContent.image} alt="img-thumbnail" />
-        <Section>
+        <ContentImg src={selectedContent.image}/>
+        <div className="ContentArticle">
           <Title>{selectedContent.title}</Title>
-          <TextContent
-            readOnly="true"
-            cols="30"
-            rows="10"
-            defaultValue={selectedContent.contents}
-            // disabled="true"
-          >
-            {/* {selectedContent.contents} */}
-          </TextContent>
+          <TextContent>{selectedContent.contents}</TextContent>
           <UserMindBtn>
             <UserMindBtnLike src={like} onClick={likeHandler}>
               <Btn>{likeCount}</Btn>
@@ -194,16 +198,17 @@ function Content({
           />
           {isLogin && userInfo.id === selectedContent.userId ? (
             <ModifyBtn onClick={modifyHandler}>수정</ModifyBtn>
-          ) : null}
+            ) : null}
           {isLogin && userInfo.id === selectedContent.userId ? (
             <DeleteBtn onClick={deleteHandler}>삭제</DeleteBtn>
-          ) : null}
-          {/* <button onClick={modifyHandler}>수정</button>
-      <button onClick={deleteHandler}>삭제</button> */}
-        </Section>
+            ) : null}
+        </div>
       </Article>
-    </FlexArticle>
+    </div>
   );
 }
+
+
+
 
 export default Content;

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import "./Main.css";
 // import "./reset.css";
-import { FlexMain } from "../Styled/Flex";
 import { A11yHidden } from "../Styled/Common";
 import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
 
@@ -12,24 +11,24 @@ function Main({ contents, handleContentClick }) {
   }
   console.log("메인페이지 컨텐츠", contents);
   return (
-    <FlexMain>
+    <main>
       <A11yHidden>메인 페이지</A11yHidden>
       <MainUl>
         {contents.map((el) => {
           return (
-            <Link to="/content" style={{ textDecoration: "none" }}>
-              <li key={el.id} onClick={() => handleContentClick(el.id)}>
+            <li key={el.id} onClick={() => handleContentClick(el.id)}>
+              <Link to="/content" style={{ textDecoration: "none" }}>
                 <MainArticle>
-                  <MainP>{el.title}</MainP>
+                  <p style={{borderBottom:"1px solid #ccc",borderRadius:0} } className="title">{el.title}</p>
                   <MainImg src={el.image} alt="img-thumbnail" />
-                  <MainP>&#64;{el.user.nickname}</MainP>
+                  <MainP style={ {borderTop:"1px solid #ccc"}}>&#64;{el.user.nickname}</MainP>
                 </MainArticle>
-              </li>
-            </Link>
+              </Link >
+            </li>
           );
         })}
       </MainUl>
-    </FlexMain>
+    </main>
   );
 }
 
