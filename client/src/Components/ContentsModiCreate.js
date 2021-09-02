@@ -13,8 +13,10 @@ import {
   CreateBtn,
   CancelBtn,
   FileAttach,
+  CreateTextContent
 } from "../Styled/ContentModiCreateStyled";
 import { TextContent } from "../Styled/ContentStyled";
+import '../Styled/Common.css'
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -178,14 +180,13 @@ function ContentModiCreate({
   // };
 
   return (
-    <section>
+    <section className="modi-create-section">
       <A11yHidden>컨텐츠 작성 및 수정</A11yHidden>
       <ContentForm
         method="post"
         className="imageUpLoad"
         action="upload"
-        encType="multipart/form-data"
-      >
+        encType="multipart/form-data">
         <FieldSet>
           <Legend>컨텐츠 업로드 폼</Legend>
           {/* newContent 가 ? true 명 데이터가 잇는 것임 : 새글임*/}
@@ -196,16 +197,16 @@ function ContentModiCreate({
               <Section>
                 <CreateTitle
                   defaultValue={title || selectedContent.title}
-                  cols="30"
-                  rows="10"
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 {/* <CreateTitle defaultValue={selectedContent.title} /> */}
                 {/* <div className="textContent"> */}
                 {/* <input placeholder="상의: S / M / L / XL & 하의: S / M / L /XL" /> */}
-                <TextContent
+                <CreateTextContent
                   // autoComplete={false}
                   style={{ height: "500px" }}
+                  cols="30"
+                  rows="10"
                   defaultValue={textContent || selectedContent.contents}
                   onChange={(e) => setTextContent(e.target.value)}
                 />
@@ -232,14 +233,14 @@ function ContentModiCreate({
                   defaultValue={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
-                <TextContent
+                <CreateTextContent
                   style={{ height: "500px" }}
                   placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"
                   defaultValue={textContent}
                   cols="30"
                   rows="10"
                   onKeyUp={(e) => setTextContent(e.target.value)}
-                ></TextContent>
+                ></CreateTextContent>
                 <FileAttach for="input-file">이미지 업로드</FileAttach>
                 <input
                   style={{ display: "none" }}

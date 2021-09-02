@@ -7,6 +7,7 @@ import axios from "axios";
 import { A11yHidden, Legend } from "../Styled/Common";
 import {Logo} from '../Styled/NavStyled'
 import './login.css'
+import '../Styled/Common.css'
 
 
 
@@ -74,12 +75,12 @@ function Login({ getUserInfo }) {
   };
 
   return (
-    <div class="fff">
+    <div class="login">
       <h1>
         <Logo src={logo} />
       </h1>
       <A11yHidden>로그인</A11yHidden>
-      <form styled="border: 0">
+      <form className ="ddd" styled="border: 0">
         <fieldset>
           <Legend>로그인 폼</Legend>
           <input

@@ -5,8 +5,9 @@ export const MainUl = styled.ul`
   flex-wrap: wrap;
   list-style: none;
   justify-content: space-around;
-  padding: 0;
+  /* margin: 10px 0; */
   background-color: green;
+  margin: 0;
 `;
 
 export const MainArticle = styled.article`

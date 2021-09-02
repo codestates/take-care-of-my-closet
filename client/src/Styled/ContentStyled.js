@@ -3,17 +3,18 @@ import styled from "styled-components";
 export const Article = styled.article`
   display: flex;
   align-items: center;
+  width: 1000px;
+  margin: 0 auto;
+  padding: 80px 60px;
+  position: relative;
+
+  border: 0;
+  border: 1px solid;
+  /* width: 1000px; */
   /* padding: 30px; */
   /* margin: 0 auto; */
-  width: 1000px;
-  /* width: 1000px; */
-  border: 1px solid;
-  padding: 90px 60px;
-  margin: 0 auto;
-  position: relative;
   /* border-color: orange; */
-  /* background-color: orange; */
-  border: 0;
+  background-color: orange;
 `;
 export const ContentImg = styled.div`
   width: 500px;
@@ -53,13 +54,14 @@ export const TextContent = styled.div`
   height: 180px;
   position: absolute;
   top: 80px;
+  padding: 20px 0 0 20px;
   /* margin-top: 20px; */
 `;
 
 export const UserMindBtn = styled.div`
   /* background-color: blueviolet; */
   position: absolute;
-  top: 270px;
+  top: 280px;
   /* margin-left: 10px; */
 `;
 
@@ -95,9 +97,9 @@ export const UserMindBtnDisLike = styled.figure`
 `;
 
 export const ModifyBtn = styled.button`
-  /* position: absolute;
+  position: absolute;
   top: 20px;
-  right: 140px; */
+  right: 140px;
   /* background-color: chartreuse; */
   padding: 9.5px 0;
   width: 50px;
@@ -105,9 +107,9 @@ export const ModifyBtn = styled.button`
 `;
 
 export const DeleteBtn = styled.button`
-  /* position: absolute;
+  position: absolute;
   top: 20px;
-  right: 70px; */
+  right: 70px;
   /* background-color: chartreuse; */
   padding: 9.5px 0;
   width: 50px;
