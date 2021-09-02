@@ -45,10 +45,11 @@ function App() {
     nickname: "",
   });
   const [selectedId, setSelectedId] = useState();
+  const [myContents, setMyContents] = useState([]);
 
   let loca = useLocation();
   const history = useHistory();
-  console.log(loca.pathname);
+  // console.log(loca.pathname);
   useEffect(() => {
     setIsloading(true);
     axios
@@ -75,9 +76,7 @@ function App() {
   }, [loca]);
 
   const getUserInfo = (accessToken) => {
-    if(!isLogin){
-      return ;
-    }
+    if (!cookies.get("accessToken")) return;
     axios
       .get(`${process.env.REACT_APP_API_URL}/accessTokenrequest`, {
         headers: {
@@ -239,6 +238,8 @@ function App() {
               isLogin={isLogin}
               userInfo={userInfo}
               handleContentClick={handleContentClick}
+              myContents={myContents}
+              setMyContents={setMyContents}
             />
           </Route>
           <Route path="/mypage">

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const NavContainer = styled.div`
-  background-color: white;
-  padding: 30px 0px 30px 0px;
-  border: 1px solid #BDBDBD;
-`
+// export const NavContainer = styled.div`
+//   background-color: white;
+//   padding: 30px 0px 30px 0px;
+//   border: 1px solid #BDBDBD;
+// `
 
 export const NavHeader = styled.header`
   display:flex;

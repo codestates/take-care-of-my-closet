@@ -8,5 +8,3 @@ export const FlexNavUl = styled.ul`
   margin: 0;
 `
 
-export const fdd = styled.div`
-display :flex;`

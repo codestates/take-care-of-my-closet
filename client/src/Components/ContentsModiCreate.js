@@ -3,11 +3,18 @@ import axios from "axios";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import { Cookies } from "react-cookie";
 import { A11yHidden, Legend } from "../Styled/Common";
-import { FlexSection } from "../Styled/Flex"
-import { ContentForm, ImageContent, FieldSet, CreateTitle , Section, CreateBtn, CancelBtn, FileAttach} from "../Styled/ContentModiCreateStyled";
-import { TextContent} from "../Styled/ContentStyled";
-
-
+import { FlexSection } from "../Styled/Flex";
+import {
+  ContentForm,
+  ImageContent,
+  FieldSet,
+  CreateTitle,
+  Section,
+  CreateBtn,
+  CancelBtn,
+  FileAttach,
+} from "../Styled/ContentModiCreateStyled";
+import { TextContent } from "../Styled/ContentStyled";
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -87,9 +94,10 @@ function ContentModiCreate({
         });
     } else {
       // 게시글 수정 요청
+      console.log(url, title, textContent);
       axios
         .put(`${process.env.REACT_APP_API_URL}/modifymypost`, {
-          id: selectedContent.userId,
+          id: selectedContent.id,
           image: url || selectedContent.image,
           title: title || selectedContent.title,
           contents: textContent || selectedContent.contents,
@@ -112,6 +120,7 @@ function ContentModiCreate({
 
   // 이미지 등록 이벤트
   const setImageFromFile = (e) => {
+    e.preventDefault();
     const file = e.target.files[0];
     // console.log(file);
     /* {name: "logo.jpeg", lastModified: 1629899741611, 
@@ -155,6 +164,19 @@ function ContentModiCreate({
       });
   };
 
+  // {
+  //   id: "",
+  //   userId: "",
+  //   title: "",
+  //   image: "",
+  //   contents: "",
+  // }
+
+  // const handleInputValue = (key) => (e) => {
+  //   console.log(e.target.value);
+  //   setSelectedContent({ ...selectedContent, [key]: e.target.value });
+  // };
+
   return (
     <section>
       <A11yHidden>컨텐츠 작성 및 수정</A11yHidden>
@@ -169,40 +191,49 @@ function ContentModiCreate({
           {/* newContent 가 ? true 명 데이터가 잇는 것임 : 새글임*/}
           {newContent === undefined ? (
             <>
-            <ImageContent src={url || selectedContent.image} />
-                {/* <img src={selectedContent.image} alt="dd"/> */}
+              <ImageContent src={url || selectedContent.image} />
+              {/* <img src={selectedContent.image} alt="dd"/> */}
               <Section>
-                <CreateTitle defaultValue={selectedContent.title} cols="30"
-            rows="10"/>
+                <CreateTitle
+                  defaultValue={title || selectedContent.title}
+                  cols="30"
+                  rows="10"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
                 {/* <CreateTitle defaultValue={selectedContent.title} /> */}
                 {/* <div className="textContent"> */}
-                  {/* <input placeholder="상의: S / M / L / XL & 하의: S / M / L /XL" /> */}
-                  <TextContent style={{height:"500px"}} defaultValue={selectedContent.contents}/>
+                {/* <input placeholder="상의: S / M / L / XL & 하의: S / M / L /XL" /> */}
+                <TextContent
+                  // autoComplete={false}
+                  style={{ height: "500px" }}
+                  defaultValue={textContent || selectedContent.contents}
+                  onChange={(e) => setTextContent(e.target.value)}
+                />
+                {/* <TextContent onChange={(e) => setTextContent(e.target.value)}>{textContent || selectedContent.contents}</TextContent> */}
                 {/* </div> */}
                 <FileAttach for="input-file">이미지 업로드</FileAttach>
                 <input
-                type="file"
-                name="imgFile"
-                id="input-file"
-                style={{display:"none"}}
-                onChange={(e) => {
-                  setImageFromFile(e);
-                }}
-                
-              />
+                  type="file"
+                  name="imgFile"
+                  id="input-file"
+                  style={{ display: "none" }}
+                  onChange={(e) => {
+                    setImageFromFile(e);
+                  }}
+                />
               </Section>
             </>
           ) : (
             <>
-              <ImageContent src={imageUrl}/>
+              <ImageContent src={imageUrl} />
               <Section>
                 <CreateTitle
-                  placeholder="이 조합 괜찮나요??"
+                  placeholder="제목을 입력하세요."
                   defaultValue={title}
                   onChange={(e) => setTitle(e.target.value)}
                 />
                 <TextContent
-                  style={{height:"500px"}} 
+                  style={{ height: "500px" }}
                   placeholder="상의: S / M / L / XL & 하의: S / M / L /XL"
                   defaultValue={textContent}
                   cols="30"
@@ -210,17 +241,17 @@ function ContentModiCreate({
                   onKeyUp={(e) => setTextContent(e.target.value)}
                 ></TextContent>
                 <FileAttach for="input-file">이미지 업로드</FileAttach>
-              <input
-                style={{display:"none"}}
-                type="file"
-                name="imgFile"
-                id="input-file"
-                value=""
-                onChange={(e) => {
-                  setImageFromFile(e);
-                }}
-              />
-                </Section>
+                <input
+                  style={{ display: "none" }}
+                  type="file"
+                  name="imgFile"
+                  id="input-file"
+                  value=""
+                  onChange={(e) => {
+                    setImageFromFile(e);
+                  }}
+                />
+              </Section>
             </>
           )}
           <CreateBtn onClick={(e) => requestSave(e)}>등록</CreateBtn>

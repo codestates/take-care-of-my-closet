@@ -3,10 +3,17 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./MyContents.css";
 // import "./reset.css";
+import { Cookies } from "react-cookie";
 
-function MyContents({ isLogin, userInfo, handleContentClick }) {
-  const [myContents, setMyContents] = useState([]);
+const cookies = new Cookies();
 
+function MyContents({
+  isLogin,
+  userInfo,
+  handleContentClick,
+  myContents,
+  setMyContents,
+}) {
   useEffect(() => {
     axios
       .post(
@@ -25,7 +32,7 @@ function MyContents({ isLogin, userInfo, handleContentClick }) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [userInfo]);
 
   if (!isLogin) {
     return <div>로그인 후 이용하세요.</div>;

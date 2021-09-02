@@ -3,10 +3,23 @@ import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
 import { Cookies } from "react-cookie";
+import styled from 'styled-components'
+// import '../image/1111.png'
 
-import { A11yHidden, Btn,  } from "../Styled/Common";
-import { fdd } from "../Styled/Flex";
-import {Article,ContentImg1,Section,Title,TextContent,UserMindBtn,UserMindBtnLike,UserMindBtnDisLike,ModifyBtn,DeleteBtn,
+import { FlexArticle } from "../Styled/Flex";
+import { A11yHidden, Btn } from "../Styled/Common";
+import {
+  Article,
+  ContentImg,
+  Section,
+  Title,
+  TextContent,
+  UserMindBtn,
+  UserMindBtnLike,
+  UserMindBtnDisLike,
+  ModifyBtn,
+  DeleteBtn,
+
 } from "../Styled/ContentStyled";
 import like from "../image/like.png";
 import disLike from "../image/bad.png";
@@ -161,17 +174,13 @@ function Content({
   };
 
   return (
-    <div className="fdd">
+    <div className="ContentContainer">
       <A11yHidden>컨텐츠</A11yHidden>
       <Article>
-        {/* <div className="ContentImg1">ssddddddddddddss</div> */}
-        <ContentImg1 src={selectedContent.image} alt="img-thumbnail" />
-        <Section>
+        <ContentImg src={selectedContent.image}/>
+        <div className="ContentArticle">
           <Title>{selectedContent.title}</Title>
-          <TextContent>
-            {selectedContent.contents}
-          </TextContent>
-          {/* <div>{selectedContent.contents}</div> */}
+          <TextContent>{selectedContent.contents}</TextContent>
           <UserMindBtn>
             <UserMindBtnLike src={like} onClick={likeHandler}>
               <Btn>{likeCount}</Btn>
@@ -189,14 +198,17 @@ function Content({
           />
           {isLogin && userInfo.id === selectedContent.userId ? (
             <ModifyBtn onClick={modifyHandler}>수정</ModifyBtn>
-          ) : null}
+            ) : null}
           {isLogin && userInfo.id === selectedContent.userId ? (
             <DeleteBtn onClick={deleteHandler}>삭제</DeleteBtn>
-          ) : null}
-        </Section>
+            ) : null}
+        </div>
       </Article>
     </div>
   );
 }
+
+
+
 
 export default Content;

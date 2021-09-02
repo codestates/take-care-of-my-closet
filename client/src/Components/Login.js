@@ -67,12 +67,12 @@ function Login({ getUserInfo }) {
     }
   };
 
-  const goToSignUp = (e) =>{
+  const goToSignUp = (e) => {
     e.preventDefault();
-  
-     history.push('/signup')
-   }
-  
+
+    history.push("/signup");
+  };
+
   return (
     <div class="fff">
       <h1>
@@ -97,7 +97,7 @@ function Login({ getUserInfo }) {
             <button type="submit" onClick={(e) => handleLogin(e)}>
               로그인
             </button>
-            <button onClick ={(e)=>goToSignUp(e)}>회원가입</button>
+            <button onClick={(e) => goToSignUp(e)}>회원가입</button>
           </div>
         </fieldset>
       </form>

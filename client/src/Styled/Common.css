@@ -1,0 +1,18 @@
+.NavContainer {
+  background-color: white;
+  padding: 30px 0px 30px 0px;
+  border: 1px solid #BDBDBD;
+}
+
+.ContentContainer {
+
+  /* display: flex; */
+  /* justify-content: row; */
+  background-color: blueviolet;
+}
+
+.ContentArticle {
+  display: flex;
+  flex-direction: column;
+  /* background-color: chocolate; */
+}
