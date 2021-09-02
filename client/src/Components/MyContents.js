@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./MyContents.css";
+// import "./MyContents.css";
 // import "./reset.css";
+import {ul} from '../Styled/MyContentStyled'
 import { Cookies } from "react-cookie";
+import { A11yHidden, Legend } from "../Styled/Common";
+
+
 
 const cookies = new Cookies();
 
@@ -43,7 +47,7 @@ function MyContents({
 
   return (
     <section>
-      <h2 className="a11yHidden">마이 콘텐츠</h2>
+      <A11yHidden>마이 콘텐츠</A11yHidden>
       <ul>
         {myContents.map((el) => {
           return (

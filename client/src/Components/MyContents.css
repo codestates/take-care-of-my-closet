@@ -1,4 +1,4 @@
-.a11yHidden {
+/* .a11yHidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -8,8 +8,8 @@
 }
 
 article {
-  /* background-color: brown; */
+  background-color: brown;
   width: 300px;
   height: 500px;
   border: 1px solid;
-}
+} */
