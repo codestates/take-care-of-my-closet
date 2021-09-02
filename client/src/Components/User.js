@@ -1,25 +1,22 @@
-import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-// import '../Styled/UserStyled.css'
-
+import '../Styled/UserStyled.css'
 import {FlexNavUl} from '../Styled/Flex'
 import {NavBtn} from '../Styled/NavStyled'
 import { Ul } from "../Styled/UserStyled";
 
 function User({ logoutHandler }, className) {
-  const [userBtnIsOn, setUserBtnIsOn] = useState("")
-
+  const [userBtnIsOn, setUserBtnIsOn] = useState("");
 
   const UserBtnHandler = (e) => {
     e.preventDefault()
     setUserBtnIsOn(!userBtnIsOn);
   };
-  
 
   return (
     <FlexNavUl>
-        <button style={{background: "transparent", border:0, fontSize:"20px"}} onClick={(e) => UserBtnHandler(e)}>User</button>
+        <button className="dkd" onClick={(e) => UserBtnHandler(e)}>User</button>
       {userBtnIsOn ? (
         <div className="userli">
           <Link to="/mycontents" style={{textDecoration:"none", color: "black"}} >
@@ -34,6 +31,6 @@ function User({ logoutHandler }, className) {
         </div>
       ) : null}
     </FlexNavUl>
-  )
+  );
 }
-export default User
+export default User;

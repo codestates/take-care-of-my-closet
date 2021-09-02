@@ -24,6 +24,7 @@ import {
 import like from "../image/like.png";
 import disLike from "../image/bad.png";
 
+import './sss.css'
 
 
 axios.defaults.withCredentials = true;
@@ -59,6 +60,15 @@ function Content({
     getSelectedContent(localStorage.getItem("selectedPostId"));
     // console.log("987987987987987987987", selectedContent);
     // if (localStorage.getItem("selectedPostId"))
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/getposts`)
+      .then((res) => {
+        console.log("전체게시글 요청 응답", res.data);
+        contentsListHandler(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   const modifyHandler = () => {

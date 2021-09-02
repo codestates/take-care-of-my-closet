@@ -113,7 +113,7 @@ function SignUp() {
           // setDuplicatedIdMessage("사용할 수 없는 아이디 입니다.");
           return alert("사용할 수 없는 아이디 입니다.")
         } else if (res.data.message === "ok") {
-          // setDuplicatedId(true);
+          setDuplicatedId(true);
           // setDuplicatedIdMessage("사용할 수 있는 아이디 입니다.");
          return alert("사용할 수 있는 아이디 입니다.")
         }
@@ -216,13 +216,8 @@ function SignUp() {
   return (
     <div class="sign-up">
       <h1>
-<<<<<<< HEAD
-        <Link to="/">
-          <img src={logo} alt="logo" width="500px" />
-=======
     <Link to="/">
         <Logo src={logo}/>
->>>>>>> fbb55996e86982a1bb048542bea50037df815918
         </Link>
       </h1>
       <SignUpForm>
