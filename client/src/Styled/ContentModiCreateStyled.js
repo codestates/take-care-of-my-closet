@@ -5,14 +5,17 @@ export const ContentForm = styled.form`
   align-items: center;
   width: 1000px;
   margin: 0 auto;
-  padding: 60px 60px 90px 60px;
+  padding: 80px 60px;
   position: relative;
+
   background-color: brown;
+  /* background-color: black; */
 
 `
 
 export const FieldSet = styled.fieldset`
   display: flex;
+  border: 0;
   /* position: absolute; */
   /* align-items: center;
   margin: 0 auto;
@@ -34,6 +37,7 @@ export const CreateTitle = styled.input`
   line-height: 1.5;
   white-space: nowrap;
   overflow: hidden;
+  background-color: aqua;
 
 
   margin: 20px 0;
@@ -43,17 +47,25 @@ export const CreateTitle = styled.input`
 
   }
   /* background-color: transparent; */
-  background-color: white;
+  /* background-color: white; */
 `
+export const CreateTextContent = styled.textarea`
+  width: 450px;
+  /* height: 450px; */
+  padding-left: 20px;
+  padding-top: 20px;
 
+`
 
 
 export const ImageContent = styled.div`
   width: 450px;
   height: 500px;
+
   margin-right: 40px;
   margin-top: -5px;
   margin-left: -15px;
+
   background-image: url(${props => props.src || ''});
   background-size: cover;
   background-position: center;
@@ -95,4 +107,5 @@ export const FileAttach = styled.label`
   left: 60px;
   padding: 10px;
   border-radius: 10px;
+  cursor: pointer;
 `

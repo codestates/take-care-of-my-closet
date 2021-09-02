@@ -3,28 +3,35 @@ import styled from "styled-components";
 export const Article = styled.article`
   display: flex;
   align-items: center;
-  margin: 0 auto;
   width: 1000px;
-  padding: 90px 60px;
+  margin: 0 auto;
+  padding: 80px 60px;
   position: relative;
-  background-color: brown;
-  border: 0;
-`;
 
+  border: 0;
+  border: 1px solid;
+  /* width: 1000px; */
+  /* padding: 30px; */
+  /* margin: 0 auto; */
+  /* border-color: orange; */
+  background-color: orange;
+`;
 export const ContentImg = styled.div`
   width: 500px;
   height: 500px;
+  /* width: 500px; */
   margin-right: 40px;
   background-image: url(${(props) => props.src || ""});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 30px;
+  /* padding: 30px; */
+  /* background-color: red; */
 `;
 
-export const Section = styled.div`
+// export const Section = styled.div`
 
-`;
+// `;
 
 export const Title = styled.p`
   position: absolute;
@@ -35,25 +42,26 @@ export const Title = styled.p`
   line-height: 1.5;
   white-space: nowrap;
   overflow: hidden;
-background-color: white;
+  background-color: white;
 `;
 
-export const TextContent = styled.textarea`
+export const TextContent = styled.div`
   background-color: white;
   font-size: 16px;
   /* margin-top: -100px; */
   margin-bottom: 10px;
   width: 465px;
+  height: 180px;
   position: absolute;
   top: 80px;
+  padding: 20px 0 0 20px;
   /* margin-top: 20px; */
-  resize: none;
 `;
 
 export const UserMindBtn = styled.div`
   /* background-color: blueviolet; */
   position: absolute;
-  top: 270px;
+  top: 280px;
   /* margin-left: 10px; */
 `;
 
