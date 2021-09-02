@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 // import "./Main.css";
 // import "./reset.css";
-import { FlexMain } from "../Styled/Flex";
 import { A11yHidden } from "../Styled/Common";
 import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
 
@@ -12,7 +11,7 @@ function Main({ contents, handleContentClick }) {
   }
   console.log("메인페이지 컨텐츠", contents);
   return (
-    <FlexMain>
+    <main>
       <A11yHidden>메인 페이지</A11yHidden>
       <MainUl>
         {contents.map((el) => {
@@ -29,7 +28,7 @@ function Main({ contents, handleContentClick }) {
           );
         })}
       </MainUl>
-    </FlexMain>
+    </main>
   );
 }
 

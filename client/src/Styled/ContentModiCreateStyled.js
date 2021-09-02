@@ -7,7 +7,8 @@ export const ContentForm = styled.form`
   margin: 0 auto;
   padding: 60px 60px 90px 60px;
   position: relative;
-  background-color: brown;
+  /* background-color: brown; */
+  /* background-color: black; */
 
 `
 

@@ -7,7 +7,7 @@ export const ReplysSection = styled.section`
 export const ReplysUl = styled.ul`
   width: 470px;
   height: 220px;
-  background-color: red;
+  /* background-color: red; */
   list-style: none;
   padding: 0;
   margin-top: 20px;
@@ -23,7 +23,7 @@ export const ReplysUl = styled.ul`
 `;
 
 export const ReplyLi = styled.li`
-  background-color: beige;
+  /* background-color: beige; */
   /* margin-bottom: 7px; */
   /* padding-top: 10px; */
   width: 420px;
@@ -43,7 +43,7 @@ export const ReplyTextContent = styled.input`
 
 export const CreateReplyBox = styled.div`
   display: flex;
-  background-color: blue;
+  /* background-color: blue; */
   position: absolute;
   bottom: 60px;
   width: 480px;

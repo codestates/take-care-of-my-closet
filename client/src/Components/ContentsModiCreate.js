@@ -178,7 +178,7 @@ function ContentModiCreate({
   // };
 
   return (
-    <FlexSection>
+    <section>
       <A11yHidden>컨텐츠 작성 및 수정</A11yHidden>
       <ContentForm
         method="post"
@@ -209,6 +209,7 @@ function ContentModiCreate({
                   defaultValue={textContent || selectedContent.contents}
                   onChange={(e) => setTextContent(e.target.value)}
                 />
+                {/* <TextContent onChange={(e) => setTextContent(e.target.value)}>{textContent || selectedContent.contents}</TextContent> */}
                 {/* </div> */}
                 <FileAttach for="input-file">이미지 업로드</FileAttach>
                 <input
@@ -259,7 +260,7 @@ function ContentModiCreate({
           </Link>
         </FieldSet>
       </ContentForm>
-    </FlexSection>
+    </section>
   );
 }
 

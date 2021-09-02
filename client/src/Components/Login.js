@@ -74,7 +74,7 @@ function Login({ getUserInfo }) {
   };
 
   return (
-    <div>
+    <div class="fff">
       <h1>
         <Logo src={logo} />
       </h1>

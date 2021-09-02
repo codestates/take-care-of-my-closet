@@ -16,7 +16,6 @@ import ContentModiCreate from "./Components/ContentsModiCreate";
 import Content from "./Components/Content";
 import LoadingIndicator from "./Components/LoadingIndicator";
 
-import { FlexDiv } from "./Styled/Flex";
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -204,7 +203,7 @@ function App() {
 
   return (
     <React.Fragment>
-      <FlexDiv>
+      <div>
         {loca.pathname === "/login" || loca.pathname === "/signup" ? (
           <></>
         ) : (
@@ -274,7 +273,7 @@ function App() {
         </Switch>
         {/* </section> */}
         <Footer />
-      </FlexDiv>
+      </div>
     </React.Fragment>
   );
 }

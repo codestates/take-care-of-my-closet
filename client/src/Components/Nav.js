@@ -11,7 +11,8 @@ import {
   NavBtn,
 } from "../Styled/NavStyled";
 import { A11yHidden } from "../Styled/Common";
-// import { FlexNavBtn } from "../Styled/Flex";
+import '../Styled/Common.css'
+
 
 function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
   const [newContent, setNewContent] = useState({
@@ -35,7 +36,7 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
   };
 
   return (
-    <NavContainer>
+    <div className="NavContainer">
       <NavHeader>
         <h1 style={{ margin: 0 }}>
           <Link to="/">
@@ -63,7 +64,7 @@ function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
           )}
         </Navigation>
       </NavHeader>
-    </NavContainer>
+    </div>
   );
 }
 

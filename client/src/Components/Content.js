@@ -3,6 +3,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
 import { Cookies } from "react-cookie";
+import styled from 'styled-components'
+// import '../image/1111.png'
 
 import { FlexArticle } from "../Styled/Flex";
 import { A11yHidden, Btn } from "../Styled/Common";
@@ -17,9 +19,13 @@ import {
   UserMindBtnDisLike,
   ModifyBtn,
   DeleteBtn,
+
 } from "../Styled/ContentStyled";
 import like from "../image/like.png";
 import disLike from "../image/bad.png";
+
+import './sss.css'
+
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -168,21 +174,13 @@ function Content({
   };
 
   return (
-    <FlexArticle>
+    <div className="ContentContainer">
       <A11yHidden>컨텐츠</A11yHidden>
       <Article>
-        <ContentImg src={selectedContent.image} alt="img-thumbnail" />
-        <Section>
+        <ContentImg src={selectedContent.image}/>
+        <div className="ContentArticle">
           <Title>{selectedContent.title}</Title>
-          {/* <TextContent
-            autoComplete={false}
-            readOnly={true}
-            cols="30"
-            rows="10"
-            defaultValue={selectedContent.contents}
-            // disabled="true"
-          ></TextContent> */}
-          <div>{selectedContent.contents}</div>
+          <TextContent>{selectedContent.contents}</TextContent>
           <UserMindBtn>
             <UserMindBtnLike src={like} onClick={likeHandler}>
               <Btn>{likeCount}</Btn>
@@ -200,16 +198,17 @@ function Content({
           />
           {isLogin && userInfo.id === selectedContent.userId ? (
             <ModifyBtn onClick={modifyHandler}>수정</ModifyBtn>
-          ) : null}
+            ) : null}
           {isLogin && userInfo.id === selectedContent.userId ? (
             <DeleteBtn onClick={deleteHandler}>삭제</DeleteBtn>
-          ) : null}
-          {/* <button onClick={modifyHandler}>수정</button>
-      <button onClick={deleteHandler}>삭제</button> */}
-        </Section>
+            ) : null}
+        </div>
       </Article>
-    </FlexArticle>
+    </div>
   );
 }
+
+
+
 
 export default Content;
