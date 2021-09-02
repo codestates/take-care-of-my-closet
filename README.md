@@ -30,7 +30,7 @@
 
 팀명: Cordon Ramsay
 
-- 저희의 팀명은 Cording + Gordon Ramsay의 합성어로 코딩을 맛깔나게 하는 팀이 되자는 취지로 팀명을 지었습니다.
+- 저희의 팀명은 Cording + Gordon Ramsay의 합성어로 세계적인 셰프인 고든램지처럼 맛있는 코딩을 하자는 팀이 되자는 취지로 팀명을 지었습니다.
 
 | Name | Position |
 | ----------- | ----------- |
