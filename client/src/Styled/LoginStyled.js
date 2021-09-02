@@ -23,11 +23,9 @@ export const LoginInput = styled.input`
   height: 55px;
   /* font-size: 20px;
   padding-left: 20px; */
+  padding: 0 0 0 20px ;
   background-color: transparent;
-  ::placeholder {
-    /* color: black; */
-    padding: 0 20px ;
-  };
+  
   margin-bottom: 30px;
   border: 0;
   border-bottom: 1px solid #ccc;
@@ -53,6 +51,7 @@ export const LoginBtn = styled.button`
   font-size: 20px;
   border-radius: 20px;
   cursor: pointer;
-
 `
+
+
 

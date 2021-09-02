@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import '../Styled/UserStyled.css'
+// import '../Styled/UserStyled.css'
 import {FlexNavUl} from '../Styled/Flex'
 import {NavBtn} from '../Styled/NavStyled'
 import { Ul } from "../Styled/UserStyled";

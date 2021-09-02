@@ -8,7 +8,7 @@ import { A11yHidden, Legend } from "../Styled/Common";
 import {Logo} from '../Styled/NavStyled'
 import {LoginForm, LoginFieldset, LoginInput, LoginBtn, LoginBtns} from '../Styled/LoginStyled'
 
-import './login.css'
+// import './login.css'
 import '../Styled/Common.css'
 
 axios.defaults.withCredentials = true;
