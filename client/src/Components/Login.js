@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
-import logo from "../image/logo.jpeg"
+import logo from "../image/LOGO.png"
 import { Cookies } from "react-cookie"
 import axios from "axios"
 
@@ -76,7 +76,7 @@ function Login({ getUserInfo }) {
   }
 
   return (
-    <div className="login">
+    <div className="login"  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
       <h1>
         <Link to="/">
           <Logo src={logo} />

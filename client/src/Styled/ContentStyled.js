@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-export const FooterBox = styled.footer`
-    height: 10vh;  
-    background-color :transparent;
-    position: sticky;
-  `
+
 export const Article = styled.article`
   display: flex;
   align-items: center;
@@ -13,13 +9,17 @@ export const Article = styled.article`
   padding: 80px 60px;
   position: relative;
 
-  border: 0;
-  border: 1px solid;
+  /* border: 0; */
+  border: 1px solid #ccc;
+  /* margin-top: 60px; */
+  margin-bottom: 200px;
+
   /* width: 1000px; */
   /* padding: 30px; */
   /* margin: 0 auto; */
   /* border-color: orange; */
-  background-color: orange;
+  /* background-color: orange; */
+
 `;
 export const ContentImg = styled.div`
   width: 500px;
@@ -32,6 +32,7 @@ export const ContentImg = styled.div`
   background-repeat: no-repeat;
   /* padding: 30px; */
   /* background-color: red; */
+  
 `;
 
 // export const Section = styled.div`
@@ -48,6 +49,8 @@ export const Title = styled.p`
   white-space: nowrap;
   overflow: hidden;
   background-color: white;
+  border-bottom: 1px solid #ccc;
+  border-width: 20%;
 `;
 
 export const TextContent = styled.div`
@@ -61,6 +64,7 @@ export const TextContent = styled.div`
   top: 80px;
   padding: 20px 0 0 20px;
   /* margin-top: 20px; */
+  border: 1px solid #ccc;
 `;
 
 export const UserMindBtn = styled.div`

@@ -10,6 +10,7 @@ export const NavHeader = styled.header`
   display: flex;
   justify-content: space-between;
   /* background-color: orange; */
+
   padding: 0 90px;
 `
 
@@ -25,7 +26,8 @@ export const Logo = styled.div`
 
 export const Navigation = styled.nav`
   /* background-color: chartreuse; */
-  margin-top: 5px;
+  margin-top: -5px;
+
   height: 50px;
   display: flex;
   margin-right: 50px;
@@ -36,6 +38,7 @@ export const Navigation = styled.nav`
 export const NavBtn = styled.button`
   border: 0;
   cursor: pointer;
+  color: rgb(85, 83, 83);
   background-color: transparent;
   /* background-color: darkkhaki; */
   height: 79px;

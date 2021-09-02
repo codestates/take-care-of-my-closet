@@ -6,7 +6,7 @@ export const MainUl = styled.ul`
   list-style: none;
   justify-content: space-around;
   /* margin: 10px 0; */
-  background: linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5);
+  /* background: linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5); */
   /* background: linear-gradient(to right bottom, #ffd194, #70e1f5); */
   margin: 0;
 `
@@ -38,7 +38,7 @@ export const MainP = styled.p`
   padding: 15px;
 
   /* background-color: orange; */
-  border-radius: 15px 15px;
+  /* border-radius: 15px; */
   font-size: 15px;
   /* text-align: center; */
   color: black;
