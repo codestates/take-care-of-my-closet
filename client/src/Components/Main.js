@@ -19,9 +19,9 @@ function Main({ contents, handleContentClick }) {
             <li key={el.id} onClick={() => handleContentClick(el.id)}>
               <Link to="/content" style={{ textDecoration: "none" }}>
                 <MainArticle>
-                  <p className="title">{el.title}</p>
+                <p style={{borderBottom:"1px solid #ccc",borderRadius:0} } className="title">{el.title}</p>
                   <MainImg src={el.image} alt="img-thumbnail" />
-                  <MainP>&#64;{el.user.nickname}</MainP>
+                  <MainP style={ {borderTop:"1px solid #ccc"}}>&#64;{el.user.nickname}</MainP>
                 </MainArticle>
               </Link>
             </li>

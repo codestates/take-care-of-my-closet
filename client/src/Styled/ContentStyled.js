@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const FooterBox = styled.footer`
+    height: 10vh;  
+    background-color :transparent;
+    position: sticky;
+  `
 export const Article = styled.article`
   display: flex;
   align-items: center;
