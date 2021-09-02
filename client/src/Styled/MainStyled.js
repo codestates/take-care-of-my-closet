@@ -12,10 +12,9 @@ export const MainUl = styled.ul`
 `
 
 export const MainArticle = styled.article`
-
-  background: linear-gradient(to right, #f5f5f5, #fce4ec, #d1c4e9);
+  background: white;
   border-radius: 15px;
-  border: 5px solid #bdbdbd;
+  border: 1px solid #bdbdbd;
   border-radius: 15px 15px;
   margin: 90px 30px;
 

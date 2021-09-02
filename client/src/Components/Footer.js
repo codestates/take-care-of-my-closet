@@ -1,10 +1,11 @@
 import React from "react"
-import "./Footer.css"
+//import "./Footer.css"
+import {FooterBox} from "../Styled/FooterStyed"
 // import "./reset.css";
 
 function Footer() {
   return (
-    <footer>
+    <FooterBox>
       <address>
         <span>
           contact us :{"    "}
@@ -28,7 +29,7 @@ function Footer() {
         Copyright since &copy; 2021 by cordonramsay of Code State CORPORATION
         ALL RIGHTS RESERVED.
       </small>
-    </footer>
+      </FooterBox>
   )
 }
 

@@ -5,6 +5,7 @@ import axios from "axios";
 // import "./reset.css";
 import {ul} from '../Styled/MyContentStyled'
 import { Cookies } from "react-cookie";
+import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
 import { A11yHidden, Legend } from "../Styled/Common";
 
 
@@ -47,20 +48,22 @@ function MyContents({
 
   return (
     <section>
-      <A11yHidden>마이 콘텐츠</A11yHidden>
-      <ul>
+       <A11yHidden>마이 콘텐츠</A11yHidden>
+       <MainUl>
         {myContents.map((el) => {
           return (
             <Link to="/content">
               <li key={el.id} onClick={() => handleContentClick(el.id)}>
-                <p>{el.title}</p>
-                <img src={el.image} alt="img-thumbnail" />
-                <p>&copy; {el.nickname}</p>
+              <MainArticle>
+                <p style={{borderBottom:"1px solid #ccc",borderRadius:0}} className="title">{el.title}</p>
+                <MainImg src={el.image} alt="img-thumbnail" />
+                <MainP style={ {borderTop:"1px solid #ccc"}} >&copy; {el.nickname}</MainP>
+              </MainArticle>
               </li>
             </Link>
           );
         })}
-      </ul>
+     </MainUl>
     </section>
   );
 }
