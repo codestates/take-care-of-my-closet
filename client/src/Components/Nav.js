@@ -11,10 +11,9 @@ import {
   NavBtn,
 } from "../Styled/NavStyled";
 import { A11yHidden } from "../Styled/Common";
-import '../Styled/Common.css'
+import "../Styled/Common.css";
 
-
-function Nav({ isLogin, logoutHandler, selectedContent, setSelectedContent }) {
+function Nav({ isLogin, logoutHandler }) {
   const [newContent, setNewContent] = useState({
     id: "",
     userId: "",

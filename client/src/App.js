@@ -16,7 +16,6 @@ import ContentModiCreate from "./Components/ContentsModiCreate";
 import Content from "./Components/Content";
 import LoadingIndicator from "./Components/LoadingIndicator";
 
-
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
 
@@ -207,12 +206,7 @@ function App() {
         {loca.pathname === "/login" || loca.pathname === "/signup" ? (
           <></>
         ) : (
-          <Nav
-            isLogin={isLogin}
-            logoutHandler={logoutHandler}
-            selectedContent={selectedContent}
-            setSelectedContent={setSelectedContent}
-          />
+          <Nav isLogin={isLogin} logoutHandler={logoutHandler} />
         )}
         {/* <section> */}
         <Switch>
@@ -257,7 +251,6 @@ function App() {
               replyList={replyList}
               replyListHandler={replyListHandler}
               getSelectedContent={getSelectedContent}
-              // selectedId={selectedId}
               getUserInfo={getUserInfo}
               contentsListHandler={contentsListHandler}
             />
