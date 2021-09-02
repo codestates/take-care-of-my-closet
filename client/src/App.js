@@ -49,7 +49,7 @@ function App() {
 
   let loca = useLocation();
   const history = useHistory();
-
+  console.log(loca.pathname);
   useEffect(() => {
     setIsloading(true);
     axios
@@ -64,10 +64,16 @@ function App() {
       });
     getUserInfo(cookies.get("accessToken"));
   }, []);
-  console.log(userInfo);
-  console.log(isLogin);
-  console.log(selectedContent);
-  console.log("받아온 컨텐츠 정보", contents);
+
+  useEffect(() => {
+    localStorage.setItem("selectedPostId", selectedContent.id);
+    console.log("로컬 스토리지", localStorage.getItem("selectedPostId"));
+  }, [selectedContent, loca.pathname]);
+
+  useEffect(() => {
+    console.log("위치 변경 감지");
+    localStorage.setItem("selectedPostId", null);
+  }, [loca]);
 
   const getUserInfo = (accessToken) => {
     axios
@@ -126,7 +132,6 @@ function App() {
   };
 
   const logoutHandler = () => {
-    // 액세스 토큰 지우는 메소드 구현?
     axios
       .get(`${process.env.REACT_APP_API_URL}/logout`, {
         headers: {
@@ -175,6 +180,8 @@ function App() {
           setLikeCount(res.data.likeCount);
           setUnlikeCount(res.data.unlikeCount);
           setReplyList(res.data.contents.comments);
+          localStorage.setItem("selectedPostId", res.data.contents.id);
+          console.log("로컬 스토리지2", localStorage.getItem("selectedPostId"));
         }
       })
       .catch((err) => {
@@ -247,7 +254,7 @@ function App() {
               replyList={replyList}
               replyListHandler={replyListHandler}
               getSelectedContent={getSelectedContent}
-              selectedId={selectedId}
+              // selectedId={selectedId}
               getUserInfo={getUserInfo}
               contentsListHandler={contentsListHandler}
             />

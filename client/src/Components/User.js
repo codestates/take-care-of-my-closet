@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+// import '../Styled/UserStyled.css'
+import {FlexNavUl} from '../Styled/Flex'
+import {NavBtn} from '../Styled/NavStyled'
+
 function User({ logoutHandler }, className) {
   const [userBtnIsOn, setUserBtnIsOn] = useState("");
 
@@ -9,10 +13,10 @@ function User({ logoutHandler }, className) {
   };
 
   return (
-    <ul>
-      <button className="navBtn">
+    <FlexNavUl>
+      <NavBtn>
         <span onClick={UserBtnHandler}>User</span>
-      </button>
+      </NavBtn>
       {userBtnIsOn ? (
         <>
           <Link to="/mycontents">
@@ -26,7 +30,7 @@ function User({ logoutHandler }, className) {
           </Link>
         </>
       ) : null}
-    </ul>
+    </FlexNavUl>
   );
 }
 export default User;
