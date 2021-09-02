@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import logo from "../image/logo.jpeg";
 import {Logo} from '../Styled/NavStyled'
@@ -216,7 +216,9 @@ function SignUp() {
   return (
     <div class="sign-up">
       <h1>
+    <Link to="/">
         <Logo src={logo}/>
+        </Link>
       </h1>
       <SignUpForm>
       <h2>회원가입</h2>
