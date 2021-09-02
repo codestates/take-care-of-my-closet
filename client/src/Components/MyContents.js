@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./MyContents.css";
+// import "./MyContents.css";
 // import "./reset.css";
+import {ul} from '../Styled/MyContentStyled'
 import { Cookies } from "react-cookie";
 import { MainUl, MainArticle, MainImg, MainP } from "../Styled/MainStyled";
-import { A11yHidden } from "../Styled/Common";
+import { A11yHidden, Legend } from "../Styled/Common";
+
+
 
 const cookies = new Cookies();
 
