@@ -3,6 +3,8 @@ const { user } = require("../../models")
 module.exports = async (req, res) => {
   console.log("qwerqwerqwerewr", req.body)
   const { login_id, password, nickname, user_image } = req.body
+   
+  const basicimage ='https://take-closet-bucket.s3.ap-northeast-2.amazonaws.com/data/%ED%94%84%EB%A1%9C%ED%95%84+%EC%9D%B4%EB%AF%B8%EC%A7%80/%ED%94%84%EB%A1%9C%ED%95%84.jpg'
 
   const [userInfo, created] = await user.findOrCreate({
     where: { login_id: login_id },
@@ -10,7 +12,7 @@ module.exports = async (req, res) => {
       login_id: login_id,
       password: password,
       nickname: nickname,
-      user_image: user_image,
+      user_image: user_image || basicimage,
     },
   })
 

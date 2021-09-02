@@ -30,11 +30,6 @@ module.exports = async (req, res) => {
   
   delete findUser.dataValues.password
 
-  });
-
-  delete findUser.dataValues.password;
-
-
   const accessToken = sign(findUser.dataValues, process.env.ACCESS_SECRET, {
     expiresIn: "1h",
   });

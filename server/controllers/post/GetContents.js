@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
 
   const unlikes = db.sequelize.models.unlikes
 
-  if(req.body.postId){
+  if(!req.body.postId){
    return res.status(400).json({message:"bad Request"}) 
   }
 
