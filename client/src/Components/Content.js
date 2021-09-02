@@ -4,22 +4,15 @@ import axios from "axios";
 import Replys from "./Replys";
 import { Cookies } from "react-cookie";
 
-import { FlexArticle } from "../Styled/Flex";
 import { A11yHidden, Btn,  } from "../Styled/Common";
-import {
-  Article,
-  ContentImg,
-  Section,
-  Title,
-  TextContent,
-  UserMindBtn,
-  UserMindBtnLike,
-  UserMindBtnDisLike,
-  ModifyBtn,
-  DeleteBtn,
+import { fdd } from "../Styled/Flex";
+import {Article,ContentImg1,Section,Title,TextContent,UserMindBtn,UserMindBtnLike,UserMindBtnDisLike,ModifyBtn,DeleteBtn,
 } from "../Styled/ContentStyled";
 import like from "../image/like.png";
 import disLike from "../image/bad.png";
+
+import './sss.css'
+
 
 axios.defaults.withCredentials = true;
 const cookies = new Cookies();
@@ -168,19 +161,16 @@ function Content({
   };
 
   return (
-    <FlexArticle>
+    <div className="fdd">
       <A11yHidden>컨텐츠</A11yHidden>
       <Article>
-        <ContentImg src={selectedContent.image} alt="img-thumbnail" />
+        {/* <div className="ContentImg1">ssddddddddddddss</div> */}
+        <ContentImg1 src={selectedContent.image} alt="img-thumbnail" />
         <Section>
           <Title>{selectedContent.title}</Title>
-          <TextContent
-            readOnly={true}
-            cols="30"
-            rows="10"
-            defaultValue={selectedContent.contents}
-            // disabled="true"
-          ></TextContent>
+          <TextContent>
+            {selectedContent.contents}
+          </TextContent>
           {/* <div>{selectedContent.contents}</div> */}
           <UserMindBtn>
             <UserMindBtnLike src={like} onClick={likeHandler}>
@@ -203,11 +193,9 @@ function Content({
           {isLogin && userInfo.id === selectedContent.userId ? (
             <DeleteBtn onClick={deleteHandler}>삭제</DeleteBtn>
           ) : null}
-          {/* <button onClick={modifyHandler}>수정</button>
-      <button onClick={deleteHandler}>삭제</button> */}
         </Section>
       </Article>
-    </FlexArticle>
+    </div>
   );
 }
 

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const NavContainer = styled.div`
   background-color: white;
-  padding: 30px 120px 30px 60px;
+  padding: 30px 0px 30px 0px;
   border: 1px solid #BDBDBD;
 `
 

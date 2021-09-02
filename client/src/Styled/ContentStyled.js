@@ -4,22 +4,25 @@ export const Article = styled.article`
   display: flex;
   align-items: center;
   margin: 0 auto;
-  width: 1000px;
+  /* width: 1000px; */
+  border: 1px solid;
   padding: 90px 60px;
   position: relative;
-  background-color: brown;
+  border-color: orange;
+  /* background-color: black; */
   border: 0;
 `;
 
-export const ContentImg = styled.div`
-  width: 500px;
-  height: 500px;
-  margin-right: 40px;
+export const ContentImg1 = styled.div`
+  width: 400px;
+  /* height: 500px; */
+  /* margin-right: 40px; */
   background-image: url(${(props) => props.src || ""});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 30px;
+  background-color: red;
+  /* padding: 30px; */
 `;
 
 export const Section = styled.div`
@@ -38,7 +41,7 @@ export const Title = styled.p`
 background-color: white;
 `;
 
-export const TextContent = styled.textarea`
+export const TextContent = styled.div`
   background-color: white;
   font-size: 16px;
   /* margin-top: -100px; */

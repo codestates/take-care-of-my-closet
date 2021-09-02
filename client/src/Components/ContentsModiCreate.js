@@ -156,7 +156,7 @@ function ContentModiCreate({
   };
 
   return (
-    <FlexSection>
+    <section>
       <A11yHidden>컨텐츠 작성 및 수정</A11yHidden>
       <ContentForm
         method="post"
@@ -169,7 +169,7 @@ function ContentModiCreate({
           {/* newContent 가 ? true 명 데이터가 잇는 것임 : 새글임*/}
           {newContent === undefined ? (
             <>
-            <ImageContent src={selectedContent.image} />
+            <ImageContent src={url || selectedContent.image} />
                 {/* <img src={selectedContent.image} alt="dd"/> */}
               <Section>
                 <CreateTitle defaultValue={selectedContent.title} cols="30"
@@ -229,7 +229,7 @@ function ContentModiCreate({
           </Link>
         </FieldSet>
       </ContentForm>
-    </FlexSection>
+    </section>
   );
 }
 
