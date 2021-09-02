@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import logo from "../image/logo.jpeg";
 
@@ -129,7 +129,7 @@ function SignUp() {
       )
       .then((res) => {
         console.log(res);
-        if (res.data.message === `It's already created`) {
+        if (res.data.message === "It's already created") {
           setDuplicatedNick(false);
           setDuplicatedNickMessage("사용할 수 없는 닉네임 입니다.");
         } else if (res.data.message === "ok") {
@@ -209,7 +209,9 @@ function SignUp() {
   return (
     <div>
       <h1>
-        <img src={logo} alt="logo" width="500px" />
+        <Link to="/">
+          <img src={logo} alt="logo" width="500px" />
+        </Link>
       </h1>
       <h2>회원가입</h2>
       <form>
