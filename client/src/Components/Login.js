@@ -1,44 +1,42 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import logo from "../image/logo.jpeg";
-import { Cookies } from "react-cookie";
-import axios from "axios";
+import React, { useState } from "react"
+import { Link, useHistory } from "react-router-dom"
+import logo from "../image/logo.jpeg"
+import { Cookies } from "react-cookie"
+import axios from "axios"
 
-import { A11yHidden, Legend } from "../Styled/Common";
-import {Logo} from '../Styled/NavStyled'
-import './login.css'
-import '../Styled/Common.css'
+import { A11yHidden, Legend } from "../Styled/Common"
+import { Logo } from "../Styled/NavStyled"
+import "./login.css"
+import "../Styled/Common.css"
 
+axios.defaults.withCredentials = true
 
-
-axios.defaults.withCredentials = true;
-
-const cookies = new Cookies();
+const cookies = new Cookies()
 
 function Login({ getUserInfo }) {
-  const [inputId, setInputId] = useState("");
-  const [inputPw, setInputPw] = useState("");
+  const [inputId, setInputId] = useState("")
+  const [inputPw, setInputPw] = useState("")
 
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("")
 
-  const history = useHistory();
+  const history = useHistory()
 
   const inputIdHandler = (e) => {
-    e.preventDefault();
-    setInputId(e.target.value);
-  };
+    e.preventDefault()
+    setInputId(e.target.value)
+  }
 
   const inputPwHandler = (e) => {
-    e.preventDefault();
-    setInputPw(e.target.value);
-  };
+    e.preventDefault()
+    setInputPw(e.target.value)
+  }
 
   // const handleInputValue = (key) => (e) => {
   //   setLoginInfo({ ...loginInfo, [key]: e.target.value });
   // };
 
   const handleLogin = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     // setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
     if (inputId && inputPw) {
       axios
@@ -50,37 +48,37 @@ function Login({ getUserInfo }) {
           console.log(
             "로그인 요청 후 받은 액세스 토큰",
             cookies.get("accessToken")
-          );
-          const accessToken = cookies.get("accessToken");
+          )
+          const accessToken = cookies.get("accessToken")
           // console.log(accessToken);
 
           if (res.data.message === "not authorized") {
-            setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.");
+            setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.")
           } else {
-            setErrorMessage("");
-            getUserInfo(accessToken);
-            history.push("/");
+            setErrorMessage("")
+            getUserInfo(accessToken)
+            history.push("/")
           }
         })
-        .catch((err) => console.error(err));
+        .catch((err) => console.error(err))
     } else {
-      setErrorMessage("아이디와 비밀번호를 입력해주세요");
+      setErrorMessage("아이디와 비밀번호를 입력해주세요")
     }
-  };
+  }
 
   const goToSignUp = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    history.push("/signup");
-  };
+    history.push("/signup")
+  }
 
   return (
-    <div class="login">
+    <div className="login">
       <h1>
         <Logo src={logo} />
       </h1>
       <A11yHidden>로그인</A11yHidden>
-      <form className ="ddd" styled="border: 0">
+      <form className="ddd" styled="border: 0">
         <fieldset>
           <Legend>로그인 폼</Legend>
           <input
@@ -103,7 +101,7 @@ function Login({ getUserInfo }) {
         </fieldset>
       </form>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login
