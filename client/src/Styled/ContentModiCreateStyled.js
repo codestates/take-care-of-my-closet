@@ -44,7 +44,6 @@ export const CreateTitle = styled.input`
   
   ::placeholder {
     color: black;
-
   }
   /* background-color: transparent; */
   /* background-color: white; */
@@ -63,7 +62,7 @@ export const ImageContent = styled.div`
   height: 500px;
 
   margin-right: 40px;
-  margin-top: -5px;
+  margin-top: -10px;
   margin-left: -15px;
 
   background-image: url(${props => props.src || ''});

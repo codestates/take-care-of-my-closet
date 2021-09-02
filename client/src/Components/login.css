@@ -9,10 +9,30 @@
 } */
 
 h1 {
-  height: 10%;
+  /* padding-top: 90px; */
+  /* height: 10vh; */
+
+  /* height: 10%; */
   /* background-color: blue; */
 }
 
 .ddd {
-  height: 90%;
+  margin-top: 20px;
+  height: 80vh;
+  background-color: red;
+  border: 0;
+  width: 800px;
 }
+
+.dk {
+  border: 0;
+  display: flex;
+  flex-direction: column;
+
+}
+
+/* .idBox {
+  background-color: transparent;
+  /* background-color: blue; */
+/* border: 0; */
+/* }  */
