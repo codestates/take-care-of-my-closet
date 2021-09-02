@@ -6,7 +6,7 @@ export const ReplysSection = styled.section`
 `
 export const ReplysUl = styled.ul`
   width: 470px;
-  height: 220px;
+  height: 200px;
   /* background-color: red; */
   list-style: none;
   padding: 0;
