@@ -25,13 +25,13 @@ module.exports = async (req, res) => {
 
     await res.cookie("accessToken", accessToken, {
       HttpOnly: true,
-      Secure: false, // https 에서는 true로 하기
+      Secure: true, // https 에서는 true로 하기
       SameSite: "None",
     })
 
     await res.cookie("refreshToken", refreshToken, {
       HttpOnly: true,
-      Secure: false,
+      Secure: true,
       SameSite: "None",
     })
 

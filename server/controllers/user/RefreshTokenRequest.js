@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
 
     await res.cookie("accessToken", accessToken, {
       HttpOnly: true,
-      Secure: false,
+      Secure: true,
       SameSite: "None",
     })
 

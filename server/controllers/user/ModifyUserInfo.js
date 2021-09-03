@@ -38,13 +38,13 @@ module.exports = async (req, res) => {
 
   await res.cookie("accessToken", accessToken, {
     HttpOnly: true,
-    Secure: false,
+    Secure: true,
     SameSite: "None",
   })
 
   await res.cookie("refreshToken", refreshToken, {
     HttpOnly: true,
-    Secure: false,
+    Secure: true,
     SameSite: "None",
   })
 
