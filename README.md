@@ -1,3 +1,4 @@
+
 # PROJECT
 
 <img src="https://images-ext-2.discordapp.net/external/CgG-sYgcMFqTvMW3WwVV0Hj1yE-kVRcYpRwtGX00zRA/https/user-images.githubusercontent.com/83861190/131800904-0f2759dc-7e1e-460d-880d-f62d7c1955df.jpeg?width=1027&height=387" alt="LOGO" height="300" width=700>
@@ -42,3 +43,4 @@
 # For project details
 
 <a font-size=500px href="https://github.com/codestates/take-care-of-my-closet/wiki">checkout WIKI</a>
+
