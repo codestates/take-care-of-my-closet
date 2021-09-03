@@ -1,0 +1,97 @@
+.NavContainer {
+  /* background-color: transparent; */
+  padding: 10px 0px 10px 0px;
+  border: 1px solid #BDBDBD;
+  /* background-size: cover; */
+  /* opacity: 0.5; */
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: white;
+
+}
+
+
+.ContentArticle {
+  display: flex;
+  flex-direction: column;
+  /* background-color: chocolate; */
+
+}
+
+.ContentContainer {
+  /* background-color: red; */
+  padding: 90px 0;
+  background: linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)
+}
+
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 auto;
+  padding-top: 80px;
+
+}
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding-top: 80px;
+}
+
+
+
+.profile-form {
+  margin-top: 30px;
+  margin-left: -60px;
+  /* background-color: red; */
+  display: flex;
+  height: 100px;
+}
+
+
+
+.nickname-form {
+  margin-top: 20px;
+  margin-left: 60px;
+}
+
+.my-page {
+  /* margin-top: 50px; */
+  padding-top: 50px;
+  padding-bottom: 100px;
+  /* background-color: blue; */
+}
+
+.modi-user-info-section {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.hide {
+  display: none;
+  background-color: rgb(224, 219, 219);
+}
+
+.profileUpload {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.userLi {
+  /* background-color: red; */
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  z-index: 2;
+  font-size: 16px;
+  /* position: relative; */
+  color: black;
+}

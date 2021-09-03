@@ -3,24 +3,29 @@ dotenv.config();
 
 module.exports = {
   development: {
-    username: "root",
+
+    username: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: "take-care-of-my-closet",
-    host: "127.0.0.1",
+    database: process.env.DATABASE_NAME,
+    host: process.env.DATABASE_HOST,
+    port: process.env.DATABASE_PORT,
     dialect: "mysql",
   },
   test: {
-    username: "root",
+    username: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: "take-care-of-my-closet",
-    host: "127.0.0.1",
+    database: process.env.DATABASE_NAME,
+    host: process.env.DATABASE_HOST,
+    port: process.env.DATABASE_PORT,
     dialect: "mysql",
   },
   production: {
-    username: "root",
+    username: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
-    database: "take-care-of-my-closet",
-    host: "127.0.0.1",
+    database: process.env.DATABASE_NAME,
+    host: process.env.DATABASE_HOST,
+    port: process.env.DATABASE_PORT,
+
     dialect: "mysql",
   },
 };
