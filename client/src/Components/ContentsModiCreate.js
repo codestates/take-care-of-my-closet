@@ -18,7 +18,7 @@ import {
 import { TextContent } from "../Styled/ContentStyled";
 import '../Styled/Common.css'
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 const cookies = new Cookies();
 
 function ContentModiCreate({

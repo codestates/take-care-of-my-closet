@@ -28,7 +28,7 @@ import disLike from "../image/bad.png";
 import './sss.css'
 
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 const cookies = new Cookies();
 
 function Content({

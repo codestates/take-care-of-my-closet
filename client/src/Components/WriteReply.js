@@ -6,7 +6,7 @@ import {
   CreateReplyBox,
 } from "../Styled/ReplysStyled";
 import { Btn } from "../Styled/Common";
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
   const [replyValue, setReplyValue] = useState("");

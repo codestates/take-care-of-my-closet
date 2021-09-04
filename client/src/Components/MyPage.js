@@ -10,7 +10,7 @@ import {ModiProfile,ModiProfileBox, MyPageForm, MyPageFieldSet,
   ModiNickName, ModiNickNameValidation, ModiUserInfoSave} from '../Styled/MyPageStyled'
 
 
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
 
 function MyPage({ isLogin, userInfo, setUserInfo }) {
   const [imageFile, setImageFile] = useState(null)

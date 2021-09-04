@@ -11,7 +11,7 @@ import {
 } from "../Styled/ReplysStyled";
 
 import deleteBtn from "../image/x-mark.png";
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 function Replys({
   isLogin,

@@ -8,7 +8,7 @@ import {SignUpForm, SignUpFieldset,SignUpInput, PassWordCheck, FileAttachProfile
 // import {FileAttach} from "../Styled/ContentModiCreateStyled";
 
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 function SignUp() {
   const [idValue, setIdValue] = useState("");

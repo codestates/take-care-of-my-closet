@@ -12,7 +12,7 @@ import {LoginForm, LoginFieldset, LoginInput, LoginBtn, LoginBtns} from '../Styl
 import './login.css'
 import '../Styled/Common.css'
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 const cookies = new Cookies();
 
