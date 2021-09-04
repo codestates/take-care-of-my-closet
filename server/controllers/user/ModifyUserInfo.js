@@ -37,12 +37,16 @@ module.exports = async (req, res) => {
   })
 
   await res.cookie("accessToken", accessToken, {
+    domain: "closetserver.link",
+    path: "/",
     HttpOnly: true,
     Secure: true,
     SameSite: "None",
   })
 
   await res.cookie("refreshToken", refreshToken, {
+    domain: "closetserver.link",
+    path: "/",
     HttpOnly: true,
     Secure: true,
     SameSite: "None",
