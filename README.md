@@ -42,7 +42,7 @@
 
 # For project details
 
-<a href="https://please.takecareofmycloset.link/"</a>
+<a href="https://please.takecareofmycloset.link/"></a>
 
 <a font-size=500px href="https://github.com/codestates/take-care-of-my-closet/wiki">checkout WIKI</a>
 
