@@ -46,7 +46,7 @@ function Login({ getUserInfo }) {
         .post(`${process.env.REACT_APP_API_URL}/login`, {
           login_id: inputId,
           password: inputPw,
-        })
+        },{withCredentials: true})
         .then((res) => {
           console.log(
             "로그인 요청 후 받은 액세스 토큰",

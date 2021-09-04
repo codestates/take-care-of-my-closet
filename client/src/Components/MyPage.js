@@ -101,7 +101,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
         password: password || null,
         image: url || userInfo.image,
         nickname: nickName || userInfo.nickname,
-      })
+      },{withCredentials: true})
       .then((res) => {
         console.log("회원정보 수정 요청 응답", res.data)
         if (res.data.message === "ok") {
@@ -154,7 +154,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
     formData.append("closet", file)
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/upload`, formData)
+      .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {withCredentials: true})
       .then((res) => {
         console.log(res.data)
         if (res.data.message === "ok") {

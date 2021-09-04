@@ -29,7 +29,7 @@ function Replys({
           postId: selectedContent.id,
           userId: userInfo.id,
           id: selectedReplyId,
-        })
+        }, {withCredentials: true})
         .then((res) => {
           console.log("댓글 삭제 요청 응답", res.data);
           if (res.data.message === "delete!") {

@@ -30,7 +30,7 @@ function WriteReply({ isLogin, userInfo, selectedContent, replyListHandler }) {
     };
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/createComment`, payload)
+      .post(`${process.env.REACT_APP_API_URL}/createComment`, payload, {withCredentials: true})
       .then((res) => {
         // 등록한 댓글이 추가됨
         console.log("댓글 등록 요청 응답", res.data);

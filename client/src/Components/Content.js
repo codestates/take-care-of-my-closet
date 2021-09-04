@@ -61,7 +61,7 @@ function Content({
     getSelectedContent(localStorage.getItem("selectedPostId"));
     // console.log("987987987987987987987", selectedContent);
     axios
-      .post(`${process.env.REACT_APP_API_URL}/getposts`)
+      .post(`${process.env.REACT_APP_API_URL}/getposts`, null, {withCredentials: true})
       .then((res) => {
         console.log("전체게시글 요청 응답", res.data);
         contentsListHandler(res.data.data);
@@ -72,7 +72,7 @@ function Content({
     // if (localStorage.getItem("selectedPostId"))
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/getposts`)
+      .post(`${process.env.REACT_APP_API_URL}/getposts`, null , {withCredentials: true})
       .then((res) => {
         console.log("전체게시글 요청 응답", res.data);
         contentsListHandler(res.data.data);
@@ -118,13 +118,13 @@ function Content({
           .post(`${process.env.REACT_APP_API_URL}/deletepost`, {
             postId: selectedContent.id,
             login_id: userInfo.login_id,
-          })
+          }, {withCredentials: true})
           .then((res) => {
             // App.js에 삭제된 게시글 정보 전달
             console.log("게시글 삭제 요청 응답", res);
             if (res.data === "success!") {
               axios
-                .post(`${process.env.REACT_APP_API_URL}/getposts`)
+                .post(`${process.env.REACT_APP_API_URL}/getposts`, null, {withCredentials: true})
                 .then((res) => {
                   console.log("전체게시글 요청 응답", res.data);
                   contentsListHandler(res.data.data);
@@ -158,7 +158,7 @@ function Content({
         userId: userInfo.id,
         postId: selectedContent.id,
         click: "like",
-      })
+      }, {withCredentials: true})
       .then((res) => {
         console.log("좋아요 요청에 대한 응답", res.data);
         if (res.data.message === "ok") {
@@ -182,7 +182,7 @@ function Content({
         userId: userInfo.id,
         postId: selectedContent.id,
         click: "unlike",
-      })
+      }, {withCredentials: true})
       .then((res) => {
         console.log("싫어요 요청에 대한 응답", res.data);
         if (res.data.message === "ok") {

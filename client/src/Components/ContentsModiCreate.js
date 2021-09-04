@@ -73,12 +73,12 @@ function ContentModiCreate({
           image: url,
           title: title,
           contents: textContent,
-        })
+        },{withCredentials: true})
         .then((res) => {
           console.log("새글작성 응답", res.data);
           if (res.data.message === "ok") {
             axios
-              .post(`${process.env.REACT_APP_API_URL}/getposts`)
+              .post(`${process.env.REACT_APP_API_URL}/getposts`,null,{withCredentials: true})
               .then((res) => {
                 console.log("전체게시글 요청 응답", res.data);
                 contentsListHandler(res.data.data);
@@ -103,7 +103,7 @@ function ContentModiCreate({
           image: url || selectedContent.image,
           title: title || selectedContent.title,
           contents: textContent || selectedContent.contents,
-        })
+        },{withCredentials: true})
         .then((res) => {
           console.log("게시글 수정요청 응답", res.data);
           if (res.data.message === "ok") {
@@ -152,7 +152,7 @@ function ContentModiCreate({
     formData.append("closet", file);
 
     axios
-      .post(`${process.env.REACT_APP_API_URL}/upload`, formData)
+      .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {withCredentials: true})
       .then((res) => {
         console.log(res.data);
         if (res.data.message === "ok") {

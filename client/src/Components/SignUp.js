@@ -75,7 +75,7 @@ function SignUp() {
     // console.log(formData); // FormData {}
     // for (const keyValue of formData) console.log("폼데이터", keyValue); // ["img", File] File은 객체
     axios
-      .post(`${process.env.REACT_APP_API_URL}/upload`, formData)
+      .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {withCredentials: true})
       .then((res) => {
         console.log(res.data);
         if (res.data.message === "ok") {
@@ -198,7 +198,7 @@ function SignUp() {
         password: pwValue,
         nickname: nickName,
         user_image: imageUrl,
-      })
+      }, {withCredentials: true})
       .then((res) => {
         console.log(res.data.message);
         if (res.data.message === "create!") {
