@@ -4,6 +4,10 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 module.exports = (req, res) => {
+
+  console.log('@@@@@@@@@@@@@@@@@@2',req.query)
+
+
   const accessToken = req.headers["accesstoken"]
   try {
     verify(accessToken, process.env.ACCESS_SECRET)

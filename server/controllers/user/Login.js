@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
     })
 
     await res.cookie("accessToken", accessToken, {
-      domain: "closetserver.link",
+      domain: "closetserver",
       path: "/",
       HttpOnly: true,
       Secure: true, // https 에서는 true로 하기
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
     })
 
     await res.cookie("refreshToken", refreshToken, {
-      domain: "closetserver.link",
+      domain: "closetserver",
       path: "/",
       HttpOnly: true,
       Secure: true,

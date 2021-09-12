@@ -48,7 +48,7 @@ function App() {
 
   let loca = useLocation();
   const history = useHistory();
-  // console.log(loca.pathname);
+  console.log('로케이션 ',loca);
   useEffect(() => {
     setIsloading(true);
     axios
@@ -137,6 +137,7 @@ function App() {
         headers: {
           refreshToken: cookies.get("refreshToken"),
         },
+
       })
       .then((res) => {
         console.log("로그아웃 요청 응답", res);
