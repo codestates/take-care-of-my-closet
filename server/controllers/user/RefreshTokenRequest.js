@@ -4,7 +4,9 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 module.exports = async (req, res) => {
-  const refreshToken = req.headers["refreshtoken"]
+  // console.log('=================',req.headers.cookie.split(' ')[0].split('=')[1])
+  // const refreshToken = req.headers["refreshToken"]
+  const refreshToken = req.headers.cookie.split(' ')[0].split('=')[1];
   try {
     verify(refreshToken, process.env.REFRESH_SECRET)
   } catch {
