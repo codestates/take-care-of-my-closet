@@ -42,5 +42,7 @@
 
 # For project details
 
+https://please.takecareofmycloset.link/
+
 <a font-size=500px href="https://github.com/codestates/take-care-of-my-closet/wiki">checkout WIKI</a>
 

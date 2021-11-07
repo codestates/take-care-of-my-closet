@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useLocation, useHistory } from "react-router-dom";
-import { Cookies } from "react-cookie";
+// import { Cookies } from "react-cookie";
 import { A11yHidden, Legend } from "../Styled/Common";
 import { FlexSection } from "../Styled/Flex";
 import {
@@ -18,8 +18,8 @@ import {
 import { TextContent } from "../Styled/ContentStyled";
 import '../Styled/Common.css'
 
-// axios.defaults.withCredentials = true;
-const cookies = new Cookies();
+axios.defaults.withCredentials = true;
+// const cookies = new Cookies();
 
 function ContentModiCreate({
   userInfo,
@@ -86,7 +86,7 @@ function ContentModiCreate({
               .catch((err) => {
                 console.log(err);
               });
-            getUserInfo(cookies.get("accessToken"));
+            getUserInfo();
             alert("게시글 작성이 완료되었습니다.");
             history.push("/");
           }
