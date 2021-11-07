@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Link, useHistory } from "react-router-dom"
 import logo from "../image/LOGO.png"
-import { Cookies } from "react-cookie"
+// import { Cookies } from "react-cookie"
 import axios from "axios"
 
 
@@ -14,7 +14,7 @@ import '../Styled/Common.css'
 
 axios.defaults.withCredentials = true;
 
-const cookies = new Cookies();
+// const cookies = new Cookies();
 
 function Login({ getUserInfo }) {
   const [inputId, setInputId] = useState("");
@@ -48,18 +48,18 @@ function Login({ getUserInfo }) {
           password: inputPw,
         })
         .then((res) => {
-          console.log(
-            "로그인 요청 후 받은 액세스 토큰",
-            cookies.get("accessToken")
-          );
-          const accessToken = cookies.get("accessToken");
+          // console.log(
+          //   "로그인 요청 후 받은 액세스 토큰",
+          //   cookies.get("accessToken")
+          // );
+          // const accessToken = cookies.get("accessToken");
           // console.log(accessToken);
 
           if (res.data.message === "not authorized") {
             setErrorMessage("아이디와 비밀번호가 일치하지 않습니다.");
           } else {
             setErrorMessage("");
-            getUserInfo(accessToken);
+            getUserInfo();
             history.push("/");
           }
         })

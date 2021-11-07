@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import axios from "axios";
 import Replys from "./Replys";
-import { Cookies } from "react-cookie";
+// import { Cookies } from "react-cookie";
 import styled from 'styled-components'
 // import '../image/1111.png'
 import '../Styled/Common.css'
@@ -29,7 +29,7 @@ import './sss.css'
 
 
 axios.defaults.withCredentials = true;
-const cookies = new Cookies();
+// const cookies = new Cookies();
 
 function Content({
   isLogin,
@@ -132,7 +132,7 @@ function Content({
                 .catch((err) => {
                   console.log(err);
                 });
-              getUserInfo(cookies.get("accessToken"));
+              getUserInfo();
               alert("게시글이 삭제되었습니다.");
               history.push("/");
             }

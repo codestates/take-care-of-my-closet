@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import { Switch, Route, useLocation, useHistory } from "react-router-dom";
-import { Cookies } from "react-cookie";
+// import { Cookies } from "react-cookie";
 
 import axios from "axios";
 
@@ -17,7 +17,7 @@ import Content from "./Components/Content";
 import LoadingIndicator from "./Components/LoadingIndicator";
 
 axios.defaults.withCredentials = true;
-const cookies = new Cookies();
+// const cookies = new Cookies();
 
 function App() {
   const [isLogin, setIsLogin] = useState(false);
@@ -61,7 +61,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
-    getUserInfo(cookies.get("accessToken"));
+    getUserInfo();
   }, []);
 
   useEffect(() => {
@@ -74,21 +74,19 @@ function App() {
     localStorage.setItem("selectedPostId", null);
   }, [loca]);
 
-  const getUserInfo = (accessToken) => {
-    if (!cookies.get("accessToken")) return;
+  const getUserInfo = () => {
+    // if (!cookies.get("accessToken")) return;
+    // if (!isLogin) return;
     axios
       .get(`${process.env.REACT_APP_API_URL}/accessTokenrequest`, {
-        headers: {
-          accessToken: accessToken,
-        },
+        // headers: {
+        //   accessToken: accessToken,
+        // },
+        withCredentials: true
       })
       .then((res) => {
         console.log("유저 정보 요청 응답", res.data.data);
-        if (res.data.message === "invalid access token") {
-          setIsLogin(false);
-          const refreshToken = cookies.get("refreshToken");
-          refreshTokenRequest(refreshToken);
-        } else {
+        // else {
           setUserInfo({
             id: res.data.data.userInfo.id,
             login_id: res.data.data.userInfo.login_id,
@@ -96,29 +94,35 @@ function App() {
             nickname: res.data.data.userInfo.nickname,
           });
           setIsLogin(true);
-        }
+        // }
       })
       .catch((err) => {
         console.log(err);
+        // if (res.data.message === "unauthorized") {
+          setIsLogin(false);
+          // const refreshToken = cookies.get("refreshToken");
+          refreshTokenRequest();
+        // } 
       });
   };
 
-  const refreshTokenRequest = (refreshToken) => {
+  const refreshTokenRequest = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/refreshTokenrequest`, {
-        headers: {
-          refreshToken: refreshToken,
-        },
+        // headers: {
+        //   refreshToken: refreshToken,
+        // },
+        withCredentials: true
       })
       .then((res) => {
-        console.log(
-          "리프레시토큰 요청후 받은 새 액세스 토큰",
-          cookies.get("accessToken")
-        );
+        // console.log(
+        //   "리프레시토큰 요청후 받은 새 액세스 토큰",
+        //   cookies.get("accessToken")
+        // );
         // 새로 발급받은 액세스 토큰이 옴
         if (res.data.message === "ok") {
-          const newAccessToken = cookies.get("accessToken");
-          getUserInfo(newAccessToken);
+          // const newAccessToken = cookies.get("accessToken");
+          getUserInfo();
         } else {
           // 리프레시 토큰마저 만료된 경우
           console.log("로그인이 필요합니다.");
@@ -134,14 +138,15 @@ function App() {
   const logoutHandler = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/logout`, {
-        headers: {
-          refreshToken: cookies.get("refreshToken"),
-        },
+        // headers: {
+        //   refreshToken: cookies.get("refreshToken"),
+        // },
+        withCredentials: true
       })
       .then((res) => {
         console.log("로그아웃 요청 응답", res);
-        cookies.remove("refreshToken");
-        cookies.remove("accessToken");
+        // cookies.remove("refreshToken");
+        // cookies.remove("accessToken");
         history.push("/");
       })
       .catch((err) => {

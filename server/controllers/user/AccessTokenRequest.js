@@ -4,7 +4,9 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 module.exports = (req, res) => {
-  const accessToken = req.headers["accesstoken"]
+  // console.log('*****************',req.headers.cookie.split(' ')[0].split('=')[1].slice(0, -1))
+  // const accessToken = req.headers["accessToken"]
+  const accessToken = req.headers.cookie.split(' ')[0].split('=')[1].slice(0, -1);
   try {
     verify(accessToken, process.env.ACCESS_SECRET)
   } catch {
