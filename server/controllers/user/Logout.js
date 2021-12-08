@@ -10,11 +10,11 @@ module.exports = async (req, res) => {
   })
   res.clearCookie('refreshToken')
   res.clearCookie('accessToken' ).status(200).json({ message: 'ok' })
-  // res.clearCookie().status(200).json({ message: 'ok' })
+
  }catch{
   res.clearCookie('refreshToken')
   res.clearCookie('accessToken').status(200).json({ message: 'ok' })
-  // res.clearCookie().status(200).json({ message: 'ok' })
+
  }
   
 }

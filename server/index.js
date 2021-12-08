@@ -60,7 +60,7 @@ app.post("/upload", upload.single("closet"), controllers.upload);
 
 
 
-const HTTPS_PORT = 4000;
+const HTTPS_PORT = 80;
 
 let server;
 
