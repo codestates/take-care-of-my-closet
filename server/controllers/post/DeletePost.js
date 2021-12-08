@@ -2,6 +2,7 @@ const { user, post, comment } = require("../../models");
 const db = require("../../models");
 
 module.exports = async (req, res) => {
+  console.log(req.body)
   const likes = db.sequelize.models.likes;
 
   const unlikes = db.sequelize.models.unlikes;
@@ -10,11 +11,11 @@ module.exports = async (req, res) => {
   const findUser = await user.findOne({
     where: { login_id : req.body.login_id}
   })
- 
   const posts = await post.findOne({
-    where :{id : req.body.lspostId, userId : findUser.id}
+    where :{id : req.body.postId, userId : findUser.id}
   })  
-  console.log(posts);
+  
+  console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2')
   if(!posts){
     return res.status(401).json({message:"Unauthorized"})
   }
