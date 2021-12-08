@@ -22,7 +22,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
   const [nickNameClassNameOn, setNickNameClassNameOn] = useState("")
   const [classNameOn, setClassNameOn] = useState("hide")
 
-  console.log("url", url)
+  // console.log("url", url)
   const history = useHistory()
 
   // <function>
@@ -59,7 +59,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
 
   // 비밀번호 확인 함수
   function pwIsMatch(secondPw) {
-    console.log(password, secondPw)
+    // console.log(password, secondPw)
     return password === secondPw
   }
 
@@ -103,10 +103,10 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
         nickname: nickName || userInfo.nickname,
       },{withCredentials: true})
       .then((res) => {
-        console.log("회원정보 수정 요청 응답", res.data)
+        // console.log("회원정보 수정 요청 응답", res.data)
         if (res.data.message === "ok") {
           // accessToken
-          console.log(setUserInfo)
+          // console.log(setUserInfo)
 
           setUserInfo({
             id: res.data.data.userInfo.id,
@@ -135,10 +135,10 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
 
     if (!validImageType(file)) {
       alert("이미지 파일이 아닙니다. 이미지 파일로 업로드 부탁드립니다.")
-      console.log("It is not an image file. Please upload it as an image file.")
+      // console.log("It is not an image file. Please upload it as an image file.")
       return
     } else {
-      console.log("The image file is correct. please continue")
+      // console.log("The image file is correct. please continue")
     }
 
     setImageFile(file)
@@ -156,7 +156,7 @@ function MyPage({ isLogin, userInfo, setUserInfo }) {
     axios
       .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {withCredentials: true})
       .then((res) => {
-        console.log(res.data)
+        // console.log(res.data)
         if (res.data.message === "ok") {
           setUrl(res.data.image_url)
         } else {

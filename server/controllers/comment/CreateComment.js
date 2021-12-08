@@ -2,7 +2,7 @@ const { comment, user } = require("../../models");
 
 module.exports = async (req, res) => {
   const newComment = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   //{postId: 현재 게시글 아이디(pk), userId, 현재 댓글 작성한 유저 아이디(pk), comments: 댓글 내용}
   if (!newComment.comments) {
     return res.status(400).json({ message: "input please" });

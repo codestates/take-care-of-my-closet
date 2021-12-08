@@ -40,8 +40,8 @@ function ContentModiCreate({
   const selectedContent = location.state.selectedContent;
   const newContent = location.state.newContent;
 
-  console.log("--------------", selectedContent);
-  console.log(">>>>>>>", newContent);
+  // console.log("--------------", selectedContent);
+  // console.log(">>>>>>>", newContent);
 
   // <function>
 
@@ -75,12 +75,12 @@ function ContentModiCreate({
           contents: textContent,
         },{withCredentials: true})
         .then((res) => {
-          console.log("새글작성 응답", res.data);
+          // console.log("새글작성 응답", res.data);
           if (res.data.message === "ok") {
             axios
               .post(`${process.env.REACT_APP_API_URL}/getposts`,null,{withCredentials: true})
               .then((res) => {
-                console.log("전체게시글 요청 응답", res.data);
+                // console.log("전체게시글 요청 응답", res.data);
                 contentsListHandler(res.data.data);
               })
               .catch((err) => {
@@ -96,7 +96,7 @@ function ContentModiCreate({
         });
     } else {
       // 게시글 수정 요청
-      console.log(url, title, textContent);
+      // console.log(url, title, textContent);
       axios
         .put(`${process.env.REACT_APP_API_URL}/modifymypost`, {
           id: selectedContent.id,
@@ -105,7 +105,7 @@ function ContentModiCreate({
           contents: textContent || selectedContent.contents,
         },{withCredentials: true})
         .then((res) => {
-          console.log("게시글 수정요청 응답", res.data);
+          // console.log("게시글 수정요청 응답", res.data);
           if (res.data.message === "ok") {
             setSelectedContent(res.data.data.userInfo);
             alert("게시글 수정이 완료되었습니다.");
@@ -131,12 +131,12 @@ function ContentModiCreate({
 
     if (!validImageType(file)) {
       alert("이미지 파일이 아닙니다. 이미지 파일로 업로드 부탁드립니다.");
-      console.log(
-        "It is not an image file. Please upload it as an image file."
-      );
+      // console.log(
+      //   "It is not an image file. Please upload it as an image file."
+      // );
       return;
     } else {
-      console.log("The image file is correct. please continue");
+      // console.log("The image file is correct. please continue");
     }
 
     setImageFile(file);
@@ -154,7 +154,7 @@ function ContentModiCreate({
     axios
       .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {withCredentials: true})
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.message === "ok") {
           setUrl(res.data.image_url);
         } else {

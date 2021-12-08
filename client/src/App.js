@@ -48,29 +48,29 @@ function App() {
 
   let loca = useLocation();
   const history = useHistory();
-  console.log('로케이션 ',loca);
+  // console.log('로케이션 ',loca);
   useEffect(() => {
     setIsloading(true);
     axios
       .post(`${process.env.REACT_APP_API_URL}/getposts`)
       .then((res) => {
-        console.log("전체게시글 요청 응답", res.data);
+        // console.log("전체게시글 요청 응답", res.data);
         contentsListHandler(res.data.data);
         setIsloading(false);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     getUserInfo();
   }, []);
 
   useEffect(() => {
     localStorage.setItem("selectedPostId", selectedContent.id);
-    console.log("로컬 스토리지", localStorage.getItem("selectedPostId"));
+    // console.log("로컬 스토리지", localStorage.getItem("selectedPostId"));
   }, [selectedContent, loca.pathname]);
 
   useEffect(() => {
-    console.log("위치 변경 감지");
+    // console.log("위치 변경 감지");
     localStorage.setItem("selectedPostId", null);
   }, [loca]);
 
@@ -85,7 +85,7 @@ function App() {
         withCredentials: true
       })
       .then((res) => {
-        console.log("유저 정보 요청 응답", res.data.data);
+        // console.log("유저 정보 요청 응답", res.data.data);
         // else {
           setUserInfo({
             id: res.data.data.userInfo.id,
@@ -125,7 +125,7 @@ function App() {
           getUserInfo();
         } else {
           // 리프레시 토큰마저 만료된 경우
-          console.log("로그인이 필요합니다.");
+          // console.log("로그인이 필요합니다.");
           setIsLogin(false);
           history.push("/login");
         }
@@ -144,7 +144,7 @@ function App() {
         withCredentials: true
       })
       .then((res) => {
-        console.log("로그아웃 요청 응답", res);
+        // console.log("로그아웃 요청 응답", res);
         // cookies.remove("refreshToken");
         // cookies.remove("accessToken");
         history.push("/");
@@ -186,7 +186,7 @@ function App() {
           setUnlikeCount(res.data.unlikeCount);
           setReplyList(res.data.contents.comments);
           localStorage.setItem("selectedPostId", res.data.contents.id);
-          console.log("로컬 스토리지2", localStorage.getItem("selectedPostId"));
+          // console.log("로컬 스토리지2", localStorage.getItem("selectedPostId"));
         }
       })
       .catch((err) => {
@@ -195,8 +195,8 @@ function App() {
   };
 
   const handleContentClick = (id) => {
-    console.log("게시글을 클릭했군요!");
-    console.log(id);
+    // console.log("게시글을 클릭했군요!");
+    // console.log(id);
     setSelectedId(id);
     getSelectedContent(id);
   };

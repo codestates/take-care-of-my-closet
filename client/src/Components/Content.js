@@ -45,16 +45,16 @@ function Content({
   contentsListHandler,
   getUserInfo,
 }) {
-  console.log("게시글 선택창", selectedContent);
+  // console.log("게시글 선택창", selectedContent);
   const history = useHistory();
   // const location = useLocation();
-  console.log(
-    "유저 아이디 vs 게시글 작성자 아이디",
-    userInfo.id,
-    "vs",
-    selectedContent.userId
-  );
-  console.log("글내용 :", selectedContent.contents);
+  // console.log(
+  //   "유저 아이디 vs 게시글 작성자 아이디",
+  //   userInfo.id,
+  //   "vs",
+  //   selectedContent.userId
+  // );
+  // console.log("글내용 :", selectedContent.contents);
   useEffect(() => {
     // localStorage.setItem("selectedPostId", selectedContent.id);
     // console.log(localStorage.getItem("selectedPostId"));
@@ -63,7 +63,7 @@ function Content({
     axios
       .post(`${process.env.REACT_APP_API_URL}/getposts`, null, {withCredentials: true})
       .then((res) => {
-        console.log("전체게시글 요청 응답", res.data);
+        // console.log("전체게시글 요청 응답", res.data);
         contentsListHandler(res.data.data);
       })
       .catch((err) => {
@@ -74,7 +74,7 @@ function Content({
     axios
       .post(`${process.env.REACT_APP_API_URL}/getposts`, null , {withCredentials: true})
       .then((res) => {
-        console.log("전체게시글 요청 응답", res.data);
+        // console.log("전체게시글 요청 응답", res.data);
         contentsListHandler(res.data.data);
       })
       .catch((err) => {
@@ -121,12 +121,12 @@ function Content({
           }, {withCredentials: true})
           .then((res) => {
             // App.js에 삭제된 게시글 정보 전달
-            console.log("게시글 삭제 요청 응답", res);
+            // console.log("게시글 삭제 요청 응답", res);
             if (res.data === "success!") {
               axios
                 .post(`${process.env.REACT_APP_API_URL}/getposts`, null, {withCredentials: true})
                 .then((res) => {
-                  console.log("전체게시글 요청 응답", res.data);
+                  // console.log("전체게시글 요청 응답", res.data);
                   contentsListHandler(res.data.data);
                 })
                 .catch((err) => {
@@ -152,7 +152,7 @@ function Content({
     if (!isLogin) {
       return alert("로그인 후 이용하실 수 있습니다.");
     }
-    console.log(likeCount);
+    // console.log(likeCount);
     axios
       .post(`${process.env.REACT_APP_API_URL}/likeunlike`, {
         userId: userInfo.id,
@@ -160,9 +160,9 @@ function Content({
         click: "like",
       }, {withCredentials: true})
       .then((res) => {
-        console.log("좋아요 요청에 대한 응답", res.data);
+        // console.log("좋아요 요청에 대한 응답", res.data);
         if (res.data.message === "ok") {
-          console.log("-------", res.data);
+          // console.log("-------", res.data);
           setLikeCount(res.data.data.like);
           setUnlikeCount(res.data.data.unlike);
         }
@@ -173,7 +173,7 @@ function Content({
   };
 
   const unlikeHandler = () => {
-    console.log(unlikeCount);
+    // console.log(unlikeCount);
     if (!isLogin) {
       return alert("로그인 후 이용하실 수 있습니다.");
     }
@@ -184,7 +184,7 @@ function Content({
         click: "unlike",
       }, {withCredentials: true})
       .then((res) => {
-        console.log("싫어요 요청에 대한 응답", res.data);
+        // console.log("싫어요 요청에 대한 응답", res.data);
         if (res.data.message === "ok") {
           // console.log("------", res);
           setLikeCount(res.data.data.like);

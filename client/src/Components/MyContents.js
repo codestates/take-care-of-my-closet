@@ -26,7 +26,7 @@ function MyContents({
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.message === "my posts") {
           setMyContents(res.data.data);
         }

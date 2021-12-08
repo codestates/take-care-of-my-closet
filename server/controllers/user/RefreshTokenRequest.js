@@ -6,6 +6,7 @@ dotenv.config()
 module.exports = async (req, res) => {
   // console.log('=================',req.headers.cookie.split(' ')[0].split('=')[1])
   // const refreshToken = req.headers["refreshToken"]
+  console.log(req.headers)
   const refreshToken = req.headers.cookie.split(' ')[0].split('=')[1];
   try {
     verify(refreshToken, process.env.REFRESH_SECRET)

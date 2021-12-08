@@ -9,7 +9,7 @@ function Main({ contents, handleContentClick }) {
   if (contents.length === 0) {
     return <div>게시글이 없습니다.</div>;
   }
-  console.log("메인페이지 컨텐츠", contents);
+  // console.log("메인페이지 컨텐츠", contents);
   return (
     <main  style={{background: "linear-gradient(to right bottom, #f4f4f4, #ecd6a7, #70e1f5)"}}>
       <A11yHidden>메인 페이지</A11yHidden>

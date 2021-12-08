@@ -3,7 +3,7 @@ const { comment, user } = require("../../models");
 module.exports = async (req, res) => {
   //{postId: 현재 게시글 아이디(pk), userId, 현재 댓글 작성한 유저 아이디(pk), comments: 댓글 내용}
   const deleteComment = req.body;
-  console.log("````````````````", req.body);
+  // console.log("````````````````", req.body);
   if (!req.body.id) {
     return res.status(404).json({ message: "not found" });
   }

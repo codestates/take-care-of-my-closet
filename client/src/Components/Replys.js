@@ -31,7 +31,7 @@ function Replys({
           id: selectedReplyId,
         }, {withCredentials: true})
         .then((res) => {
-          console.log("댓글 삭제 요청 응답", res.data);
+          // console.log("댓글 삭제 요청 응답", res.data);
           if (res.data.message === "delete!") {
             replyListHandler(res.data.data);
           }
@@ -44,7 +44,7 @@ function Replys({
 
   const deleteReply = (e) => {
     e.preventDefault();
-    console.log(e.target.parentElement.getAttribute("id"));
+    // console.log(e.target.parentElement.getAttribute("id"));
     setselectedReplyId(e.target.parentElement.getAttribute("id"));
   };
 

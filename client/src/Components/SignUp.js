@@ -60,7 +60,7 @@ function SignUp() {
   };
 
   const inputProfileHandler = (e) => {
-    console.log(e.target.files[0]);
+    // console.log(e.target.files[0]);
     setProfileImage(e.target.files[0]);
     // console.log("프로필 사진", profileImage);
     let reader = new FileReader(); // -> 파일 읽기 완료
@@ -77,7 +77,7 @@ function SignUp() {
     axios
       .post(`${process.env.REACT_APP_API_URL}/upload`, formData, {withCredentials: true})
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data.message === "ok") {
           setImageUrl(res.data.image_url);
         } else {
@@ -107,7 +107,7 @@ function SignUp() {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.message === `It's already created`) {
           // setDuplicatedId(false);
           // setDuplicatedIdMessage("사용할 수 없는 아이디 입니다.");
@@ -135,7 +135,7 @@ function SignUp() {
         { withCredentials: true }
       )
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.data.message === "It's already created") {
           setDuplicatedNick(false);
           setDuplicatedNickMessage("사용할 수 없는 닉네임 입니다.");
@@ -200,7 +200,7 @@ function SignUp() {
         user_image: imageUrl,
       }, {withCredentials: true})
       .then((res) => {
-        console.log(res.data.message);
+        // console.log(res.data.message);
         if (res.data.message === "create!") {
           alert("가입이 완료되었습니다.");
           history.push("/login");
