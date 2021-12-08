@@ -166,13 +166,13 @@ function App() {
   };
 
   const getSelectedContent = (id) => {
-    console.log("선택한 게시글 아이디", id);
+    // console.log("선택한 게시글 아이디", id);
     axios
       .post(`${process.env.REACT_APP_API_URL}/getContents`, {
         postId: id,
       })
       .then((res) => {
-        console.log("게시글 클릭시 오는 응답", res.data);
+        // console.log("게시글 클릭시 오는 응답", res.data);
         // 응답으로 클릭한 게시글 정보 + 해당 게시글의 댓글 정보 받음
         if (res.data.message === "ok") {
           setSelectedContent({
